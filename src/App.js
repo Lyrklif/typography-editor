@@ -6,24 +6,109 @@ import { render } from '@testing-library/react';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = props.data;
+    this.state = { ...props };
   }
 
 
   render() {
     return (
       <main className="App">
+        <EditorPanel />
         <BasicElements />
       </main>
     );
   };
 };
 
+class EditorPanel extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...props };
+  }
+
+  render() {
+    return (
+      <div className="editor-panel">
+        <h3>
+          Панель редактирования
+        </h3>
+        <Slider />
+      </div>
+    );
+  }
+};
+
+class Slider extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...props };
+  }
+
+  render() {
+    return (
+      <div className="slider">
+        <Handle />
+      </div>
+    );
+  }
+};
+
+class Handle extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { ...props };
+
+    // this.mouseDown = this.mouseDown.bind(this);
+  }
+
+  mouseDown = (e) => {
+    let handle = this.refs.handle;
+
+    handle.style.zIndex = 1000;
+
+    console.log('handle', handle.offsetTop);
+    console.log('this', this);
+
+
+    this.moveAt(handle, handle.pageX);
+
+  }
+
+  move = (e) => {
+    this.mouseDown();
+  }
+
+  moveAt = (elem, x) => {
+    // console.log('elem', elem);
+    // console.log('x', x);
+    // elem.style.left = x - elem.offsetWidth / 2 + 'px';
+    elem.style.left = '50%';
+  }
+
+  render() {
+    return (
+      <div
+        className="handle-wp"
+        onMouseMove={this.move}
+      >
+        <div
+          ref="handle"
+          className="handle"
+          onMouseDown={this.mouseDown}
+        ></div>
+      </div>
+    );
+  }
+};
+
 class BasicElements extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props;
+    this.state = { ...props };
   }
 
   render() {
