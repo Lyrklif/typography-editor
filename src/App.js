@@ -8,16 +8,27 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      fontSize: 16
+      fontSize: props.data.fontSize,
+      lineHeight: props.data.lineHeight,
     };
 
 
-    this.setGlobalFontSize = this.setGlobalFontSize.bind(this);
+    this.setGlobalParam = this.setGlobalParam.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
-  setGlobalFontSize(value) {
-    this.state.fontSize = value;
-    this.setState({ fontSize: this.state.fontSize });
+  setGlobalParam(value, inputName) {
+    this.setState({ [inputName]: [value] });
+  }
+
+
+  reset() {
+    console.log('resetStyles');
+
+    const param = this.props.data;
+
+    const r = param.map(p => p);
+    console.log(r);
   }
 
 
@@ -25,7 +36,11 @@ export default class App extends React.Component {
 
     return (
       <main className="App">
-        <EditorPanel param={this.state} setGlobalFontSize={this.setGlobalFontSize} />
+        <EditorPanel
+          param={this.state}
+          setGlobalParam={this.setGlobalParam}
+          reset={this.reset}
+        />
         <BasicElements param={this.state} />
       </main>
     );
@@ -36,17 +51,19 @@ class EditorPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      fontSize: props.param.fontSize
-    };
-    // this.state = props;
+    this.state = props.param;
 
-    this.setGlobalFontSize = props.setGlobalFontSize;
+    this.setGlobalParam = props.setGlobalParam;
+    this.reset = props.reset;
   }
 
 
-  setFontSize(e) {
-    this.setGlobalFontSize(e.target.value);
+  setParam(e) {
+    this.setGlobalParam(e.target.value, e.target.name);
+  }
+
+  reset() {
+    this.reset();
   }
 
   render() {
@@ -55,14 +72,36 @@ class EditorPanel extends React.Component {
         <h3>
           Панель редактирования
         </h3>
-        <label>
-          Размер шрифта
+        <p>
+          <label>
+            Размер шрифта
         <input
-            type="number"
-            defaultValue={this.state.fontSize}
-            onInput={e => this.setFontSize(e)}
-          />
-        </label>
+              type="number"
+              name='fontSize'
+              defaultValue={this.state.fontSize}
+              onInput={e => this.setParam(e)}
+            />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Высота строки
+        <input
+              type="number"
+              name='lineHeight'
+              step="0.1"
+              defaultValue={this.state.lineHeight}
+              onInput={e => this.setParam(e)}
+            />
+          </label>
+        </p>
+
+        <button
+          onClick={this.reset}
+        >
+          Вернуть стандартные настройки
+        </button>
         {/* <Slider /> */}
       </div>
     );
@@ -76,13 +115,18 @@ class BasicElements extends React.Component {
     super(props);
 
     // this.state = this.props.param;
-    this.state = { ...props };
+    this.state = props.param;
   }
 
   render() {
     return (
       <div
-        style={{ fontSize: `${this.props.param.fontSize}px` }}
+        style={
+          {
+            fontSize: `${this.props.param.fontSize}px`,
+            lineHeight: `${this.props.param.lineHeight}em`
+          }
+        }
         className="content">
         <h1>Заданные параметры</h1>
         <p>
@@ -90,6 +134,13 @@ class BasicElements extends React.Component {
             font-size:
           </strong>
           {this.props.param.fontSize}
+          px
+        </p>
+        <p>
+          <strong>
+            line-height:
+          </strong>
+          {this.props.param.lineHeight}
           px
         </p>
 
