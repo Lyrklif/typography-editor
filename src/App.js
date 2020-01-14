@@ -6,15 +6,27 @@ import { render } from '@testing-library/react';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props };
+
+    this.state = {
+      fontSize: 16
+    };
+
+
+    this.setGlobalFontSize = this.setGlobalFontSize.bind(this);
+  }
+
+  setGlobalFontSize(value) {
+    this.state.fontSize = value;
+    this.setState({ fontSize: this.state.fontSize });
   }
 
 
   render() {
+
     return (
       <main className="App">
-        <EditorPanel />
-        <BasicElements />
+        <EditorPanel param={this.state} setGlobalFontSize={this.setGlobalFontSize} />
+        <BasicElements param={this.state} />
       </main>
     );
   };
@@ -24,7 +36,17 @@ class EditorPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...props };
+    this.state = {
+      fontSize: props.param.fontSize
+    };
+    // this.state = props;
+
+    this.setGlobalFontSize = props.setGlobalFontSize;
+  }
+
+
+  setFontSize(e) {
+    this.setGlobalFontSize(e.target.value);
   }
 
   render() {
@@ -33,88 +55,46 @@ class EditorPanel extends React.Component {
         <h3>
           Панель редактирования
         </h3>
-        <Slider />
+        <label>
+          Размер шрифта
+        <input
+            type="number"
+            defaultValue={this.state.fontSize}
+            onInput={e => this.setFontSize(e)}
+          />
+        </label>
+        {/* <Slider /> */}
       </div>
     );
   }
 };
 
-class Slider extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { ...props };
-  }
-
-  render() {
-    return (
-      <div className="slider">
-        <Handle />
-      </div>
-    );
-  }
-};
-
-class Handle extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { ...props };
-
-    // this.mouseDown = this.mouseDown.bind(this);
-  }
-
-  mouseDown = (e) => {
-    let handle = this.refs.handle;
-
-    handle.style.zIndex = 1000;
-
-    console.log('handle', handle.offsetTop);
-    console.log('this', this);
-
-
-    this.moveAt(handle, handle.pageX);
-
-  }
-
-  move = (e) => {
-    this.mouseDown();
-  }
-
-  moveAt = (elem, x) => {
-    // console.log('elem', elem);
-    // console.log('x', x);
-    // elem.style.left = x - elem.offsetWidth / 2 + 'px';
-    elem.style.left = '50%';
-  }
-
-  render() {
-    return (
-      <div
-        className="handle-wp"
-        onMouseMove={this.move}
-      >
-        <div
-          ref="handle"
-          className="handle"
-          onMouseDown={this.mouseDown}
-        ></div>
-      </div>
-    );
-  }
-};
 
 class BasicElements extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.state = this.props.param;
     this.state = { ...props };
   }
 
   render() {
     return (
-      <div className="content">
-        <h1>Заголовок первого уровня h1</h1>
+      <div
+        style={{ fontSize: `${this.props.param.fontSize}px` }}
+        className="content">
+        <h1>Заданные параметры</h1>
+        <p>
+          <strong>
+            font-size:
+          </strong>
+          {this.props.param.fontSize}
+          px
+        </p>
+
+        <hr />
+        <h2>Заголовок второго уровня h2</h2>
         <p>Созерцание непредсказуемо. Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности.
           Отсюда естественно следует, что автоматизация дискредитирует предмет деятельности. undefined. Дедуктивный метод
           решительно представляет собой бабувизм. Дедуктивный метод решительно представляет собой бабувизм.</p>
@@ -159,3 +139,71 @@ class BasicElements extends React.Component {
     );
   }
 };
+
+
+
+
+
+
+
+
+
+// ********************
+
+// class Handle extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = { ...props };
+//   }
+
+//   mouseDown = (e) => {
+//     let handle = this.refs.handle;
+
+//     handle.style.zIndex = 1000;
+//     this.moveAt(handle, handle.pageX);
+
+//   }
+
+//   move = (e) => {
+//     this.mouseDown();
+//   }
+
+//   moveAt = (elem, x) => {
+//     // elem.style.left = x - elem.offsetWidth / 2 + 'px';
+//     elem.style.left = '50%';
+//   }
+
+//   render() {
+//     return (
+//       <div
+//         className="handle-wp"
+//         onMouseMove={this.move}
+//       >
+//         <div
+//           ref="handle"
+//           className="handle"
+//           onMouseDown={this.mouseDown}
+//         ></div>
+//       </div>
+//     );
+//   }
+// };
+
+
+
+// class Slider extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = { ...props };
+//   }
+
+//   render() {
+//     return (
+//       <div className="slider">
+//         <Handle />
+//       </div>
+//     );
+//   }
+// };
