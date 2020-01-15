@@ -15,14 +15,15 @@ export default class App extends React.Component {
     this.setTag = this.setTag.bind(this);
   }
 
+  // установить глобальные настройки
   setGlobalParam(value, inputName) {
     this.setState({ [inputName]: [value] });
   }
 
+  // установить тег
   setTag() {
     console.log('adawda');
   }
-
 
   // сбросить изменения
   reset() {
@@ -50,7 +51,7 @@ export default class App extends React.Component {
           setGlobalParam={this.setGlobalParam}
           reset={this.reset}
           switchEditText={this.switchEditText}
-          setTag={this.setTag}
+          eventHandler={this.setTag}
         />
 
         {/* блок, текст в котором можно редактировать */}
@@ -70,7 +71,7 @@ class EditorPanel extends React.Component {
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
     this.switchEditText = props.switchEditText;
-    this.setTag = props.setTag;
+    this.eventHandler = props.eventHandler;
   }
 
 
@@ -105,7 +106,7 @@ class EditorPanel extends React.Component {
           param={this.props}
           classes="editor-panel__inner"
           setGlobalParam={this.setGlobalParam}
-          eventHandler={this.setTag}
+          eventHandler={this.eventHandler}
         />
 
 
