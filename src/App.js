@@ -159,6 +159,7 @@ class ButtonsPanel extends React.Component {
   }
 }
 
+
 // основные настройки
 class MainSettingsPanel extends React.Component {
   constructor(props) {
@@ -167,7 +168,6 @@ class MainSettingsPanel extends React.Component {
     this.state = props.param;
 
     this.setGlobalParam = props.setGlobalParam;
-    this.switchEditText = props.switchEditText;
   }
 
 
@@ -178,31 +178,58 @@ class MainSettingsPanel extends React.Component {
   render() {
     return (
       <div className={this.props.classes}>
-        <p>
-          <label>
-            Размер шрифта
-        <input
-              type="number"
-              name='fontSize'
-              value={this.props.param.fontSize}
-              onChange={e => this.setParam(e)}
-            />
-          </label>
-        </p>
 
-        <p>
-          <label>
-            Высота строки
-        <input
-              type="number"
-              name='lineHeight'
-              step="0.1"
-              value={this.props.param.lineHeight}
-              onChange={e => this.setParam(e)}
-            />
-          </label>
-        </p>
+        {/* Размер шрифта */}
+        <Input
+          param={this.props.param.fontSize}
+          setGlobalParam={this.setGlobalParam}
+          type="number"
+          name="fontSize"
+          text="Размер шрифта"
+        />
+
+
+        {/* Высота строки */}
+        <Input
+          param={this.props.param.lineHeight}
+          setGlobalParam={this.setGlobalParam}
+          type="number"
+          name="lineHeight"
+          step="0.1"
+          text="Высота строки"
+        />
+
       </div>
+    )
+  }
+}
+
+// Поле ввода
+class Input extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props.param;
+
+    this.setGlobalParam = props.setGlobalParam;
+  }
+
+  setParam(e) {
+    this.setGlobalParam(e.target.value, e.target.name);
+  }
+
+  render() {
+    return (
+      <label>
+        {this.props.text}
+        <input
+          type={this.props.type}
+          name={this.props.name}
+          value={this.props.param}
+          step={this.props.step}
+          onChange={e => this.setParam(e)}
+        />
+      </label>
     )
   }
 }
