@@ -12,10 +12,15 @@ export default class App extends React.Component {
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.reset = this.reset.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
+    this.setTag = this.setTag.bind(this);
   }
 
   setGlobalParam(value, inputName) {
     this.setState({ [inputName]: [value] });
+  }
+
+  setTag() {
+    console.log('adawda');
   }
 
 
@@ -45,6 +50,7 @@ export default class App extends React.Component {
           setGlobalParam={this.setGlobalParam}
           reset={this.reset}
           switchEditText={this.switchEditText}
+          setTag={this.setTag}
         />
 
         {/* блок, текст в котором можно редактировать */}
@@ -59,11 +65,12 @@ class EditorPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.param;
+    this.state = props;
 
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
     this.switchEditText = props.switchEditText;
+    this.setTag = props.setTag;
   }
 
 
@@ -92,6 +99,16 @@ class EditorPanel extends React.Component {
           setGlobalParam={this.setGlobalParam}
         />
 
+
+        {/* настройка тегов */}
+        <TagsPanel
+          param={this.props}
+          classes="editor-panel__inner"
+          setGlobalParam={this.setGlobalParam}
+          setTag={this.setTag}
+        />
+
+
         {/* панель с нопками */}
         <ButtonsPanel
           param={this.props.param}
@@ -104,6 +121,116 @@ class EditorPanel extends React.Component {
     );
   }
 };
+
+// настройка тегов
+class TagsPanel extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props;
+
+    this.setTag = props.setTag;
+  }
+
+  render() {
+    return (
+      <div
+        className={this.props.classes}
+      >
+
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<p>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<b>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<i>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<h1>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<h2>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<h3>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<h4>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<h5>"
+          classes="tag"
+        />
+
+        <Tag
+          param={this.props}
+          setTag={this.setTag}
+          text="<h6>"
+          classes="tag"
+        />
+
+
+      </div>
+    )
+  }
+}
+
+class Tag extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props;
+
+    this.setTag = props.setTag;
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.setTag}
+        className={this.props.classes}
+      >
+        {this.props.text}
+      </button>
+    )
+  }
+}
+
+
+
 
 // панель с кнопками
 class ButtonsPanel extends React.Component {
@@ -158,6 +285,9 @@ class ButtonsPanel extends React.Component {
     )
   }
 }
+
+
+
 
 
 // основные настройки
