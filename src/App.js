@@ -93,38 +93,74 @@ class EditorPanel extends React.Component {
           Панель редактирования
         </h3>
         {/* основные настройки */}
-        <MainSettings
+        <MainSettingsPanel
           param={this.props.param}
-          setGlobalParam={this.setGlobalParam}
           classes="editor-panel__inner"
+          setGlobalParam={this.setGlobalParam}
         />
 
-
-        <div
-          className="editor-panel__inner editor-panel__buttons"
-        >
-          <button
-            className={this.props.param.editText ? 'on' : 'off'}
-            onClick={this.switchEditText}
-          >
-            <b
-              className="uppercase"
-            >{this.props.param.editText ? 'on' : 'off'} </b>
-            Режим редактирования текста
-        </button>
-          <button
-            onClick={this.reset}
-          >
-            Вернуть стандартные настройки
-        </button>
-        </div>
+        {/* панель с нопками */}
+        <ButtonsPanel
+          param={this.props.param}
+          classes="editor-panel__inner editor-panel__buttons"
+          setGlobalParam={this.setGlobalParam}
+          reset={this.reset}
+          switchEditText={this.switchEditText}
+        />
       </div>
     );
   }
 };
 
+// панель с нопками
+class ButtonsPanel extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props.param;
+
+    this.setGlobalParam = props.setGlobalParam;
+    this.reset = props.reset;
+    this.switchEditText = props.switchEditText;
+  }
+
+
+  setParam(e) {
+    this.setGlobalParam(e.target.value, e.target.name);
+  }
+
+  reset() {
+    this.reset();
+  }
+
+  switchEditText() {
+    this.switchEditText();
+  }
+
+  render() {
+    return (
+      <div className={this.props.classes}>
+        <button
+          className={this.props.param.editText ? 'on' : 'off'}
+          onClick={this.switchEditText}
+        >
+          <b
+            className="uppercase"
+          >{this.props.param.editText ? 'on' : 'off'} </b>
+          Режим редактирования текста
+        </button>
+        <button
+          onClick={this.reset}
+        >
+          Вернуть стандартные настройки
+        </button>
+      </div>
+    )
+  }
+}
+
 // основные настройки
-class MainSettings extends React.Component {
+class MainSettingsPanel extends React.Component {
   constructor(props) {
     super(props);
 
