@@ -75,6 +75,7 @@ class EditorPanel extends React.Component {
               type="number"
               name='fontSize'
               defaultValue={this.state.fontSize}
+              value={this.props.param.fontSize}
               onInput={e => this.setParam(e)}
             />
           </label>
@@ -88,6 +89,7 @@ class EditorPanel extends React.Component {
               name='lineHeight'
               step="0.1"
               defaultValue={this.state.lineHeight}
+              value={this.props.param.lineHeight}
               onInput={e => this.setParam(e)}
             />
           </label>
@@ -110,7 +112,6 @@ class BasicElements extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = this.props.param;
     this.state = props.param;
   }
 
