@@ -54,9 +54,9 @@ button {
   user-select: none;
 }
 
-/* button.off {
-  border: 2px solid red;
-} */
+button>b {
+  margin-right: 0.5em;
+}
 
 button.on {
   background-color: rgb(117, 197, 124);

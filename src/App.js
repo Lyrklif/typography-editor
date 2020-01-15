@@ -9,13 +9,6 @@ export default class App extends React.Component {
 
     this.state = props.data;
 
-    // this.state = {
-    //   fontSize: props.data.fontSize,
-    //   lineHeight: props.data.lineHeight,
-
-    //   editText: props.data.editText
-    // };
-
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.reset = this.reset.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
@@ -112,7 +105,7 @@ class EditorPanel extends React.Component {
   }
 };
 
-// панель с нопками
+// панель с кнопками
 class ButtonsPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -140,20 +133,27 @@ class ButtonsPanel extends React.Component {
   render() {
     return (
       <div className={this.props.classes}>
+
+        {/* КНОПКА Режим редактирования текста */}
         <button
           className={this.props.param.editText ? 'on' : 'off'}
           onClick={this.switchEditText}
         >
           <b
             className="uppercase"
-          >{this.props.param.editText ? 'on' : 'off'} </b>
+          >
+            {this.props.param.editText ? 'on' : 'off'}
+          </b>
           Режим редактирования текста
         </button>
+
+        {/* КНОПКА Вернуть стандартные настройки */}
         <button
           onClick={this.reset}
         >
           Вернуть стандартные настройки
         </button>
+
       </div>
     )
   }
