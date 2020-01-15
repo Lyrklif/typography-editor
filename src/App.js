@@ -7,13 +7,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      fontSize: props.data.fontSize,
-      lineHeight: props.data.lineHeight,
+    this.state = props.data;
 
-      editText: props.data.editText
-    };
+    // this.state = {
+    //   fontSize: props.data.fontSize,
+    //   lineHeight: props.data.lineHeight,
 
+    //   editText: props.data.editText
+    // };
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.reset = this.reset.bind(this);
@@ -33,12 +34,10 @@ export default class App extends React.Component {
 
   // включить/отключить возможность редактировать текст
   switchEditText() {
-    console.log('switchEditText');
-
+    // заменить значение на противоположное
     this.setState({
       editText: !this.state.editText
     });
-    console.log('this.state.editText', this.state.editText);
   }
 
 
@@ -94,9 +93,8 @@ class EditorPanel extends React.Component {
         <input
               type="number"
               name='fontSize'
-              defaultValue={this.state.fontSize}
               value={this.props.param.fontSize}
-              onInput={e => this.setParam(e)}
+              onChange={e => this.setParam(e)}
             />
           </label>
         </p>
@@ -108,9 +106,8 @@ class EditorPanel extends React.Component {
               type="number"
               name='lineHeight'
               step="0.1"
-              defaultValue={this.state.lineHeight}
               value={this.props.param.lineHeight}
-              onInput={e => this.setParam(e)}
+              onChange={e => this.setParam(e)}
             />
           </label>
         </p>
@@ -118,10 +115,13 @@ class EditorPanel extends React.Component {
           className="editor-panel__buttons"
         >
           <button
-            className={this.props.param.editText ? 'off' : 'on'}
+            className={this.props.param.editText ? 'on' : 'off'}
             onClick={this.switchEditText}
           >
-            Редактировать текст
+            <b
+              className="uppercase"
+            >{this.props.param.editText ? 'on' : 'off'} </b>
+            Режим редактирования текста
         </button>
           <button
             onClick={this.reset}
@@ -147,7 +147,9 @@ class BasicElements extends React.Component {
   render() {
     return (
       <div
-        contenteditable={this.props.param.editText ? 'false' : 'true'}
+        contentEditable={this.props.param.editText ? 'true' : 'false'}
+        // чтобы убрать в консоли предупреждение о contentEditable
+        suppressContentEditableWarning={true}
         style={
           {
             fontSize: `${this.props.param.fontSize}px`,
