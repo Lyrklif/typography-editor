@@ -51,6 +51,14 @@ button {
   user-select: none;
 }
 
+/* button.off {
+  border: 2px solid red;
+} */
+
+button.on {
+  background-color: rgb(117, 197, 124);
+}
+
 input {
   background-color: rgb(180, 188, 189);
   border: 0 none;
@@ -80,9 +88,14 @@ input:active,
 input:hover {
   background-color: rgb(175, 202, 206);
   outline: 0 none;
-
 }
 
+
+button.on:focus,
+button.on:active,
+button.on:hover {
+  background-color: rgb(110, 223, 120);
+}
 
 h1,
 h2,

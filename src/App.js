@@ -10,11 +10,14 @@ export default class App extends React.Component {
     this.state = {
       fontSize: props.data.fontSize,
       lineHeight: props.data.lineHeight,
+
+      editText: props.data.editText
     };
 
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.reset = this.reset.bind(this);
+    this.switchEditText = this.switchEditText.bind(this);
   }
 
   setGlobalParam(value, inputName) {
@@ -28,6 +31,17 @@ export default class App extends React.Component {
   }
 
 
+  // включить/отключить возможность редактировать текст
+  switchEditText() {
+    console.log('switchEditText');
+
+    this.setState({
+      editText: !this.state.editText
+    });
+    console.log('this.state.editText', this.state.editText);
+  }
+
+
   render() {
 
     return (
@@ -36,6 +50,7 @@ export default class App extends React.Component {
           param={this.state}
           setGlobalParam={this.setGlobalParam}
           reset={this.reset}
+          switchEditText={this.switchEditText}
         />
         <BasicElements param={this.state} />
       </main>
@@ -51,6 +66,7 @@ class EditorPanel extends React.Component {
 
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
+    this.switchEditText = props.switchEditText;
   }
 
 
@@ -60,6 +76,10 @@ class EditorPanel extends React.Component {
 
   reset() {
     this.reset();
+  }
+
+  switchEditText() {
+    this.switchEditText();
   }
 
   render() {
@@ -94,13 +114,21 @@ class EditorPanel extends React.Component {
             />
           </label>
         </p>
-
-        <button
-          className="editor-panel__reset"
-          onClick={this.reset}
+        <div
+          className="editor-panel__buttons"
         >
-          Вернуть стандартные настройки
+          <button
+            className={this.props.param.editText ? 'off' : 'on'}
+            onClick={this.switchEditText}
+          >
+            Редактировать текст
         </button>
+          <button
+            onClick={this.reset}
+          >
+            Вернуть стандартные настройки
+        </button>
+        </div>
         {/* <Slider /> */}
       </div>
     );
@@ -119,7 +147,7 @@ class BasicElements extends React.Component {
   render() {
     return (
       <div
-        contenteditable="true"
+        contenteditable={this.props.param.editText ? 'false' : 'true'}
         style={
           {
             fontSize: `${this.props.param.fontSize}px`,
@@ -129,6 +157,7 @@ class BasicElements extends React.Component {
         className="content">
         <h1>Блок с текстом</h1>
         <p>Текст и его стили можно изменять</p>
+        <p>Нормального дизайна и мобильной версии ещё нет</p>
 
         <hr />
         <h2>Заголовок второго уровня h2</h2>

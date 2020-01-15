@@ -7,7 +7,9 @@ import * as serviceWorker from './serviceWorker';
 
 const data = {
   fontSize: 16,
-  lineHeight: 2.2
+  lineHeight: 2.2,
+
+  editText: false
 }
 
 ReactDOM.render(<App data={data} />, document.getElementById('root'));

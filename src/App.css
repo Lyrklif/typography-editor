@@ -6,11 +6,11 @@
   color: #ffffff;
   background-color: rgb(42, 57, 61);
 
-  padding: 2em 4em;
+  padding: 2em 4em 4em 4em;
 
   width: calc(100% - 4em - 4em);
   max-width: calc(100% - 4em - 4em);
-  height: 200px;
+  height: calc(200px - 2em - 4em);
 
   position: fixed;
   top: 0;
@@ -37,11 +37,17 @@
   margin-right: 1em;
 }
 
-.editor-panel__reset {
+.editor-panel__buttons {
   position: absolute;
   bottom: 0.2em;
   right: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
 
+}
+
+.editor-panel__buttons>button {
+  margin-left: 1em;
 }
 
 
