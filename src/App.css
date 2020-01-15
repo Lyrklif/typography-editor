@@ -1,17 +1,47 @@
 /* ***************************************** */
 
 .editor-panel {
-  border-radius: 1.5em;
   display: block;
-  background-color: rgba(3, 192, 250, 0.123);
-  padding: 2em 1em;
   font-size: 16px;
+  color: #ffffff;
+  background-color: rgb(42, 57, 61);
+
+  padding: 2em 4em;
+
+  width: calc(100% - 4em - 4em);
+  max-width: calc(100% - 4em - 4em);
+  height: 200px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .editor-panel>h3 {
-  font-size: 1.5em;
+  font-size: 0.8em;
   margin-top: 0;
   text-align: center;
+  opacity: 0.5;
+  position: absolute;
+  top: 0.2em;
+  left: 0.5em;
+
+  user-select: none;
+}
+
+.editor-panel>p {
+  margin-right: 1em;
+}
+
+.editor-panel__reset {
+  position: absolute;
+  bottom: 0.2em;
+  right: 0.5em;
+
 }
 
 

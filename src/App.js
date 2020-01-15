@@ -96,6 +96,7 @@ class EditorPanel extends React.Component {
         </p>
 
         <button
+          className="editor-panel__reset"
           onClick={this.reset}
         >
           Вернуть стандартные настройки
@@ -118,6 +119,7 @@ class BasicElements extends React.Component {
   render() {
     return (
       <div
+        contenteditable="true"
         style={
           {
             fontSize: `${this.props.param.fontSize}px`,
@@ -125,21 +127,8 @@ class BasicElements extends React.Component {
           }
         }
         className="content">
-        <h1>Заданные параметры</h1>
-        <p>
-          <strong>
-            font-size:
-          </strong>
-          {this.props.param.fontSize}
-          px
-        </p>
-        <p>
-          <strong>
-            line-height:
-          </strong>
-          {this.props.param.lineHeight}
-          px
-        </p>
+        <h1>Блок с текстом</h1>
+        <p>Текст и его стили можно изменять</p>
 
         <hr />
         <h2>Заголовок второго уровня h2</h2>

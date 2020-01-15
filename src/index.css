@@ -16,6 +16,82 @@ body {
 .content {
   font-size: 16px;
   line-height: 1.5em;
+
+  padding: 3em 1em;
+  margin-top: 300px;
+
+  border-radius: 3em;
+
+  background-color: rgba(65, 217, 219, 0.05);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.content> :first-child {
+  margin-top: 0;
+}
+
+.content:active,
+.content:focus {
+  outline: none;
+  background-color: rgba(65, 217, 219, 0.1);
+}
+
+button {
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  background-color: rgb(180, 188, 189);
+  border: 0 none;
+  border-radius: 1em;
+
+  display: block;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  min-width: 8em;
+
+  user-select: none;
+}
+
+input {
+  background-color: rgb(180, 188, 189);
+  border: 0 none;
+  border-radius: 1em;
+
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+
+  text-align: center;
+  padding: 0.5em 0.5em 0.5em 0.5em;
+  width: 8em;
+
+}
+
+input,
+button {
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+button:focus,
+button:active,
+button:hover,
+input:focus,
+input:active,
+input:hover {
+  background-color: rgb(175, 202, 206);
+  outline: 0 none;
+
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
 h1 {
