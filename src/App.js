@@ -22,7 +22,7 @@ export default class App extends React.Component {
 
   // установить тег
   setTag() {
-    console.log('adawda');
+    console.log('установить тег (надо прописать логику)');
   }
 
   // сбросить изменения
@@ -103,7 +103,7 @@ class EditorPanel extends React.Component {
 
         {/* настройка тегов */}
         <TagsPanel
-          param={this.props}
+          param={this.props.param}
           classes="editor-panel__inner"
           setGlobalParam={this.setGlobalParam}
           eventHandler={this.eventHandler}
@@ -128,81 +128,32 @@ class TagsPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props;
+    this.state = props.param;
 
     this.eventHandler = props.eventHandler;
   }
 
   render() {
+    // преобразовать объект в массив, чтобы его мог считать .map    
+    let tagsArray = Object.values(this.state.tags);
+
+    let tagList = tagsArray.map((elem, index) => {
+      return (
+        <Tag
+          key={index}
+          param={this.state}
+          eventHandler={this.eventHandler}
+          text={elem}
+          classes="tag"
+        />
+      )
+    });
+
     return (
       <div
         className={this.props.classes}
       >
-
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<p>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<b>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<i>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<h1>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<h2>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<h3>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<h4>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<h5>"
-          classes="tag"
-        />
-
-        <Tag
-          param={this.props}
-          eventHandler={this.eventHandler}
-          text="<h6>"
-          classes="tag"
-        />
-
+        {tagList}
 
       </div>
     )
