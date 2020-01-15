@@ -92,32 +92,13 @@ class EditorPanel extends React.Component {
         <h3>
           Панель редактирования
         </h3>
-        <div className="editor-panel__inner">
-          <p>
-            <label>
-              Размер шрифта
-        <input
-                type="number"
-                name='fontSize'
-                value={this.props.param.fontSize}
-                onChange={e => this.setParam(e)}
-              />
-            </label>
-          </p>
+        {/* основные настройки */}
+        <MainSettings
+          param={this.props.param}
+          setGlobalParam={this.setGlobalParam}
+          classes="editor-panel__inner"
+        />
 
-          <p>
-            <label>
-              Высота строки
-        <input
-                type="number"
-                name='lineHeight'
-                step="0.1"
-                value={this.props.param.lineHeight}
-                onChange={e => this.setParam(e)}
-              />
-            </label>
-          </p>
-        </div>
 
         <div
           className="editor-panel__inner editor-panel__buttons"
@@ -137,12 +118,58 @@ class EditorPanel extends React.Component {
             Вернуть стандартные настройки
         </button>
         </div>
-        {/* <Slider /> */}
       </div>
     );
   }
 };
 
+// основные настройки
+class MainSettings extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props.param;
+
+    this.setGlobalParam = props.setGlobalParam;
+    this.switchEditText = props.switchEditText;
+  }
+
+
+  setParam(e) {
+    this.setGlobalParam(e.target.value, e.target.name);
+  }
+
+  render() {
+    return (
+      <div className={this.props.classes}>
+        <p>
+          <label>
+            Размер шрифта
+        <input
+              type="number"
+              name='fontSize'
+              value={this.props.param.fontSize}
+              onChange={e => this.setParam(e)}
+            />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Высота строки
+        <input
+              type="number"
+              name='lineHeight'
+              step="0.1"
+              value={this.props.param.lineHeight}
+              onChange={e => this.setParam(e)}
+            />
+          </label>
+        </p>
+      </div>
+    )
+  }
+}
 
 
 class ContentEditable extends React.Component {
