@@ -22,13 +22,9 @@ export default class App extends React.Component {
   }
 
 
+  // сбросить изменения
   reset() {
-    console.log('resetStyles');
-
-    const param = this.props.data;
-
-    const r = param.map(p => p);
-    console.log(r);
+    this.setState(this.props.data);
   }
 
 
