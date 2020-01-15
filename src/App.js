@@ -45,13 +45,18 @@ export default class App extends React.Component {
 
     return (
       <main className="App">
+
+        {/* панель редактирования */}
         <EditorPanel
           param={this.state}
           setGlobalParam={this.setGlobalParam}
           reset={this.reset}
           switchEditText={this.switchEditText}
         />
-        <BasicElements param={this.state} />
+
+        {/* блок, текст в котором можно редактировать */}
+        <ContentEditable param={this.state} />
+
       </main>
     );
   };
@@ -87,32 +92,35 @@ class EditorPanel extends React.Component {
         <h3>
           Панель редактирования
         </h3>
-        <p>
-          <label>
-            Размер шрифта
+        <div className="editor-panel__inner">
+          <p>
+            <label>
+              Размер шрифта
         <input
-              type="number"
-              name='fontSize'
-              value={this.props.param.fontSize}
-              onChange={e => this.setParam(e)}
-            />
-          </label>
-        </p>
+                type="number"
+                name='fontSize'
+                value={this.props.param.fontSize}
+                onChange={e => this.setParam(e)}
+              />
+            </label>
+          </p>
 
-        <p>
-          <label>
-            Высота строки
+          <p>
+            <label>
+              Высота строки
         <input
-              type="number"
-              name='lineHeight'
-              step="0.1"
-              value={this.props.param.lineHeight}
-              onChange={e => this.setParam(e)}
-            />
-          </label>
-        </p>
+                type="number"
+                name='lineHeight'
+                step="0.1"
+                value={this.props.param.lineHeight}
+                onChange={e => this.setParam(e)}
+              />
+            </label>
+          </p>
+        </div>
+
         <div
-          className="editor-panel__buttons"
+          className="editor-panel__inner editor-panel__buttons"
         >
           <button
             className={this.props.param.editText ? 'on' : 'off'}
@@ -137,7 +145,7 @@ class EditorPanel extends React.Component {
 
 
 
-class BasicElements extends React.Component {
+class ContentEditable extends React.Component {
   constructor(props) {
     super(props);
 
@@ -156,7 +164,8 @@ class BasicElements extends React.Component {
             lineHeight: `${this.props.param.lineHeight}em`
           }
         }
-        className="content">
+        className={this.props.param.editText ? 'content edit' : 'content'}
+      >
         <h1>Блок с текстом</h1>
         <p>Текст и его стили можно изменять</p>
         <p>Нормального дизайна и мобильной версии ещё нет</p>
