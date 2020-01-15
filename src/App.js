@@ -96,7 +96,7 @@ class EditorPanel extends React.Component {
         <MainSettingsPanel
           param={this.props.param}
           classes="editor-panel__inner"
-          setGlobalParam={this.setGlobalParam}
+          eventHandler={this.setGlobalParam}
         />
 
 
@@ -105,7 +105,7 @@ class EditorPanel extends React.Component {
           param={this.props}
           classes="editor-panel__inner"
           setGlobalParam={this.setGlobalParam}
-          setTag={this.setTag}
+          eventHandler={this.setTag}
         />
 
 
@@ -129,7 +129,7 @@ class TagsPanel extends React.Component {
 
     this.state = props;
 
-    this.setTag = props.setTag;
+    this.eventHandler = props.eventHandler;
   }
 
   render() {
@@ -141,63 +141,63 @@ class TagsPanel extends React.Component {
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<p>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<b>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<i>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<h1>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<h2>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<h3>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<h4>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<h5>"
           classes="tag"
         />
 
         <Tag
           param={this.props}
-          setTag={this.setTag}
+          eventHandler={this.eventHandler}
           text="<h6>"
           classes="tag"
         />
@@ -214,13 +214,13 @@ class Tag extends React.Component {
 
     this.state = props;
 
-    this.setTag = props.setTag;
+    this.eventHandler = props.eventHandler;
   }
 
   render() {
     return (
       <button
-        onClick={this.setTag}
+        onClick={this.eventHandler}
         className={this.props.classes}
       >
         {this.props.text}
@@ -297,12 +297,12 @@ class MainSettingsPanel extends React.Component {
 
     this.state = props.param;
 
-    this.setGlobalParam = props.setGlobalParam;
+    this.eventHandler = props.eventHandler;
   }
 
 
   setParam(e) {
-    this.setGlobalParam(e.target.value, e.target.name);
+    this.eventHandler(e.target.value, e.target.name);
   }
 
   render() {
@@ -312,7 +312,7 @@ class MainSettingsPanel extends React.Component {
         {/* Размер шрифта */}
         <Input
           param={this.props.param.fontSize}
-          setGlobalParam={this.setGlobalParam}
+          eventHandler={this.eventHandler}
           type="number"
           name="fontSize"
           text="Размер шрифта"
@@ -322,7 +322,7 @@ class MainSettingsPanel extends React.Component {
         {/* Высота строки */}
         <Input
           param={this.props.param.lineHeight}
-          setGlobalParam={this.setGlobalParam}
+          eventHandler={this.eventHandler}
           type="number"
           name="lineHeight"
           step="0.1"
@@ -341,11 +341,11 @@ class Input extends React.Component {
 
     this.state = props.param;
 
-    this.setGlobalParam = props.setGlobalParam;
+    this.eventHandler = props.eventHandler;
   }
 
   setParam(e) {
-    this.setGlobalParam(e.target.value, e.target.name);
+    this.eventHandler(e.target.value, e.target.name);
   }
 
   render() {
