@@ -39,7 +39,7 @@
   margin-bottom: 0;
 }
 
-.editor-panel>h3 {
+.editor-panel__title {
   font-size: 0.8em;
   margin-top: 0;
   text-align: center;
