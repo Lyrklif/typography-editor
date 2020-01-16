@@ -9,7 +9,19 @@ const data = {
   fontSize: 16,
   lineHeight: 2.2,
 
-  editText: false
+  editText: false,
+
+  tags: {
+    p: 'p',
+    b: 'b',
+    i: 'i',
+    h1: 'h1',
+    h2: 'h2',
+    h3: 'h3',
+    h4: 'h4',
+    h5: 'h5',
+    h6: 'h6'
+  }
 }
 
 ReactDOM.render(<App data={data} />, document.getElementById('root'));
