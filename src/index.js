@@ -22,10 +22,13 @@ const data = {
     // разрешённые в редактируемом блоке теги
     allowedTags: [
       'clearFormat', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'ul',
-      'ol', 'li', 'b', 'i', 'strike', 'selectedText'
+      'ol', 'li', 'b', 'i', 'strike', 'span'
     ],
     // разрешённые атрибуты
-    allowedAttributes: { a: ['href', 'name', 'target'] }
+    allowedAttributes: {
+      a: ['href', 'name', 'target'],
+      '*': [ 'href', 'align', 'alt', 'center', 'bgcolor', 'style' ]
+    }
   },
 
   sanitizeArguments: {
@@ -35,15 +38,15 @@ const data = {
     h4: ['formatBlock', 'h4'],
     h5: ['formatBlock', 'h5'],
     h6: ['formatBlock', 'h6'],
-    p:  ['formatBlock', 'p'],
-    a:  ['createLink', '#'],
+    p: ['formatBlock', 'p'],
+    a: ['createLink', '#'],
     ul: ['insertUnorderedList', ''],
     ol: ['insertOrderedList', ''],
-    b:  ['bold', ''],
-    i:  ['italic', ''],
+    b: ['bold', ''],
+    i: ['italic', ''],
     strike: ['strikeThrough', ''],
     clearFormat: ['removeFormat', ''],
-    selectedText: ['backColor', 'rgba(255, 255, 0, 1)'],
+    span: ['hiliteColor', 'rgba(255, 255, 0, 1)'],
   },
 
   // кнопки

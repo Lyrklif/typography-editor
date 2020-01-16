@@ -40,7 +40,15 @@ export default class App extends React.Component {
 
     if (commands) {
       // document.execCommand('Название команды', false, значение (если требуется));
-      document.execCommand(commands[0], false, commands[1].toUpperCase());
+
+      // если нужно редактировать цвет фона
+      if (commands[0] === 'hiliteColor') {
+        document.execCommand('styleWithCSS', true, null);
+        document.execCommand('hiliteColor', false, commands[1]);
+        document.execCommand('styleWithCSS', false, false);
+      } else {
+        document.execCommand(commands[0], false, commands[1].toUpperCase());
+      }
     } else {
       console.log('Правила форматирования для этого тега не прописаны. Сделайте это в файле index.js в data.sanitizeArguments')
     }
