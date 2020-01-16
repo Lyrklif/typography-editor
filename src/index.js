@@ -4,47 +4,55 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
+// Начальные значения
 const data = {
-  fontSize: 16,
-  lineHeight: 2.2,
-
-  editText: false,
-
+  // стили текста
   styles: {
     fontSize: 16,
     lineHeight: 2.2,
   },
 
+  // состояния элементов 
   states: {
     editText: false,
   },
 
-  tags: {
-    p: 'p',
-    b: 'b',
-    i: 'i',
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    h4: 'h4',
-    h5: 'h5',
-    h6: 'h6'
-  },
-
+  // параметры для sanitize-html
   sanitizeParam: {
+    // разрешённые в редактируемом блоке теги
     allowedTags: [
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul',
-      'ol', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br'
+      'clearFormat', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'ul',
+      'ol', 'li', 'b', 'i', 'strike', 'selectedText'
     ],
-    allowedAttributes: { a: [ 'href', 'name', 'target' ] }
+    // разрешённые атрибуты
+    allowedAttributes: { a: ['href', 'name', 'target'] }
   },
 
+  sanitizeArguments: {
+    h1: ['formatBlock', 'h1'],
+    h2: ['formatBlock', 'h2'],
+    h3: ['formatBlock', 'h3'],
+    h4: ['formatBlock', 'h4'],
+    h5: ['formatBlock', 'h5'],
+    h6: ['formatBlock', 'h6'],
+    p:  ['formatBlock', 'p'],
+    a:  ['createLink', '#'],
+    ul: ['insertUnorderedList', ''],
+    ol: ['insertOrderedList', ''],
+    b:  ['bold', ''],
+    i:  ['italic', ''],
+    strike: ['strikeThrough', ''],
+    clearFormat: ['removeFormat', ''],
+    selectedText: ['backColor', 'rgba(255, 255, 0, 1)'],
+  },
+
+  // кнопки
   buttons: {
     edit: 'Режим редактирования текста',
     reset: 'Вернуть стандартные настройки'
   },
 
+  // текст в редактируемом блоке
   html: '<h1>Редактируемый текст</h1><p>Текст и его стили можно изменять, нажав на кнопку <b>Режим редактирования текста</b></p>'
 
 }

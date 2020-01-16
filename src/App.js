@@ -31,9 +31,19 @@ export default class App extends React.Component {
     this.setState({ styles: { [inputName]: [value] } });
   }
 
-  // установить тег
-  setTag() {
-    console.log('setTag');
+  // установить тег (форматирование текста)
+  setTag(e) {
+    e.preventDefault();
+
+    let tag = e.target.name;
+    let commands = this.state.sanitizeArguments[tag];
+
+    if (commands) {
+      // document.execCommand('Название команды', false, значение (если требуется));
+      document.execCommand(commands[0], false, commands[1].toUpperCase());
+    } else {
+      console.log('Правила форматирования для этого тега не прописаны. Сделайте это в файле index.js в data.sanitizeArguments')
+    }
   }
 
   // сбросить изменения  параметров

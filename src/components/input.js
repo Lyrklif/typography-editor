@@ -19,7 +19,8 @@ export default class Input extends React.Component {
         <input
           type={this.props.type || 'text'}
           name={this.props.name || 'btn'}
-          value={this.props.param || this.state}
+          // value={this.props.param || this.state} // из-за этого баг со сбросом значения
+          value={this.props.param} // из-за этого в консоли ошибка
           step={this.props.step || ''}
           onChange={e => this.eventHandler(e.target.value, e.target.name)}
         />

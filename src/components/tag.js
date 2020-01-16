@@ -17,6 +17,7 @@ export default class Tag extends React.Component {
       <button
         onClick={this.eventHandler}
         className={this.props.classes}
+        name={this.props.text}
       >
         {this.props.text || 'Tag'}
       </button>
