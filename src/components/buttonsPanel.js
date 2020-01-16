@@ -41,12 +41,7 @@ export default class ButtonsPanel extends React.Component {
           text={this.props.param.buttons.edit}
         />
 
-        {/* КНОПКА Вернуть стандартные настройки */}
-        <Button
-          param={this.props.param}
-          clickEvent={this.reset}
-          text={this.props.param.buttons.reset}
-        />
+        
       </div>
     )
   }

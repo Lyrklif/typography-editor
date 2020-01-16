@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Input from './input';
+import Button from './button';
 
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
@@ -22,6 +23,13 @@ export default class MainSettingsPanel extends React.Component {
     return (
       <div className={this.props.classes}>
 
+          {/* КНОПКА Вернуть стандартные настройки */}
+          <Button
+            param={this.props.param}
+            clickEvent={this.reset}
+            text={this.props.param.buttons.reset}
+          />
+
         {/* Размер шрифта */}
         <Input
           param={this.props.param.styles.fontSize}
@@ -41,6 +49,7 @@ export default class MainSettingsPanel extends React.Component {
           step="0.1"
           text="Высота строки"
         />
+
 
       </div>
     )

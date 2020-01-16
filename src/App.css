@@ -36,6 +36,10 @@
   flex-wrap: wrap;
 }
 
+.editor-panel__inner button {
+  margin-top: 0;
+}
+
 .editor-panel__inner> :nth-child(n) {
   margin-right: 1em;
   margin-top: 0;
