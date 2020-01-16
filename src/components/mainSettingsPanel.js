@@ -24,7 +24,7 @@ export default class MainSettingsPanel extends React.Component {
 
         {/* Размер шрифта */}
         <Input
-          param={this.props.param.fontSize}
+          param={this.props.param.styles.fontSize}
           eventHandler={this.eventHandler}
           type="number"
           name="fontSize"
@@ -34,7 +34,7 @@ export default class MainSettingsPanel extends React.Component {
 
         {/* Высота строки */}
         <Input
-          param={this.props.param.lineHeight}
+          param={this.props.param.styles.lineHeight}
           eventHandler={this.eventHandler}
           type="number"
           name="lineHeight"

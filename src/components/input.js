@@ -15,12 +15,12 @@ export default class Input extends React.Component {
   render() {
     return (
       <label>
-        {this.props.text}
+        {this.props.text || 'Input'}
         <input
-          type={this.props.type}
-          name={this.props.name}
-          value={this.props.param}
-          step={this.props.step}
+          type={this.props.type || 'text'}
+          name={this.props.name || 'btn'}
+          value={this.props.param || this.state}
+          step={this.props.step || ''}
           onChange={e => this.eventHandler(e.target.value, e.target.name)}
         />
       </label>

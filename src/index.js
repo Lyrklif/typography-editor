@@ -11,6 +11,15 @@ const data = {
 
   editText: false,
 
+  styles: {
+    fontSize: 16,
+    lineHeight: 2.2,
+  },
+
+  states: {
+    editText: false,
+  },
+
   tags: {
     p: 'p',
     b: 'b',
@@ -23,10 +32,21 @@ const data = {
     h6: 'h6'
   },
 
+  sanitizeParam: {
+    allowedTags: [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul',
+      'ol', 'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br'
+    ],
+    allowedAttributes: { a: [ 'href', 'name', 'target' ] }
+  },
+
   buttons: {
     edit: 'Режим редактирования текста',
     reset: 'Вернуть стандартные настройки'
-  }
+  },
+
+  html: '<h1>Редактируемый текст</h1><p>Текст и его стили можно изменять, нажав на кнопку <b>Режим редактирования текста</b></p>'
+
 }
 
 ReactDOM.render(<App data={data} />, document.getElementById('root'));

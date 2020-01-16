@@ -7,10 +7,16 @@ body {
 
 
   width: 100%;
-  max-width: 85vw;
+  max-width: 95vw;
   margin: 10vh auto;
   display: block;
   font-size: 16px;
+}
+
+@media (min-width: 1024px) {
+  body {
+    max-width: 85vw;
+  }
 }
 
 .content {

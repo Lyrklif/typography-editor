@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-
-// Поле ввода
+// *************************************************
+// ВНИМАНИЕ!!! Этот компонент больше не используется
 export default class ContentEditable extends React.Component {
   constructor(props) {
     super(props);
@@ -18,8 +18,8 @@ export default class ContentEditable extends React.Component {
         suppressContentEditableWarning={true}
         style={
           {
-            fontSize: `${this.props.param.fontSize}px`,
-            lineHeight: `${this.props.param.lineHeight}em`
+            fontSize: `${this.props.param.styles.fontSize}px`,
+            lineHeight: `${this.props.param.styles.lineHeight}em`
           }
         }
         className={this.props.param.editText ? 'content edit' : 'content'}
