@@ -10,7 +10,7 @@ export default class EditorPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props;
+    // this.state = props;
 
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;

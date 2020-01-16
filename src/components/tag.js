@@ -7,7 +7,7 @@ export default class Tag extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props;
+    // this.state = props;
 
     this.eventHandler = props.eventHandler;
   }
@@ -17,8 +17,9 @@ export default class Tag extends React.Component {
       <button
         onClick={this.eventHandler}
         className={this.props.classes}
+        name={this.props.text}
       >
-        {this.props.text}
+        {this.props.text || 'Tag'}
       </button>
     )
   }
