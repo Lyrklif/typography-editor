@@ -214,32 +214,61 @@ class ButtonsPanel extends React.Component {
       <div className={this.props.classes}>
 
         {/* КНОПКА Режим редактирования текста */}
-        <button
-          className={this.props.param.editText ? 'on' : 'off'}
-          onClick={this.switchEditText}
-        >
-          <b
-            className="uppercase"
-          >
-            {this.props.param.editText ? 'on' : 'off'}
-          </b>
-          Режим редактирования текста
-        </button>
+        <Button
+          param={this.props.param}
+          on_off='true'
+          on_off_status={this.props.param.editText}
+          clickEvent={this.switchEditText}
+          text={this.props.param.buttons.edit}
+        />
 
         {/* КНОПКА Вернуть стандартные настройки */}
-        <button
-          onClick={this.reset}
-        >
-          Вернуть стандартные настройки
-        </button>
-
+        <Button
+          param={this.props.param}
+          clickEvent={this.reset}
+          text={this.props.param.buttons.reset}
+        />
       </div>
     )
   }
 }
 
 
+// кнопка
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = props.param;
+
+    this.clickEvent = props.clickEvent;
+  }
+
+  render() {
+    // если это кнопка on/off
+    if (this.props.on_off) {
+      return (
+        <button
+          className={this.props.on_off_status ? 'on' : 'off'}
+          onClick={this.clickEvent}
+        >
+          <b className="uppercase">
+            {this.props.on_off_status ? 'on' : 'off'}
+          </b>
+          {this.props.text}
+        </button >
+      )
+
+      // иначе вернуть обычную кнопку
+    } else {
+      return (
+        <button onClick={this.clickEvent} >
+          {this.props.text}
+        </button >
+      )
+    }
+  }
+}
 
 
 // основные настройки
@@ -387,71 +416,3 @@ class ContentEditable extends React.Component {
     );
   }
 };
-
-
-
-
-
-
-
-
-
-// ********************
-
-// class Handle extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = { ...props };
-//   }
-
-//   mouseDown = (e) => {
-//     let handle = this.refs.handle;
-
-//     handle.style.zIndex = 1000;
-//     this.moveAt(handle, handle.pageX);
-
-//   }
-
-//   move = (e) => {
-//     this.mouseDown();
-//   }
-
-//   moveAt = (elem, x) => {
-//     // elem.style.left = x - elem.offsetWidth / 2 + 'px';
-//     elem.style.left = '50%';
-//   }
-
-//   render() {
-//     return (
-//       <div
-//         className="handle-wp"
-//         onMouseMove={this.move}
-//       >
-//         <div
-//           ref="handle"
-//           className="handle"
-//           onMouseDown={this.mouseDown}
-//         ></div>
-//       </div>
-//     );
-//   }
-// };
-
-
-
-// class Slider extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = { ...props };
-//   }
-
-//   render() {
-//     return (
-//       <div className="slider">
-//         <Handle />
-//       </div>
-//     );
-//   }
-// };
