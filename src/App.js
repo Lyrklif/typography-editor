@@ -36,21 +36,20 @@ export default class App extends React.Component {
     e.preventDefault();
 
     let tag = e.target.name;
-    let commands = this.state.sanitizeArguments[tag];
+    let commands = this.state.formatСommand[tag];
 
+    // если команда для этого тега существует
     if (commands) {
       // document.execCommand('Название команды', false, значение (если требуется));
 
-      // если нужно редактировать цвет фона
-      if (commands[0] === 'hiliteColor') {
-        document.execCommand('styleWithCSS', true, null);
-        document.execCommand('hiliteColor', false, commands[1]);
-        document.execCommand('styleWithCSS', false, false);
-      } else {
-        document.execCommand(commands[0], false, commands[1].toUpperCase());
+      // применить все заданные команды из массива
+      for (let i = 0; i < commands.length; i++) {
+        console.log(commands[i][0]);
+        document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
       }
+
     } else {
-      console.log('Правила форматирования для этого тега не прописаны. Сделайте это в файле index.js в data.sanitizeArguments')
+      console.log('Правила форматирования для этого тега не прописаны. Сделайте это в файле index.js в data.formatСommand')
     }
   }
 

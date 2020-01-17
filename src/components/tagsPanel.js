@@ -14,10 +14,10 @@ export default class TagsPanel extends React.Component {
   }
 
   render() {
-    // преобразовать объект в массив, чтобы его мог считать .map    
-    // let tagsArray = Object.values(this.state.tags);
+    // преобразовать объект в массив ключей, чтобы можно было использовать .map    
+    let tagsArray = Object.keys(this.state.formatСommand);
 
-    let tagList = this.state.sanitizeParam.allowedTags.map((elem, index) => {
+    let tagList = tagsArray.map((elem, index) => {
       return (
         <Tag
           key={index}
