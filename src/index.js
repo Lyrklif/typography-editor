@@ -22,7 +22,7 @@ const data = {
     // разрешённые в редактируемом блоке теги
     allowedTags: [
       'clearFormat', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'ul',
-      'ol', 'b', 'i', 'strike', 'span'
+      'ol', 'b', 'i', 'strike', 'span', 'li'
     ],
     // разрешённые атрибуты
     allowedAttributes: {
