@@ -44,7 +44,6 @@ export default class App extends React.Component {
 
       // применить все заданные команды из массива
       for (let i = 0; i < commands.length; i++) {
-        console.log(commands[i][0]);
         document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
       }
 

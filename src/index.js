@@ -27,7 +27,7 @@ const data = {
     // разрешённые атрибуты
     allowedAttributes: {
       a: ['href', 'name', 'target'],
-      '*': ['style']
+      '*': ['style', 'color', 'bgcolor', 'background-color']
     }
   },
 
@@ -78,12 +78,12 @@ const data = {
     ],
     bgcolor: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
-      ['hiliteColor', false, 'rgba(255, 255, 0, 1)'],
+      ['hiliteColor', false, 'ffff00'],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили
     ],
     color: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
-      ['foreColor', false, 'rgba(255, 0, 0, 1)'],
+      ['foreColor', false, '#ff0000'],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили
     ],
     sup: [
