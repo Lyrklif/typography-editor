@@ -43,6 +43,7 @@ export default class EditorPanel extends React.Component {
           param={this.props.param}
           classes="editor-panel__inner"
           eventHandler={this.setGlobalParam}
+          reset={this.reset}
         />
 
 
