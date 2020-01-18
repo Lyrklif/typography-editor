@@ -20,34 +20,86 @@ const data = {
   // параметры для sanitize-html
   sanitizeParam: {
     // разрешённые в редактируемом блоке теги
-    allowedTags: [
-      'clearFormat', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'a', 'ul',
-      'ol', 'b', 'i', 'strike', 'span'
-    ],
+    allowedTags: false, // разрешить все теги
+    // allowedTags: [
+    //   'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
+    //   'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'sub', 'sup', 'span', 'blockquote'
+    // ],
     // разрешённые атрибуты
     allowedAttributes: {
       a: ['href', 'name', 'target'],
-      '*': ['href', 'align', 'alt', 'center', 'bgcolor', 'style']
+      '*': ['style', 'color', 'bgcolor', 'background-color']
     }
   },
 
-  // аргументы для редактирования текста
-  sanitizeArguments: {
-    h1: ['formatBlock', 'h1'],
-    h2: ['formatBlock', 'h2'],
-    h3: ['formatBlock', 'h3'],
-    h4: ['formatBlock', 'h4'],
-    h5: ['formatBlock', 'h5'],
-    h6: ['formatBlock', 'h6'],
-    p: ['formatBlock', 'p'],
-    a: ['createLink', '#'],
-    ul: ['insertUnorderedList', ''],
-    ol: ['insertOrderedList', ''],
-    b: ['bold', ''],
-    i: ['italic', ''],
-    strike: ['strikeThrough', ''],
-    clearFormat: ['removeFormat', ''],
-    span: ['hiliteColor', 'rgba(255, 255, 0, 1)'],
+  // команды для редактирования текста
+  formatСommand: {
+    clearFormat: [
+      ['removeFormat', false, ''],
+      ['unlink', false, ''],
+      ['formatBlock', false, 'p'],
+    ],
+    h1: [
+      ['formatBlock', false, 'h1'],
+    ],
+    h2: [
+      ['formatBlock', false, 'h2'],
+    ],
+    h3: [
+      ['formatBlock', false, 'h3'],
+    ],
+    h4: [
+      ['formatBlock', false, 'h4'],
+    ],
+    h5: [
+      ['formatBlock', false, 'h5'],
+    ],
+    h6: [
+      ['formatBlock', false, 'h6'],
+    ],
+    p: [
+      ['formatBlock', false, 'p'],
+    ],
+    a: [
+      ['createLink', false, '#'],
+    ],
+    ul: [
+      ['insertUnorderedList', false, ''],
+    ],
+    ol: [
+      ['insertOrderedList', false, ''],
+    ],
+    b: [
+      ['bold', false, ''],
+    ],
+    i: [
+      ['italic', false, ''],
+    ],
+    strike: [
+      ['strikeThrough', false, ''],
+    ],
+    bgcolor: [
+      ['styleWithCSS', false, 'true'], // использовать стили, а не html
+      ['hiliteColor', false, 'ffff00'],
+      ['styleWithCSS', false, 'false'], // использовать html, а не стили
+    ],
+    color: [
+      ['styleWithCSS', false, 'true'], // использовать стили, а не html
+      ['foreColor', false, '#ff0000'],
+      ['styleWithCSS', false, 'false'], // использовать html, а не стили
+    ],
+    sup: [
+      ['superscript', false, ''],
+    ],
+    sub: [
+      ['subscript', false, ''],
+    ],
+    underline: [
+      ['underline', false, ''],
+    ],
+    blockquote: [
+      ['formatBlock', false, 'blockquote'],
+    ],
   },
 
   // кнопки
@@ -57,8 +109,34 @@ const data = {
   },
 
   // текст в редактируемом блоке
-  html: '<h1>Редактируемый текст</h1><p>Текст и его стили можно изменять, нажав на кнопку <b>Режим редактирования текста</b>.</p>Очистить формат текста можно, нажав на <b>clearFormat</b>.<p></p>'
-
+  html: `
+  <p>v2</p>
+  <p><b>Редактируемый текст</b></p>
+  <p>Текст и его стили можно изменять, нажав на кнопку <b>Режим редактирования текста</b>.</p>
+  <p>Очистить формат текста можно, нажав на <b>clearFormat</b>.</p>
+  <p>Аксиома <strike>силлогизма</strike>, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание <i>непредсказуемо</i>. Смысл жизни, следовательно, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс <sup>амбивалентно</sup> понимает</p>
+  <h2>Заголовок</h2>
+  <p>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание непредсказуемо. <a href="#">Смысл жизни</a>, <b>следовательно</b>, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс амбивалентно понимает</p>
+  <ul>
+  <li>Аксиома</li>
+  <li>силлогизма</li>
+  <li>по определению</li>
+  </ul>
+  <blockquote>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание непредсказуемо. Смысл жизни, следовательно, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс амбивалентно понимает</blockquote>
+  <p>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание непредсказуемо. <a href="#">Смысл жизни</a>, <b>следовательно</b>, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс амбивалентно понимает</p>
+`
 }
 
 ReactDOM.render(<App data={data} />, document.getElementById('root'));
