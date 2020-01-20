@@ -6,6 +6,7 @@ import { render } from '@testing-library/react';
 // Мои компоненты
 import EditorPanel from './components/editorPanel';
 import ContentEditable from './components/contentEditable';
+import Button from './components/button';
 
 // Стили
 import './App.css';
@@ -96,6 +97,35 @@ export default class App extends React.Component {
     });
   }
 
+  // сбросить изменения  параметров
+  undo = () => {
+    document.execCommand("undo", false, null); // Отмена последнего действия 
+  }
+
+  // сбросить изменения  параметров
+  redo = () => {
+    document.execCommand("redo", false, null); // Повтор последнего действия 
+  }
+
+  // скачать отредактированный текст
+  download = () => {
+    // если режим редактирования выключен
+    if (!this.state.states.editText) {
+      let editableBlock = document.querySelector('.content'); // блок, текст в котором можно редактировать
+      let block = editableBlock.outerHTML; // текст внутри блока
+
+      let link = document.createElement("a"); // сгенерировать ссылку
+      let file = new Blob([block], { type: 'txt' }); // сгенерировать файл
+      link.href = URL.createObjectURL(file); // сгенерировать href
+      link.download = "text.txt"; // название и расширение файла
+      link.click(); // имитировать нажатие на ссылку
+
+      // если режим редактирования НЕ выключен
+    } else {
+      alert('Перед скачиванием нужно выйти из режима редактирования.\nИначе параметры редактирования не будут применены к тексту');
+    }
+  }
+
   // включить/отключить возможность редактировать текст
   switchEditText() {
     // заменить значение на противоположное
@@ -137,6 +167,9 @@ export default class App extends React.Component {
           reset={this.reset}
           switchEditText={this.switchEditText}
           setTag={this.setTag}
+          undo={this.undo}
+          redo={this.redo}
+          download={this.download}
         />
 
         {/* блок, текст в котором можно редактировать */}
