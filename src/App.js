@@ -42,18 +42,10 @@ export default class App extends React.Component {
     if (commands) {
       // document.execCommand('Название команды', false, значение (если требуется));
 
-      if (tag === 'color') {
-        document.execCommand('styleWithCSS', false, 'true');
-        document.execCommand('foreColor', false, '#ff0000');
-        document.execCommand('styleWithCSS', false, 'false');
-      } else {
-
-        // применить все заданные команды из массива
-        for (let i = 0; i < commands.length; i++) {
-          document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
-        }
+      // применить все заданные команды из массива
+      for (let i = 0; i < commands.length; i++) {
+        document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
       }
-
 
     } else {
       console.log('Правила форматирования для этого тега не прописаны. Сделайте это в файле index.js в data.formatСommand')
