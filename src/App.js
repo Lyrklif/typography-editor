@@ -104,11 +104,25 @@ export default class App extends React.Component {
         editText: !this.state.states.editText
       }
     });
+
+    // если редим редактирования выключен
+    if (this.state.states.editText) {
+      this.sanitize(); // записать новый текст, удалив неразрешённые теги
+    }
   }
 
   // записать новый текст, удалив неразрешённые теги
   sanitize = () => {
-    this.setState({ html: sanitizeHtml(this.state.html, this.state.sanitizeParam) });
+    let editableBlock = document.querySelector('.content'); // блок, текст в котором можно редактировать
+    let text = editableBlock.innerHTML; // текст внутри блока
+
+    // если содержимое изменилось
+    if (text !== this.state.html) {
+      // записать новую версию текста, применив настройки (удалить пустые теги, заменить символы и пр.)
+      this.setState({
+        html: sanitizeHtml(editableBlock.innerHTML, this.state.sanitizeParam)
+      });
+    }
   };
 
   render() {
@@ -128,7 +142,6 @@ export default class App extends React.Component {
         {/* блок, текст в котором можно редактировать */}
         <ContentEditable
           param={this.state}
-          onBlur={this.sanitize}
         />
 
       </main>

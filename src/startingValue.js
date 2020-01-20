@@ -17,13 +17,29 @@ export const startingValue = {
     allowedTags: false, // разрешить все теги
     // allowedTags: [
     //   'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
-    //   'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'sub', 'sup', 'span', 'blockquote'
+    //   'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'sub', 'sup', 'span'
     // ],
     // разрешённые атрибуты
     allowedAttributes: {
       a: ['href', 'name', 'target'],
       '*': ['style', 'color', 'bgcolor', 'background-color']
-    }
+    },
+    parser: {
+      lowerCaseTags: true
+    },
+    // заменить <x> на <y>
+    transformTags: {
+      'div': 'p',
+      'br': '',
+      'string': 'b',
+      'em': 'i',
+    },
+    // удалить пусте теги
+    exclusiveFilter: function (frame) {
+      return (
+        !frame.text.trim()
+      );
+    },
   },
 
   // команды для редактирования текста
@@ -92,6 +108,21 @@ export const startingValue = {
     ],
     blockquote: [
       ['formatBlock', false, 'blockquote'],
+    ],
+    hr: [
+      ['insertHorizontalRule', false, ''],
+    ],
+    left: [
+      ['justifyLeft', false, ''],
+    ],
+    center: [
+      ['justifyCenter', false, ''],
+    ],
+    right: [
+      ['justifyRight', false, ''],
+    ],
+    full: [
+      ['justifyFull', false, ''],
     ],
   },
 
