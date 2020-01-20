@@ -1,12 +1,11 @@
 // React
 import React from 'react';
-import ContentEditable from "react-contenteditable";
 import sanitizeHtml from "sanitize-html";
 import { render } from '@testing-library/react';
 
 // Мои компоненты
 import EditorPanel from './components/editorPanel';
-// import ContentEditable from './components/contentEditable';
+import ContentEditable from './components/contentEditable';
 
 // Стили
 import './App.css';
@@ -31,6 +30,34 @@ export default class App extends React.Component {
     this.setState({ styles: { [inputName]: [value] } });
   }
 
+  //  очистить формат, удалив родительский тег
+  clearFormat = () => {
+    let container = null; // блок, с которым работаем
+    // если выделен (для IE)
+    if (document.selection) {
+      // записать выделенный текст
+      container = document.selection.createRange().parentElement();
+    }
+    // если выделен
+    else {
+      // диапазон текста, который пользователь выделил на странице
+      let select = window.getSelection();
+
+      // если количество диапазонов в выделении > 0
+      if (select.rangeCount > 0)
+        // записать выделенный текст
+        container = select.getRangeAt(0).startContainer.parentNode;
+    }
+
+    // если этот элемент не div и не li
+    // *** пояснение:
+    // * [div] -> чтобы нельзя было удалить сам блок .content при выделении всего содержимого
+    // * [li] -> чтобы нельзя было убирать формат списков (слишком много багов из-за этого) 
+    if (container.nodeName !== 'DIV' && container.nodeName !== 'LI') {
+      container.outerHTML = container.innerHTML; // удалить родительский тег
+    }
+  }
+
   // установить тег (форматирование текста)
   setTag(e) {
     e.preventDefault();
@@ -40,15 +67,20 @@ export default class App extends React.Component {
 
     // если команда для этого тега существует
     if (commands) {
-      // document.execCommand('Название команды', false, значение (если требуется));
-
       // применить все заданные команды из массива
       for (let i = 0; i < commands.length; i++) {
+        // *** document.execCommand('Название команды', false, значение (если требуется));
         document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
       }
 
+      // если нужно очистить формат
+      if (tag === 'clearFormat') {
+        this.clearFormat();
+      }
+
+      // если команда для этого тега НЕ существует
     } else {
-      console.log('Правила форматирования для этого тега не прописаны. Сделайте это в файле index.js в data.formatСommand')
+      console.log('Правила форматирования для этого тега не прописаны.\nСделайте это в файле startingValue.js');
     }
   }
 
@@ -64,26 +96,20 @@ export default class App extends React.Component {
     });
   }
 
-  // записать новый текст, удалив неразрешённые теги
-  sanitize = () => {
-    this.setState({ html: sanitizeHtml(this.state.html, this.state.sanitizeParam) });
-  };
-
-
   // включить/отключить возможность редактировать текст
   switchEditText() {
     // заменить значение на противоположное
     this.setState({
-      editText: !this.state.editText
+      states: {
+        editText: !this.state.states.editText
+      }
     });
   }
 
-  // записать новый текст
-  setNewText = (e) => {
-    this.setState({
-      html: e.target.value
-    });
-  }
+  // записать новый текст, удалив неразрешённые теги
+  sanitize = () => {
+    this.setState({ html: sanitizeHtml(this.state.html, this.state.sanitizeParam) });
+  };
 
   render() {
 
@@ -101,19 +127,8 @@ export default class App extends React.Component {
 
         {/* блок, текст в котором можно редактировать */}
         <ContentEditable
-          className={this.state.editText ? 'editable content edit' : 'editable content'}
-          style={
-            {
-              fontSize: `${this.state.styles.fontSize}px`,
-              lineHeight: `${this.state.styles.lineHeight}em`
-            }
-          }
-          tabIndex="0"
-          tagName="div" // установить тег для элемента
-          html={this.state.html} // записать значение блока
-          disabled={!this.state.editText} // вкл/выкл возможность редактировать текст
-          onChange={(e) => this.setNewText(e)} // событие при изменении текста
-          onBlur={this.sanitize} // при потере фокуса удалить неразрешённые теги 
+          param={this.state}
+          onBlur={this.sanitize}
         />
 
       </main>

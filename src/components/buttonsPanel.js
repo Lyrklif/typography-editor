@@ -23,7 +23,7 @@ export default class ButtonsPanel extends React.Component {
         <Button
           param={this.props.param}
           on_off='true'
-          on_off_status={this.props.param.editText}
+          on_off_status={this.props.param.states.editText}
           clickEvent={this.switchEditText}
           text={this.props.param.buttons.edit}
         />
