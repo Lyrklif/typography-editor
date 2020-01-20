@@ -33,6 +33,7 @@ export const startingValue = {
       'br': '',
       'string': 'b',
       'em': 'i',
+      'strike': 's',
     },
     // удалить пусте теги
     exclusiveFilter: function (frame) {
@@ -132,6 +133,7 @@ export const startingValue = {
     reset: 'Вернуть стандартные настройки',
     undo: 'Отменить',
     redo: 'Повторить',
+    download: 'Скачать текст с тегами',
   },
 
   // текст в редактируемом блоке

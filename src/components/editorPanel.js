@@ -16,6 +16,7 @@ export default class EditorPanel extends React.Component {
     this.setTag = props.setTag;
     this.undo = props.undo;
     this.redo = props.redo;
+    this.download = props.download;
   }
 
   render() {
@@ -48,6 +49,7 @@ export default class EditorPanel extends React.Component {
           classes="editor-panel__inner editor-panel__buttons"
           redo={this.redo}
           undo={this.undo}
+          download={this.download}
           switchEditText={this.switchEditText}
         />
       </div>

@@ -15,9 +15,11 @@ export default class ButtonsPanel extends React.Component {
     this.switchEditText = props.switchEditText;
     this.redo = props.redo;
     this.undo = props.undo;
+    this.download = props.download;
   }
 
   render() {
+    console.log(this.props.param);
     return (
       <div className={this.props.classes}>
 
@@ -44,6 +46,13 @@ export default class ButtonsPanel extends React.Component {
           text={this.props.param.buttons.edit}
         />
 
+
+        {/* КНОПКА Повторить */}
+        <Button
+          param={this.props.param}
+          clickEvent={this.download}
+          text={this.props.param.buttons.download}
+        />
 
       </div>
     )
