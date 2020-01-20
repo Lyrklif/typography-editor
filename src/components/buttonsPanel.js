@@ -13,11 +13,27 @@ export default class ButtonsPanel extends React.Component {
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
     this.switchEditText = props.switchEditText;
+    this.redo = props.redo;
+    this.undo = props.undo;
   }
 
   render() {
     return (
       <div className={this.props.classes}>
+
+        {/* КНОПКА Отменить */}
+        <Button
+          param={this.props.param}
+          clickEvent={this.undo}
+          text={this.props.param.buttons.undo}
+        />
+
+        {/* КНОПКА Повторить */}
+        <Button
+          param={this.props.param}
+          clickEvent={this.redo}
+          text={this.props.param.buttons.redo}
+        />
 
         {/* КНОПКА Режим редактирования текста */}
         <Button

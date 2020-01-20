@@ -96,6 +96,18 @@ export default class App extends React.Component {
     });
   }
 
+  // сбросить изменения  параметров
+  undo = () => {
+    console.log('undo');
+    document.execCommand("undo", false, null); // Отмена последнего действия 
+  }
+
+  // сбросить изменения  параметров
+  redo = () => {
+    console.log('redo');
+    document.execCommand("redo", false, null); // Повтор последнего действия 
+  }
+
   // включить/отключить возможность редактировать текст
   switchEditText() {
     // заменить значение на противоположное
@@ -137,6 +149,8 @@ export default class App extends React.Component {
           reset={this.reset}
           switchEditText={this.switchEditText}
           setTag={this.setTag}
+          undo={this.undo}
+          redo={this.redo}
         />
 
         {/* блок, текст в котором можно редактировать */}
