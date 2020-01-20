@@ -10,25 +10,10 @@ export default class EditorPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = props;
-
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
     this.switchEditText = props.switchEditText;
     this.setTag = props.setTag;
-  }
-
-
-  setParam(e) {
-    this.setGlobalParam(e.target.value, e.target.name);
-  }
-
-  reset() {
-    this.reset();
-  }
-
-  switchEditText() {
-    this.switchEditText();
   }
 
   render() {

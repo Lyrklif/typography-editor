@@ -15,11 +15,6 @@ export default class MainSettingsPanel extends React.Component {
     this.reset = props.reset;
   }
 
-
-  setParam(e) {
-    this.eventHandler(e.target.value, e.target.name);
-  }
-
   render() {
     return (
       <div className={this.props.classes}>
