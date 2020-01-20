@@ -19,7 +19,6 @@ export default class ButtonsPanel extends React.Component {
   }
 
   render() {
-    console.log(this.props.param);
     return (
       <div className={this.props.classes}>
 
