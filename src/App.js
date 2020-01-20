@@ -64,6 +64,7 @@ export default class App extends React.Component {
     });
   }
 
+  // записать новый текст, удалив неразрешённые теги
   sanitize = () => {
     this.setState({ html: sanitizeHtml(this.state.html, this.state.sanitizeParam) });
   };

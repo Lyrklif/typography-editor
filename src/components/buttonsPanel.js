@@ -15,19 +15,6 @@ export default class ButtonsPanel extends React.Component {
     this.switchEditText = props.switchEditText;
   }
 
-
-  setParam(e) {
-    this.setGlobalParam(e.target.value, e.target.name);
-  }
-
-  reset() {
-    this.reset();
-  }
-
-  switchEditText() {
-    this.switchEditText();
-  }
-
   render() {
     return (
       <div className={this.props.classes}>
@@ -41,7 +28,7 @@ export default class ButtonsPanel extends React.Component {
           text={this.props.param.buttons.edit}
         />
 
-        
+
       </div>
     )
   }
