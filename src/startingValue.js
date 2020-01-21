@@ -1,3 +1,5 @@
+import {formatCommand_clear} from './vars';
+
 // Начальные значения
 export const startingValue = {
   // стили текста
@@ -44,8 +46,8 @@ export const startingValue = {
   },
 
   // команды для редактирования текста
-  formatСommand: {
-    clearFormat: [
+  formatCommand: {
+    [formatCommand_clear]: [
       ['removeFormat', false, ''],
       ['unlink', false, ''],
     ],

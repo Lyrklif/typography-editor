@@ -3,6 +3,9 @@ import { render } from '@testing-library/react';
 
 import Button from './button';
 
+
+import { formatCommand_clear } from '../vars';
+
 // настройка тегов
 export default class TagsPanel extends React.Component {
   constructor(props) {
@@ -19,7 +22,7 @@ export default class TagsPanel extends React.Component {
     e.preventDefault();
 
     let tag = e.target.name;
-    let commands = this.state.formatСommand[tag];
+    let commands = this.state.formatCommand[tag];
 
     // если команда для этого тега существует
     if (commands) {
@@ -30,7 +33,7 @@ export default class TagsPanel extends React.Component {
       }
 
       // если нужно очистить формат
-      if (tag === 'clearFormat') {
+      if (tag === formatCommand_clear) {
         this.clearFormat();
       }
 
@@ -70,7 +73,7 @@ export default class TagsPanel extends React.Component {
 
   render() {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map    
-    let tagsArray = Object.keys(this.state.formatСommand);
+    let tagsArray = Object.keys(this.state.formatCommand);
 
     let tagList = tagsArray.map((elem, index) => {
       return (
