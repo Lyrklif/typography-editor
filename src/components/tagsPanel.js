@@ -4,7 +4,12 @@ import { render } from '@testing-library/react';
 import Button from './button';
 
 
-import { formatCommand_clear } from '../vars';
+import {
+  formatCommand_clear,
+  formatCommand_bgcolor,
+  formatCommand_color,
+  formatCommand_link
+} from '../vars';
 
 // настройка тегов
 export default class TagsPanel extends React.Component {
@@ -29,7 +34,15 @@ export default class TagsPanel extends React.Component {
       // применить все заданные команды из массива
       for (let i = 0; i < commands.length; i++) {
         // *** document.execCommand('Название команды', false, значение (если требуется));
-        document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
+
+        // если 
+        if (tag === formatCommand_link) {
+          let href = prompt('Введите путь для ссылки');
+          document.execCommand(commands[i][0], commands[i][1], href);
+
+        } else {
+          document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
+        }
       }
 
       // если нужно очистить формат

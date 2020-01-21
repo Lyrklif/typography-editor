@@ -1,4 +1,9 @@
-import {formatCommand_clear} from './vars';
+import {
+  formatCommand_clear,
+  formatCommand_bgcolor,
+  formatCommand_color,
+  formatCommand_link
+} from './vars';
 
 // Начальные значения
 export const startingValue = {
@@ -45,7 +50,12 @@ export const startingValue = {
     },
   },
 
-  // команды для редактирования текста
+  /*
+  * команды для редактирования текста
+  * если key записан в виде [keyName],
+  * то его название нужно менять в файле ./vars.js
+  * [эти названия используются где-то ещё в коде]
+  */
   formatCommand: {
     [formatCommand_clear]: [
       ['removeFormat', false, ''],
@@ -72,8 +82,8 @@ export const startingValue = {
     p: [
       ['formatBlock', false, 'p'],
     ],
-    a: [
-      ['createLink', false, '#'],
+    [formatCommand_link]: [
+      ['createLink', false, '#'], // нельзя менять и добавлять новые команды
     ],
     ul: [
       ['insertUnorderedList', false, ''],
@@ -90,12 +100,12 @@ export const startingValue = {
     strike: [
       ['strikeThrough', false, ''],
     ],
-    bgcolor: [
+    [formatCommand_bgcolor]: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
       ['hiliteColor', false, 'ffff00'],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили
     ],
-    color: [
+    [formatCommand_color]: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
       ['foreColor', false, '#ff0000'],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили
