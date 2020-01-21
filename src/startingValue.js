@@ -2,20 +2,24 @@ import {
   formatCommand_clear,
   formatCommand_bgcolor,
   formatCommand_color,
-  formatCommand_link
+  formatCommand_link, 
+  default_bgcolor
 } from './vars';
 
 // Начальные значения
 export const startingValue = {
-  // стили текста
+  // стили
   styles: {
     fontSize: 16,
     lineHeight: 2.2,
+
+    bgcolor: default_bgcolor,
   },
 
   // состояния элементов 
   states: {
     editText: true,
+    colorPicker: false,
   },
 
   // параметры для sanitize-html
@@ -102,7 +106,7 @@ export const startingValue = {
     ],
     [formatCommand_bgcolor]: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
-      ['hiliteColor', false, 'ffff00'],
+      ['hiliteColor', false, default_bgcolor],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили
     ],
     [formatCommand_color]: [

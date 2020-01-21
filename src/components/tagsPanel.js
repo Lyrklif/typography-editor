@@ -3,7 +3,6 @@ import { render } from '@testing-library/react';
 
 import Button from './button';
 
-
 import {
   formatCommand_clear,
   formatCommand_bgcolor,
@@ -37,7 +36,11 @@ export default class TagsPanel extends React.Component {
 
         // если 
         if (tag === formatCommand_link) {
-          let href = prompt('Введите путь для ссылки');
+          let href = prompt('Введите путь для ссылки:');
+          document.execCommand(commands[i][0], commands[i][1], href);
+
+        } else if (i === 1 && (tag === formatCommand_color || tag === formatCommand_bgcolor)) {
+          let href = prompt('Введите название цвета:');
           document.execCommand(commands[i][0], commands[i][1], href);
 
         } else {
@@ -101,12 +104,12 @@ export default class TagsPanel extends React.Component {
     });
 
     return (
-      <div
-        className={this.props.classes}
-      >
-        {tagList}
-
-      </div>
+        <div
+          className={this.props.classes}
+        >
+          {tagList}
+          
+        </div>
     )
   }
 }

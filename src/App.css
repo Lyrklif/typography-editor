@@ -76,3 +76,31 @@
 .editor-panel__buttons>button {
   margin-left: 1em;
 }
+
+
+
+
+.color-picker-wp {
+  display: none;
+
+  position: fixed !important;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(76, 77, 88, 0.514);
+}
+
+.color-picker-wp.open {
+  display: block;
+}
+
+.color-picker-wp>div {
+  width: 300px !important;
+
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
