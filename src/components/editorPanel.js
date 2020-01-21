@@ -13,10 +13,6 @@ export default class EditorPanel extends React.Component {
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
     this.switchEditText = props.switchEditText;
-    this.setTag = props.setTag;
-    this.undo = props.undo;
-    this.redo = props.redo;
-    this.download = props.download;
   }
 
   render() {
@@ -39,7 +35,6 @@ export default class EditorPanel extends React.Component {
         <TagsPanel
           param={this.props.param}
           classes="editor-panel__inner"
-          eventHandler={this.setTag}
         />
 
 
@@ -47,9 +42,6 @@ export default class EditorPanel extends React.Component {
         <ButtonsPanel
           param={this.props.param}
           classes="editor-panel__inner editor-panel__buttons"
-          redo={this.redo}
-          undo={this.undo}
-          download={this.download}
           switchEditText={this.switchEditText}
         />
       </div>
