@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 
 import { SketchPicker } from 'react-color';
 
+import Button from './button';
 import TagsPanel from './tagsPanel';
 import ButtonsPanel from './buttonsPanel';
 import MainSettingsPanel from './mainSettingsPanel';
@@ -24,11 +25,11 @@ export default class EditorPanel extends React.Component {
   }
 
   // выбор цвета
-  handleChange(e) {
+  handleChange(color) {
     this.setState({
       styles: {
-        bgcolor: e.hex,
-        color: e.hex,
+        bgcolor: color.hex,
+        color: color.hex,
       }
     });
   }
@@ -40,18 +41,6 @@ export default class EditorPanel extends React.Component {
         colorPicker: !this.state.states.colorPicker
       }
     });
-
-    // this.setState({
-    //   styles: {
-    //     bgcolor: this.state.styles.bgcolor,
-    //     color: this.state.styles.color,
-    //   }
-    // });
-
-    // если панель показана
-    // if (this.state.states.colorPicker) {
-
-    // }
   }
 
   render() {
@@ -90,11 +79,19 @@ export default class EditorPanel extends React.Component {
 
         <div
           className={this.state.states.colorPicker ? 'color-picker-wp open' : 'color-picker-wp'}
-          onClick={this.switchShowColorPiper}
         >
+
+          {/* КНОПКА Закрыть */}
+          <Button
+            param={this.state}
+            clickEvent={this.switchShowColorPiper}
+            text='X Закрыть'
+            classes='color-picker__close'
+          />
+
           <SketchPicker
-            color={this.state.styles.bgcolor}
             onChange={this.handleChange}
+            color={this.state.styles.bgcolor}
           />
         </div>
       </div>

@@ -87,20 +87,28 @@
   top: 0;
   left: 0;
 
+
   width: 100vw;
   height: 100vh;
   background-color: rgba(76, 77, 88, 0.514);
+
+  z-index: 800;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .color-picker-wp.open {
-  display: block;
+  display: flex;
 }
 
 .color-picker-wp>div {
   width: 300px !important;
 
-  position: absolute !important;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 801;
+}
+
+.color-picker__close {
+  z-index: 801;
 }

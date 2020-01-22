@@ -20,7 +20,21 @@ export default class TagsPanel extends React.Component {
     this.setTag = this.setTag.bind(this);
     this.clearFormat = this.clearFormat.bind(this);
     this.switchShowColorPiper = props.switchShowColorPiper;
+
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   console.log('upd');
+
+  //   if (nextProps.param.states.colorPicker !== this.props.param.states.colorPicker) {
+  //     //Perform some operation
+  //     this.setState({
+  //       states: {
+  //         colorPicker: nextProps.param.states.colorPicker
+  //       }
+  //     });
+  //   }
+  // }
 
   // установить тег (форматирование текста)
   setTag(e) {
@@ -40,14 +54,14 @@ export default class TagsPanel extends React.Component {
           let href = prompt('Введите путь для ссылки:');
           document.execCommand(commands[i][0], commands[i][1], href);
 
-          // если нужно  выбирать цвет
+          // если нужно  выбирать цвет фона
         } else if (i === 1 && tag === formatCommand_bgcolor) {
           this.switchShowColorPiper();  // показать панель выбора цвета
 
           let color = this.props.param.styles.bgcolor;
           document.execCommand(commands[i][0], commands[i][1], color);
 
-          // если нужно  выбирать цвет
+          // если нужно  выбирать цвет текста
         } else if (i === 1 && tag === formatCommand_color) {
           this.switchShowColorPiper();  // показать панель выбора цвета
 
