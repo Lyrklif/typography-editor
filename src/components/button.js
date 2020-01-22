@@ -9,8 +9,6 @@ export default class Button extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = props;
-
     this.clickEvent = props.clickEvent;
   }
 
@@ -21,6 +19,7 @@ export default class Button extends React.Component {
         <button
           className={this.props.on_off_status ? 'on' : 'off'}
           onClick={this.clickEvent}
+          name={this.props.name}
         >
           <b className="uppercase">
             {this.props.on_off_status ? 'on' : 'off'}
@@ -32,7 +31,11 @@ export default class Button extends React.Component {
       // иначе вернуть обычную кнопку
     } else {
       return (
-        <button onClick={this.clickEvent} >
+        <button
+          onClick={this.clickEvent}
+          className={this.props.classes}
+          name={this.props.name}
+        >
           {this.props.text || 'Button'}
         </button >
       )

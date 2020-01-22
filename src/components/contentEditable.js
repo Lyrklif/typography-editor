@@ -22,7 +22,7 @@ export default class ContentEditable extends React.Component {
         contentEditable={this.props.param.states.editText ? 'true' : 'false'}
         suppressContentEditableWarning={true} // чтобы убрать в консоли предупреждение о contentEditable
         className={this.props.param.states.editText ? 'content edit' : 'content'}
-        onBlur={this.onBlur} // событие при  потере фокуса 
+        onBlur={this.onBlur} // событие при потере фокуса 
         dangerouslySetInnerHTML={createContent()} // вставить переданный текст
         style={
           {

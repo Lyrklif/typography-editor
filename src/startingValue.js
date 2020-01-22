@@ -1,14 +1,29 @@
+import {
+  formatCommand_clear,
+  formatCommand_bgcolor,
+  formatCommand_color,
+  formatCommand_link, 
+  default_bgcolor,
+  default_color,
+} from './vars';
+
 // Начальные значения
 export const startingValue = {
-  // стили текста
+  // стили
   styles: {
     fontSize: 16,
     lineHeight: 2.2,
+
+    bgcolor: default_bgcolor,
+    color: default_color,
   },
 
   // состояния элементов 
   states: {
     editText: true,
+    colorPicker: false,
+
+    paletteEdit: formatCommand_bgcolor, // какую панель цвета редактировать
   },
 
   // параметры для sanitize-html
@@ -43,9 +58,14 @@ export const startingValue = {
     },
   },
 
-  // команды для редактирования текста
-  formatСommand: {
-    clearFormat: [
+  /*
+  * команды для редактирования текста
+  * если key записан в виде [keyName],
+  * то его название нужно менять в файле ./vars.js
+  * [эти названия используются где-то ещё в коде]
+  */
+  formatCommand: {
+    [formatCommand_clear]: [
       ['removeFormat', false, ''],
       ['unlink', false, ''],
     ],
@@ -70,8 +90,8 @@ export const startingValue = {
     p: [
       ['formatBlock', false, 'p'],
     ],
-    a: [
-      ['createLink', false, '#'],
+    [formatCommand_link]: [
+      ['createLink', false, '#'], // нельзя менять и добавлять новые команды
     ],
     ul: [
       ['insertUnorderedList', false, ''],
@@ -88,12 +108,12 @@ export const startingValue = {
     strike: [
       ['strikeThrough', false, ''],
     ],
-    bgcolor: [
+    [formatCommand_bgcolor]: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
-      ['hiliteColor', false, 'ffff00'],
+      ['hiliteColor', false, default_bgcolor],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили
     ],
-    color: [
+    [formatCommand_color]: [
       ['styleWithCSS', false, 'true'], // использовать стили, а не html
       ['foreColor', false, '#ff0000'],
       ['styleWithCSS', false, 'false'], // использовать html, а не стили

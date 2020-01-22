@@ -76,3 +76,46 @@
 .editor-panel__buttons>button {
   margin-left: 1em;
 }
+
+
+
+
+.color-picker-wp {
+  display: none;
+
+  position: fixed !important;
+  top: 0;
+  left: 0;
+
+
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(76, 77, 88, 0.514);
+
+  z-index: 800;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.color-picker-wp.open {
+  display: flex;
+}
+
+.color-picker-wp>div {
+  width: 300px !important;
+
+  z-index: 801;
+}
+
+.color-picker__close {
+  z-index: 801;
+}
+
+
+.palette {
+  width: 1em;
+  height: 1em;
+  border: 1px solid white;
+}

@@ -19,12 +19,13 @@ export default class MainSettingsPanel extends React.Component {
     return (
       <div className={this.props.classes}>
 
-          {/* КНОПКА Вернуть стандартные настройки */}
-          <Button
-            param={this.props.param}
-            clickEvent={this.reset}
-            text={this.props.param.buttons.reset}
-          />
+        {/* КНОПКА Вернуть стандартные настройки */}
+        <Button
+          param={this.props.param}
+          clickEvent={this.reset}
+          text={this.props.param.buttons.reset}
+        />
+
 
         {/* Размер шрифта */}
         <Input
