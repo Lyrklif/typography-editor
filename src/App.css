@@ -112,3 +112,10 @@
 .color-picker__close {
   z-index: 801;
 }
+
+
+.palette {
+  width: 1em;
+  height: 1em;
+  border: 1px solid white;
+}

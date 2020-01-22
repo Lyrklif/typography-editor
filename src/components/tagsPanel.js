@@ -3,6 +3,8 @@ import { render } from '@testing-library/react';
 
 import Button from './button';
 
+import { SketchPicker, CirclePicker } from 'react-color';
+
 import {
   formatCommand_clear,
   formatCommand_bgcolor,
@@ -19,22 +21,7 @@ export default class TagsPanel extends React.Component {
 
     this.setTag = this.setTag.bind(this);
     this.clearFormat = this.clearFormat.bind(this);
-    this.switchShowColorPiper = props.switchShowColorPiper;
-
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('upd');
-
-  //   if (nextProps.param.states.colorPicker !== this.props.param.states.colorPicker) {
-  //     //Perform some operation
-  //     this.setState({
-  //       states: {
-  //         colorPicker: nextProps.param.states.colorPicker
-  //       }
-  //     });
-  //   }
-  // }
 
   // установить тег (форматирование текста)
   setTag(e) {
@@ -56,17 +43,11 @@ export default class TagsPanel extends React.Component {
 
           // если нужно  выбирать цвет фона
         } else if (i === 1 && tag === formatCommand_bgcolor) {
-          this.switchShowColorPiper();  // показать панель выбора цвета
-
-          let color = this.props.param.styles.bgcolor;
-          document.execCommand(commands[i][0], commands[i][1], color);
+          document.execCommand(commands[i][0], commands[i][1], this.state.styles.bgcolor);
 
           // если нужно  выбирать цвет текста
         } else if (i === 1 && tag === formatCommand_color) {
-          this.switchShowColorPiper();  // показать панель выбора цвета
-
-          let color = this.props.param.styles.color;
-          document.execCommand(commands[i][0], commands[i][1], color);
+          document.execCommand(commands[i][0], commands[i][1], this.state.styles.color);
 
           // [default] просто стилизовать текст
         } else {
@@ -133,7 +114,7 @@ export default class TagsPanel extends React.Component {
       <div
         className={this.props.classes}
       >
-        {tagList}
+        {tagList}   
 
       </div>
     )

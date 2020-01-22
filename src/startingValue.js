@@ -23,6 +23,10 @@ export const startingValue = {
     editText: true,
     colorPicker: false,
   },
+  
+  palettePicker: {
+    paletteEdit: formatCommand_bgcolor, // какую панель цвета редактировать
+  },
 
   // параметры для sanitize-html
   sanitizeParam: {

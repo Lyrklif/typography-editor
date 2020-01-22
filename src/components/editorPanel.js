@@ -1,12 +1,22 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { SketchPicker } from 'react-color';
+import { SketchPicker, SwatchesPicker } from 'react-color';
 
 import Button from './button';
 import TagsPanel from './tagsPanel';
 import ButtonsPanel from './buttonsPanel';
 import MainSettingsPanel from './mainSettingsPanel';
+
+
+import {
+  formatCommand_clear,
+  formatCommand_bgcolor,
+  formatCommand_color,
+  formatCommand_link,
+  default_bgcolor,
+  default_color,
+} from '../vars';
 
 
 // панель редактирования
@@ -22,25 +32,40 @@ export default class EditorPanel extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.switchShowColorPiper = this.switchShowColorPiper.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
   // выбор цвета
   handleChange(color) {
     this.setState({
       styles: {
-        bgcolor: color.hex,
-        color: color.hex,
+        [this.state.palettePicker.paletteEdit]: color.hex,
       }
     });
   }
 
   // смена статуса панели
-  switchShowColorPiper(e) {
+  switchShowColorPiper() {
     this.setState({
       states: {
         colorPicker: !this.state.states.colorPicker
       }
     });
+  }
+
+
+  changeColor(e) {
+    let param = e.target.getAttribute('name');
+
+    console.log("имя панели, которую редактируем", param);
+
+    this.setState({
+      palettePicker: {
+        paletteEdit: param
+      }
+    });
+
+    this.switchShowColorPiper();
   }
 
   render() {
@@ -74,9 +99,40 @@ export default class EditorPanel extends React.Component {
             classes="editor-panel__inner editor-panel__buttons"
             switchEditText={this.switchEditText}
           />
+
+          <div className="editor-panel__inner">
+            {/* Выбор цвета фона */}
+            <div
+              className="palette"
+              name={formatCommand_bgcolor}
+              onClick={this.changeColor}
+              style={
+                {
+                  backgroundColor: this.state.styles.bgcolor,
+                  fontSize: `${this.props.param.styles.fontSize}px`,
+                }
+              }
+            >
+            </div>
+
+            {/* Выбор цвета текста */}
+            <div
+              className="palette"
+              name={formatCommand_color}
+              onClick={this.changeColor}
+              style={
+                {
+                  backgroundColor: this.state.styles.color,
+                  fontSize: `${this.props.param.styles.fontSize}px`,
+                }
+              }
+            >
+            </div>
+          </div>
         </div>
 
 
+        {/* Панель выбора цвета */}
         <div
           className={this.state.states.colorPicker ? 'color-picker-wp open' : 'color-picker-wp'}
         >
@@ -89,7 +145,7 @@ export default class EditorPanel extends React.Component {
             classes='color-picker__close'
           />
 
-          <SketchPicker
+          <SwatchesPicker
             onChange={this.handleChange}
             color={this.state.styles.bgcolor}
           />
