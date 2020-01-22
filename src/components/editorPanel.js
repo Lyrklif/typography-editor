@@ -73,7 +73,7 @@ export default class EditorPanel extends React.Component {
 
 
         <div
-          className={this.state.states.colorPicker ? 'color-picker-wp open' : 'color-picker-wp open'}
+          className={this.state.states.colorPicker ? 'color-picker-wp open' : 'color-picker-wp'}
           onClick={this.handleSwitchStatuses}
         >
           <SketchPicker

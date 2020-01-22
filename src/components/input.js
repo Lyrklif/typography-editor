@@ -24,7 +24,7 @@ export default class Input extends React.Component {
           // value={this.props.param || this.state.value} // в этом случае сбрасывается значение
           value={this.props.param} // в этом случае в консоли ошибка
           step={this.props.step || ''}
-          onChange={e => this.eventHandler(e.target.value, e.target.name)}
+          onChange={this.eventHandler}
         />
       </label>
     )

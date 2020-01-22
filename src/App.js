@@ -27,7 +27,10 @@ export default class App extends React.Component {
   }
 
   // установить глобальные настройки
-  setGlobalParam(value, inputName) {
+  setGlobalParam(e) {
+    let inputName = e.target.name;
+    let value = e.target.value;
+
     this.setState({ styles: { [inputName]: [value] } });
   }
 
