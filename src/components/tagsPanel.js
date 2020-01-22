@@ -43,11 +43,11 @@ export default class TagsPanel extends React.Component {
 
           // если нужно  выбирать цвет фона
         } else if (i === 1 && tag === formatCommand_bgcolor) {
-          document.execCommand(commands[i][0], commands[i][1], this.state.styles.bgcolor);
+          document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.bgcolor);
 
           // если нужно  выбирать цвет текста
         } else if (i === 1 && tag === formatCommand_color) {
-          document.execCommand(commands[i][0], commands[i][1], this.state.styles.color);
+          document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.color);
 
           // [default] просто стилизовать текст
         } else {
@@ -114,7 +114,7 @@ export default class TagsPanel extends React.Component {
       <div
         className={this.props.classes}
       >
-        {tagList}   
+        {tagList}
 
       </div>
     )
