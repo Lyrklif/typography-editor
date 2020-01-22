@@ -22,9 +22,7 @@ export const startingValue = {
   states: {
     editText: true,
     colorPicker: false,
-  },
-  
-  palettePicker: {
+
     paletteEdit: formatCommand_bgcolor, // какую панель цвета редактировать
   },
 

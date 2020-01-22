@@ -35,35 +35,37 @@ export default class EditorPanel extends React.Component {
     this.changeColor = this.changeColor.bind(this);
   }
 
-  // выбор цвета
+  // при изменении выбранного цвета в палитре
   handleChange(color) {
-    this.setState({
+    this.setState((state) => ({
       styles: {
-        [this.state.palettePicker.paletteEdit]: color.hex,
+        ...state.styles,
+        [state.states.paletteEdit]: color.hex, // изменить цвет для палитры
       }
-    });
+    }));
   }
 
-  // смена статуса панели
+  // смена статуса панели [показать/скрыть]
   switchShowColorPiper() {
-    this.setState({
+    this.setState((state) => ({
       states: {
-        colorPicker: !this.state.states.colorPicker
+        ...state.states,
+        colorPicker: !state.states.colorPicker
       }
-    });
+    }));
   }
 
 
+  // при открытии панели выбора цвета, нажатием на палитру
   changeColor(e) {
     let param = e.target.getAttribute('name');
 
-    console.log("имя панели, которую редактируем", param);
-
-    this.setState({
-      palettePicker: {
-        paletteEdit: param
+    this.setState((state) => ({
+      states: {
+        ...state.states,
+        paletteEdit: param // изменить палитру, которую сейчас редактируем
       }
-    });
+    }));
 
     this.switchShowColorPiper();
   }
