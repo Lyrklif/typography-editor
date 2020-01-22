@@ -104,6 +104,7 @@ export default class EditorPanel extends React.Component {
 
           <div className="editor-panel__inner">
             {/* Выбор цвета фона */}
+            <span>Установить фоновый цвет</span>
             <div
               className="palette"
               name={formatCommand_bgcolor}
@@ -118,6 +119,7 @@ export default class EditorPanel extends React.Component {
             </div>
 
             {/* Выбор цвета текста */}
+            <span>Установить цвет текста</span>
             <div
               className="palette"
               name={formatCommand_color}
