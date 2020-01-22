@@ -19,6 +19,7 @@ export default class TagsPanel extends React.Component {
 
     this.setTag = this.setTag.bind(this);
     this.clearFormat = this.clearFormat.bind(this);
+    this.switchShowColorPiper = props.switchShowColorPiper;
   }
 
   // установить тег (форматирование текста)
@@ -34,15 +35,26 @@ export default class TagsPanel extends React.Component {
       for (let i = 0; i < commands.length; i++) {
         // *** document.execCommand('Название команды', false, значение (если требуется));
 
-        // если 
+        // если нужно вводить адрес ссылки
         if (tag === formatCommand_link) {
           let href = prompt('Введите путь для ссылки:');
           document.execCommand(commands[i][0], commands[i][1], href);
 
-        } else if (i === 1 && (tag === formatCommand_color || tag === formatCommand_bgcolor)) {
-          let href = prompt('Введите название цвета:');
-          document.execCommand(commands[i][0], commands[i][1], href);
+          // если нужно  выбирать цвет
+        } else if (i === 1 && tag === formatCommand_bgcolor) {
+          this.switchShowColorPiper();  // показать панель выбора цвета
 
+          let color = this.props.param.styles.bgcolor;
+          document.execCommand(commands[i][0], commands[i][1], color);
+
+          // если нужно  выбирать цвет
+        } else if (i === 1 && tag === formatCommand_color) {
+          this.switchShowColorPiper();  // показать панель выбора цвета
+
+          let color = this.props.param.styles.color;
+          document.execCommand(commands[i][0], commands[i][1], color);
+
+          // [default] просто стилизовать текст
         } else {
           document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
         }
@@ -104,12 +116,12 @@ export default class TagsPanel extends React.Component {
     });
 
     return (
-        <div
-          className={this.props.classes}
-        >
-          {tagList}
-          
-        </div>
+      <div
+        className={this.props.classes}
+      >
+        {tagList}
+
+      </div>
     )
   }
 }

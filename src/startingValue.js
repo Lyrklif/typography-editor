@@ -3,7 +3,8 @@ import {
   formatCommand_bgcolor,
   formatCommand_color,
   formatCommand_link, 
-  default_bgcolor
+  default_bgcolor,
+  default_color,
 } from './vars';
 
 // Начальные значения
@@ -14,6 +15,7 @@ export const startingValue = {
     lineHeight: 2.2,
 
     bgcolor: default_bgcolor,
+    color: default_color,
   },
 
   // состояния элементов 

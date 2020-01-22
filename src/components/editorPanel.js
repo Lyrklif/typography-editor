@@ -20,23 +20,38 @@ export default class EditorPanel extends React.Component {
     this.switchEditText = props.switchEditText;
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSwitchStatuses = this.handleSwitchStatuses.bind(this);
+    this.switchShowColorPiper = this.switchShowColorPiper.bind(this);
   }
 
   // выбор цвета
   handleChange(e) {
-    console.log('color: ', e.hex);
+    this.setState({
+      styles: {
+        bgcolor: e.hex,
+        color: e.hex,
+      }
+    });
   }
 
   // смена статуса панели
-  handleSwitchStatuses(e) {
-    console.log(this.state);
-
+  switchShowColorPiper(e) {
     this.setState({
       states: {
         colorPicker: !this.state.states.colorPicker
       }
     });
+
+    // this.setState({
+    //   styles: {
+    //     bgcolor: this.state.styles.bgcolor,
+    //     color: this.state.styles.color,
+    //   }
+    // });
+
+    // если панель показана
+    // if (this.state.states.colorPicker) {
+
+    // }
   }
 
   render() {
@@ -58,8 +73,9 @@ export default class EditorPanel extends React.Component {
 
           {/* настройка тегов */}
           <TagsPanel
-            param={this.props.param}
+            param={this.state}
             classes="editor-panel__inner"
+            switchShowColorPiper={this.switchShowColorPiper}
           />
 
 
@@ -74,7 +90,7 @@ export default class EditorPanel extends React.Component {
 
         <div
           className={this.state.states.colorPicker ? 'color-picker-wp open' : 'color-picker-wp'}
-          onClick={this.handleSwitchStatuses}
+          onClick={this.switchShowColorPiper}
         >
           <SketchPicker
             color={this.state.styles.bgcolor}
