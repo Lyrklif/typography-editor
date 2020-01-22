@@ -2,7 +2,7 @@ import {
   formatCommand_clear,
   formatCommand_bgcolor,
   formatCommand_color,
-  formatCommand_link, 
+  formatCommand_link,
   default_bgcolor,
   default_color,
 } from './vars';
