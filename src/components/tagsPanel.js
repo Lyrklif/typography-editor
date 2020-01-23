@@ -39,7 +39,7 @@ export default class TagsPanel extends React.Component {
         // если нужно вводить адрес ссылки
         if (tag === formatCommand_link) {
           let href = prompt('Введите путь для ссылки:');
-          if (!href) href = "#"
+          if (!href) href = commands[i][2].toUpperCase();
           document.execCommand(commands[i][0], commands[i][1], href);
 
           // если нужно выбрать цвет фона
