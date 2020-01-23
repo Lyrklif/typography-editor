@@ -1,11 +1,11 @@
+// buttonOnOff
+
 import React from 'react';
 import { render } from '@testing-library/react';
 
 
-
-
-// button
-export default class Button extends React.Component {
+// Кнопка со сменой статуса
+export default class ButtonOnOff extends React.Component {
   constructor(props) {
     super(props);
 
@@ -15,10 +15,13 @@ export default class Button extends React.Component {
   render() {
     return (
       <button
+        className={this.props.on_off_status ? 'on' : 'off'}
         onClick={this.clickEvent}
-        className={this.props.classes}
         name={this.props.name}
       >
+        <b className="uppercase">
+          {this.props.on_off_status ? 'on' : 'off'}
+        </b>
         {this.props.text || 'Button'}
       </button >
     )

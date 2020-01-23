@@ -1,11 +1,13 @@
+// buttonIcon
+
 import React from 'react';
 import { render } from '@testing-library/react';
 
 
 
 
-// button
-export default class Button extends React.Component {
+// Кнопка с иконкой
+export default class ButtonIcon extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,8 +20,11 @@ export default class Button extends React.Component {
         onClick={this.clickEvent}
         className={this.props.classes}
         name={this.props.name}
+        title={this.props.text}
       >
-        {this.props.text || 'Button'}
+        <span
+          className={"sprite " + this.props.icon}>
+        </span>
       </button >
     )
   }
