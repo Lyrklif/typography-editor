@@ -28,7 +28,7 @@ export default class MainSettingsPanel extends React.Component {
           icon="icon-clear"
           /> */}
 
-          {/* КНОПКА Режим редактирования текста */}
+        {/* КНОПКА Режим редактирования текста */}
         <Button
           param={this.props.param}
           on_off='true'
@@ -47,7 +47,7 @@ export default class MainSettingsPanel extends React.Component {
           name="fontSize"
           text="Шрифт"
           icon="sprite icon-format_size_white"
-          />
+        />
 
 
         {/* Высота строки */}
