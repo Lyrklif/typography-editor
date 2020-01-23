@@ -6,5 +6,5 @@ export const formatCommand_color = 'color';
 export const formatCommand_link = 'link';
 
 
-export const default_bgcolor = '#f8e71c';
-export const default_color = '#ff0000';
+export const default_bgcolor = '#ffeb3b';
+export const default_color = '#f44336';

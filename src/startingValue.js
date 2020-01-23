@@ -64,87 +64,162 @@ export const startingValue = {
   * то его название нужно менять в файле ./vars.js
   * [эти названия используются где-то ещё в коде]
   */
-  formatCommand: {
-    [formatCommand_clear]: [
-      ['removeFormat', false, ''],
-      ['unlink', false, ''],
-    ],
-    h1: [
-      ['formatBlock', false, 'h1'],
-    ],
-    h2: [
-      ['formatBlock', false, 'h2'],
-    ],
-    h3: [
-      ['formatBlock', false, 'h3'],
-    ],
-    h4: [
-      ['formatBlock', false, 'h4'],
-    ],
-    h5: [
-      ['formatBlock', false, 'h5'],
-    ],
-    h6: [
-      ['formatBlock', false, 'h6'],
-    ],
-    p: [
-      ['formatBlock', false, 'p'],
-    ],
-    [formatCommand_link]: [
-      ['createLink', false, '#'], // нельзя менять и добавлять новые команды
-    ],
-    ul: [
-      ['insertUnorderedList', false, ''],
-    ],
-    ol: [
-      ['insertOrderedList', false, ''],
-    ],
-    b: [
-      ['bold', false, ''],
-    ],
-    i: [
-      ['italic', false, ''],
-    ],
-    strike: [
-      ['strikeThrough', false, ''],
-    ],
-    [formatCommand_bgcolor]: [
-      ['styleWithCSS', false, 'true'], // использовать стили, а не html
-      ['hiliteColor', false, default_bgcolor],
-      ['styleWithCSS', false, 'false'], // использовать html, а не стили
-    ],
-    [formatCommand_color]: [
-      ['styleWithCSS', false, 'true'], // использовать стили, а не html
-      ['foreColor', false, '#ff0000'],
-      ['styleWithCSS', false, 'false'], // использовать html, а не стили
-    ],
-    sup: [
-      ['superscript', false, ''],
-    ],
-    sub: [
-      ['subscript', false, ''],
-    ],
-    underline: [
-      ['underline', false, ''],
-    ],
-    blockquote: [
-      ['formatBlock', false, 'blockquote'],
-    ],
-    hr: [
-      ['insertHorizontalRule', false, ''],
-    ],
-    left: [
-      ['justifyLeft', false, ''],
-    ],
-    center: [
-      ['justifyCenter', false, ''],
-    ],
-    right: [
-      ['justifyRight', false, ''],
-    ],
-    full: [
-      ['justifyFull', false, ''],
-    ],
+  tagParameters: {
+    [formatCommand_clear]: {
+      command: [
+        ['removeFormat', false, ''],
+        ['unlink', false, ''],
+      ],
+      display: ['icon-format_clear']
+    },
+    h1: {
+      command: [
+        ['formatBlock', false, 'h1'],
+      ],
+      display: ['icon-title_1']
+    },
+    h2: {
+      command: [
+        ['formatBlock', false, 'h2'],
+      ],
+      display: ['icon-title_2']
+    },
+    h3: {
+      command: [
+        ['formatBlock', false, 'h3'],
+      ],
+      display: ['icon-title_3']
+    },
+    // h4: {
+    //   command: [
+    //     ['formatBlock', false, 'h4'],
+    //   ],
+    //   display: ['icon-save']
+    // },
+    // h5: {
+    //   command: [
+    //     ['formatBlock', false, 'h5'],
+    //   ],
+    //   display: ['icon-save']
+    // },
+    // h6: {
+    //   command: [
+    //     ['formatBlock', false, 'h6'],
+    //   ],
+    //   display: ['icon-save']
+    // },
+    p: {
+      command: [
+        ['formatBlock', false, 'p'],
+      ],
+      display: ['icon-text']
+    },
+    [formatCommand_link]: {
+      command: [
+        ['createLink', false, '#'], // нельзя менять и добавлять новые команды
+      ],
+      display: ['icon-insert_link']
+    },
+    ul: {
+      command: [
+        ['insertUnorderedList', false, ''],
+      ],
+      display: ['icon-format_list_bulleted']
+    },
+    ol: {
+      command: [
+        ['insertOrderedList', false, ''],
+      ],
+      display: ['icon-format_list_numbered']
+    },
+    b: {
+      command: [
+        ['bold', false, ''],
+      ],
+      display: ['icon-format_bold']
+    },
+    i: {
+      command: [
+        ['italic', false, ''],
+      ],
+      display: ['icon-format']
+    },
+    strike: {
+      command: [
+        ['strikeThrough', false, ''],
+      ],
+      display: ['icon-strikethrough']
+    },
+    [formatCommand_bgcolor]: {
+      command: [
+        ['styleWithCSS', false, 'true'], // использовать стили, а не html
+        ['hiliteColor', false, default_bgcolor],
+        ['styleWithCSS', false, 'false'], // использовать html, а не стили
+      ],
+      display: ['icon-format_paint']
+    },
+    [formatCommand_color]: {
+      command: [
+        ['styleWithCSS', false, 'true'], // использовать стили, а не html
+        ['foreColor', false, '#ff0000'],
+        ['styleWithCSS', false, 'false'], // использовать html, а не стили
+      ],
+      display: ['icon-brush']
+    },
+    sup: {
+      command: [
+        ['superscript', false, ''],
+      ],
+      display: ['icon-superscript']
+    },
+    sub: {
+      command: [
+        ['subscript', false, ''],
+      ],
+      display: ['icon-subscript']
+    },
+    underline: {
+      command: [
+        ['underline', false, ''],
+      ],
+      display: ['icon-format_underlined']
+    },
+    blockquote: {
+      command: [
+        ['formatBlock', false, 'blockquote'],
+      ],
+      display: ['icon-format_quote']
+    },
+    hr: {
+      command: [
+        ['insertHorizontalRule', false, ''],
+      ],
+      display: ['icon-line_horizontal']
+    },
+    left: {
+      command: [
+        ['justifyLeft', false, ''],
+      ],
+      display: ['icon-format_align_left']
+    },
+    center: {
+      command: [
+        ['justifyCenter', false, ''],
+      ],
+      display: ['icon-format_align_center']
+    },
+    right: {
+      command: [
+        ['justifyRight', false, ''],
+      ],
+      display: ['icon-format_align_right']
+    },
+    full: {
+      command: [
+        ['justifyFull', false, ''],
+      ],
+      display: ['icon-format_align_justify']
+    },
   },
 
   // кнопки
