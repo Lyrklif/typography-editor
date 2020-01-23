@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 
 
 // Кнопка со сменой статуса
-export default class ButtonIconOnOff extends React.Component {
+export default class ButtonOnOff extends React.Component {
   constructor(props) {
     super(props);
 
