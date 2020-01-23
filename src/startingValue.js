@@ -164,7 +164,7 @@ export const startingValue = {
         ['foreColor', false, '#ff0000'],
         ['styleWithCSS', false, 'false'], // использовать html, а не стили
       ],
-      display: ['icon-brush']
+      display: ['icon-color_lens']
     },
     sup: {
       command: [

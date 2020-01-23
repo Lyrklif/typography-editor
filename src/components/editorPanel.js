@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { SketchPicker, SwatchesPicker } from 'react-color';
 
 import Button from './button';
+import ButtonPallet from './buttonPallet';
 import TagsPanel from './tagsPanel';
 import ButtonsPanel from './buttonsPanel';
 import MainSettingsPanel from './mainSettingsPanel';
@@ -93,6 +94,28 @@ export default class EditorPanel extends React.Component {
               classes="editor-panel__inner"
               switchEditText={this.switchEditText}
             />
+
+
+            {/* Выбор цвета */}
+            <div className="editor-panel__inner">
+              {/* Выбор цвета фона */}
+              <ButtonPallet
+                text="Установить цвет фона"
+                icon="icon-format_paint_white"
+                name={formatCommand_bgcolor}
+                clickEvent={this.changeColor}
+                style={this.state.styles.bgcolor}
+              />
+
+              {/* Выбор цвета текста */}
+              <ButtonPallet
+                text="Установить цвет текста"
+                icon="icon-color_lens_white"
+                name={formatCommand_color}
+                clickEvent={this.changeColor}
+                style={this.state.styles.color}
+              />
+            </div>
           </div>
 
           {/* настройка тегов */}
@@ -101,38 +124,6 @@ export default class EditorPanel extends React.Component {
             classes="editor-panel__inner"
             switchShowColorPiper={this.switchShowColorPiper}
           />
-
-          <div className="editor-panel__inner">
-            {/* Выбор цвета фона */}
-            <span>Установить фоновый цвет</span>
-            <div
-              className="palette"
-              name={formatCommand_bgcolor}
-              onClick={this.changeColor}
-              style={
-                {
-                  backgroundColor: this.state.styles.bgcolor,
-                  fontSize: `${this.props.param.styles.fontSize}px`,
-                }
-              }
-            >
-            </div>
-
-            {/* Выбор цвета текста */}
-            <span>Установить цвет текста</span>
-            <div
-              className="palette"
-              name={formatCommand_color}
-              onClick={this.changeColor}
-              style={
-                {
-                  backgroundColor: this.state.styles.color,
-                  fontSize: `${this.props.param.styles.fontSize}px`,
-                }
-              }
-            >
-            </div>
-          </div>
         </div>
 
 
