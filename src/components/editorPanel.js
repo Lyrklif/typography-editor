@@ -78,28 +78,28 @@ export default class EditorPanel extends React.Component {
             Панель редактирования
         </h3>
 
-          {/* основные настройки */}
-          <MainSettingsPanel
-            param={this.props.param}
-            classes="editor-panel__inner"
-            eventHandler={this.setGlobalParam}
-            reset={this.reset}
-          />
+          <div className="editor-panel__inner">
+            {/* основные настройки */}
+            <MainSettingsPanel
+              param={this.props.param}
+              classes="editor-panel__inner"
+              eventHandler={this.setGlobalParam}
+              reset={this.reset}
+            />
 
+            {/* панель с кнопками */}
+            <ButtonsPanel
+              param={this.props.param}
+              classes="editor-panel__inner"
+              switchEditText={this.switchEditText}
+            />
+          </div>
 
           {/* настройка тегов */}
           <TagsPanel
             param={this.state}
             classes="editor-panel__inner"
             switchShowColorPiper={this.switchShowColorPiper}
-          />
-
-
-          {/* панель с кнопками */}
-          <ButtonsPanel
-            param={this.props.param}
-            classes="editor-panel__inner editor-panel__buttons"
-            switchEditText={this.switchEditText}
           />
 
           <div className="editor-panel__inner">

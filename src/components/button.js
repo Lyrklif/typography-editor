@@ -25,10 +25,10 @@ export default class Button extends React.Component {
           <b className="uppercase">
             {this.props.on_off_status ? 'on' : 'off'}
           </b>
-          {/* {this.props.text || 'Button'} */}
           <span
             className={"sprite " + this.props.icon}>
           </span>
+          {/* {this.props.text || 'Button'} */}
         </button >
       )
     }

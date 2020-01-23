@@ -20,11 +20,12 @@ export default class MainSettingsPanel extends React.Component {
       <div className={this.props.classes}>
 
         {/* КНОПКА Вернуть стандартные настройки */}
-        <Button
+        {/* <Button
           param={this.props.param}
           clickEvent={this.reset}
           text={this.props.param.buttons.reset}
-        />
+          icon="icon-clear"
+          /> */}
 
 
         {/* Размер шрифта */}
@@ -33,8 +34,9 @@ export default class MainSettingsPanel extends React.Component {
           eventHandler={this.eventHandler}
           type="number"
           name="fontSize"
-          text="Размер шрифта"
-        />
+          text="Шрифт"
+          icon="sprite icon-format_size_white"
+          />
 
 
         {/* Высота строки */}
@@ -45,6 +47,7 @@ export default class MainSettingsPanel extends React.Component {
           name="lineHeight"
           step="0.1"
           text="Высота строки"
+          icon="sprite icon-line_height_white"
         />
 
 

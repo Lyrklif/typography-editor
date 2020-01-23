@@ -34,6 +34,7 @@
 .editor-panel__inner {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .editor-panel__inner button {
@@ -49,10 +50,6 @@
   margin-right: 0;
 }
 
-.editor-panel__inner:last-of-type> :nth-child(n) {
-  margin-top: 1em;
-  margin-bottom: 0;
-}
 
 .editor-panel__title {
   font-size: 0.8em;
