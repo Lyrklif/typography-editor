@@ -1,0 +1,134 @@
+/* Спрайт иконок */
+
+.icon-brush,
+.bg-01_brush {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -10px -10px;
+}
+
+.icon-edit,
+.bg-02_edit {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -48px -10px;
+}
+
+.icon-more,
+.bg-03_more {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -10px -48px;
+}
+
+.icon-clear,
+.bg-04_clear {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -48px -48px;
+}
+
+.icon-undo,
+.bg-05_undo {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -86px -10px;
+}
+
+.icon-redo,
+.bg-06_redo {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -86px -48px;
+}
+
+.icon-save,
+.bg-07_save {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -10px -86px;
+}
+
+.icon-format_align_justify,
+.bg-18_format_align_justify {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -48px -86px;
+}
+
+.icon-format_underlined,
+.bg-10_format_underlined {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -86px -86px;
+}
+
+.icon-format,
+.bg-08_format {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -124px -10px;
+}
+
+.icon-format_list_bulleted,
+.bg-14_format_list_bulleted {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -124px -48px;
+}
+
+.icon-format_list_numbered,
+.bg-13_format_list_numbered {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -124px -86px;
+}
+
+.icon-insert_link,
+.bg-09_insert_link {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -10px -124px;
+}
+
+.icon-format_clear,
+.bg-11_format_clear {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -48px -124px;
+}
+
+.icon-format_align_center,
+.bg-19_format_align_center {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -86px -124px;
+}
+
+.icon-format_paint,
+.bg-12_format_paint {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -124px -124px;
+}
+
+.icon-format_bold,
+.bg-15_format_bold {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -162px -10px;
+}
+
+.icon-format_align_left,
+.bg-17_format_align_left {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -162px -48px;
+}
+
+.icon-format_align_right,
+.bg-16_format_align_right {
+  width: 18px;
+  height: 18px;
+  background: url('images/css_sprites.png') -162px -86px;
+}
