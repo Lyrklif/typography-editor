@@ -19,7 +19,19 @@ export default class Button extends React.Component {
         className={this.props.classes}
         name={this.props.name}
       >
-        {this.props.text || 'Button'}
+        {/* Если есть иконка, то добавить её класс. Если нет, то просто текст */}
+        {this.props.icon ?
+          <span
+            className={"sprite " + this.props.icon}>
+          </span>
+          :
+          <span>
+            {this.props.text || 'Button'}
+          </span>
+        }
+
+
+
       </button >
     )
   }

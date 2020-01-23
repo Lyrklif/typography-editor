@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Button from './button';
-import ButtonIcon from './buttonIcon';
 
 import { SketchPicker, CirclePicker } from 'react-color';
 
@@ -44,7 +43,7 @@ export default class TagsPanel extends React.Component {
           document.execCommand(commands[i][0], commands[i][1], href);
 
           // если нужно выбрать цвет фона
-        } else if (i === 1 && tag === formatCommand_bgcolor) {
+        } else if (tag === formatCommand_bgcolor) {
           document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.bgcolor);
 
           // если нужно выбрать цвет текста
@@ -102,7 +101,7 @@ export default class TagsPanel extends React.Component {
 
     let tagList = tagsArray.map((elem, index) => {
       return (
-        <ButtonIcon
+        <Button
           key={index}
           param={this.state}
           clickEvent={this.setTag}
