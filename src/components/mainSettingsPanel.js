@@ -13,6 +13,7 @@ export default class MainSettingsPanel extends React.Component {
 
     this.eventHandler = props.eventHandler;
     this.reset = props.reset;
+    this.switchEditText = props.switchEditText;
   }
 
   render() {
@@ -26,6 +27,16 @@ export default class MainSettingsPanel extends React.Component {
           text={this.props.param.buttons.reset}
           icon="icon-clear"
           /> */}
+
+          {/* КНОПКА Режим редактирования текста */}
+        <Button
+          param={this.props.param}
+          on_off='true'
+          on_off_status={this.props.param.states.editText}
+          clickEvent={this.switchEditText}
+          text={this.props.param.buttons.edit}
+          icon='icon-edit'
+        />
 
 
         {/* Размер шрифта */}

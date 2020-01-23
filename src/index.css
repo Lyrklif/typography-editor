@@ -89,6 +89,7 @@ button {
 
 button>b {
   margin-right: 0.5em;
+  width: 30px;
 }
 
 button.on {

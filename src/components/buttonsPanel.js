@@ -12,7 +12,7 @@ export default class ButtonsPanel extends React.Component {
 
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
-    this.switchEditText = props.switchEditText;
+    // this.switchEditText = props.switchEditText;
 
 
     this.download = this.download.bind(this);
@@ -54,14 +54,14 @@ export default class ButtonsPanel extends React.Component {
       <div className={this.props.classes}>
 
         {/* КНОПКА Режим редактирования текста */}
-        <Button
+        {/* <Button
           param={this.props.param}
           on_off='true'
           on_off_status={this.props.param.states.editText}
           clickEvent={this.switchEditText}
           text={this.props.param.buttons.edit}
           icon='icon-edit'
-        />
+        /> */}
 
         {/* КНОПКА Отменить */}
         <Button

@@ -86,13 +86,14 @@ export default class EditorPanel extends React.Component {
               classes="editor-panel__inner"
               eventHandler={this.setGlobalParam}
               reset={this.reset}
+            switchEditText={this.switchEditText}
             />
 
             {/* панель с кнопками */}
             <ButtonsPanel
               param={this.props.param}
               classes="editor-panel__inner"
-              switchEditText={this.switchEditText}
+              // switchEditText={this.switchEditText}
             />
 
 
