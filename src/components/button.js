@@ -18,6 +18,7 @@ export default class Button extends React.Component {
         onClick={this.clickEvent}
         className={this.props.classes}
         name={this.props.name}
+        title={this.props.text}
       >
         {/* Если есть иконка, то добавить её класс. Если нет, то просто текст */}
         {this.props.icon ?
