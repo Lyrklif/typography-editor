@@ -12,7 +12,7 @@ export default class ButtonsPanel extends React.Component {
 
     this.setGlobalParam = props.setGlobalParam;
     this.reset = props.reset;
-    this.switchEditText = props.switchEditText;
+    // this.switchEditText = props.switchEditText;
 
 
     this.download = this.download.bind(this);
@@ -53,11 +53,22 @@ export default class ButtonsPanel extends React.Component {
     return (
       <div className={this.props.classes}>
 
+        {/* КНОПКА Режим редактирования текста */}
+        {/* <Button
+          param={this.props.param}
+          on_off='true'
+          on_off_status={this.props.param.states.editText}
+          clickEvent={this.switchEditText}
+          text={this.props.param.buttons.edit}
+          icon='icon-edit'
+        /> */}
+
         {/* КНОПКА Отменить */}
         <Button
           param={this.props.param}
           clickEvent={this.undo}
           text={this.props.param.buttons.undo}
+          icon='icon-undo'
         />
 
 
@@ -66,24 +77,15 @@ export default class ButtonsPanel extends React.Component {
           param={this.props.param}
           clickEvent={this.redo}
           text={this.props.param.buttons.redo}
+          icon='icon-redo'
         />
-
-
-        {/* КНОПКА Режим редактирования текста */}
-        <Button
-          param={this.props.param}
-          on_off='true'
-          on_off_status={this.props.param.states.editText}
-          clickEvent={this.switchEditText}
-          text={this.props.param.buttons.edit}
-        />
-
 
         {/* КНОПКА Повторить */}
         <Button
           param={this.props.param}
           clickEvent={this.download}
           text={this.props.param.buttons.download}
+          icon='icon-save'
         />
 
       </div>

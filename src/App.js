@@ -10,6 +10,7 @@ import Button from './components/button';
 
 // Стили
 import './App.css';
+import './sprite.css';
 
 
 export default class App extends React.Component {

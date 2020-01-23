@@ -24,15 +24,12 @@ body {
   line-height: 1.5em;
 
   padding: 3em 1em;
-  margin-top: 300px;
+  margin-top: 200px;
 
   border-radius: 1em;
 
   background-color: rgba(65, 217, 219, 0.05);
   transition: background-color 0.3s ease-in-out;
-
-  /* color: #ff0000; */
-  /* color: #ff0000; */
 }
 
 blockquote {
@@ -61,19 +58,38 @@ button {
   margin-top: 1em;
   margin-bottom: 1em;
 
-  background-color: rgb(180, 188, 189);
+  background-color: rgb(206, 230, 235);
   border: 0 none;
-  border-radius: 1em;
+  border-radius: .5em;
 
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 0.5em 0.5em 0.5em 0.5em;
-  min-width: 4em;
 
   user-select: none;
 }
 
+
+.button-pallet {
+  background-color: transparent;
+}
+
+.button-pallet__color {
+  display: block;
+  height: 10px;
+  height: 1.5em;
+  width: 1.5em;
+  border-radius: .4em;
+  margin-left: 0.2em;
+
+  pointer-events: none;
+
+  transition: background-color 0.3s ease-in-out;
+}
+
 button>b {
   margin-right: 0.5em;
+  width: 30px;
 }
 
 button.on {
@@ -81,19 +97,29 @@ button.on {
 }
 
 input {
-  background-color: rgb(180, 188, 189);
+  background-color: rgb(206, 230, 235);
   border: 0 none;
   border-radius: 1em;
 
   display: block;
-  margin-top: 0.5em;
-  margin-bottom: 1em;
 
   text-align: center;
   padding: 0.5em 0.5em 0.5em 0.5em;
-  width: 8em;
+  width: 4em;
 
 }
+
+label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+label>span {
+  margin-right: 0.2em;
+  display: block;
+}
+
 
 input,
 button {
@@ -117,6 +143,7 @@ button.on:active,
 button.on:hover {
   background-color: rgb(110, 223, 120);
 }
+
 
 h1,
 h2,

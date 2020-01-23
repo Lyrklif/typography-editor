@@ -27,10 +27,10 @@ export default class TagsPanel extends React.Component {
   setTag(e) {
     e.preventDefault();
 
-    let tag = e.target.name;
-    let commands = this.state.formatCommand[tag];
+    let tag = e.target.name; // тег, который надо установить
+    let commands = this.state.tagParameters[tag].command; // команды, прописанные для этого тега
 
-    // если команда для этого тега существует
+    // если команды для этого тега существуют
     if (commands) {
       // применить все заданные команды из массива
       for (let i = 0; i < commands.length; i++) {
@@ -41,11 +41,11 @@ export default class TagsPanel extends React.Component {
           let href = prompt('Введите путь для ссылки:');
           document.execCommand(commands[i][0], commands[i][1], href);
 
-          // если нужно  выбирать цвет фона
+          // если нужно выбрать цвет фона
         } else if (i === 1 && tag === formatCommand_bgcolor) {
           document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.bgcolor);
 
-          // если нужно  выбирать цвет текста
+          // если нужно выбрать цвет текста
         } else if (i === 1 && tag === formatCommand_color) {
           document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.color);
 
@@ -60,7 +60,7 @@ export default class TagsPanel extends React.Component {
         this.clearFormat();
       }
 
-      // если команда для этого тега НЕ существует
+      // если команды для этого тега НЕ существуют
     } else {
       console.log('Правила форматирования для этого тега не прописаны.\nСделайте это в файле startingValue.js');
     }
@@ -96,7 +96,7 @@ export default class TagsPanel extends React.Component {
 
   render() {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map    
-    let tagsArray = Object.keys(this.state.formatCommand);
+    let tagsArray = Object.keys(this.state.tagParameters);
 
     let tagList = tagsArray.map((elem, index) => {
       return (
@@ -106,8 +106,9 @@ export default class TagsPanel extends React.Component {
           clickEvent={this.setTag}
           text={elem}
           name={elem}
+          icon={this.state.tagParameters[elem].display[0]}
         />
-      )
+      )      
     });
 
     return (

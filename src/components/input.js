@@ -16,8 +16,10 @@ export default class Input extends React.Component {
 
   render() {
     return (
-      <label>
-        {this.props.text || 'Input'}
+      <label title={this.props.text || 'Input'}>
+        <span className={this.props.icon}>
+          {/* {this.props.text || 'Input'} */}
+        </span>
         <input
           type={this.props.type || 'text'}
           name={this.props.name || 'btn'}
