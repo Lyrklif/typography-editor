@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Button from './button';
+import ButtonIcon from './buttonIcon';
 
 import { SketchPicker, CirclePicker } from 'react-color';
 
@@ -39,6 +40,7 @@ export default class TagsPanel extends React.Component {
         // если нужно вводить адрес ссылки
         if (tag === formatCommand_link) {
           let href = prompt('Введите путь для ссылки:');
+          if (!href) href = "#"
           document.execCommand(commands[i][0], commands[i][1], href);
 
           // если нужно выбрать цвет фона
@@ -100,7 +102,7 @@ export default class TagsPanel extends React.Component {
 
     let tagList = tagsArray.map((elem, index) => {
       return (
-        <Button
+        <ButtonIcon
           key={index}
           param={this.state}
           clickEvent={this.setTag}
@@ -108,15 +110,12 @@ export default class TagsPanel extends React.Component {
           name={elem}
           icon={this.state.tagParameters[elem].display[0]}
         />
-      )      
+      )
     });
 
     return (
-      <div
-        className={this.props.classes}
-      >
+      <div className={this.props.classes} >
         {tagList}
-
       </div>
     )
   }

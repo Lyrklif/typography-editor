@@ -22,7 +22,7 @@ export default class Input extends React.Component {
         </span>
         <input
           type={this.props.type || 'text'}
-          name={this.props.name || 'btn'}
+          name={this.props.name || 'input'}
           // value={this.props.param || this.state.value} // в этом случае сбрасывается значение
           value={this.props.param} // в этом случае в консоли ошибка
           step={this.props.step || ''}

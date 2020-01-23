@@ -3,6 +3,8 @@ import { render } from '@testing-library/react';
 
 import Input from './input';
 import Button from './button';
+import ButtonOnOff from './buttonOnOff';
+import ButtonIconOnOff from './buttonIconOnOff';
 
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
@@ -29,9 +31,8 @@ export default class MainSettingsPanel extends React.Component {
           /> */}
 
         {/* КНОПКА Режим редактирования текста */}
-        <Button
+        <ButtonIconOnOff
           param={this.props.param}
-          on_off='true'
           on_off_status={this.props.param.states.editText}
           clickEvent={this.switchEditText}
           text={this.props.param.buttons.edit}

@@ -152,9 +152,7 @@ export const startingValue = {
     },
     [formatCommand_bgcolor]: {
       command: [
-        ['styleWithCSS', false, 'true'], // использовать стили, а не html
         ['hiliteColor', false, default_bgcolor],
-        ['styleWithCSS', false, 'false'], // использовать html, а не стили
       ],
       display: ['icon-format_paint']
     },

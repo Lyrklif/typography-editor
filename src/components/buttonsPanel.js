@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import Button from './button';
+import ButtonIcon from './buttonIcon';
 
 // настройка тегов
 export default class ButtonsPanel extends React.Component {
@@ -64,24 +65,23 @@ export default class ButtonsPanel extends React.Component {
         /> */}
 
         {/* КНОПКА Отменить */}
-        <Button
+        <ButtonIcon
           param={this.props.param}
           clickEvent={this.undo}
           text={this.props.param.buttons.undo}
           icon='icon-undo'
         />
 
-
         {/* КНОПКА Повторить */}
-        <Button
+        <ButtonIcon
           param={this.props.param}
           clickEvent={this.redo}
           text={this.props.param.buttons.redo}
           icon='icon-redo'
         />
 
-        {/* КНОПКА Повторить */}
-        <Button
+        {/* КНОПКА скачать */}
+        <ButtonIcon
           param={this.props.param}
           clickEvent={this.download}
           text={this.props.param.buttons.download}
