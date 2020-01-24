@@ -129,6 +129,7 @@ export default class TagsPanel extends React.Component {
             aria-label={this.state.tagParameters[elem].materialize.title}
             title={this.state.tagParameters[elem].materialize.title}
             name={elem}
+            onClick={this.setTag}
           >
             <Icon />
           </IconButton>
