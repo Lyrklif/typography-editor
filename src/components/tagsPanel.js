@@ -107,7 +107,8 @@ export default class TagsPanel extends React.Component {
           clickEvent={this.setTag}
           text={elem}
           name={elem}
-          icon={this.state.tagParameters[elem].display[0]}
+          // если иконка указана, то передать её
+          icon={this.state.tagParameters[elem].display && this.state.tagParameters[elem].display[0]}
         />
       )
     });

@@ -91,10 +91,10 @@ export const startingValue = {
       display: ['icon-title_3']
     },
     // h4: {
-    //   command: [
-    //     ['formatBlock', false, 'h4'],
-    //   ],
-    //   display: ['icon-save']
+      // command: [
+        // ['formatBlock', false, 'h4'],
+      // ],
+      // display: ['icon-save']
     // },
     // h5: {
     //   command: [
