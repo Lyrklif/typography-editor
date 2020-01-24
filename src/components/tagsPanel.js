@@ -3,8 +3,6 @@ import React from "react";
 import Button from "./button";
 
 import IconButton from "@material-ui/core/Button";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FormatClearIcon from "@material-ui/icons/FormatClear";
 import * as IconsLib from "@material-ui/icons";
 
 import {
@@ -131,7 +129,7 @@ export default class TagsPanel extends React.Component {
             name={elem}
             onClick={this.setTag}
           >
-            <Icon />
+            <Icon fontSize="small" />
           </IconButton>
         );
       }
