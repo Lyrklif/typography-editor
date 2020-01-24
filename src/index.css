@@ -135,16 +135,16 @@ button {
 }
 
 .button-pallet__color {
-  /* display: block;
+  display: block;
   height: 10px;
-  height: 1.5em;
-  width: 1.5em;
+  height: 1.1em;
+  width: 1.1em;
   border-radius: .4em;
   margin-left: 0.2em;
 
   pointer-events: none;
 
-  transition: background-color 0.3s ease-in-out; */
+  transition: background-color 0.3s ease-in-out;
 }
 
 button>b {

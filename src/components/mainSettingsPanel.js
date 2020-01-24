@@ -1,9 +1,5 @@
 import React from "react";
 
-// import Input from "./input";
-// import Button from "./button";
-import Button from "@material-ui/core/Button";
-import ButtonOnOff from "./buttonOnOff";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
