@@ -6,6 +6,7 @@ import { render } from '@testing-library/react';
 // Мои компоненты
 import EditorPanel from './components/editorPanel';
 import ContentEditable from './components/contentEditable';
+import HTMLeditable from './components/htmlEditable';
 import Button from './components/button';
 
 // Стили
@@ -45,7 +46,7 @@ export default class App extends React.Component {
     });
   }
 
-  // включить/отключить возможность редактировать текст
+  // вкл/откл возможность редактировать текст
   switchEditText() {
     this.setState({
       states: {
@@ -62,16 +63,19 @@ export default class App extends React.Component {
 
   // записать новый текст, удалив неразрешённые теги
   sanitize() {
-    let editableBlock = document.querySelector('.content'); // блок, текст в котором можно редактировать
-    let text = editableBlock.innerHTML; // текст внутри блока
+    let editableBlock = document.querySelectorAll('.content'); // блок, текст в котором можно редактировать
 
-    // если текст изменился
-    if (text !== this.state.html) {
-      // записать новую версию текста, применив настройки (удалить пустые теги, заменить символы и пр.)
-      this.setState({
-        html: sanitizeHtml(text, this.state.sanitizeParam)
-      });
-    }
+    editableBlock.forEach(elem => {
+      let text = (elem.tagName !== "CODE") ? elem.innerHTML : elem.innerText; // текст внутри блока
+
+      // если текст изменился
+      if (text !== this.state.html) {
+        // записать новую версию текста, применив настройки (удалить пустые теги, заменить символы и пр.)
+        this.setState({
+          html: sanitizeHtml(text, this.state.sanitizeParam)
+        });
+      }
+    });
   };
 
   render() {
@@ -86,16 +90,16 @@ export default class App extends React.Component {
           reset={this.reset}
         />
 
-
         {/* блок, ТЕКСТ в котором можно редактировать */}
         <ContentEditable
           param={this.state}
+        // onBlur={this.sanitize} // (!) стили не всегда применяются
         />
 
         {/* блок, ТЕГИ в котором можно редактировать */}
-        <ContentEditable
+        <HTMLeditable
           param={this.state}
-          html='true'
+        // onBlur={this.sanitize} // (!) стили не всегда применяются
         />
 
       </main>

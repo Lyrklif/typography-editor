@@ -46,7 +46,7 @@ export default class EditorPanel extends React.Component {
     }));
   }
 
-  // смена статуса панели [показать/скрыть]
+  // смена статуса панели выбора цвета [показать/скрыть]
   switchShowColorPiper() {
     this.setState((state) => ({
       states: {
