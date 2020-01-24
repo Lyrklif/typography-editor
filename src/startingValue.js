@@ -74,7 +74,11 @@ export const startingValue = {
         ['removeFormat', false, ''],
         ['unlink', false, ''],
       ],
-      display: ['icon-format_clear']
+      display: ['icon-format_clear'],
+      materialize: {
+        title: 'Очистить формат',
+        iconName: 'FormatClear'
+      }
     },
     h1: {
       command: [

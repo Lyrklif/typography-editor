@@ -1,16 +1,18 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from "react";
 
-import Button from './button';
+import Button from "./button";
 
-import { SketchPicker, CirclePicker } from 'react-color';
+import IconButton from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FormatClearIcon from "@material-ui/icons/FormatClear";
+import * as IconsLib from "@material-ui/icons";
 
 import {
   formatCommand_clear,
   formatCommand_bgcolor,
   formatCommand_color,
   formatCommand_link
-} from '../vars';
+} from "../vars";
 
 // настройка тегов
 export default class TagsPanel extends React.Component {
@@ -40,21 +42,33 @@ export default class TagsPanel extends React.Component {
 
         // если нужно вводить адрес ссылки
         if (tag === formatCommand_link) {
-          let href = prompt('Введите путь для ссылки:');
+          let href = prompt("Введите путь для ссылки:");
           if (!href) href = commands[i][2].toUpperCase();
           document.execCommand(commands[i][0], commands[i][1], href);
 
           // если нужно выбрать цвет фона
         } else if (tag === formatCommand_bgcolor) {
-          document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.bgcolor);
+          document.execCommand(
+            commands[i][0],
+            commands[i][1],
+            this.props.param.styles.bgcolor
+          );
 
           // если нужно выбрать цвет текста
         } else if (i === 1 && tag === formatCommand_color) {
-          document.execCommand(commands[i][0], commands[i][1], this.props.param.styles.color);
+          document.execCommand(
+            commands[i][0],
+            commands[i][1],
+            this.props.param.styles.color
+          );
 
           // [default] просто стилизовать текст
         } else {
-          document.execCommand(commands[i][0], commands[i][1], commands[i][2].toUpperCase());
+          document.execCommand(
+            commands[i][0],
+            commands[i][1],
+            commands[i][2].toUpperCase()
+          );
         }
       }
 
@@ -65,7 +79,9 @@ export default class TagsPanel extends React.Component {
 
       // если команды для этого тега НЕ существуют
     } else {
-      console.log('Правила форматирования для этого тега не прописаны.\nСделайте это в файле startingValue.js');
+      console.log(
+        "Правила форматирования для этого тега не прописаны.\nСделайте это в файле startingValue.js"
+      );
     }
   }
 
@@ -91,15 +107,34 @@ export default class TagsPanel extends React.Component {
     // если этот элемент не div и не li
     // *** пояснение:
     // * [div] -> чтобы нельзя было удалить сам блок .content при выделении всего содержимого
-    // * [li] -> чтобы нельзя было убирать формат списков (слишком много багов из-за этого) 
-    if (container.nodeName !== 'DIV' && container.nodeName !== 'LI') {
+    // * [li] -> чтобы нельзя было убирать формат списков (слишком много багов из-за этого)
+    if (container.nodeName !== "DIV" && container.nodeName !== "LI") {
       container.outerHTML = container.innerHTML; // удалить родительский тег
     }
   }
 
   render() {
-    // преобразовать объект в массив ключей, чтобы можно было использовать .map    
+    // преобразовать объект в массив ключей, чтобы можно было использовать .map
     let tagsArray = Object.keys(this.state.tagParameters);
+
+    let tagList2 = tagsArray.map((elem, index) => {
+      if (this.state.tagParameters[elem].materialize) {
+        let iconName = this.state.tagParameters[elem].materialize.iconName;
+        let Icon = IconsLib[iconName];
+
+        return (
+          <IconButton
+            key={index}
+            color="primary"
+            aria-label={this.state.tagParameters[elem].materialize.title}
+            title={this.state.tagParameters[elem].materialize.title}
+            name={elem}
+          >
+            <Icon />
+          </IconButton>
+        );
+      }
+    });
 
     let tagList = tagsArray.map((elem, index) => {
       return (
@@ -110,15 +145,19 @@ export default class TagsPanel extends React.Component {
           text={elem}
           name={elem}
           // если иконка указана, то передать её
-          icon={this.state.tagParameters[elem].display && this.state.tagParameters[elem].display[0]}
+          icon={
+            this.state.tagParameters[elem].display &&
+            this.state.tagParameters[elem].display[0]
+          }
         />
-      )
+      );
     });
 
     return (
-      <div className={this.props.classes} >
+      <div className={this.props.classes}>
+        {tagList2}
         {tagList}
       </div>
-    )
+    );
   }
 }

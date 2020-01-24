@@ -1,4 +1,4 @@
-.editor-panel {
+/* .editor-panel {
   display: flex;
   flex-direction: column;
 
@@ -18,57 +18,57 @@
   left: 0;
 
   overflow: auto;
-}
+} */
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .editor-panel {
     padding: 2em 4em 2em 4em;
     padding: 1em 2em 1em 2em;
     width: calc(100% - 4em);
     max-width: calc(100% - 4em);
   }
-}
+} */
 
 .editor-panel__inner {
-  display: flex;
+  /* display: flex; */
   /* flex-wrap: wrap; */
-  align-items: center;
+  /* align-items: center; */
 }
 
 .editor-panel__right {
-  margin-right: 0;
-  margin-left: auto;
+  /* margin-right: 0;
+  margin-left: auto; */
 }
 
 .editor-panel__scroll {
-  overflow-x: auto;
+  /* overflow-x: auto;
 
   padding-left: 1em;
-  padding-right: 1em;
+  padding-right: 1em; */
 }
 
 
 
 .editor-panel__scroll~.editor-panel__scroll {
-  margin-top: 0.4em;
+  /* margin-top: 0.4em; */
 }
 
 
 .editor-panel__inner button {
-  margin-top: 0;
+  /* margin-top: 0; */
 }
 
 .editor-panel__inner> :nth-child(n) {
-  margin-right: 0.6em;
-  margin-top: 0;
+  /* margin-right: 0.6em;
+  margin-top: 0; */
 }
 
 .editor-panel__inner> :last-child {
-  margin-right: 0;
+  /* margin-right: 0; */
 }
 
 .editor-panel__title {
-  font-size: 0.8em;
+  /* font-size: 0.8em;
   margin: 0;
   text-align: center;
   opacity: 0.5;
@@ -76,17 +76,17 @@
   bottom: 0.5em;
   right: 0.5em;
 
-  user-select: none;
+  user-select: none; */
 }
 
 .editor-panel__buttons {
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 
 }
 
 
 .color-picker-wp {
-  display: none;
+  /* display: none;
 
   position: fixed !important;
   top: 0;
@@ -101,28 +101,28 @@
 
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .color-picker-wp.open {
-  display: flex;
+  /* display: flex; */
 }
 
 .color-picker-wp>div {
-  width: 300px !important;
+  /* width: 300px !important;
 
-  z-index: 801;
+  z-index: 801; */
 }
 
 .color-picker__close {
-  z-index: 801;
+  /* z-index: 801; */
 }
 
 
 .palette {
-  width: 1em;
+  /* width: 1em;
   height: 1em;
-  border: 1px solid white;
+  border: 1px solid white; */
 }
 
 

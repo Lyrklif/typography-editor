@@ -6,19 +6,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
 
-  width: 100%;
+  /* width: 100%;
   max-width: 90vw;
   margin: 10vh auto;
-  display: block;
+  display: block; */
   font-size: 16px;
 }
 
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   body {
     max-width: 85vw;
   }
-}
+} */
 
 /* 
 ::-webkit-scrollbar,
@@ -64,54 +64,54 @@ body {
 
 
 main {
-  margin-top: 200px;
+  /* margin-top: 200px; */
 }
 
 .content {
-  font-size: 16px;
-  line-height: 2.2em;
+  /* font-size: 16px;
+  line-height: 2.2em; */
 
-  padding: 3em 1em;
-  border-radius: 1em;
+  /* padding: 3em 1em; */
+  /* border-radius: 1em; */
 
-  background-color: rgba(65, 217, 219, 0.05);
+  /* background-color: rgba(65, 217, 219, 0.05); */
 
-  transition: background-color 0.3s ease-in-out;
+  /* transition: background-color 0.3s ease-in-out; */
 }
 
 pre {
-  margin: 0;
+  /* margin: 0; */
 }
 
 code {
-  display: block;
-  overflow: auto;
+  /* display: block;
+  overflow: auto; */
 }
 
 blockquote {
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1);
 
   border-left: 3px solid rgba(0, 0, 0, 0.2);
 
   margin-left: 0;
-  padding: .5em 0.5em 0.5em 1em;
+  padding: .5em 0.5em 0.5em 1em; */
 }
 
 .content> :first-child {
-  margin-top: 0;
+  /* margin-top: 0; */
 }
 
 .content.edit {
-  background-color: rgba(65, 219, 173, 0.1);
+  /* background-color: rgba(65, 219, 173, 0.1); */
 }
 
 .content:active,
 .content:focus {
-  outline: none;
+  /* outline: none; */
 }
 
 button {
-  margin-top: 1em;
+  /* margin-top: 1em;
   margin-bottom: 0.6em;
 
   background-color: rgb(206, 230, 235);
@@ -122,16 +122,16 @@ button {
   align-items: center;
   padding: 0.5em 0.5em 0.5em 0.5em;
 
-  user-select: none;
+  user-select: none; */
 }
 
 
 .button-pallet {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .button-pallet__color {
-  display: block;
+  /* display: block;
   height: 10px;
   height: 1.5em;
   width: 1.5em;
@@ -140,20 +140,20 @@ button {
 
   pointer-events: none;
 
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out; */
 }
 
 button>b {
-  margin-right: 0.5em;
-  width: 30px;
+  /* margin-right: 0.5em;
+  width: 30px; */
 }
 
 button.on {
-  background-color: rgb(117, 197, 124);
+  /* background-color: rgb(117, 197, 124); */
 }
 
 input {
-  background-color: rgb(206, 230, 235);
+  /* background-color: rgb(206, 230, 235);
   border: 0 none;
   border-radius: 1em;
 
@@ -161,25 +161,25 @@ input {
 
   text-align: center;
   padding: 0.5em 0.5em 0.5em 0.5em;
-  width: 4em;
+  width: 4em; */
 
 }
 
 label {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.6em; */
 }
 
 label>span {
-  margin-right: 0.2em;
-  display: block;
+  /* margin-right: 0.2em;
+  display: block; */
 }
 
 
 input,
 button {
-  transition: background-color 0.3s ease-in-out;
+  /* transition: background-color 0.3s ease-in-out; */
 }
 
 
@@ -189,15 +189,15 @@ button:hover,
 input:focus,
 input:active,
 input:hover {
-  background-color: rgb(175, 202, 206);
-  outline: 0 none;
+  /* background-color: rgb(175, 202, 206);
+  outline: 0 none; */
 }
 
 
 button.on:focus,
 button.on:active,
 button.on:hover {
-  background-color: rgb(110, 223, 120);
+  /* background-color: rgb(110, 223, 120); */
 }
 
 
@@ -207,47 +207,47 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 2em;
-  margin-bottom: 1em;
+  /* margin-top: 2em;
+  margin-bottom: 1em; */
 }
 
 h1 {
-  font-size: 2.5em;
+  /* font-size: 2.5em; */
 }
 
 h2 {
-  font-size: 2em;
+  /* font-size: 2em; */
 }
 
 h3 {
-  font-size: 1.8em;
+  /* font-size: 1.8em; */
 }
 
 h4 {
-  font-size: 1.6em;
+  /* font-size: 1.6em; */
 }
 
 h5 {
-  font-size: 1.4em;
+  /* font-size: 1.4em; */
 }
 
 h6 {
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
 }
 
 p {
-  font-size: 1em;
+  /* font-size: 1em; */
 }
 
 .uppercase {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 
 .clear-list {
-  padding-left: 0;
+  /* padding-left: 0; */
 }
 
 .clear-list li {
-  list-style-type: none;
+  /* list-style-type: none; */
 }
