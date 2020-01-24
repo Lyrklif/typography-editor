@@ -79,6 +79,10 @@ main {
   transition: background-color 0.3s ease-in-out;
 }
 
+pre {
+  margin: 0;
+}
+
 code {
   display: block;
   overflow: auto;

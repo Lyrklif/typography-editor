@@ -86,6 +86,8 @@ export default class App extends React.Component {
 
   // переключить активный таб
   tabSwitch = (e) => {
+    this.sanitize(); // записать новый текст, удалив неразрешённые теги
+
     let index = e.target.name;
 
     this.setState((state) => ({
