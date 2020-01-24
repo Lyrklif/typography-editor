@@ -7,11 +7,12 @@ body {
 
 
   width: 100%;
-  max-width: 95vw;
+  max-width: 90vw;
   margin: 10vh auto;
   display: block;
   font-size: 16px;
 }
+
 
 @media (min-width: 1024px) {
   body {
@@ -19,17 +20,72 @@ body {
   }
 }
 
+/* 
+::-webkit-scrollbar,
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar,
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: linear-gradient(left, #fff, #e4e4e4);
+  border: 1px solid #aaa;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(left, #22ADD4, #1E98BA);
+} 
+*/
+
+
+
+main {
+  margin-top: 200px;
+}
+
 .content {
   font-size: 16px;
-  line-height: 1.5em;
+  line-height: 2.2em;
 
   padding: 3em 1em;
-  margin-top: 200px;
-
   border-radius: 1em;
 
   background-color: rgba(65, 217, 219, 0.05);
+
   transition: background-color 0.3s ease-in-out;
+}
+
+pre {
+  margin: 0;
+}
+
+code {
+  display: block;
+  overflow: auto;
 }
 
 blockquote {
@@ -56,7 +112,7 @@ blockquote {
 
 button {
   margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 0.6em;
 
   background-color: rgb(206, 230, 235);
   border: 0 none;
@@ -112,7 +168,7 @@ input {
 label {
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.6em;
 }
 
 label>span {
@@ -185,4 +241,13 @@ p {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+
+.clear-list {
+  padding-left: 0;
+}
+
+.clear-list li {
+  list-style-type: none;
 }

@@ -27,6 +27,8 @@ export default class TagsPanel extends React.Component {
   setTag(e) {
     e.preventDefault();
 
+    if (!this.props.editAllowed) return false;
+
     let tag = e.target.name; // тег, который надо установить
     let commands = this.state.tagParameters[tag].command; // команды, прописанные для этого тега
 
@@ -107,7 +109,8 @@ export default class TagsPanel extends React.Component {
           clickEvent={this.setTag}
           text={elem}
           name={elem}
-          icon={this.state.tagParameters[elem].display[0]}
+          // если иконка указана, то передать её
+          icon={this.state.tagParameters[elem].display && this.state.tagParameters[elem].display[0]}
         />
       )
     });
