@@ -6,6 +6,7 @@ import { SketchPicker, SwatchesPicker } from 'react-color';
 import Button from './button';
 import ButtonPallet from './buttonPallet';
 import TagsPanel from './tagsPanel';
+import TabSwitches from './tabSwitches';
 import ButtonsPanel from './buttonsPanel';
 import MainSettingsPanel from './mainSettingsPanel';
 
@@ -28,8 +29,9 @@ export default class EditorPanel extends React.Component {
     this.state = props.param;
 
     this.setGlobalParam = props.setGlobalParam;
-    this.reset = props.reset;
     this.switchEditText = props.switchEditText;
+    this.tabSwitch = props.tabSwitch;
+    // this.reset = props.reset;
 
     this.handleChange = this.handleChange.bind(this);
     this.switchShowColorPiper = this.switchShowColorPiper.bind(this);
@@ -75,11 +77,9 @@ export default class EditorPanel extends React.Component {
     return (
       <div>
         <div className="editor-panel">
-          <h3 className="editor-panel__title">
-            Панель редактирования
-        </h3>
+          <h3 className="editor-panel__title">Панель редактирования</h3>
 
-          <div className="editor-panel__inner">
+          <div className="editor-panel__inner editor-panel__scroll">
             {/* основные настройки */}
             <MainSettingsPanel
               param={this.props.param}
@@ -117,12 +117,18 @@ export default class EditorPanel extends React.Component {
                 style={this.state.styles.color}
               />
             </div>
+
+            <TabSwitches
+              param={this.props.param}
+              classes="editor-panel__inner editor-panel__right"
+              clickEvent={this.tabSwitch}
+            />
           </div>
 
           {/* настройка тегов */}
           <TagsPanel
             param={this.state}
-            classes="editor-panel__inner"
+            classes="editor-panel__inner editor-panel__scroll"
             switchShowColorPiper={this.switchShowColorPiper}
           />
         </div>

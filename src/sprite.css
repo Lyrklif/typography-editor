@@ -6,247 +6,230 @@
   pointer-events: none;
 }
 
-.icon-brush,
-.sprite-01_brush {
+.icon-brush {
   width: 18px;
   height: 18px;
   background-position: -5px -5px;
 }
 
-.icon-edit,
-.sprite-02_edit {
+.icon-clear {
   width: 18px;
   height: 18px;
   background-position: -33px -5px;
 }
 
-.icon-more,
-.sprite-03_more {
+.icon-color_lens {
   width: 18px;
   height: 18px;
   background-position: -61px -5px;
 }
 
-.icon-clear,
-.sprite-04_clear {
-  width: 18px;
-  height: 18px;
+.icon-color_lens_white {
+  width: 24px;
+  height: 24px;
   background-position: -89px -5px;
 }
 
-.icon-undo,
-.sprite-05_undo {
+.icon-css {
   width: 18px;
   height: 18px;
-  background-position: -117px -5px;
+  background-position: -123px -5px;
 }
 
-.icon-redo,
-.sprite-06_redo {
+.icon-edit {
   width: 18px;
   height: 18px;
-  background-position: -145px -5px;
+  background-position: -151px -5px;
 }
 
-.icon-save,
-.sprite-07_save {
+.icon-format {
   width: 18px;
   height: 18px;
   background-position: -5px -33px;
 }
 
-.icon-format,
-.sprite-08_format {
+.icon-format_align_center {
   width: 18px;
   height: 18px;
   background-position: -33px -33px;
 }
 
-.icon-insert_link,
-.sprite-09_insert_link {
+.icon-format_align_justify {
   width: 18px;
   height: 18px;
   background-position: -61px -33px;
 }
 
-.icon-format_underlined,
-.sprite-10_format_underlined {
+.icon-format_align_left {
   width: 18px;
   height: 18px;
-  background-position: -89px -33px;
+  background-position: -123px -33px;
 }
 
-.icon-format_clear,
-.sprite-11_format_clear {
+.icon-format_align_right {
   width: 18px;
   height: 18px;
-  background-position: -117px -33px;
+  background-position: -151px -33px;
 }
 
-.icon-format_paint,
-.sprite-12_format_paint {
-  width: 18px;
-  height: 18px;
-  background-position: -145px -33px;
-}
-
-.icon-format_list_numbered,
-.sprite-13_format_list_numbered {
+.icon-format_bold {
   width: 18px;
   height: 18px;
   background-position: -5px -61px;
 }
 
-.icon-format_list_bulleted,
-.sprite-14_format_list_bulleted {
+.icon-format_clear {
   width: 18px;
   height: 18px;
   background-position: -33px -61px;
 }
 
-.icon-format_bold,
-.sprite-15_format_bold {
+.icon-format_list_bulleted {
   width: 18px;
   height: 18px;
   background-position: -61px -61px;
 }
 
-.icon-format_align_right,
-.sprite-16_format_align_right {
+.icon-format_list_numbered {
   width: 18px;
   height: 18px;
   background-position: -89px -61px;
 }
 
-.icon-format_align_left,
-.sprite-17_format_align_left {
+.icon-format_paint {
   width: 18px;
   height: 18px;
   background-position: -117px -61px;
 }
 
-.icon-format_align_justify,
-.sprite-18_format_align_justify {
-  width: 18px;
-  height: 18px;
+.icon-format_paint_white {
+  width: 24px;
+  height: 24px;
   background-position: -145px -61px;
 }
 
-.icon-format_align_center,
-.sprite-19_format_align_center {
+.icon-format_quote {
   width: 18px;
   height: 18px;
-  background-position: -5px -89px;
+  background-position: -5px -95px;
 }
 
-.icon-strikethrough,
-.sprite-20_strikethrough {
+.icon-format_size {
   width: 18px;
   height: 18px;
-  background-position: -33px -89px;
+  background-position: -33px -95px;
 }
 
-.icon-format_quote,
-.sprite-21_format_quote {
+.icon-format_size_white {
+  width: 24px;
+  height: 24px;
+  background-position: -61px -95px;
+}
+
+.icon-format_underlined {
   width: 18px;
   height: 18px;
-  background-position: -61px -89px;
+  background-position: -95px -95px;
 }
 
-.icon-line_horizontal,
-.sprite-22_line_horizontal {
+.icon-html {
   width: 18px;
   height: 18px;
-  background-position: -89px -89px;
+  background-position: -123px -95px;
 }
 
-.icon-text,
-.sprite-23_text {
+.icon-insert_link {
   width: 18px;
   height: 18px;
-  background-position: -117px -89px;
+  background-position: -151px -95px;
 }
 
-.icon-superscript,
-.sprite-24_superscript {
+.icon-line_height {
+  width: 18px;
+  height: 18px;
+  background-position: -5px -123px;
+}
+
+.icon-line_height_white {
+  width: 24px;
+  height: 24px;
+  background-position: -95px -123px;
+}
+
+.icon-line_horizontal {
+  width: 18px;
+  height: 18px;
+  background-position: -33px -123px;
+}
+
+.icon-more {
+  width: 18px;
+  height: 18px;
+  background-position: -129px -123px;
+}
+
+.icon-redo {
+  width: 18px;
+  height: 18px;
+  background-position: -5px -151px;
+}
+
+.icon-save {
+  width: 18px;
+  height: 18px;
+  background-position: -33px -151px;
+}
+
+.icon-strikethrough {
+  width: 18px;
+  height: 18px;
+  background-position: -61px -151px;
+}
+
+.icon-subscript {
   width: 16px;
   height: 16px;
-  background-position: -145px -89px;
+  background-position: -129px -151px;
 }
 
-.icon-subscript,
-.sprite-25_subscript {
+.icon-superscript {
   width: 16px;
   height: 16px;
-  background-position: -145px -115px;
+  background-position: -155px -151px;
 }
 
-.icon-title_1,
-.sprite-26_title_1 {
+.icon-text {
   width: 18px;
   height: 18px;
-  background-position: -5px -141px;
+  background-position: -179px -5px;
 }
 
-.icon-title_2,
-.sprite-27_title_2 {
+.icon-text-graphical {
   width: 18px;
   height: 18px;
-  background-position: -33px -141px;
+  background-position: -179px -33px;
 }
 
-.icon-title_3,
-.sprite-28_title_3 {
+.icon-title_1 {
   width: 18px;
   height: 18px;
-  background-position: -61px -141px;
+  background-position: -179px -61px;
 }
 
-.icon-format_size,
-.sprite-29_format_size {
+.icon-title_2 {
   width: 18px;
   height: 18px;
-  background-position: -89px -141px;
+  background-position: -179px -89px;
 }
 
-.icon-line_height,
-.sprite-30_line_height {
+.icon-title_3 {
   width: 18px;
   height: 18px;
-  background-position: -117px -141px;
+  background-position: -179px -117px;
 }
 
-.icon-line_height_white,
-.sprite-31_line_height_white {
-  width: 24px;
-  height: 24px;
-  background-position: -173px -5px;
-}
-
-.icon-format_size_white,
-.sprite-32_format_size_white {
-  width: 24px;
-  height: 24px;
-  background-position: -173px -39px;
-}
-
-.icon-color_lens,
-.sprite-33_color_lens {
+.icon-undo {
   width: 18px;
   height: 18px;
-  background-position: -173px -73px;
-}
-
-.icon-color_lens_white,
-.sprite-34_color_lens_white {
-  width: 24px;
-  height: 24px;
-  background-position: -171px -101px;
-}
-
-.icon-format_paint_white,
-.sprite-34_format_paint_white {
-  width: 24px;
-  height: 24px;
-  background-position: -171px -135px;
+  background-position: -181px -145px;
 }

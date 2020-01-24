@@ -7,6 +7,7 @@ import { render } from '@testing-library/react';
 import EditorPanel from './components/editorPanel';
 import ContentEditable from './components/contentEditable';
 import HTMLeditable from './components/htmlEditable';
+import TabContainer from './components/tabContainer';
 import Button from './components/button';
 
 // Стили
@@ -24,7 +25,7 @@ export default class App extends React.Component {
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
-    this.reset = this.reset.bind(this);
+    // this.reset = this.reset.bind(this);
     this.sanitize = this.sanitize.bind(this);
   }
 
@@ -33,18 +34,23 @@ export default class App extends React.Component {
     let inputName = e.target.name;
     let value = e.target.value;
 
-    this.setState({ styles: { [inputName]: [value] } });
+    this.setState((state) => ({
+      styles: {
+        ...state.styles,
+        [inputName]: [value]
+      }
+    }));
   }
 
   // сбросить изменения параметров текста
-  reset() {
-    this.setState({
-      styles: {
-        fontSize: this.props.data.styles.fontSize,
-        lineHeight: this.props.data.styles.lineHeight,
-      }
-    });
-  }
+  // reset() {
+  //   this.setState({
+  //     styles: {
+  //       fontSize: this.props.data.styles.fontSize,
+  //       lineHeight: this.props.data.styles.lineHeight,
+  //     }
+  //   });
+  // }
 
   // вкл/откл возможность редактировать текст
   switchEditText() {
@@ -78,6 +84,18 @@ export default class App extends React.Component {
     });
   };
 
+  // переключить активный таб
+  tabSwitch = (e) => {
+    let index = e.target.name;
+
+    this.setState((state) => ({
+      states: {
+        ...state.states,
+        tabActive: index
+      }
+    }));
+  }
+
   render() {
     return (
       <main className="App">
@@ -87,20 +105,25 @@ export default class App extends React.Component {
           param={this.state}
           setGlobalParam={this.setGlobalParam}
           switchEditText={this.switchEditText}
-          reset={this.reset}
+          tabSwitch={this.tabSwitch}
+        // reset={this.reset}
         />
 
-        {/* блок, ТЕКСТ в котором можно редактировать */}
-        <ContentEditable
-          param={this.state}
-        // onBlur={this.sanitize} // (!) стили не всегда применяются
-        />
+        <TabContainer
+          show={this.state.states.tabActive}
+        >
+          {/* блок, ТЕКСТ в котором можно редактировать */}
+          <ContentEditable
+            param={this.state}
+          />
 
-        {/* блок, ТЕГИ в котором можно редактировать */}
-        <HTMLeditable
-          param={this.state}
-        // onBlur={this.sanitize} // (!) стили не всегда применяются
-        />
+          {/* блок, ТЕГИ в котором можно редактировать */}
+          <HTMLeditable
+            param={this.state}
+          />
+          <div>Тут будет отображаться css</div>
+        </TabContainer>
+
 
       </main>
     );
