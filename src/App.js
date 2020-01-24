@@ -54,12 +54,13 @@ export default class App extends React.Component {
 
   // вкл/откл возможность редактировать текст
   switchEditText() {
-    this.setState({
+    this.setState((state) => ({
       states: {
+        ...state.states,
         // заменить значение на противоположное
         editText: !this.state.states.editText
       }
-    });
+    }));
 
     // если режим редактирования выключен
     if (this.state.states.editText) {
@@ -75,7 +76,7 @@ export default class App extends React.Component {
       let text = (elem.tagName !== "CODE") ? elem.innerHTML : elem.innerText; // текст внутри блока
 
       // если текст изменился
-      if (text !== this.state.html) {
+      if (text !== this.state.html) {        
         // записать новую версию текста, применив настройки (удалить пустые теги, заменить символы и пр.)
         this.setState({
           html: sanitizeHtml(text, this.state.sanitizeParam)
