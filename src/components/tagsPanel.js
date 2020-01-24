@@ -27,6 +27,8 @@ export default class TagsPanel extends React.Component {
   setTag(e) {
     e.preventDefault();
 
+    if (!this.props.editAllowed) return false;
+
     let tag = e.target.name; // тег, который надо установить
     let commands = this.state.tagParameters[tag].command; // команды, прописанные для этого тега
 

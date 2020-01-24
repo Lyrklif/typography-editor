@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 import App from './App';
-import {startingValue} from './startingValue';
+import { startingValue } from './startingValue';
 import * as serviceWorker from './serviceWorker';
 
 // Начальные значения

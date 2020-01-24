@@ -7,15 +7,15 @@ export default class ContentEditable extends React.Component {
     super(props);
 
     this.state = props.param;
-    
+
     this.onBlur = this.props.onBlur;
+    this.onChange = this.props.onChange;
   }
 
   render() {
     let createContent = () => {
       return { __html: this.props.param.html };
     }
-
     return (
       <div
         tabIndex="0"
@@ -24,12 +24,10 @@ export default class ContentEditable extends React.Component {
         className={this.props.param.states.editText ? 'content edit' : 'content'}
         onBlur={this.onBlur} // событие при потере фокуса 
         dangerouslySetInnerHTML={createContent()} // вставить переданный текст
-        style={
-          {
-            fontSize: `${this.props.param.styles.fontSize}px`,
-            lineHeight: `${this.props.param.styles.lineHeight}em`
-          }
-        }
+        style={{
+          fontSize: `${this.props.param.styles.fontSize}px`,
+          lineHeight: `${this.props.param.styles.lineHeight}em`
+        }}
       >
       </div>
     );

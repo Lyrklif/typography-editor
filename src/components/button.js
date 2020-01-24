@@ -30,9 +30,6 @@ export default class Button extends React.Component {
             {this.props.text || 'Button'}
           </span>
         }
-
-
-
       </button >
     )
   }
