@@ -1,11 +1,16 @@
 import React from "react";
 
-import Input from "./input";
+// import Input from "./input";
 // import Button from "./button";
 import Button from "@material-ui/core/Button";
 import ButtonOnOff from "./buttonOnOff";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+
+import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import IconButton from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
@@ -47,24 +52,45 @@ export default class MainSettingsPanel extends React.Component {
         />
 
         {/* Размер шрифта */}
-        <Input
-          param={this.props.param.styles.fontSize}
-          eventHandler={this.eventHandler}
+        <TextField
+          id="fontSize-number"
+          label={this.props.param.inputs.fontSize}
+          title={this.props.param.inputs.fontSize}
           type="number"
-          name="fontSize"
-          text={this.props.param.inputs.fontSize}
-          icon="sprite icon-format_size_white"
+          defaultValue={this.props.param.styles.fontSize}
+          onChange={value => this.eventHandler("fontSize", value)}
+          InputLabelProps={{
+            shrink: true
+          }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <IconsLib.FormatSize color="primary" />
+              </InputAdornment>
+            )
+          }}
         />
 
         {/* Высота строки */}
-        <Input
-          param={this.props.param.styles.lineHeight}
-          eventHandler={this.eventHandler}
+        <TextField
+          id="lineHeight-number"
+          label={this.props.param.inputs.lineHeight}
+          title={this.props.param.inputs.lineHeight}
           type="number"
-          name="lineHeight"
           step="0.1"
-          text={this.props.param.inputs.lineHeight}
-          icon="sprite icon-line_height_white"
+          defaultValue={this.props.param.styles.lineHeight}
+          onChange={value => this.eventHandler("lineHeight", value)}
+          InputLabelProps={{
+            shrink: true
+          }}
+          InputProps={{
+            inputProps: { step: 0.1 },
+            startAdornment: (
+              <InputAdornment position="start">
+                <IconsLib.FormatLineSpacing color="primary" />
+              </InputAdornment>
+            )
+          }}
         />
       </div>
     );
