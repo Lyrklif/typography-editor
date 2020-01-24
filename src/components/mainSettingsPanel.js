@@ -45,7 +45,7 @@ export default class MainSettingsPanel extends React.Component {
           eventHandler={this.eventHandler}
           type="number"
           name="fontSize"
-          text="Шрифт"
+          text={this.props.param.inputs.fontSize}
           icon="sprite icon-format_size_white"
         />
 
@@ -57,7 +57,7 @@ export default class MainSettingsPanel extends React.Component {
           type="number"
           name="lineHeight"
           step="0.1"
-          text="Высота строки"
+          text={this.props.param.inputs.lineHeight}
           icon="sprite icon-line_height_white"
         />
 

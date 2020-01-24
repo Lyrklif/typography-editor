@@ -1,7 +1,6 @@
 .editor-panel {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   font-size: 16px;
   color: #ffffff;
@@ -20,6 +19,8 @@
 
   overflow: auto;
 }
+
+
 
 @media (min-width: 1024px) {
   .editor-panel {

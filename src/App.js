@@ -87,9 +87,15 @@ export default class App extends React.Component {
         />
 
 
-        {/* блок, текст в котором можно редактировать */}
+        {/* блок, ТЕКСТ в котором можно редактировать */}
         <ContentEditable
           param={this.state}
+        />
+
+        {/* блок, ТЕГИ в котором можно редактировать */}
+        <ContentEditable
+          param={this.state}
+          html='true'
         />
 
       </main>
