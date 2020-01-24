@@ -128,6 +128,7 @@ export default class EditorPanel extends React.Component {
           {/* настройка тегов */}
           <TagsPanel
             param={this.state}
+            editAllowed={this.props.param.states.tabActive === '0' ? true : false}
             classes="editor-panel__inner editor-panel__scroll"
             switchShowColorPiper={this.switchShowColorPiper}
           />
