@@ -1,9 +1,14 @@
-import React from 'react';
+import React from "react";
 
+import Input from "./input";
+// import Button from "./button";
+import Button from "@material-ui/core/Button";
+import ButtonOnOff from "./buttonOnOff";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
-import Input from './input';
-import Button from './button';
-import ButtonOnOff from './buttonOnOff';
+import IconButton from "@material-ui/core/Button";
+import * as IconsLib from "@material-ui/icons";
 
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
@@ -20,7 +25,6 @@ export default class MainSettingsPanel extends React.Component {
   render() {
     return (
       <div className={this.props.classes}>
-
         {/* КНОПКА Вернуть стандартные настройки */}
         {/* <Button
           param={this.props.param}
@@ -30,14 +34,17 @@ export default class MainSettingsPanel extends React.Component {
           /> */}
 
         {/* КНОПКА Режим редактирования текста */}
-        <ButtonOnOff
-          param={this.props.param}
-          on_off_status={this.props.param.states.editText}
-          clickEvent={this.switchEditText}
-          text={this.props.param.buttons.edit}
-          icon='icon-edit'
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.props.param.states.editText}
+              onChange={this.switchEditText}
+              title={this.props.param.buttons.edit}
+              value="edit"
+              color="primary"
+            />
+          }
         />
-
 
         {/* Размер шрифта */}
         <Input
@@ -49,7 +56,6 @@ export default class MainSettingsPanel extends React.Component {
           icon="sprite icon-format_size_white"
         />
 
-
         {/* Высота строки */}
         <Input
           param={this.props.param.styles.lineHeight}
@@ -60,9 +66,7 @@ export default class MainSettingsPanel extends React.Component {
           text={this.props.param.inputs.lineHeight}
           icon="sprite icon-line_height_white"
         />
-
-
       </div>
-    )
+    );
   }
 }
