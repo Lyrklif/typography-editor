@@ -117,7 +117,7 @@ export default class TagsPanel extends React.Component {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map
     let tagsArray = Object.keys(this.state.tagParameters);
 
-    let tagList2 = tagsArray.map((elem, index) => {
+    let tagList = tagsArray.map((elem, index) => {
       if (this.state.tagParameters[elem].materialize) {
         let iconName = this.state.tagParameters[elem].materialize.iconName;
         let Icon = IconsLib[iconName];
@@ -136,28 +136,6 @@ export default class TagsPanel extends React.Component {
       }
     });
 
-    let tagList = tagsArray.map((elem, index) => {
-      return (
-        <Button
-          key={index}
-          param={this.state}
-          clickEvent={this.setTag}
-          text={elem}
-          name={elem}
-          // если иконка указана, то передать её
-          icon={
-            this.state.tagParameters[elem].display &&
-            this.state.tagParameters[elem].display[0]
-          }
-        />
-      );
-    });
-
-    return (
-      <div className={this.props.classes}>
-        {tagList2}
-        {tagList}
-      </div>
-    );
+    return <div className={this.props.classes}>{tagList}</div>;
   }
 }

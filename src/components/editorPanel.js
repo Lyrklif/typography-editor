@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 
-import { SketchPicker, SwatchesPicker } from 'react-color';
+
+import { SwatchesPicker } from 'react-color';
 
 import Button from './button';
 import ButtonPallet from './buttonPallet';
@@ -12,12 +12,12 @@ import MainSettingsPanel from './mainSettingsPanel';
 
 
 import {
-  formatCommand_clear,
+  // formatCommand_clear,
   formatCommand_bgcolor,
   formatCommand_color,
-  formatCommand_link,
-  default_bgcolor,
-  default_color,
+  // formatCommand_link,
+  // default_bgcolor,
+  // default_color,
 } from '../vars';
 
 

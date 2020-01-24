@@ -1,7 +1,6 @@
 // tabContent
 
 import React from "react";
-import { render } from "@testing-library/react";
 
 // Текст, который можно редактировать
 export default class TabContainer extends React.Component {

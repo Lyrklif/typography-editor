@@ -84,85 +84,141 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h1'],
       ],
-      display: ['icon-title_1']
+      display: ['icon-title_1'],
+      materialize: {
+        title: 'h1',
+        iconName: 'Filter1'
+      }
     },
     h2: {
       command: [
         ['formatBlock', false, 'h2'],
       ],
-      display: ['icon-title_2']
+      display: ['icon-title_2'],
+      materialize: {
+        title: 'h2',
+        iconName: 'Filter2'
+      }
     },
     h3: {
       command: [
         ['formatBlock', false, 'h3'],
       ],
-      display: ['icon-title_3']
+      display: ['icon-title_3'],
+      materialize: {
+        title: 'h3',
+        iconName: 'Filter3'
+      }
     },
-    // h4: {
-    // command: [
-    // ['formatBlock', false, 'h4'],
-    // ],
-    // display: ['icon-save']
-    // },
-    // h5: {
-    //   command: [
-    //     ['formatBlock', false, 'h5'],
-    //   ],
-    //   display: ['icon-save']
-    // },
-    // h6: {
-    //   command: [
-    //     ['formatBlock', false, 'h6'],
-    //   ],
-    //   display: ['icon-save']
-    // },
+    h4: {
+    command: [
+    ['formatBlock', false, 'h4'],
+    ],
+    display: ['icon-save'],
+    materialize: {
+      title: 'h4',
+      iconName: 'Filter4'
+    }
+    },
+    h5: {
+      command: [
+        ['formatBlock', false, 'h5'],
+      ],
+      display: ['icon-save'],
+      materialize: {
+        title: 'h5',
+        iconName: 'Filter5'
+      }
+    },
+    h6: {
+      command: [
+        ['formatBlock', false, 'h6'],
+      ],
+      display: ['icon-save'],
+      materialize: {
+        title: 'h6',
+        iconName: 'Filter6'
+      }
+    },
     p: {
       command: [
         ['formatBlock', false, 'p'],
       ],
-      display: ['icon-text']
+      display: ['icon-text'],
+      materialize: {
+        title: 'Параграф',
+        iconName: 'TextFormat'
+      }
     },
     [formatCommand_link]: {
       command: [
         ['createLink', false, '#'], // нельзя менять и добавлять новые команды
       ],
-      display: ['icon-insert_link']
+      display: ['icon-insert_link'],
+      materialize: {
+        title: 'Ссылка',
+        iconName: 'Link'
+      }
     },
     ul: {
       command: [
         ['insertUnorderedList', false, ''],
       ],
-      display: ['icon-format_list_bulleted']
+      display: ['icon-format_list_bulleted'],
+      materialize: {
+        title: 'Маркированный список',
+        iconName: 'FormatListNumbered'
+      }
     },
     ol: {
       command: [
         ['insertOrderedList', false, ''],
       ],
-      display: ['icon-format_list_numbered']
+      display: ['icon-format_list_numbered'],
+      materialize: {
+        title: 'Нумерованный список',
+        iconName: 'FormatListBulleted'
+      }
     },
     b: {
       command: [
         ['bold', false, ''],
       ],
-      display: ['icon-format_bold']
+      display: ['icon-format_bold'],
+      materialize: {
+        title: 'bold',
+        iconName: 'FormatBold'
+      }
     },
     i: {
       command: [
         ['italic', false, ''],
       ],
-      display: ['icon-format']
+      display: ['icon-format'],
+      materialize: {
+        title: 'italic',
+        iconName: 'FormatItalic'
+      }
     },
     strike: {
       command: [
         ['strikeThrough', false, ''],
       ],
-      display: ['icon-strikethrough']
+      display: ['icon-strikethrough'],
+      materialize: {
+        title: 'strike',
+        iconName: 'FormatStrikethrough'
+      }
     },
     [formatCommand_bgcolor]: {
       command: [
         ['hiliteColor', false, default_bgcolor],
       ],
-      display: ['icon-format_paint']
+      display: ['icon-format_paint'],
+      materialize: {
+        title: 'Цвет фона',
+        iconName: 'FormatColorFill'
+      }
     },
     [formatCommand_color]: {
       command: [
@@ -170,61 +226,101 @@ export const startingValue = {
         ['foreColor', false, '#ff0000'],
         ['styleWithCSS', false, 'false'], // использовать html, а не стили
       ],
-      display: ['icon-color_lens']
+      display: ['icon-color_lens'],
+      materialize: {
+        title: 'Цвет текста',
+        iconName: 'FormatColorText'
+      }
     },
     sup: {
       command: [
         ['superscript', false, ''],
       ],
-      display: ['icon-superscript']
+      display: ['icon-superscript'],
+      materialize: {
+        title: 'sup',
+        iconName: 'VerticalAlignTop'
+      }
     },
     sub: {
       command: [
         ['subscript', false, ''],
       ],
-      display: ['icon-subscript']
+      display: ['icon-subscript'],
+      materialize: {
+        title: 'sub',
+        iconName: 'VerticalAlignBottom'
+      }
     },
     underline: {
       command: [
         ['underline', false, ''],
       ],
-      display: ['icon-format_underlined']
+      display: ['icon-format_underlined'],
+      materialize: {
+        title: 'underline',
+        iconName: 'FormatUnderlined'
+      }
     },
     blockquote: {
       command: [
         ['formatBlock', false, 'blockquote'],
       ],
-      display: ['icon-format_quote']
+      display: ['icon-format_quote'],
+      materialize: {
+        title: 'Цитата',
+        iconName: 'FormatQuote'
+      }
     },
     hr: {
       command: [
         ['insertHorizontalRule', false, ''],
       ],
-      display: ['icon-line_horizontal']
+      display: ['icon-line_horizontal'],
+      materialize: {
+        title: 'hr',
+        iconName: 'Remove'
+      }
     },
     left: {
       command: [
         ['justifyLeft', false, ''],
       ],
-      display: ['icon-format_align_left']
+      display: ['icon-format_align_left'],
+      materialize: {
+        title: 'left',
+        iconName: 'FormatAlignLeft'
+      }
     },
     center: {
       command: [
         ['justifyCenter', false, ''],
       ],
-      display: ['icon-format_align_center']
+      display: ['icon-format_align_center'],
+      materialize: {
+        title: 'center',
+        iconName: 'FormatAlignCenter'
+      }
     },
     right: {
       command: [
         ['justifyRight', false, ''],
       ],
-      display: ['icon-format_align_right']
+      display: ['icon-format_align_right'],
+      materialize: {
+        title: 'right',
+        iconName: 'FormatAlignRight'
+      }
     },
     full: {
       command: [
         ['justifyFull', false, ''],
       ],
-      display: ['icon-format_align_justify']
+      display: ['icon-format_align_justify'],
+      materialize: {
+        title: 'full',
+        iconName: 'FormatAlignJustify'
+      }
     },
   },
 

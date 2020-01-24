@@ -1,14 +1,12 @@
 // React
 import React from "react";
 import sanitizeHtml from "sanitize-html";
-import { render } from "@testing-library/react";
 
 // Мои компоненты
 import EditorPanel from "./components/editorPanel";
 import ContentEditable from "./components/contentEditable";
 import HTMLeditable from "./components/htmlEditable";
 import TabContainer from "./components/tabContainer";
-import Button from "./components/button";
 
 // Стили
 import "./App.css";
