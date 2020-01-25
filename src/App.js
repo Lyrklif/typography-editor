@@ -5,8 +5,11 @@ import sanitizeHtml from "sanitize-html";
 // Мои компоненты
 import EditorPanel from "./components/editorPanel";
 import ContentEditable from "./components/contentEditable";
+
 import HTMLeditable from "./components/htmlEditable";
-import TabContainer from "./components/tabContainer";
+
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 // Стили
 import "./App.css";
@@ -83,16 +86,17 @@ export default class App extends React.Component {
 
   // переключить активный таб
   tabSwitch = e => {
-    this.sanitize(); // записать новый текст, удалив неразрешённые теги
+    console.log("переключить активный таб");
+    // this.sanitize(); // записать новый текст, удалив неразрешённые теги
 
-    let index = e.target.name;
+    // let index = e.target.name;
 
-    this.setState(state => ({
-      states: {
-        ...state.states,
-        tabActive: index
-      }
-    }));
+    // this.setState(state => ({
+    //   states: {
+    //     ...state.states,
+    //     tabActive: index
+    //   }
+    // }));
   };
 
   render() {
@@ -107,14 +111,24 @@ export default class App extends React.Component {
           // reset={this.reset}
         />
 
-        <TabContainer show={this.state.states.tabActive}>
+        <div index={0}>
+          Item One
           {/* блок, ТЕКСТ в котором можно редактировать */}
           <ContentEditable param={this.state} />
-
+        </div>
+        <div value={0} index={1}>
+          Item Two
           {/* блок, ТЕГИ в котором можно редактировать */}
           <HTMLeditable param={this.state} />
+        </div>
+        <div value={0} index={2}>
+          Item Three
           <div>Тут будет отображаться css</div>
-        </TabContainer>
+        </div>
+
+        {/* <TabContainer show={this.state.states.tabActive}>
+
+        </TabContainer> */}
       </main>
     );
   }

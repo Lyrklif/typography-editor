@@ -2,15 +2,16 @@ import React from "react";
 
 import { SwatchesPicker } from "react-color";
 
-// import Button from "./button";
-import ButtonPallet from "./buttonPallet";
 import TagsPanel from "./tagsPanel";
-import TabSwitches from "./tabSwitches";
 import ButtonsPanel from "./buttonsPanel";
 import MainSettingsPanel from "./mainSettingsPanel";
 
 import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
+
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 import {
   // formatCommand_clear,
@@ -128,11 +129,38 @@ export default class EditorPanel extends React.Component {
               </Button>
             </div>
 
-            <TabSwitches
+            {/* <TabSwitches
               param={this.props.param}
               classes="editor-panel__inner editor-panel__right"
               clickEvent={this.tabSwitch}
-            />
+            /> */}
+
+            <Paper variant="outlined">
+              <Tabs
+                value={0}
+                onChange={this.tabSwitch}
+                variant="standard"
+                indicatorColor="primary"
+                textColor="primary"
+                aria-label="icon tabs example"
+              >
+                <Tab
+                  icon={<IconsLib.Subject />}
+                  aria-label="Режим просмотра текста"
+                  title="Режим просмотра текста"
+                />
+                <Tab
+                  icon={<IconsLib.SettingsEthernet />}
+                  aria-label="Режим просмотра HTML"
+                  title="Режим просмотра HTML"
+                />
+                <Tab
+                  icon={<IconsLib.Texture />}
+                  aria-label="Режим просмотра CSS"
+                  title="Режим просмотра CSS"
+                />
+              </Tabs>
+            </Paper>
           </div>
 
           {/* настройка тегов */}
