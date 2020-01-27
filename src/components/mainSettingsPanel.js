@@ -56,7 +56,7 @@ export default class MainSettingsPanel extends React.Component {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconsLib.FormatSize />
+                  <IconsLib.FormatSize color="primary" />
                 </InputAdornment>
               )
             }}
@@ -79,7 +79,7 @@ export default class MainSettingsPanel extends React.Component {
               inputProps: { step: 0.1 },
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconsLib.FormatLineSpacing />
+                  <IconsLib.FormatLineSpacing color="primary" />
                 </InputAdornment>
               )
             }}
