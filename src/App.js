@@ -7,24 +7,17 @@ import EditorPanel from "./components/editorPanel";
 import ContentEditable from "./components/contentEditable";
 
 import HTMLeditable from "./components/htmlEditable";
-
-import AppBar from '@material-ui/core/AppBar';
+import TabContainer from "./components/tabContainer";
+import TabSwitches from "./components/tabSwitches";
 
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import TabContainer from "./components/tabContainer";
-
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
-
+import Paper from "@material-ui/core/Paper";
+import PropTypes from 'prop-types';
 import * as IconsLib from "@material-ui/icons";
 
-import Paper from "@material-ui/core/Paper";
-
-import PropTypes from 'prop-types';
-
-import { makeStyles } from '@material-ui/core/styles';
 
 // Стили
 import "./App.css";
@@ -141,50 +134,32 @@ export default class App extends React.Component {
           tabSwitch={this.tabSwitch}
         />
 
-        <Paper >
-          <Tabs
-            value={this.state.states.tabActive}
-            onChange={this.tabSwitch}
-            aria-label="simple tabs example"
-            indicatorColor="primary"
-            textColor="primary"
-            variant="fullWidth"
-            centered
-          >
-            <Tab
-              icon={<IconsLib.Subject />}
-              aria-label="Режим просмотра текста"
-              title="Режим просмотра текста" />
-            <Tab
-              icon={<IconsLib.SettingsEthernet />}
-              aria-label="Режим просмотра HTML"
-              title="Режим просмотра HTML" />
-            <Tab
-              icon={<IconsLib.Texture />}
-              aria-label="Режим просмотра CSS"
-              title="Режим просмотра CSS"
-            />
-          </Tabs>
-        </Paper>
-
-        <TabPanel
+        {/* Переключатель вкладок */}
+        <TabSwitches
           value={this.state.states.tabActive}
-          index={0}>
-          <ContentEditable param={this.state} />
-        </TabPanel>
+          onChange={this.tabSwitch}
+        />
 
-        <TabPanel
+        {/* Вкладка №1 */}
+        <TabContainer
+          value={this.state.states.tabActive}
+          index={0} >
+          <ContentEditable param={this.state} />
+        </TabContainer>
+
+        {/* Вкладка №2 */}
+        <TabContainer
           value={this.state.states.tabActive}
           index={1}>
           <HTMLeditable param={this.state} />
-        </TabPanel>
+        </TabContainer>
 
-        <TabPanel
+        {/* Вкладка №3 */}
+        <TabContainer
           value={this.state.states.tabActive}
           index={2}>
           <p>Тут будет отображаться css</p>
-        </TabPanel>
-
+        </TabContainer>
       </main>
     );
   }

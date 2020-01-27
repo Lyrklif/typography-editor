@@ -3,6 +3,12 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 
+import Typography from '@material-ui/core/Typography';
+
+import PropTypes from 'prop-types';
+
+
+
 // Текст, который можно редактировать
 export default class TabContainer extends React.Component {
   constructor(props) {
@@ -10,27 +16,25 @@ export default class TabContainer extends React.Component {
   }
 
   render() {
-    // const { children } = this.props;
-
     const { children, value, index, ...other } = this.props;
 
     return (
-      <ul className={"clear-list"}
+      <Typography
         component="div"
         role="tabpanel"
         hidden={value !== index}
-        id={`nav-tabpanel-${index}`}
-        aria-labelledby={`nav-tab-${index}`}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {/* {children.map((elem, i) => (
-          <li className={this.props.show == i ? "show tab" : "tab"} key={i}>
-            {elem}
-          </li>
-        ))} */}
-
-        <Box p={3}>{children}</Box>
-      </ul>
+        {value === index && <Box p={3}>{children}</Box>}
+      </Typography>
     );
   }
 }
+
+// TabContainer.propTypes = {
+//   children: PropTypes.node,
+//   index: PropTypes.any.isRequired,
+//   value: PropTypes.any.isRequired,
+// };

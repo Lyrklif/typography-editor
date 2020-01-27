@@ -1,46 +1,50 @@
 // tabSwitches
 
 import React from 'react';
-
-import Button from './button';
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import * as IconsLib from "@material-ui/icons";
+import Paper from "@material-ui/core/Paper";
 
 // настройка тегов
 export default class TabSwitches extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.param;
-
-    this.clickEvent = this.props.clickEvent;
+    this.state = props;
+    this.onChange = this.props.onChange;
   }
 
 
   render() {
     return (
-      <div className={this.props.classes}>
-        {/* КНОПКА скачать */}
-        <Button
-          param={this.props.param}
-          clickEvent={this.clickEvent}
-          text={this.props.param.buttons.text}
-          name='0'
-          icon='icon-text-graphical'
-        />
-        <Button
-          param={this.props.param}
-          clickEvent={this.clickEvent}
-          text={this.props.param.buttons.html}
-          name='1'
-          icon='icon-html'
-        />
-        <Button
-          param={this.props.param}
-          clickEvent={this.clickEvent}
-          text={this.props.param.buttons.css}
-          name='2'
-          icon='icon-css'
-        />
-      </div>
+      <Paper >
+        <Tabs
+          value={this.props.value}
+          onChange={this.onChange}
+          aria-label="simple tabs example"
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          centered
+        >
+          <Tab
+            icon={<IconsLib.Subject />}
+            aria-label="Режим просмотра текста"
+            title="Режим просмотра текста" />
+          <Tab
+            icon={<IconsLib.SettingsEthernet />}
+            aria-label="Режим просмотра HTML"
+            title="Режим просмотра HTML" />
+          <Tab
+            icon={<IconsLib.Texture />}
+            aria-label="Режим просмотра CSS"
+            title="Режим просмотра CSS"
+          />
+        </Tabs>
+      </Paper>
     )
   }
 }

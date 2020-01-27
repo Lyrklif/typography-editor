@@ -9,9 +9,6 @@ import MainSettingsPanel from "./mainSettingsPanel";
 import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
-import Paper from "@material-ui/core/Paper";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 
 import {
   // formatCommand_clear,
@@ -32,7 +29,6 @@ export default class EditorPanel extends React.Component {
     this.setGlobalParam = props.setGlobalParam;
     this.switchEditText = props.switchEditText;
     this.tabSwitch = props.tabSwitch;
-    // this.reset = props.reset;
 
     this.handleChange = this.handleChange.bind(this);
     this.switchShowColorPiper = this.switchShowColorPiper.bind(this);
@@ -93,7 +89,7 @@ export default class EditorPanel extends React.Component {
             <ButtonsPanel
               param={this.props.param}
               classes="editor-panel__inner"
-              // switchEditText={this.switchEditText}
+            // switchEditText={this.switchEditText}
             />
 
             {/* Выбор цвета */}
@@ -128,14 +124,6 @@ export default class EditorPanel extends React.Component {
                 ></span>
               </Button>
             </div>
-
-            {/* <TabSwitches
-              param={this.props.param}
-              classes="editor-panel__inner editor-panel__right"
-              clickEvent={this.tabSwitch}
-            /> */}
-
-            
           </div>
 
           {/* настройка тегов */}
