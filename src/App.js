@@ -113,21 +113,24 @@ export default class App extends React.Component {
         {/* Вкладка №1 */}
         <TabContainer
           value={this.state.states.tabActive}
-          index={0} >
+          index={0}
+          blockTitle={"Редактируемый текст"}>
           <ContentEditable param={this.state} />
         </TabContainer>
 
         {/* Вкладка №2 */}
         <TabContainer
           value={this.state.states.tabActive}
-          index={1}>
+          index={1}
+          blockTitle={"Редактируемый html"}>
           <HTMLeditable param={this.state} />
         </TabContainer>
 
         {/* Вкладка №3 */}
         <TabContainer
           value={this.state.states.tabActive}
-          index={2}>
+          index={2}
+          blockTitle={"Редактируемые стили"}>
           <p>Тут будет отображаться css</p>
         </TabContainer>
       </main>

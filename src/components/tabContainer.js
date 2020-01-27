@@ -19,17 +19,17 @@ export default class TabContainer extends React.Component {
     const { children, value, index, ...other } = this.props;
 
     return (
-      <div
-        // component="div"
+      <Typography
+        component="section"
         role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {/* {value === index && <Box p={3}>{children}</Box>} */}
+        <h2 className="meta-title">{this.props.blockTitle}</h2>
         {children}
-      </div>
+      </Typography>
     );
   }
 }

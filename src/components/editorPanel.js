@@ -13,6 +13,7 @@ import * as IconsLib from "@material-ui/icons";
 import Modal from '@material-ui/core/Modal';
 
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
 
@@ -104,16 +105,18 @@ export default class EditorPanel extends React.Component {
 
   render() {
     return (
-      <div>
+      <Paper
+        component={'header'}
+        className={"editor-panel-wp"}
+      >
         <h2 className="editor-panel__title">Панель редактирования</h2>
 
-        <Paper>
+        <Box className={"editor-panel__inner"}>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs={12} sm={6} md={4} lg={3}>
               {/* основные настройки */}
               <MainSettingsPanel
                 param={this.props.param}
-                classes="editor-panel__inner"
                 eventHandler={this.setGlobalParam}
                 reset={this.reset}
                 switchEditText={this.switchEditText}
@@ -123,7 +126,6 @@ export default class EditorPanel extends React.Component {
               {/* панель с кнопками */}
               <ButtonsPanel
                 param={this.props.param}
-                classes="editor-panel__inner"
               />
             </Grid>
 
@@ -155,24 +157,21 @@ export default class EditorPanel extends React.Component {
               </Button>
             </Grid>
           </Grid>
-        </Paper>
+        </Box>
 
 
 
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Paper>
-              {/* настройка тегов */}
-              <TagsPanel
-                param={this.state}
-                editAllowed={
-                  this.props.param.states.tabActive == "0" ? true : false
-                }
-                classes="editor-panel__inner editor-panel__scroll"
-                switchShowColorPiper={this.switchShowColorPiper}
-                showDialogLink={this.switchDialogLink}
-              />
-            </Paper>
+            {/* настройка тегов */}
+            <TagsPanel
+              param={this.state}
+              editAllowed={
+                this.props.param.states.tabActive == "0" ? true : false
+              }
+              switchShowColorPiper={this.switchShowColorPiper}
+              showDialogLink={this.switchDialogLink}
+            />
           </Grid>
         </Grid>
 
@@ -212,7 +211,7 @@ export default class EditorPanel extends React.Component {
           switchDialogLink={this.switchDialogLink}
         // addLinkUrl={this.addLinkUrl}
         />
-      </div>
+      </Paper>
     );
   }
 }

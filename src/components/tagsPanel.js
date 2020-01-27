@@ -126,20 +126,22 @@ export default class TagsPanel extends React.Component {
         let Icon = IconsLib[iconName];
 
         return (
-          <IconButton
-            key={index}
-            color="primary"
-            aria-label={this.state.tagParameters[elem].materialize.title}
-            title={this.state.tagParameters[elem].materialize.title}
-            name={elem}
-            onClick={this.setTag}
-          >
-            <Icon fontSize="small" />
-          </IconButton>
+          <li>
+            <IconButton
+              key={index}
+              color="primary"
+              aria-label={this.state.tagParameters[elem].materialize.title}
+              title={this.state.tagParameters[elem].materialize.title}
+              name={elem}
+              onClick={this.setTag}
+            >
+              <Icon fontSize="small" />
+            </IconButton>
+          </li>
         );
       }
     });
 
-    return <div className={this.props.classes}>{tagList}</div>;
+    return <ul className={"tag-list clear-list"}>{tagList}</ul>;
   }
 }

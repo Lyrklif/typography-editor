@@ -53,17 +53,7 @@ export default class ButtonsPanel extends React.Component {
 
   render() {
     return (
-      <div className={this.props.classes}>
-        {/* КНОПКА Режим редактирования текста */}
-        {/* <Button
-          param={this.props.param}
-          on_off='true'
-          on_off_status={this.props.param.states.editText}
-          clickEvent={this.switchEditText}
-          text={this.props.param.buttons.edit}
-          icon='icon-edit'
-        /> */}
-
+      <div>
         {/* КНОПКА Отменить */}
         <IconButton
           color="primary"
@@ -71,7 +61,7 @@ export default class ButtonsPanel extends React.Component {
           title={this.props.param.buttons.undo}
           onClick={this.undo}
         >
-          <IconsLib.Undo fontSize="small"/>
+          <IconsLib.Undo fontSize="small" />
         </IconButton>
 
         {/* КНОПКА Повторить */}
@@ -81,7 +71,7 @@ export default class ButtonsPanel extends React.Component {
           title={this.props.param.buttons.redo}
           onClick={this.redo}
         >
-          <IconsLib.Redo fontSize="small"/>
+          <IconsLib.Redo fontSize="small" />
         </IconButton>
 
         {/* КНОПКА скачать */}

@@ -20,8 +20,9 @@ export default class TabSwitches extends React.Component {
 
   render() {
     return (
-      <Paper >
+      <Paper component={"nav"} >
         <Tabs
+          className={"clear-list"}
           value={this.props.value}
           onChange={this.onChange}
           aria-label="simple tabs example"

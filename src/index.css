@@ -249,11 +249,14 @@ p {
   /* text-transform: uppercase; */
 }
 
+.meta-title {
+  display: none;
+}
 
 .clear-list {
-  /* padding-left: 0; */
+  padding-left: 0;
 }
 
 .clear-list li {
-  /* list-style-type: none; */
+  list-style-type: none;
 }
