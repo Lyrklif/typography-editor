@@ -124,7 +124,6 @@ export default class EditorPanel extends React.Component {
               />
             </Grid>
 
-
             <Grid item xs={12} sm={6} md={3} lg={2}>
               <Grid container spacing={0} alignItems="center" justify="center">
                 <Grid item>
@@ -161,16 +160,12 @@ export default class EditorPanel extends React.Component {
               </Grid>
             </Grid>
 
-
-
             <Grid item xs={12} sm={12} md={3}>
               {/* панель с кнопками */}
               <ButtonsPanel
                 param={this.props.param}
               />
             </Grid>
-
-
 
           </Grid>
         </Box>

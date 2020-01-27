@@ -4,6 +4,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 import PropTypes from 'prop-types';
 
@@ -19,17 +20,23 @@ export default class TabContainer extends React.Component {
     const { children, value, index, ...other } = this.props;
 
     return (
-      <Typography
-        component="section"
-        role="tabpanel"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        {...other}
-      >
-        <h2 className="meta-title">{this.props.blockTitle}</h2>
-        {children}
-      </Typography>
+      <Paper
+        component="section">
+        <header className="meta-title">
+          <h2>{this.props.blockTitle}</h2>
+        </header>
+
+        <Typography
+          component="div"
+          role="tabpanel"
+          hidden={value !== index}
+          id={`simple-tabpanel-${index}`}
+          aria-labelledby={`simple-tab-${index}`}
+          {...other}
+        >
+          {children}
+        </Typography>
+      </Paper>
     );
   }
 }
