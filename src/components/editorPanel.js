@@ -9,6 +9,11 @@ import MainSettingsPanel from "./mainSettingsPanel";
 import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+
+import IconButton from "@material-ui/core/Button";
+
 
 import {
   // formatCommand_clear,
@@ -56,9 +61,7 @@ export default class EditorPanel extends React.Component {
   }
 
   // при открытии панели выбора цвета, нажатием на палитру
-  changeColor(e) {
-    let param = e.target.getAttribute("name");
-
+  changeColor(param) {
     this.setState(state => ({
       states: {
         ...state.states,
@@ -100,7 +103,7 @@ export default class EditorPanel extends React.Component {
                 color="primary"
                 size="small"
                 title="Установить цвет фона"
-                onClick={this.changeColor}
+                onClick={() => this.changeColor(formatCommand_bgcolor)}
                 startIcon={<IconsLib.FormatColorFill />}
               >
                 <span
@@ -115,7 +118,7 @@ export default class EditorPanel extends React.Component {
                 color="primary"
                 size="small"
                 title="Установить цвет текста"
-                onClick={this.changeColor}
+                onClick={() => this.changeColor(formatCommand_color)}
                 startIcon={<IconsLib.FormatColorText />}
               >
                 <span
@@ -138,26 +141,33 @@ export default class EditorPanel extends React.Component {
         </div>
 
         {/* Панель выбора цвета */}
-        <div
-          className={
-            this.state.states.colorPicker
-              ? "color-picker-wp open"
-              : "color-picker-wp"
-          }
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={this.state.states.colorPicker}
+          onClose={this.switchShowColorPiper}
         >
-          {/* КНОПКА Закрыть */}
-          <Button
-            param={this.state}
-            clickEvent={this.switchShowColorPiper}
-            text="X Закрыть"
-            classes="color-picker__close"
-          />
 
-          <SwatchesPicker
-            onChange={this.handleChange}
-            color={this.state.styles.bgcolor}
-          />
-        </div>
+          <div className={"color-picker-wp"}>
+            <Button
+              variant="contained"
+              color="primary"
+              label="Закрыть"
+              aria-label="close"
+              onClick={this.switchShowColorPiper}
+              size="medium"
+              className={"color-picker-wp__close"}
+              endIcon={<IconsLib.HighlightOff />}
+            >
+              Закрыть
+            </Button>
+
+            <SwatchesPicker
+              onChange={this.handleChange}
+              color={this.state.styles.bgcolor}
+            />
+          </div>
+        </Modal>
       </div>
     );
   }

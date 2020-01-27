@@ -99,10 +99,25 @@
 
   z-index: 800;
 
+   */
+
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; */
+  flex-direction: column;
+  width: auto;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
 }
+
+.color-picker-wp__close {
+  width: 100%;
+}
+
 
 .color-picker-wp.open {
   /* display: flex; */

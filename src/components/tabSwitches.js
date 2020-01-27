@@ -42,6 +42,7 @@ export default class TabSwitches extends React.Component {
             icon={<IconsLib.Texture />}
             aria-label="Режим просмотра CSS"
             title="Режим просмотра CSS"
+            disabled
           />
         </Tabs>
       </Paper>
