@@ -2,6 +2,8 @@ import React from "react";
 
 import Button from "./button";
 import IconButton from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Grid from "@material-ui/core/Grid";
 import * as IconsLib from "@material-ui/icons";
 
 // настройка тегов
@@ -53,37 +55,46 @@ export default class ButtonsPanel extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* КНОПКА Отменить */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.undo}
-          title={this.props.param.buttons.undo}
-          onClick={this.undo}
-        >
-          <IconsLib.Undo fontSize="small" />
-        </IconButton>
+      <Grid container spacing={0} alignItems="center" justify="center">
 
-        {/* КНОПКА Повторить */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.redo}
-          title={this.props.param.buttons.redo}
-          onClick={this.redo}
-        >
-          <IconsLib.Redo fontSize="small" />
-        </IconButton>
+        <Grid item>
+          {/* КНОПКА Отменить */}
+          <IconButton
+            color="primary"
+            aria-label={this.props.param.buttons.undo}
+            title={this.props.param.buttons.undo}
+            onClick={this.undo}
+          >
+            <IconsLib.Undo fontSize="medium" />
+          </IconButton>
+        </Grid>
 
-        {/* КНОПКА скачать */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.download}
-          title={this.props.param.buttons.download}
-          onClick={this.download}
-        >
-          <IconsLib.GetApp fontSize="small" />
-        </IconButton>
-      </div>
+
+        <Grid item>
+          {/* КНОПКА Повторить */}
+          <IconButton
+            color="primary"
+            aria-label={this.props.param.buttons.redo}
+            title={this.props.param.buttons.redo}
+            onClick={this.redo}
+          >
+            <IconsLib.Redo fontSize="medium" />
+          </IconButton>
+        </Grid>
+
+
+        <Grid item>
+          {/* КНОПКА скачать */}
+          <IconButton
+            color="primary"
+            aria-label={this.props.param.buttons.download}
+            title={this.props.param.buttons.download}
+            onClick={this.download}
+          >
+            <IconsLib.GetApp fontSize="medium" />
+          </IconButton>
+        </Grid>
+      </Grid>
     );
   }
 }

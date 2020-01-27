@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import * as IconsLib from "@material-ui/icons";
 import Paper from "@material-ui/core/Paper";
+import AppBar from "@material-ui/core/AppBar";
 
 // настройка тегов
 export default class TabSwitches extends React.Component {
@@ -20,7 +21,7 @@ export default class TabSwitches extends React.Component {
 
   render() {
     return (
-      <Paper component={"nav"} >
+      <Paper component={"nav"}>
         <Tabs
           className={"clear-list"}
           value={this.props.value}

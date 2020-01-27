@@ -109,10 +109,11 @@ export default class EditorPanel extends React.Component {
         component={'header'}
         className={"editor-panel-wp"}
       >
-        <h2 className="editor-panel__title">Панель редактирования</h2>
+        <h2 className="meta-title">Панель редактирования</h2>
 
         <Box className={"editor-panel__inner"}>
           <Grid container spacing={2} alignItems="center">
+
             <Grid item xs={12} sm={6} md={4} lg={3}>
               {/* основные настройки */}
               <MainSettingsPanel
@@ -122,59 +123,69 @@ export default class EditorPanel extends React.Component {
                 switchEditText={this.switchEditText}
               />
             </Grid>
+
+
             <Grid item xs={12} sm={6} md={3} lg={2}>
+              <Grid container spacing={0} alignItems="center" justify="center">
+                <Grid item>
+                  {/* Выбор цвета фона */}
+                  <Button
+                    size="large"
+                    color="primary"
+                    title="Установить цвет фона"
+                    onClick={() => this.changeColor(formatCommand_bgcolor)}
+                    startIcon={<IconsLib.FormatColorFill />}
+                  >
+                    <span
+                      className={"button-pallet__color"}
+                      style={{ backgroundColor: this.state.styles.bgcolor }}>
+                    </span>
+                  </Button>
+                </Grid>
+
+                <Grid item>
+                  {/* Выбор цвета текста */}
+                  <Button
+                    size="large"
+                    color="primary"
+                    title="Установить цвет текста"
+                    onClick={() => this.changeColor(formatCommand_color)}
+                    startIcon={<IconsLib.FormatColorText />}
+                  >
+                    <span
+                      className={"button-pallet__color"}
+                      style={{ backgroundColor: this.state.styles.color }}>
+                    </span>
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+
+            <Grid item xs={12} sm={12} md={3}>
               {/* панель с кнопками */}
               <ButtonsPanel
                 param={this.props.param}
               />
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2}>
-              {/* Выбор цвета фона */}
-              <Button
-                color="primary"
-                title="Установить цвет фона"
-                onClick={() => this.changeColor(formatCommand_bgcolor)}
-                startIcon={<IconsLib.FormatColorFill />}
-              >
-                <span
-                  className={"button-pallet__color"}
-                  style={{ backgroundColor: this.state.styles.bgcolor }}>
-                </span>
-              </Button>
 
-              {/* Выбор цвета текста */}
-              <Button
-                color="primary"
-                title="Установить цвет текста"
-                onClick={() => this.changeColor(formatCommand_color)}
-                startIcon={<IconsLib.FormatColorText />}
-              >
-                <span
-                  className={"button-pallet__color"}
-                  style={{ backgroundColor: this.state.styles.color }}>
-                </span>
-              </Button>
-            </Grid>
+
           </Grid>
         </Box>
 
 
 
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            {/* настройка тегов */}
-            <TagsPanel
-              param={this.state}
-              editAllowed={
-                this.props.param.states.tabActive == "0" ? true : false
-              }
-              switchShowColorPiper={this.switchShowColorPiper}
-              showDialogLink={this.switchDialogLink}
-            />
-          </Grid>
-        </Grid>
-
+        {/* настройка тегов */}
+        <TagsPanel
+          param={this.state}
+          editAllowed={
+            this.props.param.states.tabActive == "0" ? true : false
+          }
+          switchShowColorPiper={this.switchShowColorPiper}
+          showDialogLink={this.switchDialogLink}
+        />
 
 
         {/* Панель выбора цвета */}
