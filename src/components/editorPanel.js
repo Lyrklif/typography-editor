@@ -135,32 +135,7 @@ export default class EditorPanel extends React.Component {
               clickEvent={this.tabSwitch}
             /> */}
 
-            <Paper variant="outlined">
-              <Tabs
-                value={0}
-                onChange={this.tabSwitch}
-                variant="standard"
-                indicatorColor="primary"
-                textColor="primary"
-                aria-label="icon tabs example"
-              >
-                <Tab
-                  icon={<IconsLib.Subject />}
-                  aria-label="Режим просмотра текста"
-                  title="Режим просмотра текста"
-                />
-                <Tab
-                  icon={<IconsLib.SettingsEthernet />}
-                  aria-label="Режим просмотра HTML"
-                  title="Режим просмотра HTML"
-                />
-                <Tab
-                  icon={<IconsLib.Texture />}
-                  aria-label="Режим просмотра CSS"
-                  title="Режим просмотра CSS"
-                />
-              </Tabs>
-            </Paper>
+            
           </div>
 
           {/* настройка тегов */}

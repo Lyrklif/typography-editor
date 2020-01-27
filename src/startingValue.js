@@ -27,7 +27,7 @@ export const startingValue = {
     paletteEdit: formatCommand_bgcolor,
 
     // какой таб будет активным изначально
-    tabActive: '0'
+    tabActive: 0
   },
 
   // параметры для sanitize-html

@@ -8,12 +8,57 @@ import ContentEditable from "./components/contentEditable";
 
 import HTMLeditable from "./components/htmlEditable";
 
+import AppBar from '@material-ui/core/AppBar';
+
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import TabContainer from "./components/tabContainer";
+
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
+
+import * as IconsLib from "@material-ui/icons";
+
+import Paper from "@material-ui/core/Paper";
+
+import PropTypes from 'prop-types';
+
+import { makeStyles } from '@material-ui/core/styles';
 
 // Стили
 import "./App.css";
 import "./sprite.css";
+
+
+
+
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={3}>{children}</Box>}
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,7 +70,6 @@ export default class App extends React.Component {
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
-    // this.reset = this.reset.bind(this);
     this.sanitize = this.sanitize.bind(this);
   }
 
@@ -40,16 +84,6 @@ export default class App extends React.Component {
       }
     }));
   }
-
-  // сбросить изменения параметров текста
-  // reset() {
-  //   this.setState({
-  //     styles: {
-  //       fontSize: this.props.data.styles.fontSize,
-  //       lineHeight: this.props.data.styles.lineHeight,
-  //     }
-  //   });
-  // }
 
   // вкл/откл возможность редактировать текст
   switchEditText() {
@@ -85,18 +119,15 @@ export default class App extends React.Component {
   }
 
   // переключить активный таб
-  tabSwitch = e => {
-    console.log("переключить активный таб");
-    // this.sanitize(); // записать новый текст, удалив неразрешённые теги
+  tabSwitch = (e, newValue) => {
+    this.sanitize(); // записать новый текст, удалив неразрешённые теги
 
-    // let index = e.target.name;
-
-    // this.setState(state => ({
-    //   states: {
-    //     ...state.states,
-    //     tabActive: index
-    //   }
-    // }));
+    this.setState(state => ({
+      states: {
+        ...state.states,
+        tabActive: newValue
+      }
+    }));
   };
 
   render() {
@@ -108,27 +139,52 @@ export default class App extends React.Component {
           setGlobalParam={this.setGlobalParam}
           switchEditText={this.switchEditText}
           tabSwitch={this.tabSwitch}
-          // reset={this.reset}
         />
 
-        <div index={0}>
-          Item One
-          {/* блок, ТЕКСТ в котором можно редактировать */}
+        <Paper >
+          <Tabs
+            value={this.state.states.tabActive}
+            onChange={this.tabSwitch}
+            aria-label="simple tabs example"
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            centered
+          >
+            <Tab
+              icon={<IconsLib.Subject />}
+              aria-label="Режим просмотра текста"
+              title="Режим просмотра текста" />
+            <Tab
+              icon={<IconsLib.SettingsEthernet />}
+              aria-label="Режим просмотра HTML"
+              title="Режим просмотра HTML" />
+            <Tab
+              icon={<IconsLib.Texture />}
+              aria-label="Режим просмотра CSS"
+              title="Режим просмотра CSS"
+            />
+          </Tabs>
+        </Paper>
+
+        <TabPanel
+          value={this.state.states.tabActive}
+          index={0}>
           <ContentEditable param={this.state} />
-        </div>
-        <div value={0} index={1}>
-          Item Two
-          {/* блок, ТЕГИ в котором можно редактировать */}
+        </TabPanel>
+
+        <TabPanel
+          value={this.state.states.tabActive}
+          index={1}>
           <HTMLeditable param={this.state} />
-        </div>
-        <div value={0} index={2}>
-          Item Three
-          <div>Тут будет отображаться css</div>
-        </div>
+        </TabPanel>
 
-        {/* <TabContainer show={this.state.states.tabActive}>
+        <TabPanel
+          value={this.state.states.tabActive}
+          index={2}>
+          <p>Тут будет отображаться css</p>
+        </TabPanel>
 
-        </TabContainer> */}
       </main>
     );
   }
