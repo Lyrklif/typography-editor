@@ -45,7 +45,6 @@ export default class MainSettingsPanel extends React.Component {
           {/* Размер шрифта */}
           <TextField
             id="fontSize-number"
-            // label={this.props.param.inputs.fontSize}
             title={this.props.param.inputs.fontSize}
             type="number"
             size="small"
@@ -57,7 +56,7 @@ export default class MainSettingsPanel extends React.Component {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconsLib.FormatSize color="primary" />
+                  <IconsLib.FormatSize />
                 </InputAdornment>
               )
             }}
@@ -67,7 +66,6 @@ export default class MainSettingsPanel extends React.Component {
           {/* Высота строки */}
           <TextField
             id="lineHeight-number"
-            // label={this.props.param.inputs.lineHeight}
             title={this.props.param.inputs.lineHeight}
             type="number"
             size="small"
@@ -81,7 +79,7 @@ export default class MainSettingsPanel extends React.Component {
               inputProps: { step: 0.1 },
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconsLib.FormatLineSpacing color="primary" />
+                  <IconsLib.FormatLineSpacing />
                 </InputAdornment>
               )
             }}

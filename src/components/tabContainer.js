@@ -27,6 +27,7 @@ export default class TabContainer extends React.Component {
         </header>
 
         <Typography
+          // color="textPrimary"
           component="div"
           role="tabpanel"
           hidden={value !== index}

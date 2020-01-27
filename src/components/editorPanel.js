@@ -2,6 +2,7 @@ import React from "react";
 
 import { SwatchesPicker } from "react-color";
 
+
 import TagsPanel from "./tagsPanel";
 import ButtonsPanel from "./buttonsPanel";
 import MainSettingsPanel from "./mainSettingsPanel";
@@ -15,7 +16,7 @@ import Modal from '@material-ui/core/Modal';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
-
+import AppBar from '@material-ui/core/AppBar';
 
 import {
   // formatCommand_clear,
@@ -25,6 +26,7 @@ import {
   // default_bgcolor,
   // default_color,
 } from "../vars";
+
 
 // панель редактирования
 export default class EditorPanel extends React.Component {
@@ -106,6 +108,7 @@ export default class EditorPanel extends React.Component {
   render() {
     return (
       <Paper
+        color="primary"
         component={'header'}
         className={"editor-panel-wp"}
       >

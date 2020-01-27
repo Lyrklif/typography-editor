@@ -14,12 +14,19 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
 
 import Button from '@material-ui/core/Button';
+
+import MyTheme from './MyTheme';
 
 // Стили
 import "./App.css";
 import "./sprite.css";
+
+
+
 
 
 
@@ -95,52 +102,54 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <main className="App">
-        {/* панель редактирования */}
-        <EditorPanel
-          param={this.state}
-          setGlobalParam={this.setGlobalParam}
-          switchEditText={this.switchEditText}
-          tabSwitch={this.tabSwitch}
-          dialogLink={this.switchDialogLink}
-        />
+      <MuiThemeProvider theme={MyTheme}>
+        <main className="App">
+          {/* панель редактирования */}
+          <EditorPanel
+            param={this.state}
+            setGlobalParam={this.setGlobalParam}
+            switchEditText={this.switchEditText}
+            tabSwitch={this.tabSwitch}
+            dialogLink={this.switchDialogLink}
+          />
 
-        <Grid container spacing={0} alignItems="center" justify="center">
-          <Grid item xs={12} md={10} lg={8}>
+          <Grid container spacing={0} alignItems="center" justify="center">
+            <Grid item xs={12} md={10} lg={8}>
 
-            {/* Переключатель вкладок */}
-            <TabSwitches
-              value={this.state.states.tabActive}
-              onChange={this.tabSwitch}
-            />
+              {/* Переключатель вкладок */}
+              <TabSwitches
+                value={this.state.states.tabActive}
+                onChange={this.tabSwitch}
+              />
 
-            {/* Вкладка №1 */}
-            <TabContainer
-              value={this.state.states.tabActive}
-              index={0}
-              blockTitle={"Редактируемый текст"}>
-              <ContentEditable param={this.state} />
-            </TabContainer>
+              {/* Вкладка №1 */}
+              <TabContainer
+                value={this.state.states.tabActive}
+                index={0}
+                blockTitle={"Редактируемый текст"}>
+                <ContentEditable param={this.state} />
+              </TabContainer>
 
-            {/* Вкладка №2 */}
-            <TabContainer
-              value={this.state.states.tabActive}
-              index={1}
-              blockTitle={"Редактируемый html"}>
-              <HTMLeditable param={this.state} />
-            </TabContainer>
+              {/* Вкладка №2 */}
+              <TabContainer
+                value={this.state.states.tabActive}
+                index={1}
+                blockTitle={"Редактируемый html"}>
+                <HTMLeditable param={this.state} />
+              </TabContainer>
 
-            {/* Вкладка №3 */}
-            <TabContainer
-              value={this.state.states.tabActive}
-              index={2}
-              blockTitle={"Редактируемые стили"}>
-              <p>Тут будет отображаться css</p>
-            </TabContainer>
+              {/* Вкладка №3 */}
+              <TabContainer
+                value={this.state.states.tabActive}
+                index={2}
+                blockTitle={"Редактируемые стили"}>
+                <p>Тут будет отображаться css</p>
+              </TabContainer>
 
+            </Grid>
           </Grid>
-        </Grid>
-      </main>
+        </main>
+      </MuiThemeProvider>
     );
   }
 }

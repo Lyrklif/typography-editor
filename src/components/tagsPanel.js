@@ -135,7 +135,7 @@ export default class TagsPanel extends React.Component {
               name={elem}
               onClick={this.setTag}
             >
-              <Icon fontSize="medium" />
+              <Icon fontSize="medium"/>
             </IconButton>
           </li>
         );
