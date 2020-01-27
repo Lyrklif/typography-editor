@@ -22,6 +22,7 @@ export const startingValue = {
   states: {
     editText: true, // вкл/выкл режим редактирования текста
     colorPicker: false, // показать/скрыть панель выбора цвета
+    dialogLink: false, // показать/скрыть панель ввода ссылки
 
     // какой параметр по-умолчанию изменяет панель выбора цвета
     paletteEdit: formatCommand_bgcolor,

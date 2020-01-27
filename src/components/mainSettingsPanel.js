@@ -50,9 +50,10 @@ export default class MainSettingsPanel extends React.Component {
         {/* Размер шрифта */}
         <TextField
           id="fontSize-number"
-          label={this.props.param.inputs.fontSize}
+          // label={this.props.param.inputs.fontSize}
           title={this.props.param.inputs.fontSize}
           type="number"
+          size="small"
           defaultValue={this.props.param.styles.fontSize}
           onChange={value => this.eventHandler("fontSize", value)}
           InputLabelProps={{
@@ -70,9 +71,10 @@ export default class MainSettingsPanel extends React.Component {
         {/* Высота строки */}
         <TextField
           id="lineHeight-number"
-          label={this.props.param.inputs.lineHeight}
+          // label={this.props.param.inputs.lineHeight}
           title={this.props.param.inputs.lineHeight}
           type="number"
+          size="small"
           step="0.1"
           defaultValue={this.props.param.styles.lineHeight}
           onChange={value => this.eventHandler("lineHeight", value)}

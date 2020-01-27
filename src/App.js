@@ -9,6 +9,12 @@ import ContentEditable from "./components/contentEditable";
 import HTMLeditable from "./components/htmlEditable";
 import TabContainer from "./components/tabContainer";
 import TabSwitches from "./components/tabSwitches";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Paper from '@material-ui/core/Paper';
+
+
+import Button from '@material-ui/core/Button';
 
 // Стили
 import "./App.css";
@@ -95,6 +101,7 @@ export default class App extends React.Component {
           setGlobalParam={this.setGlobalParam}
           switchEditText={this.switchEditText}
           tabSwitch={this.tabSwitch}
+          dialogLink={this.switchDialogLink}
         />
 
         {/* Переключатель вкладок */}

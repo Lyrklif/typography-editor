@@ -19,6 +19,7 @@ export default class TagsPanel extends React.Component {
 
     this.state = props.param;
 
+    this.showDialogLink = props.showDialogLink;
     this.setTag = this.setTag.bind(this);
     this.clearFormat = this.clearFormat.bind(this);
   }
@@ -41,9 +42,12 @@ export default class TagsPanel extends React.Component {
 
         // если нужно вводить адрес ссылки
         if (tag === formatCommand_link) {
+          // this.showDialogLink();
+
           let href = prompt("Введите путь для ссылки:");
-          if (!href) href = commands[i][2].toUpperCase();
-          document.execCommand(commands[i][0], commands[i][1], href);
+          if (href) {
+            document.execCommand(commands[i][0], commands[i][1], href);
+          }
 
           // если нужно выбрать цвет фона
         } else if (tag === formatCommand_bgcolor) {
