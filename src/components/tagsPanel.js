@@ -27,6 +27,7 @@ export default class TagsPanel extends React.Component {
   setTag(e) {
     e.preventDefault();
 
+    // ничего не делать, если это не первая вкладка
     if (!this.props.editAllowed) return false;
 
     let tag = e.target.name; // тег, который надо установить
