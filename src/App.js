@@ -12,6 +12,7 @@ import TabSwitches from "./components/tabSwitches";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 
 import Button from '@material-ui/core/Button';
@@ -104,35 +105,41 @@ export default class App extends React.Component {
           dialogLink={this.switchDialogLink}
         />
 
-        {/* Переключатель вкладок */}
-        <TabSwitches
-          value={this.state.states.tabActive}
-          onChange={this.tabSwitch}
-        />
+        <Grid container spacing={0} alignItems="center" justify="center">
+          <Grid item xs={12} md={10} lg={8}>
 
-        {/* Вкладка №1 */}
-        <TabContainer
-          value={this.state.states.tabActive}
-          index={0}
-          blockTitle={"Редактируемый текст"}>
-          <ContentEditable param={this.state} />
-        </TabContainer>
+            {/* Переключатель вкладок */}
+            <TabSwitches
+              value={this.state.states.tabActive}
+              onChange={this.tabSwitch}
+            />
 
-        {/* Вкладка №2 */}
-        <TabContainer
-          value={this.state.states.tabActive}
-          index={1}
-          blockTitle={"Редактируемый html"}>
-          <HTMLeditable param={this.state} />
-        </TabContainer>
+            {/* Вкладка №1 */}
+            <TabContainer
+              value={this.state.states.tabActive}
+              index={0}
+              blockTitle={"Редактируемый текст"}>
+              <ContentEditable param={this.state} />
+            </TabContainer>
 
-        {/* Вкладка №3 */}
-        <TabContainer
-          value={this.state.states.tabActive}
-          index={2}
-          blockTitle={"Редактируемые стили"}>
-          <p>Тут будет отображаться css</p>
-        </TabContainer>
+            {/* Вкладка №2 */}
+            <TabContainer
+              value={this.state.states.tabActive}
+              index={1}
+              blockTitle={"Редактируемый html"}>
+              <HTMLeditable param={this.state} />
+            </TabContainer>
+
+            {/* Вкладка №3 */}
+            <TabContainer
+              value={this.state.states.tabActive}
+              index={2}
+              blockTitle={"Редактируемые стили"}>
+              <p>Тут будет отображаться css</p>
+            </TabContainer>
+
+          </Grid>
+        </Grid>
       </main>
     );
   }
