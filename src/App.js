@@ -9,15 +9,12 @@ import ContentEditable from "./components/contentEditable";
 import HTMLeditable from "./components/htmlEditable";
 import TabContainer from "./components/tabContainer";
 import TabSwitches from "./components/tabSwitches";
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
+
 import Grid from '@material-ui/core/Grid';
 
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button';
+
 import Box from '@material-ui/core/Box';
 
 import MyTheme from './MyTheme';
@@ -37,7 +34,7 @@ export default class App extends React.Component {
     this.state = props.data;
 
     console.log("*** Начальные данные ***\n", this.state);
-    console.log("MyTheme", MyTheme);
+    console.log("*** Пользовательская тема ***", MyTheme);
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.switchEditText = this.switchEditText.bind(this);

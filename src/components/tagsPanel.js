@@ -142,11 +142,11 @@ export default class TagsPanel extends React.Component {
     let groupsTagArray = Object.keys(tagParameters);
 
     let groupsTagList = groupsTagArray.map((group, index0) => {
+
       let groupTags = tagParameters[group];
       let groupTagKeys = Object.keys(groupTags);
 
       let tagList = groupTagKeys.map((tag, index) => {
-        console.log(tagParameters[group][tag]);
         let cuttentTag = tagParameters[group][tag];
 
         if (cuttentTag.materialize) {
@@ -184,7 +184,10 @@ export default class TagsPanel extends React.Component {
             className={"tag-list clear-list"}>
             {tagList}
           </Box>
-          <Divider orientation="vertical" />
+          {/* После последнего элемента не добавлять черту */}
+          {(groupsTagArray.length - 1 !== index0) &&
+            <Divider orientation="vertical" />
+          }
         </Box>
       );
     });
