@@ -1,8 +1,29 @@
 import React from "react";
 
 import IconButton from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+
+
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
+import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
+import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import FormatItalicIcon from '@material-ui/icons/FormatItalic';
+import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
+import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+
 
 import {
   formatCommand_clear,
@@ -10,6 +31,8 @@ import {
   formatCommand_color,
   formatCommand_link
 } from "../vars";
+
+
 
 // настройка тегов
 export default class TagsPanel extends React.Component {
@@ -24,14 +47,12 @@ export default class TagsPanel extends React.Component {
   }
 
   // установить тег (форматирование текста)
-  setTag(e) {
-    e.preventDefault();
+  setTag(group, tag) {
 
     // ничего не делать, если это не первая вкладка
     if (!this.props.editAllowed) return false;
 
-    let tag = e.target.name; // тег, который надо установить
-    let commands = this.props.param.tagParameters[tag].command; // команды, прописанные для этого тега
+    let commands = this.props.param.tagParameters[group][tag].command; // команды, прописанные для этого тега
 
     // если команды для этого тега существуют
     if (commands) {
@@ -117,30 +138,66 @@ export default class TagsPanel extends React.Component {
 
   render() {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map
-    let tagsArray = Object.keys(this.props.param.tagParameters);
+    let tagParameters = this.props.param.tagParameters;
+    let groupsTagArray = Object.keys(tagParameters);
 
-    let tagList = tagsArray.map((elem, index) => {
-      if (this.props.param.tagParameters[elem].materialize) {
-        let iconName = this.props.param.tagParameters[elem].materialize.iconName;
-        let Icon = IconsLib[iconName];
+    let groupsTagList = groupsTagArray.map((group, index0) => {
+      let groupTags = tagParameters[group];
+      let groupTagKeys = Object.keys(groupTags);
 
-        return (
-          <Typography component="li" key={index}>
-            <IconButton
-              color="primary"
-              size="small"
-              aria-label={this.props.param.tagParameters[elem].materialize.title}
-              title={this.props.param.tagParameters[elem].materialize.title}
-              name={elem}
-              onClick={this.setTag}
-            >
-              <Icon />
-            </IconButton>
-          </Typography>
-        );
-      }
+      let tagList = groupTagKeys.map((tag, index) => {
+        console.log(tagParameters[group][tag]);
+        let cuttentTag = tagParameters[group][tag];
+
+        if (cuttentTag.materialize) {
+          let iconName = cuttentTag.materialize.iconName;
+          let Icon = IconsLib[iconName];
+
+          return (
+            <li key={index}>
+              <IconButton
+                color="primary"
+                size="small"
+                aria-label={cuttentTag.materialize.title}
+                title={cuttentTag.materialize.title}
+                name={tag}
+                onClick={() => this.setTag(group, tag)}
+              >
+                <Icon />
+              </IconButton>
+            </li>
+          );
+
+        };
+
+      });
+      return (
+        <Box
+          key={index0}
+          component="li"
+          aria-label="li item"
+          className={"tag-list clear-list"}
+        >
+          <Box
+            component="ul"
+            aria-label="ul items"
+            className={"tag-list clear-list"}>
+            {tagList}
+          </Box>
+          <Divider orientation="vertical" />
+        </Box>
+      );
     });
 
-    return <ul className={"tag-list clear-list"}>{tagList}</ul>;
+
+    return (
+      <Box
+        component="ul"
+        aria-label="outlined primary button li group"
+        className={"tag-list tag-list-wp clear-list"}
+      >
+        {groupsTagList}
+      </Box>
+    )
   }
 }

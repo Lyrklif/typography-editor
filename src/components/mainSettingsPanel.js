@@ -38,7 +38,7 @@ export default class MainSettingsPanel extends React.Component {
                 onChange={this.switchEditText}
                 title={this.props.param.buttons.edit}
                 value="edit"
-                color="secondary"
+                color="primary"
               />
             }
           />
@@ -58,7 +58,7 @@ export default class MainSettingsPanel extends React.Component {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start" >
-                  <IconsLib.FormatSize />
+                  <IconsLib.FormatSize  color="primary"/>
                 </InputAdornment>
               )
             }}
@@ -81,8 +81,8 @@ export default class MainSettingsPanel extends React.Component {
             InputProps={{
               inputProps: { step: 0.1 },
               startAdornment: (
-                <InputAdornment position="start">
-                  <IconsLib.FormatLineSpacing />
+                <InputAdornment position="start" >
+                  <IconsLib.FormatLineSpacing color="primary"/>
                 </InputAdornment>
               )
             }}

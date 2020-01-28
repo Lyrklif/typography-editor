@@ -8,6 +8,7 @@ import ButtonsPanel from "./buttonsPanel";
 import MainSettingsPanel from "./mainSettingsPanel";
 import DialogLink from "./dialogLink";
 
+import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
@@ -130,8 +131,8 @@ export default class EditorPanel extends React.Component {
           color="inherit"
         >
           <h2 className="meta-title">Панель редактирования</h2>
-          <Paper className={"editor-panel-wp"}>
-            <Grid container spacing={2} alignItems="center" className={"editor-panel__inner"}>
+          <Paper className={"editor-panel-wp editor-panel__inner"} >
+            <Grid container spacing={2} alignItems="center" className={"editor-panel__top"} >
 
               <Grid item xs={12} sm={6} md={4} >
                 {/* основные настройки */}
@@ -188,16 +189,17 @@ export default class EditorPanel extends React.Component {
             </Grid>
 
 
-
-            {/* настройка тегов */}
+            <Divider />
             <TagsPanel
               param={this.state}
+              tags={"tagParameters_outside"}
               editAllowed={
                 this.props.param.states.tabActive == "0" ? true : false
               }
               switchShowColorPiper={this.switchShowColorPiper}
               showDialogLink={this.switchDialogLink}
             />
+
 
 
             {/* Панель выбора цвета */}

@@ -70,255 +70,287 @@ export const startingValue = {
   * [эти названия используются где-то ещё в коде]
   */
   tagParameters: {
-    [formatCommand_clear]: {
-      command: [
-        ['removeFormat', false, ''],
-        ['unlink', false, ''],
-      ],
-      materialize: {
-        title: 'Очистить формат',
-        iconName: 'FormatClear'
-      }
-    },
-    h1: {
-      command: [
-        ['formatBlock', false, 'h1'],
-      ],
-      materialize: {
-        title: 'h1',
-        iconName: 'Filter1'
-      }
-    },
-    h2: {
-      command: [
-        ['formatBlock', false, 'h2'],
-      ],
-      materialize: {
-        title: 'h2',
-        iconName: 'Filter2'
-      }
-    },
-    h3: {
-      command: [
-        ['formatBlock', false, 'h3'],
-      ],
-      materialize: {
-        title: 'h3',
-        iconName: 'Filter3'
-      }
-    },
-    h4: {
-      command: [
-        ['formatBlock', false, 'h4'],
-      ],
-      materialize: {
-        title: 'h4',
-        iconName: 'Filter4'
-      }
-    },
-    h5: {
-      command: [
-        ['formatBlock', false, 'h5'],
-      ],
-      materialize: {
-        title: 'h5',
-        iconName: 'Filter5'
-      }
-    },
-    h6: {
-      command: [
-        ['formatBlock', false, 'h6'],
-      ],
-      materialize: {
-        title: 'h6',
-        iconName: 'Filter6'
-      }
-    },
-    // p: {
-    //   command: [
-    //     ['formatBlock', false, 'p'],
-    //   ],
-    //   materialize: {
-    //     title: 'Параграф',
-    //     iconName: 'TextFormat'
-    //   }
-    // },
 
-    b: {
-      command: [
-        ['bold', false, ''],
-      ],
-      materialize: {
-        title: 'bold',
-        iconName: 'FormatBold'
-      }
-    },
-    i: {
-      command: [
-        ['italic', false, ''],
-      ],
-      materialize: {
-        title: 'italic',
-        iconName: 'FormatItalic'
-      }
-    },
-    underline: {
-      command: [
-        ['underline', false, ''],
-      ],
-      materialize: {
-        title: 'underline',
-        iconName: 'FormatUnderlined'
-      }
-    },
-    strike: {
-      command: [
-        ['strikeThrough', false, ''],
-      ],
-      materialize: {
-        title: 'strike',
-        iconName: 'StrikethroughS'
-      }
-    },
-    [formatCommand_bgcolor]: {
-      command: [
-        ['hiliteColor', false, default_bgcolor],
-      ],
-      materialize: {
-        title: 'Цвет фона',
-        iconName: 'FormatColorFill'
-      }
-    },
-    [formatCommand_color]: {
-      command: [
-        ['styleWithCSS', false, 'true'], // использовать стили, а не html
-        ['foreColor', false, '#ff0000'],
-        ['styleWithCSS', false, 'false'], // использовать html, а не стили
-      ],
-      materialize: {
-        title: 'Цвет текста',
-        iconName: 'FormatColorText'
-      }
-    },
-    left: {
-      command: [
-        ['justifyLeft', false, ''],
-      ],
-      materialize: {
-        title: 'left',
-        iconName: 'FormatAlignLeft'
-      }
-    },
-    center: {
-      command: [
-        ['justifyCenter', false, ''],
-      ],
-      materialize: {
-        title: 'center',
-        iconName: 'FormatAlignCenter'
-      }
-    },
-    right: {
-      command: [
-        ['justifyRight', false, ''],
-      ],
-      materialize: {
-        title: 'right',
-        iconName: 'FormatAlignRight'
-      }
-    },
-    full: {
-      command: [
-        ['justifyFull', false, ''],
-      ],
-      materialize: {
-        title: 'full',
-        iconName: 'FormatAlignJustify'
-      }
-    },
-    ul: {
-      command: [
-        ['insertUnorderedList', false, ''],
-      ],
-      materialize: {
-        title: 'Маркированный список',
-        iconName: 'FormatListNumbered'
-      }
-    },
-    ol: {
-      command: [
-        ['insertOrderedList', false, ''],
-      ],
-      materialize: {
-        title: 'Нумерованный список',
-        iconName: 'FormatListBulleted'
-      }
-    },
-    sup: {
-      command: [
-        ['superscript', false, ''],
-      ],
-      materialize: {
-        title: 'sup',
-        iconName: 'VerticalAlignTop'
-      }
-    },
-    sub: {
-      command: [
-        ['subscript', false, ''],
-      ],
-      materialize: {
-        title: 'sub',
-        iconName: 'VerticalAlignBottom'
-      }
-    },
-    blockquote: {
-      command: [
-        ['formatBlock', false, 'blockquote'],
-      ],
-      materialize: {
-        title: 'Цитата',
-        iconName: 'FormatQuote'
-      }
-    },
-    hr: {
-      command: [
-        ['insertHorizontalRule', false, ''],
-      ],
-      materialize: {
-        title: 'hr',
-        iconName: 'Remove'
-      }
-    },
-    [formatCommand_link]: {
-      command: [
-        ['createLink', false, '#'], // нельзя менять и добавлять новые команды
-      ],
-      materialize: {
-        title: 'Ссылка',
-        iconName: 'Link'
-      }
-    },
-    indent: {
-      command: [
-        ['indent', false, ''],
-      ],
-      materialize: {
-        title: 'Добавить отступ',
-        iconName: 'FormatIndentIncrease'
-      }
-    },
-    outdent: {
-      command: [
-        ['outdent', false, ''],
-      ],
-      materialize: {
-        title: 'Убрать отступ',
-        iconName: 'FormatIndentDecrease'
-      }
+    // ******************************
+    outside: {
+      [formatCommand_clear]: {
+        command: [
+          ['removeFormat', false, ''],
+          ['unlink', false, ''],
+        ],
+        materialize: {
+          title: 'Очистить формат',
+          iconName: 'FormatClear'
+        }
+      },
+      // p: {
+      //   command: [
+      //     ['formatBlock', false, 'p'],
+      //   ],
+      //   materialize: {
+      //     title: 'Параграф',
+      //     iconName: 'TextFormat'
+      //   }
+      // },    
+
     },
 
+
+    // ******************************
+    titles: {
+      h1: {
+        command: [
+          ['formatBlock', false, 'h1'],
+        ],
+        materialize: {
+          title: 'Заголовок 1',
+          iconName: 'Filter1'
+        }
+      },
+      h2: {
+        command: [
+          ['formatBlock', false, 'h2'],
+        ],
+        materialize: {
+          title: 'Заголовок 2',
+          iconName: 'Filter2'
+        }
+      },
+      h3: {
+        command: [
+          ['formatBlock', false, 'h3'],
+        ],
+        materialize: {
+          title: 'Заголовок 3',
+          iconName: 'Filter3'
+        }
+      },
+      h4: {
+        command: [
+          ['formatBlock', false, 'h4'],
+        ],
+        materialize: {
+          title: 'Заголовок 4',
+          iconName: 'Filter4'
+        }
+      },
+      h5: {
+        command: [
+          ['formatBlock', false, 'h5'],
+        ],
+        materialize: {
+          title: 'Заголовок 5',
+          iconName: 'Filter5'
+        }
+      },
+      h6: {
+        command: [
+          ['formatBlock', false, 'h6'],
+        ],
+        materialize: {
+          title: 'Заголовок 6',
+          iconName: 'Filter6'
+        }
+      },
+    },
+
+
+
+
+    // ******************************
+    textStyle: {
+      b: {
+        command: [
+          ['bold', false, ''],
+        ],
+        materialize: {
+          title: 'Полужирный',
+          iconName: 'FormatBold'
+        }
+      },
+      i: {
+        command: [
+          ['italic', false, ''],
+        ],
+        materialize: {
+          title: 'Курсив',
+          iconName: 'FormatItalic'
+        }
+      },
+      underline: {
+        command: [
+          ['underline', false, ''],
+        ],
+        materialize: {
+          title: 'Подчёркнутый текст',
+          iconName: 'FormatUnderlined'
+        }
+      },
+      strike: {
+        command: [
+          ['strikeThrough', false, ''],
+        ],
+        materialize: {
+          title: 'Зачёркнутый текст',
+          iconName: 'StrikethroughS'
+        }
+      },
+      [formatCommand_bgcolor]: {
+        command: [
+          ['hiliteColor', false, default_bgcolor],
+        ],
+        materialize: {
+          title: 'Цвет фона',
+          iconName: 'FormatColorFill'
+        }
+      },
+      [formatCommand_color]: {
+        command: [
+          ['styleWithCSS', false, 'true'], // использовать стили, а не html
+          ['foreColor', false, '#ff0000'],
+          ['styleWithCSS', false, 'false'], // использовать html, а не стили
+        ],
+        materialize: {
+          title: 'Цвет текста',
+          iconName: 'FormatColorText'
+        }
+      },
+    },
+
+    // ******************************
+    textPositioning: {
+      left: {
+        command: [
+          ['justifyLeft', false, ''],
+        ],
+        materialize: {
+          title: 'По левому краю',
+          iconName: 'FormatAlignLeft'
+        }
+      },
+      center: {
+        command: [
+          ['justifyCenter', false, ''],
+        ],
+        materialize: {
+          title: 'По центру',
+          iconName: 'FormatAlignCenter'
+        }
+      },
+      right: {
+        command: [
+          ['justifyRight', false, ''],
+        ],
+        materialize: {
+          title: 'По правому краю',
+          iconName: 'FormatAlignRight'
+        }
+      },
+      full: {
+        command: [
+          ['justifyFull', false, ''],
+        ],
+        materialize: {
+          title: 'По ширине',
+          iconName: 'FormatAlignJustify'
+        }
+      },
+    },
+
+    // ******************************
+    textIndents: {
+      ul: {
+        command: [
+          ['insertUnorderedList', false, ''],
+        ],
+        materialize: {
+          title: 'Маркированный список',
+          iconName: 'FormatListNumbered'
+        }
+      },
+      ol: {
+        command: [
+          ['insertOrderedList', false, ''],
+        ],
+        materialize: {
+          title: 'Нумерованный список',
+          iconName: 'FormatListBulleted'
+        }
+      },
+      indent: {
+        command: [
+          ['indent', false, ''],
+        ],
+        materialize: {
+          title: 'Добавить отступ',
+          iconName: 'FormatIndentIncrease'
+        }
+      },
+      outdent: {
+        command: [
+          ['outdent', false, ''],
+        ],
+        materialize: {
+          title: 'Убрать отступ',
+          iconName: 'FormatIndentDecrease'
+        }
+      },
+      blockquote: {
+        command: [
+          ['formatBlock', false, 'blockquote'],
+        ],
+        materialize: {
+          title: 'Цитата',
+          iconName: 'FormatQuote'
+        }
+      },
+    },
+
+    // ******************************
+    adding: {
+      hr: {
+        command: [
+          ['insertHorizontalRule', false, ''],
+        ],
+        materialize: {
+          title: 'Горизонтальная черта',
+          iconName: 'Remove'
+        }
+      },
+      [formatCommand_link]: {
+        command: [
+          ['createLink', false, '#'], // нельзя менять и добавлять новые команды
+        ],
+        materialize: {
+          title: 'Ссылка',
+          iconName: 'Link'
+        }
+      },
+    },
+
+    // ******************************
+    register: {
+      sup: {
+        command: [
+          ['superscript', false, ''],
+        ],
+        materialize: {
+          title: 'Верхний регистр',
+          iconName: 'VerticalAlignTop'
+        }
+      },
+      sub: {
+        command: [
+          ['subscript', false, ''],
+        ],
+        materialize: {
+          title: 'Нижний регистр',
+          iconName: 'VerticalAlignBottom'
+        }
+      },
+    },
   },
+
 
   // текст кнопок
   buttons: {

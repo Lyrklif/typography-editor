@@ -6,7 +6,15 @@
 
 .editor-panel__inner {
   padding: 1rem 1.5rem 0.5rem 1.5rem;
-  margin-bottom: 10px;
+}
+
+.editor-panel__top {
+  padding-bottom: 0.5rem;
+}
+
+.tag-list-wp {
+  padding-top: 0.5rem;
+
 }
 
 .color-picker-wp {
@@ -47,4 +55,9 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0;
+}
+
+
+.tag-list__item:last-of-type {
+  border-right: 0 none;
 }
