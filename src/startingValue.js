@@ -51,7 +51,7 @@ export const startingValue = {
     transformTags: {
       'div': 'p',
       'br': '',
-      'string': 'b',
+      'strong': 'b',
       'em': 'i',
       'strike': 's',
     },
@@ -75,7 +75,6 @@ export const startingValue = {
         ['removeFormat', false, ''],
         ['unlink', false, ''],
       ],
-      display: ['icon-format_clear'],
       materialize: {
         title: 'Очистить формат',
         iconName: 'FormatClear'
@@ -85,7 +84,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h1'],
       ],
-      display: ['icon-title_1'],
       materialize: {
         title: 'h1',
         iconName: 'Filter1'
@@ -95,7 +93,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h2'],
       ],
-      display: ['icon-title_2'],
       materialize: {
         title: 'h2',
         iconName: 'Filter2'
@@ -105,7 +102,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h3'],
       ],
-      display: ['icon-title_3'],
       materialize: {
         title: 'h3',
         iconName: 'Filter3'
@@ -115,7 +111,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h4'],
       ],
-      display: ['icon-save'],
       materialize: {
         title: 'h4',
         iconName: 'Filter4'
@@ -125,7 +120,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h5'],
       ],
-      display: ['icon-save'],
       materialize: {
         title: 'h5',
         iconName: 'Filter5'
@@ -135,7 +129,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'h6'],
       ],
-      display: ['icon-save'],
       materialize: {
         title: 'h6',
         iconName: 'Filter6'
@@ -145,7 +138,6 @@ export const startingValue = {
     //   command: [
     //     ['formatBlock', false, 'p'],
     //   ],
-    //   display: ['icon-text'],
     //   materialize: {
     //     title: 'Параграф',
     //     iconName: 'TextFormat'
@@ -156,7 +148,6 @@ export const startingValue = {
       command: [
         ['bold', false, ''],
       ],
-      display: ['icon-format_bold'],
       materialize: {
         title: 'bold',
         iconName: 'FormatBold'
@@ -166,7 +157,6 @@ export const startingValue = {
       command: [
         ['italic', false, ''],
       ],
-      display: ['icon-format'],
       materialize: {
         title: 'italic',
         iconName: 'FormatItalic'
@@ -176,7 +166,6 @@ export const startingValue = {
       command: [
         ['underline', false, ''],
       ],
-      display: ['icon-format_underlined'],
       materialize: {
         title: 'underline',
         iconName: 'FormatUnderlined'
@@ -186,7 +175,6 @@ export const startingValue = {
       command: [
         ['strikeThrough', false, ''],
       ],
-      display: ['icon-strikethrough'],
       materialize: {
         title: 'strike',
         iconName: 'StrikethroughS'
@@ -196,7 +184,6 @@ export const startingValue = {
       command: [
         ['hiliteColor', false, default_bgcolor],
       ],
-      display: ['icon-format_paint'],
       materialize: {
         title: 'Цвет фона',
         iconName: 'FormatColorFill'
@@ -208,7 +195,6 @@ export const startingValue = {
         ['foreColor', false, '#ff0000'],
         ['styleWithCSS', false, 'false'], // использовать html, а не стили
       ],
-      display: ['icon-color_lens'],
       materialize: {
         title: 'Цвет текста',
         iconName: 'FormatColorText'
@@ -218,7 +204,6 @@ export const startingValue = {
       command: [
         ['justifyLeft', false, ''],
       ],
-      display: ['icon-format_align_left'],
       materialize: {
         title: 'left',
         iconName: 'FormatAlignLeft'
@@ -228,7 +213,6 @@ export const startingValue = {
       command: [
         ['justifyCenter', false, ''],
       ],
-      display: ['icon-format_align_center'],
       materialize: {
         title: 'center',
         iconName: 'FormatAlignCenter'
@@ -238,7 +222,6 @@ export const startingValue = {
       command: [
         ['justifyRight', false, ''],
       ],
-      display: ['icon-format_align_right'],
       materialize: {
         title: 'right',
         iconName: 'FormatAlignRight'
@@ -248,7 +231,6 @@ export const startingValue = {
       command: [
         ['justifyFull', false, ''],
       ],
-      display: ['icon-format_align_justify'],
       materialize: {
         title: 'full',
         iconName: 'FormatAlignJustify'
@@ -258,7 +240,6 @@ export const startingValue = {
       command: [
         ['insertUnorderedList', false, ''],
       ],
-      display: ['icon-format_list_bulleted'],
       materialize: {
         title: 'Маркированный список',
         iconName: 'FormatListNumbered'
@@ -268,7 +249,6 @@ export const startingValue = {
       command: [
         ['insertOrderedList', false, ''],
       ],
-      display: ['icon-format_list_numbered'],
       materialize: {
         title: 'Нумерованный список',
         iconName: 'FormatListBulleted'
@@ -278,7 +258,6 @@ export const startingValue = {
       command: [
         ['superscript', false, ''],
       ],
-      display: ['icon-superscript'],
       materialize: {
         title: 'sup',
         iconName: 'VerticalAlignTop'
@@ -288,7 +267,6 @@ export const startingValue = {
       command: [
         ['subscript', false, ''],
       ],
-      display: ['icon-subscript'],
       materialize: {
         title: 'sub',
         iconName: 'VerticalAlignBottom'
@@ -298,7 +276,6 @@ export const startingValue = {
       command: [
         ['formatBlock', false, 'blockquote'],
       ],
-      display: ['icon-format_quote'],
       materialize: {
         title: 'Цитата',
         iconName: 'FormatQuote'
@@ -308,7 +285,6 @@ export const startingValue = {
       command: [
         ['insertHorizontalRule', false, ''],
       ],
-      display: ['icon-line_horizontal'],
       materialize: {
         title: 'hr',
         iconName: 'Remove'
@@ -318,7 +294,6 @@ export const startingValue = {
       command: [
         ['createLink', false, '#'], // нельзя менять и добавлять новые команды
       ],
-      display: ['icon-insert_link'],
       materialize: {
         title: 'Ссылка',
         iconName: 'Link'
@@ -328,7 +303,6 @@ export const startingValue = {
       command: [
         ['indent', false, ''],
       ],
-      display: ['icon-line_horizontal'],
       materialize: {
         title: 'Добавить отступ',
         iconName: 'FormatIndentIncrease'
@@ -338,7 +312,6 @@ export const startingValue = {
       command: [
         ['outdent', false, ''],
       ],
-      display: ['icon-line_horizontal'],
       materialize: {
         title: 'Убрать отступ',
         iconName: 'FormatIndentDecrease'

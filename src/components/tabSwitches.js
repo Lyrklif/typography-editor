@@ -29,14 +29,17 @@ export default class TabSwitches extends React.Component {
           centered
         >
           <Tab
+            // label="Текст"
             icon={<IconsLib.Subject />}
             aria-label="Режим просмотра текста"
             title="Режим просмотра текста" />
           <Tab
+            // label="HTML"
             icon={<IconsLib.SettingsEthernet />}
             aria-label="Режим просмотра HTML"
             title="Режим просмотра HTML" />
           <Tab
+            // label="CSS"
             icon={<IconsLib.Texture />}
             aria-label="Режим просмотра CSS"
             title="Режим просмотра CSS"
