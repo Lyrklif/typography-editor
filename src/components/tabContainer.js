@@ -27,7 +27,6 @@ export default class TabContainer extends React.Component {
         </header>
 
         <Typography
-          // color="textPrimary"
           component="div"
           role="tabpanel"
           hidden={value !== index}
@@ -41,9 +40,3 @@ export default class TabContainer extends React.Component {
     );
   }
 }
-
-// TabContainer.propTypes = {
-//   children: PropTypes.node,
-//   index: PropTypes.any.isRequired,
-//   value: PropTypes.any.isRequired,
-// };

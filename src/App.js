@@ -24,7 +24,6 @@ import MyTheme from './MyTheme';
 
 // Стили
 import "./App.css";
-import "./sprite.css";
 
 
 

@@ -220,7 +220,7 @@ export default class EditorPanel extends React.Component {
                   endIcon={<IconsLib.HighlightOff />}
                 >
                   Закрыть
-            </Button>
+                </Button>
 
                 <SwatchesPicker
                   onChange={this.handleChange}

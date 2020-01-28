@@ -3,18 +3,14 @@
 import React from 'react';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import * as IconsLib from "@material-ui/icons";
 import Paper from "@material-ui/core/Paper";
-import AppBar from "@material-ui/core/AppBar";
 
 // настройка тегов
 export default class TabSwitches extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = props;
     this.onChange = this.props.onChange;
   }
 

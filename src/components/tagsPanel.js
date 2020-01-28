@@ -1,7 +1,5 @@
 import React from "react";
 
-import Button from "./button";
-
 import IconButton from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import * as IconsLib from "@material-ui/icons";
