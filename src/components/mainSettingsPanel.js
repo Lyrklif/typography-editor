@@ -1,9 +1,18 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from "react";
 
-import Input from './input';
-import Button from './button';
-import ButtonOnOff from './buttonOnOff';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
+
+import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Grid from "@material-ui/core/Grid";
+
+import IconButton from "@material-ui/core/Button";
+import * as IconsLib from "@material-ui/icons";
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
@@ -19,50 +28,67 @@ export default class MainSettingsPanel extends React.Component {
 
   render() {
     return (
-      <div className={this.props.classes}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={2}>
+          {/* КНОПКА Режим редактирования текста */}
+          <FormControlLabel
+            control={
+              <Switch
+                checked={this.props.param.states.editText}
+                onChange={this.switchEditText}
+                title={this.props.param.buttons.edit}
+                value="edit"
+                color="primary"
+              />
+            }
+          />
+        </Grid>
+        <Grid item xs={5} >
+          {/* Размер шрифта */}
+          <TextField
+            id="fontSize-number"
+            title={this.props.param.inputs.fontSize}
+            type="number"
+            size="small"
+            defaultValue={this.props.param.styles.fontSize}
+            onChange={value => this.eventHandler("fontSize", value)}
+            InputLabelProps={{
+              shrink: true
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start" >
+                  <IconsLib.FormatSize  color="primary"/>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Grid>
 
-        {/* КНОПКА Вернуть стандартные настройки */}
-        {/* <Button
-          param={this.props.param}
-          clickEvent={this.reset}
-          text={this.props.param.buttons.reset}
-          icon="icon-clear"
-          /> */}
-
-        {/* КНОПКА Режим редактирования текста */}
-        <ButtonOnOff
-          param={this.props.param}
-          on_off_status={this.props.param.states.editText}
-          clickEvent={this.switchEditText}
-          text={this.props.param.buttons.edit}
-          icon='icon-edit'
-        />
-
-
-        {/* Размер шрифта */}
-        <Input
-          param={this.props.param.styles.fontSize}
-          eventHandler={this.eventHandler}
-          type="number"
-          name="fontSize"
-          text={this.props.param.inputs.fontSize}
-          icon="sprite icon-format_size_white"
-        />
-
-
-        {/* Высота строки */}
-        <Input
-          param={this.props.param.styles.lineHeight}
-          eventHandler={this.eventHandler}
-          type="number"
-          name="lineHeight"
-          step="0.1"
-          text={this.props.param.inputs.lineHeight}
-          icon="sprite icon-line_height_white"
-        />
-
-
-      </div>
-    )
+        <Grid item xs={5}>
+          {/* Высота строки */}
+          <TextField
+            id="lineHeight-number"
+            title={this.props.param.inputs.lineHeight}
+            type="number"
+            size="small"
+            step="0.1"
+            defaultValue={this.props.param.styles.lineHeight}
+            onChange={value => this.eventHandler("lineHeight", value)}
+            InputLabelProps={{
+              shrink: true
+            }}
+            InputProps={{
+              inputProps: { step: 0.1 },
+              startAdornment: (
+                <InputAdornment position="start" >
+                  <IconsLib.FormatLineSpacing color="primary"/>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Grid>
+      </Grid>
+    );
   }
 }

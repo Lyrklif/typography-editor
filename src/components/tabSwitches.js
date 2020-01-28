@@ -1,47 +1,52 @@
 // tabSwitches
 
 import React from 'react';
-import { render } from '@testing-library/react';
-
-import Button from './button';
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import * as IconsLib from "@material-ui/icons";
+import Paper from "@material-ui/core/Paper";
 
 // настройка тегов
 export default class TabSwitches extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.param;
-
-    this.clickEvent = this.props.clickEvent;
+    this.onChange = this.props.onChange;
   }
 
 
   render() {
     return (
-      <div className={this.props.classes}>
-        {/* КНОПКА скачать */}
-        <Button
-          param={this.props.param}
-          clickEvent={this.clickEvent}
-          text={this.props.param.buttons.text}
-          name='0'
-          icon='icon-text-graphical'
-        />
-        <Button
-          param={this.props.param}
-          clickEvent={this.clickEvent}
-          text={this.props.param.buttons.html}
-          name='1'
-          icon='icon-html'
-        />
-        <Button
-          param={this.props.param}
-          clickEvent={this.clickEvent}
-          text={this.props.param.buttons.css}
-          name='2'
-          icon='icon-css'
-        />
-      </div>
+      <Paper component={"nav"}>
+        <Tabs
+          className={"clear-list"}
+          value={this.props.value}
+          onChange={this.onChange}
+          aria-label="simple tabs example"
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          centered
+        >
+          <Tab
+            // label="Текст"
+            icon={<IconsLib.Subject />}
+            aria-label="Режим просмотра текста"
+            title="Режим просмотра текста" />
+          <Tab
+            // label="HTML"
+            icon={<IconsLib.SettingsEthernet />}
+            aria-label="Режим просмотра HTML"
+            title="Режим просмотра HTML" />
+          <Tab
+            // label="CSS"
+            icon={<IconsLib.Texture />}
+            aria-label="Режим просмотра CSS"
+            title="Режим просмотра CSS"
+            disabled
+          />
+        </Tabs>
+      </Paper>
     )
   }
 }

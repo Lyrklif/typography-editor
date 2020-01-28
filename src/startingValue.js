@@ -22,12 +22,13 @@ export const startingValue = {
   states: {
     editText: true, // вкл/выкл режим редактирования текста
     colorPicker: false, // показать/скрыть панель выбора цвета
+    dialogLink: false, // показать/скрыть панель ввода ссылки
 
     // какой параметр по-умолчанию изменяет панель выбора цвета
     paletteEdit: formatCommand_bgcolor,
 
     // какой таб будет активным изначально
-    tabActive: '0'
+    tabActive: 0
   },
 
   // параметры для sanitize-html
@@ -50,7 +51,7 @@ export const startingValue = {
     transformTags: {
       'div': 'p',
       'br': '',
-      'string': 'b',
+      'strong': 'b',
       'em': 'i',
       'strike': 's',
     },
@@ -69,160 +70,287 @@ export const startingValue = {
   * [эти названия используются где-то ещё в коде]
   */
   tagParameters: {
-    [formatCommand_clear]: {
-      command: [
-        ['removeFormat', false, ''],
-        ['unlink', false, ''],
-      ],
-      display: ['icon-format_clear']
+
+    // ******************************
+    outside: {
+      [formatCommand_clear]: {
+        command: [
+          ['removeFormat', false, ''],
+          ['unlink', false, ''],
+        ],
+        materialize: {
+          title: 'Очистить формат',
+          iconName: 'FormatClear'
+        }
+      },
+      // p: {
+      //   command: [
+      //     ['formatBlock', false, 'p'],
+      //   ],
+      //   materialize: {
+      //     title: 'Параграф',
+      //     iconName: 'TextFormat'
+      //   }
+      // },    
+
     },
-    h1: {
-      command: [
-        ['formatBlock', false, 'h1'],
-      ],
-      display: ['icon-title_1']
+
+
+    // ******************************
+    titles: {
+      h1: {
+        command: [
+          ['formatBlock', false, 'h1'],
+        ],
+        materialize: {
+          title: 'Заголовок 1',
+          iconName: 'Filter1'
+        }
+      },
+      h2: {
+        command: [
+          ['formatBlock', false, 'h2'],
+        ],
+        materialize: {
+          title: 'Заголовок 2',
+          iconName: 'Filter2'
+        }
+      },
+      h3: {
+        command: [
+          ['formatBlock', false, 'h3'],
+        ],
+        materialize: {
+          title: 'Заголовок 3',
+          iconName: 'Filter3'
+        }
+      },
+      h4: {
+        command: [
+          ['formatBlock', false, 'h4'],
+        ],
+        materialize: {
+          title: 'Заголовок 4',
+          iconName: 'Filter4'
+        }
+      },
+      h5: {
+        command: [
+          ['formatBlock', false, 'h5'],
+        ],
+        materialize: {
+          title: 'Заголовок 5',
+          iconName: 'Filter5'
+        }
+      },
+      h6: {
+        command: [
+          ['formatBlock', false, 'h6'],
+        ],
+        materialize: {
+          title: 'Заголовок 6',
+          iconName: 'Filter6'
+        }
+      },
     },
-    h2: {
-      command: [
-        ['formatBlock', false, 'h2'],
-      ],
-      display: ['icon-title_2']
+
+
+
+
+    // ******************************
+    textStyle: {
+      b: {
+        command: [
+          ['bold', false, ''],
+        ],
+        materialize: {
+          title: 'Полужирный',
+          iconName: 'FormatBold'
+        }
+      },
+      i: {
+        command: [
+          ['italic', false, ''],
+        ],
+        materialize: {
+          title: 'Курсив',
+          iconName: 'FormatItalic'
+        }
+      },
+      underline: {
+        command: [
+          ['underline', false, ''],
+        ],
+        materialize: {
+          title: 'Подчёркнутый текст',
+          iconName: 'FormatUnderlined'
+        }
+      },
+      strike: {
+        command: [
+          ['strikeThrough', false, ''],
+        ],
+        materialize: {
+          title: 'Зачёркнутый текст',
+          iconName: 'StrikethroughS'
+        }
+      },
+      [formatCommand_bgcolor]: {
+        command: [
+          ['hiliteColor', false, default_bgcolor],
+        ],
+        materialize: {
+          title: 'Цвет фона',
+          iconName: 'FormatColorFill'
+        }
+      },
+      [formatCommand_color]: {
+        command: [
+          ['styleWithCSS', false, 'true'], // использовать стили, а не html
+          ['foreColor', false, '#ff0000'],
+          ['styleWithCSS', false, 'false'], // использовать html, а не стили
+        ],
+        materialize: {
+          title: 'Цвет текста',
+          iconName: 'FormatColorText'
+        }
+      },
     },
-    h3: {
-      command: [
-        ['formatBlock', false, 'h3'],
-      ],
-      display: ['icon-title_3']
+
+    // ******************************
+    textPositioning: {
+      left: {
+        command: [
+          ['justifyLeft', false, ''],
+        ],
+        materialize: {
+          title: 'По левому краю',
+          iconName: 'FormatAlignLeft'
+        }
+      },
+      center: {
+        command: [
+          ['justifyCenter', false, ''],
+        ],
+        materialize: {
+          title: 'По центру',
+          iconName: 'FormatAlignCenter'
+        }
+      },
+      right: {
+        command: [
+          ['justifyRight', false, ''],
+        ],
+        materialize: {
+          title: 'По правому краю',
+          iconName: 'FormatAlignRight'
+        }
+      },
+      full: {
+        command: [
+          ['justifyFull', false, ''],
+        ],
+        materialize: {
+          title: 'По ширине',
+          iconName: 'FormatAlignJustify'
+        }
+      },
     },
-    // h4: {
-    // command: [
-    // ['formatBlock', false, 'h4'],
-    // ],
-    // display: ['icon-save']
-    // },
-    // h5: {
-    //   command: [
-    //     ['formatBlock', false, 'h5'],
-    //   ],
-    //   display: ['icon-save']
-    // },
-    // h6: {
-    //   command: [
-    //     ['formatBlock', false, 'h6'],
-    //   ],
-    //   display: ['icon-save']
-    // },
-    p: {
-      command: [
-        ['formatBlock', false, 'p'],
-      ],
-      display: ['icon-text']
+
+    // ******************************
+    textIndents: {
+      ul: {
+        command: [
+          ['insertUnorderedList', false, ''],
+        ],
+        materialize: {
+          title: 'Маркированный список',
+          iconName: 'FormatListNumbered'
+        }
+      },
+      ol: {
+        command: [
+          ['insertOrderedList', false, ''],
+        ],
+        materialize: {
+          title: 'Нумерованный список',
+          iconName: 'FormatListBulleted'
+        }
+      },
+      indent: {
+        command: [
+          ['indent', false, ''],
+        ],
+        materialize: {
+          title: 'Добавить отступ',
+          iconName: 'FormatIndentIncrease'
+        }
+      },
+      outdent: {
+        command: [
+          ['outdent', false, ''],
+        ],
+        materialize: {
+          title: 'Убрать отступ',
+          iconName: 'FormatIndentDecrease'
+        }
+      },
+      blockquote: {
+        command: [
+          ['formatBlock', false, 'blockquote'],
+        ],
+        materialize: {
+          title: 'Цитата',
+          iconName: 'FormatQuote'
+        }
+      },
     },
-    [formatCommand_link]: {
-      command: [
-        ['createLink', false, '#'], // нельзя менять и добавлять новые команды
-      ],
-      display: ['icon-insert_link']
+
+    // ******************************
+    adding: {
+      hr: {
+        command: [
+          ['insertHorizontalRule', false, ''],
+        ],
+        materialize: {
+          title: 'Горизонтальная черта',
+          iconName: 'Remove'
+        }
+      },
+      [formatCommand_link]: {
+        command: [
+          ['createLink', false, '#'], // нельзя менять и добавлять новые команды
+        ],
+        materialize: {
+          title: 'Ссылка',
+          iconName: 'Link'
+        }
+      },
     },
-    ul: {
-      command: [
-        ['insertUnorderedList', false, ''],
-      ],
-      display: ['icon-format_list_bulleted']
-    },
-    ol: {
-      command: [
-        ['insertOrderedList', false, ''],
-      ],
-      display: ['icon-format_list_numbered']
-    },
-    b: {
-      command: [
-        ['bold', false, ''],
-      ],
-      display: ['icon-format_bold']
-    },
-    i: {
-      command: [
-        ['italic', false, ''],
-      ],
-      display: ['icon-format']
-    },
-    strike: {
-      command: [
-        ['strikeThrough', false, ''],
-      ],
-      display: ['icon-strikethrough']
-    },
-    [formatCommand_bgcolor]: {
-      command: [
-        ['hiliteColor', false, default_bgcolor],
-      ],
-      display: ['icon-format_paint']
-    },
-    [formatCommand_color]: {
-      command: [
-        ['styleWithCSS', false, 'true'], // использовать стили, а не html
-        ['foreColor', false, '#ff0000'],
-        ['styleWithCSS', false, 'false'], // использовать html, а не стили
-      ],
-      display: ['icon-color_lens']
-    },
-    sup: {
-      command: [
-        ['superscript', false, ''],
-      ],
-      display: ['icon-superscript']
-    },
-    sub: {
-      command: [
-        ['subscript', false, ''],
-      ],
-      display: ['icon-subscript']
-    },
-    underline: {
-      command: [
-        ['underline', false, ''],
-      ],
-      display: ['icon-format_underlined']
-    },
-    blockquote: {
-      command: [
-        ['formatBlock', false, 'blockquote'],
-      ],
-      display: ['icon-format_quote']
-    },
-    hr: {
-      command: [
-        ['insertHorizontalRule', false, ''],
-      ],
-      display: ['icon-line_horizontal']
-    },
-    left: {
-      command: [
-        ['justifyLeft', false, ''],
-      ],
-      display: ['icon-format_align_left']
-    },
-    center: {
-      command: [
-        ['justifyCenter', false, ''],
-      ],
-      display: ['icon-format_align_center']
-    },
-    right: {
-      command: [
-        ['justifyRight', false, ''],
-      ],
-      display: ['icon-format_align_right']
-    },
-    full: {
-      command: [
-        ['justifyFull', false, ''],
-      ],
-      display: ['icon-format_align_justify']
+
+    // ******************************
+    register: {
+      sup: {
+        command: [
+          ['superscript', false, ''],
+        ],
+        materialize: {
+          title: 'Верхний регистр',
+          iconName: 'VerticalAlignTop'
+        }
+      },
+      sub: {
+        command: [
+          ['subscript', false, ''],
+        ],
+        materialize: {
+          title: 'Нижний регистр',
+          iconName: 'VerticalAlignBottom'
+        }
+      },
     },
   },
+
 
   // текст кнопок
   buttons: {
@@ -248,27 +376,27 @@ export const startingValue = {
   <p><b>Редактируемый текст</b></p>
   <p>Текст и его стили можно изменять, нажав на кнопку <b>Режим редактирования текста</b>.</p>
   <p>Очистить формат текста можно, нажав на <b>clearFormat</b>.</p>
+  <p>Аксиома <s>силлогизма</s>, по определению, представляет собой неоднозначный предмет деятельности.
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание <i>непредсказуемо</i>. Смысл жизни, следовательно, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс <sup>амбивалентно</sup> понимает</p>
+  <h2>Заголовок</h2>
+  <p>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание непредсказуемо. <a href="#">Смысл жизни</a>, <b>следовательно</b>, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс амбивалентно понимает</p>
+  <ul>
+  <li>Аксиома</li>
+  <li>силлогизма</li>
+  <li>по определению</li>
+  </ul>
+  <blockquote>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание непредсказуемо. Смысл жизни, следовательно, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс амбивалентно понимает</blockquote>
+  <p>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
+  Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
+  Созерцание непредсказуемо. <a href="#">Смысл жизни</a>, <b>следовательно</b>, творит данный закон внешнего мира. 
+  Апостериори, гравитационный парадокс амбивалентно понимает</p>
   `
 }
-  // <p>Аксиома <s>силлогизма</s>, по определению, представляет собой неоднозначный предмет деятельности.
-  // Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
-  // Созерцание <i>непредсказуемо</i>. Смысл жизни, следовательно, творит данный закон внешнего мира. 
-  // Апостериори, гравитационный парадокс <sup>амбивалентно</sup> понимает</p>
-  // <h2>Заголовок</h2>
-  // <p>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
-  // Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
-  // Созерцание непредсказуемо. <a href="#">Смысл жизни</a>, <b>следовательно</b>, творит данный закон внешнего мира. 
-  // Апостериори, гравитационный парадокс амбивалентно понимает</p>
-  // <ul>
-  // <li>Аксиома</li>
-  // <li>силлогизма</li>
-  // <li>по определению</li>
-  // </ul>
-  // <blockquote>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
-  // Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
-  // Созерцание непредсказуемо. Смысл жизни, следовательно, творит данный закон внешнего мира. 
-  // Апостериори, гравитационный парадокс амбивалентно понимает</blockquote>
-  // <p>Аксиома силлогизма, по определению, представляет собой неоднозначный предмет деятельности. 
-  // Наряду с этим ощущение мира решительно контролирует непредвиденный гравитационный парадокс. 
-  // Созерцание непредсказуемо. <a href="#">Смысл жизни</a>, <b>следовательно</b>, творит данный закон внешнего мира. 
-  // Апостериори, гравитационный парадокс амбивалентно понимает</p>

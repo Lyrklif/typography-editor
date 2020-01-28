@@ -1,8 +1,14 @@
 // tabContent
 
+import React from "react";
+import Box from "@material-ui/core/Box";
 
-import React from 'react';
-import { render } from '@testing-library/react';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+
+import PropTypes from 'prop-types';
+
+
 
 // Текст, который можно редактировать
 export default class TabContainer extends React.Component {
@@ -11,21 +17,26 @@ export default class TabContainer extends React.Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { children, value, index, ...other } = this.props;
 
     return (
-      <ul
-        className={'clear-list'}
-      >
-        {children.map((elem, i) => (
-          <li
-            className={(this.props.show == i) ? 'show tab' : 'tab'}
-            key={i}
-          >
-            {elem}
-          </li>
-        ))}
-      </ul>
+      <Paper
+        component="section">
+        <header className="meta-title">
+          <h2>{this.props.h2}</h2>
+        </header>
+
+        <Typography
+          component="div"
+          role="tabpanel"
+          hidden={value !== index}
+          id={`simple-tabpanel-${index}`}
+          aria-labelledby={`simple-tab-${index}`}
+          {...other}
+        >
+          {children}
+        </Typography>
+      </Paper>
     );
   }
-};
+}
