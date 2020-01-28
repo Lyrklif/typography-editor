@@ -189,7 +189,7 @@ export const startingValue = {
       display: ['icon-strikethrough'],
       materialize: {
         title: 'strike',
-        iconName: 'FormatStrikethrough'
+        iconName: 'StrikethroughS'
       }
     },
     [formatCommand_bgcolor]: {
@@ -322,6 +322,26 @@ export const startingValue = {
       materialize: {
         title: 'Ссылка',
         iconName: 'Link'
+      }
+    },
+    indent: {
+      command: [
+        ['indent', false, ''],
+      ],
+      display: ['icon-line_horizontal'],
+      materialize: {
+        title: 'Добавить отступ',
+        iconName: 'FormatIndentIncrease'
+      }
+    },
+    outdent: {
+      command: [
+        ['outdent', false, ''],
+      ],
+      display: ['icon-line_horizontal'],
+      materialize: {
+        title: 'Убрать отступ',
+        iconName: 'FormatIndentDecrease'
       }
     },
 

@@ -65,7 +65,7 @@ export default class ButtonsPanel extends React.Component {
             title={this.props.param.buttons.undo}
             onClick={this.undo}
           >
-            <IconsLib.Undo fontSize="medium" />
+            <IconsLib.Undo />
           </IconButton>
         </Grid>
 
@@ -78,7 +78,7 @@ export default class ButtonsPanel extends React.Component {
             title={this.props.param.buttons.redo}
             onClick={this.redo}
           >
-            <IconsLib.Redo fontSize="medium" />
+            <IconsLib.Redo />
           </IconButton>
         </Grid>
 
@@ -91,7 +91,7 @@ export default class ButtonsPanel extends React.Component {
             title={this.props.param.buttons.download}
             onClick={this.download}
           >
-            <IconsLib.GetApp fontSize="medium" />
+            <IconsLib.GetApp />
           </IconButton>
         </Grid>
       </Grid>

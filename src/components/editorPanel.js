@@ -127,7 +127,7 @@ export default class EditorPanel extends React.Component {
         <AppBar
           component={'header'}
           position="fixed"
-          color="primary.light"
+          color="inherit"
         >
           <h2 className="meta-title">Панель редактирования</h2>
           <Paper className={"editor-panel-wp"}>

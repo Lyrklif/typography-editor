@@ -23,7 +23,7 @@ export default class TabContainer extends React.Component {
       <Paper
         component="section">
         <header className="meta-title">
-          <h2>{this.props.blockTitle}</h2>
+          <h2>{this.props.h2}</h2>
         </header>
 
         <Typography

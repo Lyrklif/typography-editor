@@ -128,7 +128,7 @@ export default class App extends React.Component {
               <TabContainer
                 value={this.state.states.tabActive}
                 index={0}
-                blockTitle={"Редактируемый текст"}>
+                h2={"Редактируемый текст"}>
                 <ContentEditable param={this.state} />
               </TabContainer>
 
@@ -136,7 +136,7 @@ export default class App extends React.Component {
               <TabContainer
                 value={this.state.states.tabActive}
                 index={1}
-                blockTitle={"Редактируемый html"}>
+                h2={"Редактируемый html"}>
                 <HTMLeditable param={this.state} />
               </TabContainer>
 
@@ -144,7 +144,7 @@ export default class App extends React.Component {
               <TabContainer
                 value={this.state.states.tabActive}
                 index={2}
-                blockTitle={"Редактируемые стили"}>
+                h2={"Редактируемые стили"}>
                 <p>Тут будет отображаться css</p>
               </TabContainer>
 

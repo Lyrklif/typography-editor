@@ -3,6 +3,7 @@ import React from "react";
 import Button from "./button";
 
 import IconButton from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import * as IconsLib from "@material-ui/icons";
 
 import {
@@ -17,9 +18,9 @@ export default class TagsPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.param;
+    // this.state = props.param;
 
-    this.showDialogLink = props.showDialogLink;
+    this.showDialogLink = this.props.showDialogLink;
     this.setTag = this.setTag.bind(this);
     this.clearFormat = this.clearFormat.bind(this);
   }
@@ -32,7 +33,7 @@ export default class TagsPanel extends React.Component {
     if (!this.props.editAllowed) return false;
 
     let tag = e.target.name; // тег, который надо установить
-    let commands = this.state.tagParameters[tag].command; // команды, прописанные для этого тега
+    let commands = this.props.param.tagParameters[tag].command; // команды, прописанные для этого тега
 
     // если команды для этого тега существуют
     if (commands) {
@@ -118,27 +119,26 @@ export default class TagsPanel extends React.Component {
 
   render() {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map
-    let tagsArray = Object.keys(this.state.tagParameters);
+    let tagsArray = Object.keys(this.props.param.tagParameters);
 
     let tagList = tagsArray.map((elem, index) => {
-      if (this.state.tagParameters[elem].materialize) {
-        let iconName = this.state.tagParameters[elem].materialize.iconName;
+      if (this.props.param.tagParameters[elem].materialize) {
+        let iconName = this.props.param.tagParameters[elem].materialize.iconName;
         let Icon = IconsLib[iconName];
 
         return (
-          <li>
+          <Typography component="li" key={index}>
             <IconButton
-              key={index}
               color="primary"
               size="small"
-              aria-label={this.state.tagParameters[elem].materialize.title}
-              title={this.state.tagParameters[elem].materialize.title}
+              aria-label={this.props.param.tagParameters[elem].materialize.title}
+              title={this.props.param.tagParameters[elem].materialize.title}
               name={elem}
               onClick={this.setTag}
             >
               <Icon />
             </IconButton>
-          </li>
+          </Typography>
         );
       }
     });
