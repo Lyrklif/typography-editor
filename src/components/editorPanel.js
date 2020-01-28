@@ -17,6 +17,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 import {
   // formatCommand_clear,
@@ -26,6 +28,20 @@ import {
   // default_bgcolor,
   // default_color,
 } from "../vars";
+
+
+function ElevationScroll(props) {
+  const { children, window } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
 
 
 // панель редактирования
@@ -107,120 +123,120 @@ export default class EditorPanel extends React.Component {
 
   render() {
     return (
-      <Paper
-        color="primary"
-        component={'header'}
-        className={"editor-panel-wp"}
-      >
-        <h2 className="meta-title">Панель редактирования</h2>
+      <ElevationScroll>
+        <AppBar
+          component={'header'}
+          position="fixed"
+          color="primary.light"
+        >
+          <h2 className="meta-title">Панель редактирования</h2>
+          <Paper className={"editor-panel-wp"}>
+            <Grid container spacing={2} alignItems="center" className={"editor-panel__inner"}>
 
-        <Box className={"editor-panel__inner"}>
-          <Grid container spacing={2} alignItems="center">
+              <Grid item xs={12} sm={6} md={4} >
+                {/* основные настройки */}
+                <MainSettingsPanel
+                  param={this.props.param}
+                  eventHandler={this.setGlobalParam}
+                  reset={this.reset}
+                  switchEditText={this.switchEditText}
+                />
+              </Grid>
 
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-              {/* основные настройки */}
-              <MainSettingsPanel
-                param={this.props.param}
-                eventHandler={this.setGlobalParam}
-                reset={this.reset}
-                switchEditText={this.switchEditText}
-              />
-            </Grid>
+              <Grid item xs={12} sm={6} md={3} >
+                <Grid container spacing={0} alignItems="center" justify="center">
+                  <Grid item>
+                    {/* Выбор цвета фона */}
+                    <Button
+                      size="large"
+                      color="primary"
+                      title="Установить цвет фона"
+                      onClick={() => this.changeColor(formatCommand_bgcolor)}
+                      startIcon={<IconsLib.FormatColorFill color="inherit" />}
+                    >
+                      <span
+                        className={"button-pallet__color"}
+                        style={{ backgroundColor: this.state.styles.bgcolor }}>
+                      </span>
+                    </Button>
+                  </Grid>
 
-            <Grid item xs={12} sm={6} md={3} lg={2}>
-              <Grid container spacing={0} alignItems="center" justify="center">
-                <Grid item>
-                  {/* Выбор цвета фона */}
-                  <Button
-                    size="large"
-                    color="primary"
-                    title="Установить цвет фона"
-                    onClick={() => this.changeColor(formatCommand_bgcolor)}
-                    startIcon={<IconsLib.FormatColorFill />}
-                  >
-                    <span
-                      className={"button-pallet__color"}
-                      style={{ backgroundColor: this.state.styles.bgcolor }}>
-                    </span>
-                  </Button>
+                  <Grid item>
+                    {/* Выбор цвета текста */}
+                    <Button
+                      size="large"
+                      color="primary"
+                      title="Установить цвет текста"
+                      onClick={() => this.changeColor(formatCommand_color)}
+                      startIcon={<IconsLib.FormatColorText />}
+                    >
+                      <span
+                        className={"button-pallet__color"}
+                        style={{ backgroundColor: this.state.styles.color }}>
+                      </span>
+                    </Button>
+                  </Grid>
                 </Grid>
+              </Grid>
 
-                <Grid item>
-                  {/* Выбор цвета текста */}
-                  <Button
-                    size="large"
-                    color="primary"
-                    title="Установить цвет текста"
-                    onClick={() => this.changeColor(formatCommand_color)}
-                    startIcon={<IconsLib.FormatColorText />}
-                  >
-                    <span
-                      className={"button-pallet__color"}
-                      style={{ backgroundColor: this.state.styles.color }}>
-                    </span>
-                  </Button>
-                </Grid>
+              <Grid item xs={12} sm={12} md={3}>
+                {/* панель с кнопками */}
+                <ButtonsPanel
+                  param={this.props.param}
+                />
               </Grid>
             </Grid>
 
-            <Grid item xs={12} sm={12} md={3}>
-              {/* панель с кнопками */}
-              <ButtonsPanel
-                param={this.props.param}
-              />
-            </Grid>
-
-          </Grid>
-        </Box>
 
 
+            {/* настройка тегов */}
+            <TagsPanel
+              param={this.state}
+              editAllowed={
+                this.props.param.states.tabActive == "0" ? true : false
+              }
+              switchShowColorPiper={this.switchShowColorPiper}
+              showDialogLink={this.switchDialogLink}
+            />
 
-        {/* настройка тегов */}
-        <TagsPanel
-          param={this.state}
-          editAllowed={
-            this.props.param.states.tabActive == "0" ? true : false
-          }
-          switchShowColorPiper={this.switchShowColorPiper}
-          showDialogLink={this.switchDialogLink}
-        />
 
-
-        {/* Панель выбора цвета */}
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.states.colorPicker}
-          onClose={this.switchShowColorPiper}
-        >
-
-          <div className={"color-picker-wp"}>
-            <Button
-              variant="contained"
-              color="primary"
-              label="Закрыть"
-              aria-label="close"
-              onClick={this.switchShowColorPiper}
-              size="medium"
-              className={"color-picker-wp__close"}
-              endIcon={<IconsLib.HighlightOff />}
+            {/* Панель выбора цвета */}
+            <Modal
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              open={this.state.states.colorPicker}
+              onClose={this.switchShowColorPiper}
             >
-              Закрыть
+
+              <div className={"color-picker-wp"}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  label="Закрыть"
+                  aria-label="close"
+                  onClick={this.switchShowColorPiper}
+                  size="medium"
+                  className={"color-picker-wp__close"}
+                  endIcon={<IconsLib.HighlightOff />}
+                >
+                  Закрыть
             </Button>
 
-            <SwatchesPicker
-              onChange={this.handleChange}
-              color={this.state.styles.bgcolor}
-            />
-          </div>
-        </Modal>
+                <SwatchesPicker
+                  onChange={this.handleChange}
+                  color={this.state.styles.bgcolor}
+                />
+              </div>
+            </Modal>
 
-        <DialogLink
-          isOpen={this.state.states.dialogLink}
-          switchDialogLink={this.switchDialogLink}
-        // addLinkUrl={this.addLinkUrl}
-        />
-      </Paper>
+            <DialogLink
+              isOpen={this.state.states.dialogLink}
+              switchDialogLink={this.switchDialogLink}
+            // addLinkUrl={this.addLinkUrl}
+            />
+          </Paper>
+        </AppBar>
+      </ElevationScroll>
     );
   }
 }

@@ -130,12 +130,13 @@ export default class TagsPanel extends React.Component {
             <IconButton
               key={index}
               color="primary"
+              size="small"
               aria-label={this.state.tagParameters[elem].materialize.title}
               title={this.state.tagParameters[elem].materialize.title}
               name={elem}
               onClick={this.setTag}
             >
-              <Icon fontSize="medium"/>
+              <Icon />
             </IconButton>
           </li>
         );

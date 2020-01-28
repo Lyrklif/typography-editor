@@ -12,6 +12,8 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
   constructor(props) {
@@ -36,12 +38,12 @@ export default class MainSettingsPanel extends React.Component {
                 onChange={this.switchEditText}
                 title={this.props.param.buttons.edit}
                 value="edit"
-                color="primary"
+                color="secondary"
               />
             }
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={5} >
           {/* Размер шрифта */}
           <TextField
             id="fontSize-number"
@@ -55,13 +57,14 @@ export default class MainSettingsPanel extends React.Component {
             }}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
-                  <IconsLib.FormatSize color="primary" />
+                <InputAdornment position="start" >
+                  <IconsLib.FormatSize />
                 </InputAdornment>
               )
             }}
           />
         </Grid>
+
         <Grid item xs={5}>
           {/* Высота строки */}
           <TextField
@@ -79,7 +82,7 @@ export default class MainSettingsPanel extends React.Component {
               inputProps: { step: 0.1 },
               startAdornment: (
                 <InputAdornment position="start">
-                  <IconsLib.FormatLineSpacing color="primary" />
+                  <IconsLib.FormatLineSpacing />
                 </InputAdornment>
               )
             }}

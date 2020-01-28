@@ -1,6 +1,7 @@
 .editor-panel-wp {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   padding-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .editor-panel__inner {
@@ -24,6 +25,12 @@
 
 .color-picker-wp__close {
   width: 100%;
+}
+
+
+
+.tabs-wrap {
+  margin-top: 180px;
 }
 
 

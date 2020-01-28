@@ -18,6 +18,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/purple';
 
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 import MyTheme from './MyTheme';
 
@@ -37,6 +38,7 @@ export default class App extends React.Component {
     this.state = props.data;
 
     console.log("*** Начальные данные ***\n", this.state);
+    console.log("MyTheme", MyTheme);
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
@@ -103,7 +105,7 @@ export default class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={MyTheme}>
-        <main className="App">
+        <Box component="main" className="App" >
           {/* панель редактирования */}
           <EditorPanel
             param={this.state}
@@ -113,7 +115,7 @@ export default class App extends React.Component {
             dialogLink={this.switchDialogLink}
           />
 
-          <Grid container spacing={0} alignItems="center" justify="center">
+          <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
             <Grid item xs={12} md={10} lg={8}>
 
               {/* Переключатель вкладок */}
@@ -148,7 +150,7 @@ export default class App extends React.Component {
 
             </Grid>
           </Grid>
-        </main>
+        </Box>
       </MuiThemeProvider>
     );
   }

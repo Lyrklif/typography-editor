@@ -112,14 +112,14 @@ export const startingValue = {
       }
     },
     h4: {
-    command: [
-    ['formatBlock', false, 'h4'],
-    ],
-    display: ['icon-save'],
-    materialize: {
-      title: 'h4',
-      iconName: 'Filter4'
-    }
+      command: [
+        ['formatBlock', false, 'h4'],
+      ],
+      display: ['icon-save'],
+      materialize: {
+        title: 'h4',
+        iconName: 'Filter4'
+      }
     },
     h5: {
       command: [
@@ -141,46 +141,17 @@ export const startingValue = {
         iconName: 'Filter6'
       }
     },
-    p: {
-      command: [
-        ['formatBlock', false, 'p'],
-      ],
-      display: ['icon-text'],
-      materialize: {
-        title: 'Параграф',
-        iconName: 'TextFormat'
-      }
-    },
-    [formatCommand_link]: {
-      command: [
-        ['createLink', false, '#'], // нельзя менять и добавлять новые команды
-      ],
-      display: ['icon-insert_link'],
-      materialize: {
-        title: 'Ссылка',
-        iconName: 'Link'
-      }
-    },
-    ul: {
-      command: [
-        ['insertUnorderedList', false, ''],
-      ],
-      display: ['icon-format_list_bulleted'],
-      materialize: {
-        title: 'Маркированный список',
-        iconName: 'FormatListNumbered'
-      }
-    },
-    ol: {
-      command: [
-        ['insertOrderedList', false, ''],
-      ],
-      display: ['icon-format_list_numbered'],
-      materialize: {
-        title: 'Нумерованный список',
-        iconName: 'FormatListBulleted'
-      }
-    },
+    // p: {
+    //   command: [
+    //     ['formatBlock', false, 'p'],
+    //   ],
+    //   display: ['icon-text'],
+    //   materialize: {
+    //     title: 'Параграф',
+    //     iconName: 'TextFormat'
+    //   }
+    // },
+
     b: {
       command: [
         ['bold', false, ''],
@@ -199,6 +170,16 @@ export const startingValue = {
       materialize: {
         title: 'italic',
         iconName: 'FormatItalic'
+      }
+    },
+    underline: {
+      command: [
+        ['underline', false, ''],
+      ],
+      display: ['icon-format_underlined'],
+      materialize: {
+        title: 'underline',
+        iconName: 'FormatUnderlined'
       }
     },
     strike: {
@@ -231,56 +212,6 @@ export const startingValue = {
       materialize: {
         title: 'Цвет текста',
         iconName: 'FormatColorText'
-      }
-    },
-    sup: {
-      command: [
-        ['superscript', false, ''],
-      ],
-      display: ['icon-superscript'],
-      materialize: {
-        title: 'sup',
-        iconName: 'VerticalAlignTop'
-      }
-    },
-    sub: {
-      command: [
-        ['subscript', false, ''],
-      ],
-      display: ['icon-subscript'],
-      materialize: {
-        title: 'sub',
-        iconName: 'VerticalAlignBottom'
-      }
-    },
-    underline: {
-      command: [
-        ['underline', false, ''],
-      ],
-      display: ['icon-format_underlined'],
-      materialize: {
-        title: 'underline',
-        iconName: 'FormatUnderlined'
-      }
-    },
-    blockquote: {
-      command: [
-        ['formatBlock', false, 'blockquote'],
-      ],
-      display: ['icon-format_quote'],
-      materialize: {
-        title: 'Цитата',
-        iconName: 'FormatQuote'
-      }
-    },
-    hr: {
-      command: [
-        ['insertHorizontalRule', false, ''],
-      ],
-      display: ['icon-line_horizontal'],
-      materialize: {
-        title: 'hr',
-        iconName: 'Remove'
       }
     },
     left: {
@@ -323,6 +254,77 @@ export const startingValue = {
         iconName: 'FormatAlignJustify'
       }
     },
+    ul: {
+      command: [
+        ['insertUnorderedList', false, ''],
+      ],
+      display: ['icon-format_list_bulleted'],
+      materialize: {
+        title: 'Маркированный список',
+        iconName: 'FormatListNumbered'
+      }
+    },
+    ol: {
+      command: [
+        ['insertOrderedList', false, ''],
+      ],
+      display: ['icon-format_list_numbered'],
+      materialize: {
+        title: 'Нумерованный список',
+        iconName: 'FormatListBulleted'
+      }
+    },
+    sup: {
+      command: [
+        ['superscript', false, ''],
+      ],
+      display: ['icon-superscript'],
+      materialize: {
+        title: 'sup',
+        iconName: 'VerticalAlignTop'
+      }
+    },
+    sub: {
+      command: [
+        ['subscript', false, ''],
+      ],
+      display: ['icon-subscript'],
+      materialize: {
+        title: 'sub',
+        iconName: 'VerticalAlignBottom'
+      }
+    },
+    blockquote: {
+      command: [
+        ['formatBlock', false, 'blockquote'],
+      ],
+      display: ['icon-format_quote'],
+      materialize: {
+        title: 'Цитата',
+        iconName: 'FormatQuote'
+      }
+    },
+    hr: {
+      command: [
+        ['insertHorizontalRule', false, ''],
+      ],
+      display: ['icon-line_horizontal'],
+      materialize: {
+        title: 'hr',
+        iconName: 'Remove'
+      }
+    },
+    [formatCommand_link]: {
+      command: [
+        ['createLink', false, '#'], // нельзя менять и добавлять новые команды
+      ],
+      display: ['icon-insert_link'],
+      materialize: {
+        title: 'Ссылка',
+        iconName: 'Link'
+      }
+    },
+
   },
 
   // текст кнопок
