@@ -61,7 +61,7 @@ export default class ButtonsPanel extends React.Component {
 
   render() {
     return (
-      <Box>
+      <Box className="box-margin">
         {/* КНОПКА Отменить */}
         <IconButton
           color="primary"

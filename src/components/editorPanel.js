@@ -15,6 +15,9 @@ import * as IconsLib from "@material-ui/icons";
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -134,7 +137,7 @@ export default class EditorPanel extends React.Component {
           color="inherit"
         >
           <h2 className="meta-title">Панель редактирования</h2>
-          <Paper className={"editor-panel-wp editor-panel__inner"} >
+          <Paper className={"editor-panel-wp editor-panel__inner"}>
             <Tabs
               aria-label="outlined primary button li group"
               className={"scrollbar--center"}
@@ -150,15 +153,20 @@ export default class EditorPanel extends React.Component {
                 reset={this.reset}
                 switchEditText={this.switchEditText}
               />
-
+              <Box>
+                <Divider orientation="vertical" />
+              </Box>
 
               {/* панель с кнопками */}
               <ButtonsPanel
                 param={this.props.param}
               />
 
-
               <Box>
+                <Divider orientation="vertical" />
+              </Box>
+
+              <Box className="box-margin">
                 {/* Выбор цвета фона */}
                 <Button
                   size="large"

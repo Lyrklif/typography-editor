@@ -12,6 +12,7 @@ import Box from "@material-ui/core/Box";
 import Popper from "@material-ui/core/Popper";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
+import Divider from "@material-ui/core/Divider";
 
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -35,9 +36,19 @@ import * as IconsLib from "@material-ui/icons";
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-
+import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+
+import MyTheme from '../MyTheme';
+
+
+
+
+
+
+
+
 
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
@@ -64,9 +75,8 @@ export default class MainSettingsPanel extends React.Component {
       );
     });
 
-
     return (
-      <Box className="flex-block">
+      <Box className="flex-block child-margin box-margin" >
         {/* КНОПКА Режим редактирования текста */}
         <FormControlLabel
           control={
@@ -79,6 +89,7 @@ export default class MainSettingsPanel extends React.Component {
             />
           }
         />
+
 
         {/* Размер текста */}
         <FormControl >
@@ -93,7 +104,6 @@ export default class MainSettingsPanel extends React.Component {
           </Select>
         </FormControl>
 
-
         {/* Высота строки */}
         <FormControl >
           <Select
@@ -106,7 +116,6 @@ export default class MainSettingsPanel extends React.Component {
             {lineHeightList}
           </Select>
         </FormControl>
-
 
       </Box>
     );

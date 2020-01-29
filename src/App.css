@@ -63,15 +63,21 @@
 }
 
 
-.tag-list .MuiTabs-flexContainer {
-  align-items: center;
-}
-
-
 .tag-list__item:last-of-type {
   border-right: 0 none;
 }
 
+
+.child-margin>* {
+  margin-right: .5rem !important;
+  margin-left: .5rem !important;
+}
+
+.box-margin {
+  margin-right: .5rem !important;
+  margin-left: .5rem !important;
+
+}
 
 
 .flex-block {
@@ -88,6 +94,7 @@
   align-items: center;
 }
 
+.scrollbar--center .MuiDivider-vertical,
 .scrollbar--center .MuiTabs-scrollButtons {
   align-self: stretch;
 }
