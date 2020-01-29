@@ -3,6 +3,7 @@ import React from "react";
 import IconButton from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
 
 // настройка тегов
@@ -60,59 +61,51 @@ export default class ButtonsPanel extends React.Component {
 
   render() {
     return (
-      <Grid container spacing={0} alignItems="center" justify="center">
-
-        <Grid item>
-          {/* КНОПКА Отменить */}
-          <IconButton
-            color="primary"
-            aria-label={this.props.param.buttons.undo}
-            title={this.props.param.buttons.undo}
-            onClick={this.undo}
-          >
-            <IconsLib.Undo />
-          </IconButton>
-        </Grid>
+      <Box>
+        {/* КНОПКА Отменить */}
+        <IconButton
+          color="primary"
+          aria-label={this.props.param.buttons.undo}
+          title={this.props.param.buttons.undo}
+          onClick={this.undo}
+        >
+          <IconsLib.Undo />
+        </IconButton>
 
 
-        <Grid item>
-          {/* КНОПКА Повторить */}
-          <IconButton
-            color="primary"
-            aria-label={this.props.param.buttons.redo}
-            title={this.props.param.buttons.redo}
-            onClick={this.redo}
-          >
-            <IconsLib.Redo />
-          </IconButton>
-        </Grid>
+        {/* КНОПКА Повторить */}
+        <IconButton
+          color="primary"
+          aria-label={this.props.param.buttons.redo}
+          title={this.props.param.buttons.redo}
+          onClick={this.redo}
+        >
+          <IconsLib.Redo />
+        </IconButton>
 
 
-        <Grid item>
-          {/* КНОПКА скачать */}
-          <IconButton
-            color="primary"
-            aria-label={this.props.param.buttons.download}
-            title={this.props.param.buttons.download}
-            onClick={this.download}
-          >
-            <IconsLib.GetApp />
-          </IconButton>
-        </Grid>
+        {/* КНОПКА скачать */}
+        <IconButton
+          color="primary"
+          aria-label={this.props.param.buttons.download}
+          title={this.props.param.buttons.download}
+          onClick={this.download}
+        >
+          <IconsLib.GetApp />
+        </IconButton>
 
 
-        <Grid item>
-          {/* КНОПКА печать */}
-          <IconButton
-            color="primary"
-            aria-label={this.props.param.buttons.print}
-            title={this.props.param.buttons.print}
-            onClick={this.print}
-          >
-            <IconsLib.Print />
-          </IconButton>
-        </Grid>
-      </Grid>
+
+        {/* КНОПКА печать */}
+        <IconButton
+          color="primary"
+          aria-label={this.props.param.buttons.print}
+          title={this.props.param.buttons.print}
+          onClick={this.print}
+        >
+          <IconsLib.Print />
+        </IconButton>
+      </Box>
     );
   }
 }

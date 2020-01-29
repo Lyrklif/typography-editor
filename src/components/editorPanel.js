@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
 import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
+import Tabs from '@material-ui/core/Tabs';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -133,61 +135,60 @@ export default class EditorPanel extends React.Component {
         >
           <h2 className="meta-title">Панель редактирования</h2>
           <Paper className={"editor-panel-wp editor-panel__inner"} >
-            <Grid container spacing={2} alignItems="center" className={"editor-panel__top"} >
+            <Tabs
+              aria-label="outlined primary button li group"
+              className={"scrollbar--center"}
+              orientation="horizontal"
+              variant="scrollable"
+              value={0}
+            >
 
-              <Grid item xs={12} sm={6} md={4} >
-                {/* основные настройки */}
-                <MainSettingsPanel
-                  param={this.props.param}
-                  eventHandler={this.setGlobalParam}
-                  reset={this.reset}
-                  switchEditText={this.switchEditText}
-                />
-              </Grid>
+              {/* основные настройки */}
+              <MainSettingsPanel
+                param={this.props.param}
+                eventHandler={this.setGlobalParam}
+                reset={this.reset}
+                switchEditText={this.switchEditText}
+              />
 
-              <Grid item xs={12} sm={6} md={3} >
-                <Grid container spacing={0} alignItems="center" justify="center">
-                  <Grid item>
-                    {/* Выбор цвета фона */}
-                    <Button
-                      size="large"
-                      color="primary"
-                      title="Установить цвет фона"
-                      onClick={() => this.changeColor(formatCommand_bgcolor)}
-                      startIcon={<IconsLib.FormatColorFill color="inherit" />}
-                    >
-                      <span
-                        className={"button-pallet__color"}
-                        style={{ backgroundColor: this.state.styles.bgcolor }}>
-                      </span>
-                    </Button>
-                  </Grid>
 
-                  <Grid item>
-                    {/* Выбор цвета текста */}
-                    <Button
-                      size="large"
-                      color="primary"
-                      title="Установить цвет текста"
-                      onClick={() => this.changeColor(formatCommand_color)}
-                      startIcon={<IconsLib.FormatColorText />}
-                    >
-                      <span
-                        className={"button-pallet__color"}
-                        style={{ backgroundColor: this.state.styles.color }}>
-                      </span>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
+              {/* панель с кнопками */}
+              <ButtonsPanel
+                param={this.props.param}
+              />
 
-              <Grid item xs={12} sm={12} md={3}>
-                {/* панель с кнопками */}
-                <ButtonsPanel
-                  param={this.props.param}
-                />
-              </Grid>
-            </Grid>
+
+              <Box>
+                {/* Выбор цвета фона */}
+                <Button
+                  size="large"
+                  color="primary"
+                  title="Установить цвет фона"
+                  onClick={() => this.changeColor(formatCommand_bgcolor)}
+                  startIcon={<IconsLib.FormatColorFill color="inherit" />}
+                >
+                  <span
+                    className={"button-pallet__color"}
+                    style={{ backgroundColor: this.state.styles.bgcolor }}>
+                  </span>
+                </Button>
+
+                {/* Выбор цвета текста */}
+                <Button
+                  size="large"
+                  color="primary"
+                  title="Установить цвет текста"
+                  onClick={() => this.changeColor(formatCommand_color)}
+                  startIcon={<IconsLib.FormatColorText />}
+                >
+                  <span
+                    className={"button-pallet__color"}
+                    style={{ backgroundColor: this.state.styles.color }}>
+                  </span>
+                </Button>
+              </Box>
+
+            </Tabs>
 
 
             <Divider />

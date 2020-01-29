@@ -8,6 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import { getSelectionRange } from '../functions/getSelectionRange';
 
 
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
+
 import {
   formatCommand_clear,
   formatCommand_bgcolor,
@@ -159,9 +163,8 @@ export default class TagsPanel extends React.Component {
       return (
         <Box
           key={groupIndex}
-          component="li"
-          aria-label="li item"
-          className={"tag-list clear-list"}
+          aria-label="li item scrollable horizontal tabs"
+          className={"clear-list tag-list"}
         >
           <Box
             component="ul"
@@ -179,13 +182,16 @@ export default class TagsPanel extends React.Component {
 
 
     return (
-      <Box
-        component="ul"
+      <Tabs
         aria-label="outlined primary button li group"
-        className={"tag-list tag-list-wp clear-list"}
+        className={"tag-list tag-list-wp clear-list scrollbar--center"}
+        orientation="horizontal"
+        variant="scrollable"
+        value={0}
       >
         {groupsTagList}
-      </Box>
+      </Tabs>
+
     )
   }
 }

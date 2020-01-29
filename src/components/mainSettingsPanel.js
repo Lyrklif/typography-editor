@@ -8,18 +8,41 @@ import TextField from "@material-ui/core/TextField";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Popper from "@material-ui/core/Popper";
+import Paper from "@material-ui/core/Paper";
+import Grow from "@material-ui/core/Grow";
+
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+import InputLabel from '@material-ui/core/InputLabel';
+
+
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
+import MenuList from '@material-ui/core/MenuList';
+
+
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 import IconButton from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = props.param;
 
     this.eventHandler = props.eventHandler;
     this.reset = props.reset;
@@ -27,68 +50,65 @@ export default class MainSettingsPanel extends React.Component {
   }
 
   render() {
-    return (
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={2}>
-          {/* КНОПКА Режим редактирования текста */}
-          <FormControlLabel
-            control={
-              <Switch
-                checked={this.props.param.states.editText}
-                onChange={this.switchEditText}
-                title={this.props.param.buttons.edit}
-                value="edit"
-                color="primary"
-              />
-            }
-          />
-        </Grid>
-        <Grid item xs={5} >
-          {/* Размер шрифта */}
-          <TextField
-            id="fontSize-number"
-            title={this.props.param.inputs.fontSize}
-            type="number"
-            size="small"
-            defaultValue={this.props.param.styles.fontSize}
-            onChange={value => this.eventHandler("fontSize", value)}
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start" >
-                  <IconsLib.FormatSize  color="primary"/>
-                </InputAdornment>
-              )
-            }}
-          />
-        </Grid>
+    let fontSizeValues = this.props.param.sizes.fontSize.values;
+    let fontSizeList = fontSizeValues.map((elem, index) => {
+      return (
+        <MenuItem key={index} value={elem}>{elem}</MenuItem>
+      );
+    });
 
-        <Grid item xs={5}>
-          {/* Высота строки */}
-          <TextField
-            id="lineHeight-number"
-            title={this.props.param.inputs.lineHeight}
-            type="number"
+    let lineHeightValues = this.props.param.sizes.lineHeight.values;
+    let lineHeightList = lineHeightValues.map((elem, index) => {
+      return (
+        <MenuItem key={index} value={elem}>{elem}</MenuItem>
+      );
+    });
+
+
+    return (
+      <Box className="flex-block">
+        {/* КНОПКА Режим редактирования текста */}
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.props.param.states.editText}
+              onChange={this.switchEditText}
+              title={this.props.param.buttons.edit}
+              value="edit"
+              color="primary"
+            />
+          }
+        />
+
+        {/* Размер текста */}
+        <FormControl >
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
             size="small"
-            step="0.1"
-            defaultValue={this.props.param.styles.lineHeight}
+            onChange={value => this.eventHandler("fontSize", value)}
+            value={this.props.param.styles.fontSize}
+          >
+            {fontSizeList}
+          </Select>
+        </FormControl>
+
+
+        {/* Высота строки */}
+        <FormControl >
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            size="small"
             onChange={value => this.eventHandler("lineHeight", value)}
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              inputProps: { step: 0.1 },
-              startAdornment: (
-                <InputAdornment position="start" >
-                  <IconsLib.FormatLineSpacing color="primary"/>
-                </InputAdornment>
-              )
-            }}
-          />
-        </Grid>
-      </Grid>
+            value={this.props.param.styles.lineHeight}
+          >
+            {lineHeightList}
+          </Select>
+        </FormControl>
+
+
+      </Box>
     );
   }
 }
