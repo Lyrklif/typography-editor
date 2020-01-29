@@ -15,11 +15,11 @@ import * as IconsLib from "@material-ui/icons";
 import Modal from '@material-ui/core/Modal';
 
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+
+import { restoreSelection } from '../functions/restoreSelection';
 
 import {
   // formatCommand_clear,
@@ -96,31 +96,32 @@ export default class EditorPanel extends React.Component {
   }
 
   // показать/скрыть диалог ввода ссылки
-  switchDialogLink() {
+  switchDialogLink(selectedText) {
     this.setState(state => ({
       states: {
         ...state.states,
         // заменить значение на противоположное
         dialogLink: !this.state.states.dialogLink
-      }
+      },
+      selectedText: selectedText
     }));
   }
 
-  // addLinkUrl = (href) => {
-  //   this.switchDialogLink();
+  // добавить ссылку
+  addLinkUrl = (href) => {
+    this.switchDialogLink(); // закрыть модальное окно
 
-  //   console.log(this.state);
-  //   let commands = this.state.tagParameters[formatCommand_link].command;
+    // если выделенный ранее текст записан
+    if (this.state.selectedText) {
+      restoreSelection(this.state.selectedText); // восстановить выделение
 
-  //   if (commands) {
-  //     for (let i = 0; i < commands.length; i++) {
-  //       if (!href) href = commands[i][2].toUpperCase();
-  //       document.execCommand(commands[i][0], commands[i][1], href);
-  //     }
-  //   }
-  // }
+      document.execCommand('createLink', false, href); // добавить ссылку
 
-
+      this.setState(state => ({
+        selectedText: ''
+      }));
+    }
+  }
 
   render() {
     return (
@@ -234,7 +235,7 @@ export default class EditorPanel extends React.Component {
             <DialogLink
               isOpen={this.state.states.dialogLink}
               switchDialogLink={this.switchDialogLink}
-            // addLinkUrl={this.addLinkUrl}
+              addLinkUrl={this.addLinkUrl}
             />
           </Paper>
         </AppBar>

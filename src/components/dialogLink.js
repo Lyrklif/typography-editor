@@ -47,8 +47,7 @@ export default class DialogLink extends React.Component {
           <Button onClick={this.switchDialogLink} color="primary">
             Закрыть
           </Button>
-          {/* <Button onClick={() => this.addLinkUrl(this.href.current.lastChild.lastChild.value)} color="primary"> */}
-          <Button onClick={this.switchDialogLink} color="primary">
+          <Button onClick={() => this.addLinkUrl(this.href.current.lastChild.lastChild.value)} color="primary">
             Отправить
           </Button>
         </DialogActions>
