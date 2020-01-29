@@ -19,6 +19,7 @@ export default class ButtonsPanel extends React.Component {
     this.download = this.download.bind(this);
     this.undo = this.undo.bind(this);
     this.redo = this.redo.bind(this);
+    this.print = this.print.bind(this);
   }
 
   // скачать отредактированный текст
@@ -50,6 +51,11 @@ export default class ButtonsPanel extends React.Component {
   // сбросить изменения  параметров
   redo() {
     document.execCommand("redo"); // Повтор последнего действия
+  }
+
+  // напечатать текст/код
+  print() {
+    window.print();
   }
 
   render() {
@@ -91,6 +97,19 @@ export default class ButtonsPanel extends React.Component {
             onClick={this.download}
           >
             <IconsLib.GetApp />
+          </IconButton>
+        </Grid>
+
+
+        <Grid item>
+          {/* КНОПКА печать */}
+          <IconButton
+            color="primary"
+            aria-label={this.props.param.buttons.print}
+            title={this.props.param.buttons.print}
+            onClick={this.print}
+          >
+            <IconsLib.Print />
           </IconButton>
         </Grid>
       </Grid>

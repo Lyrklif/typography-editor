@@ -61,3 +61,24 @@
 .tag-list__item:last-of-type {
   border-right: 0 none;
 }
+
+
+
+/* Настройки печати */
+@media print {
+
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  .print {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+}

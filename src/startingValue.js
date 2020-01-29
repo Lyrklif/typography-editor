@@ -359,6 +359,7 @@ export const startingValue = {
     undo: 'Отменить',
     redo: 'Повторить',
     download: 'Скачать текст с тегами',
+    print: 'Напечатать текст',
     text: 'text',
     html: 'html',
     css: 'css',
