@@ -13,13 +13,18 @@ import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
 import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+
+import { restoreSelection } from '../functions/restoreSelection';
 
 import {
   // formatCommand_clear,
@@ -96,31 +101,32 @@ export default class EditorPanel extends React.Component {
   }
 
   // показать/скрыть диалог ввода ссылки
-  switchDialogLink() {
+  switchDialogLink(selectedText) {
     this.setState(state => ({
       states: {
         ...state.states,
         // заменить значение на противоположное
         dialogLink: !this.state.states.dialogLink
-      }
+      },
+      selectedText: selectedText
     }));
   }
 
-  // addLinkUrl = (href) => {
-  //   this.switchDialogLink();
+  // добавить ссылку
+  addLinkUrl = (href) => {
+    this.switchDialogLink(); // закрыть модальное окно
 
-  //   console.log(this.state);
-  //   let commands = this.state.tagParameters[formatCommand_link].command;
+    // если выделенный ранее текст записан
+    if (this.state.selectedText) {
+      restoreSelection(this.state.selectedText); // восстановить выделение
 
-  //   if (commands) {
-  //     for (let i = 0; i < commands.length; i++) {
-  //       if (!href) href = commands[i][2].toUpperCase();
-  //       document.execCommand(commands[i][0], commands[i][1], href);
-  //     }
-  //   }
-  // }
+      document.execCommand('createLink', false, href); // добавить ссылку
 
-
+      this.setState(state => ({
+        selectedText: ''
+      }));
+    }
+  }
 
   render() {
     return (
@@ -131,62 +137,66 @@ export default class EditorPanel extends React.Component {
           color="inherit"
         >
           <h2 className="meta-title">Панель редактирования</h2>
-          <Paper className={"editor-panel-wp editor-panel__inner"} >
-            <Grid container spacing={2} alignItems="center" className={"editor-panel__top"} >
+          <Paper className={"editor-panel-wp editor-panel__inner"}>
+            <Tabs
+              aria-label="outlined primary button li group"
+              className={"scrollbar--center"}
+              orientation="horizontal"
+              variant="scrollable"
+              value={0}
+            >
 
-              <Grid item xs={12} sm={6} md={4} >
-                {/* основные настройки */}
-                <MainSettingsPanel
-                  param={this.props.param}
-                  eventHandler={this.setGlobalParam}
-                  reset={this.reset}
-                  switchEditText={this.switchEditText}
-                />
-              </Grid>
+              {/* основные настройки */}
+              <MainSettingsPanel
+                param={this.props.param}
+                eventHandler={this.setGlobalParam}
+                reset={this.reset}
+                switchEditText={this.switchEditText}
+              />
+              <Box>
+                <Divider orientation="vertical" />
+              </Box>
 
-              <Grid item xs={12} sm={6} md={3} >
-                <Grid container spacing={0} alignItems="center" justify="center">
-                  <Grid item>
-                    {/* Выбор цвета фона */}
-                    <Button
-                      size="large"
-                      color="primary"
-                      title="Установить цвет фона"
-                      onClick={() => this.changeColor(formatCommand_bgcolor)}
-                      startIcon={<IconsLib.FormatColorFill color="inherit" />}
-                    >
-                      <span
-                        className={"button-pallet__color"}
-                        style={{ backgroundColor: this.state.styles.bgcolor }}>
-                      </span>
-                    </Button>
-                  </Grid>
+              {/* панель с кнопками */}
+              <ButtonsPanel
+                param={this.props.param}
+              />
 
-                  <Grid item>
-                    {/* Выбор цвета текста */}
-                    <Button
-                      size="large"
-                      color="primary"
-                      title="Установить цвет текста"
-                      onClick={() => this.changeColor(formatCommand_color)}
-                      startIcon={<IconsLib.FormatColorText />}
-                    >
-                      <span
-                        className={"button-pallet__color"}
-                        style={{ backgroundColor: this.state.styles.color }}>
-                      </span>
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Grid>
+              <Box>
+                <Divider orientation="vertical" />
+              </Box>
 
-              <Grid item xs={12} sm={12} md={3}>
-                {/* панель с кнопками */}
-                <ButtonsPanel
-                  param={this.props.param}
-                />
-              </Grid>
-            </Grid>
+              <Box className="box-margin">
+                {/* Выбор цвета фона */}
+                <Button
+                  size="large"
+                  color="primary"
+                  title="Установить цвет фона"
+                  onClick={() => this.changeColor(formatCommand_bgcolor)}
+                  startIcon={<IconsLib.FormatColorFill color="inherit" />}
+                >
+                  <span
+                    className={"button-pallet__color"}
+                    style={{ backgroundColor: this.state.styles.bgcolor }}>
+                  </span>
+                </Button>
+
+                {/* Выбор цвета текста */}
+                <Button
+                  size="large"
+                  color="primary"
+                  title="Установить цвет текста"
+                  onClick={() => this.changeColor(formatCommand_color)}
+                  startIcon={<IconsLib.FormatColorText />}
+                >
+                  <span
+                    className={"button-pallet__color"}
+                    style={{ backgroundColor: this.state.styles.color }}>
+                  </span>
+                </Button>
+              </Box>
+
+            </Tabs>
 
 
             <Divider />
@@ -234,7 +244,7 @@ export default class EditorPanel extends React.Component {
             <DialogLink
               isOpen={this.state.states.dialogLink}
               switchDialogLink={this.switchDialogLink}
-            // addLinkUrl={this.addLinkUrl}
+              addLinkUrl={this.addLinkUrl}
             />
           </Paper>
         </AppBar>

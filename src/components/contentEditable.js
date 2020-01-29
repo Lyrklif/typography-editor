@@ -18,7 +18,7 @@ export default class ContentEditable extends React.Component {
         tabIndex={this.props.param.states.editText ? '0' : null}
         contentEditable={this.props.param.states.editText ? 'true' : 'false'}
         suppressContentEditableWarning={true} // чтобы убрать в консоли предупреждение о contentEditable
-        className={this.props.param.states.editText ? 'content edit' : 'content'}
+        className={this.props.param.states.editText ? 'content print edit' : 'print content'}
         dangerouslySetInnerHTML={createContent()} // вставить переданный текст
         style={{
           fontSize: `${this.props.param.styles.fontSize}px`,

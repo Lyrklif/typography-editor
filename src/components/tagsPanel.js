@@ -3,26 +3,13 @@ import React from "react";
 import IconButton from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-
-import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
 
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { getSelectionRange } from '../functions/getSelectionRange';
 
 
-import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
-import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
-import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
-import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
-import FormatBoldIcon from '@material-ui/icons/FormatBold';
-import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 
 import {
@@ -62,11 +49,11 @@ export default class TagsPanel extends React.Component {
 
         // если нужно вводить адрес ссылки
         if (tag === formatCommand_link) {
-          // this.showDialogLink();
+          let selectionRange = getSelectionRange(); // записать выделенный текст
 
-          let href = prompt("Введите путь для ссылки:");
-          if (href) {
-            document.execCommand(commands[i][0], commands[i][1], href);
+          // если есть выделенный текст
+          if (selectionRange.toString().length > 0) {
+            this.showDialogLink(selectionRange); // вызвать модальное окно ввода url
           }
 
           // если нужно выбрать цвет фона
@@ -122,9 +109,10 @@ export default class TagsPanel extends React.Component {
       let select = window.getSelection();
 
       // если количество диапазонов в выделении > 0
-      if (select.rangeCount > 0)
+      if (select.rangeCount > 0) {
         // записать выделенный текст
         container = select.getRangeAt(0).startContainer.parentNode;
+      }
     }
 
     // если этот элемент не div и не li
@@ -141,7 +129,7 @@ export default class TagsPanel extends React.Component {
     let tagParameters = this.props.param.tagParameters;
     let groupsTagArray = Object.keys(tagParameters);
 
-    let groupsTagList = groupsTagArray.map((group, index0) => {
+    let groupsTagList = groupsTagArray.map((group, groupIndex) => {
 
       let groupTags = tagParameters[group];
       let groupTagKeys = Object.keys(groupTags);
@@ -162,6 +150,7 @@ export default class TagsPanel extends React.Component {
                 title={cuttentTag.materialize.title}
                 name={tag}
                 onClick={() => this.setTag(group, tag)}
+
               >
                 <Icon />
               </IconButton>
@@ -173,10 +162,9 @@ export default class TagsPanel extends React.Component {
       });
       return (
         <Box
-          key={index0}
-          component="li"
-          aria-label="li item"
-          className={"tag-list clear-list"}
+          key={groupIndex}
+          aria-label="li item scrollable horizontal tabs"
+          className={"clear-list tag-list"}
         >
           <Box
             component="ul"
@@ -185,7 +173,7 @@ export default class TagsPanel extends React.Component {
             {tagList}
           </Box>
           {/* После последнего элемента не добавлять черту */}
-          {(groupsTagArray.length - 1 !== index0) &&
+          {(groupsTagArray.length - 1 !== groupIndex) &&
             <Divider orientation="vertical" />
           }
         </Box>
@@ -194,13 +182,16 @@ export default class TagsPanel extends React.Component {
 
 
     return (
-      <Box
-        component="ul"
+      <Tabs
         aria-label="outlined primary button li group"
-        className={"tag-list tag-list-wp clear-list"}
+        className={"tag-list tag-list-wp clear-list scrollbar--center"}
+        orientation="horizontal"
+        variant="scrollable"
+        value={0}
       >
         {groupsTagList}
-      </Box>
+      </Tabs>
+
     )
   }
 }
