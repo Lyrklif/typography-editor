@@ -3,10 +3,10 @@ import React from "react";
 import { SwatchesPicker } from "react-color";
 
 
-import TagsPanel from "./tagsPanel";
-import ButtonsPanel from "./buttonsPanel";
-import MainSettingsPanel from "./mainSettingsPanel";
-import DialogLink from "./dialogLink";
+import TagsPanel from "./TagsPanel";
+import ButtonsPanel from "./ButtonsPanel";
+import MainSettingsPanel from "./MainSettingsPanel";
+import DialogLink from "./DialogLink";
 
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";

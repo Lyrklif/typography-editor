@@ -1,29 +1,27 @@
 // React
 import React from "react";
-import sanitizeHtml from "sanitize-html";
 
 // Мои компоненты
-import EditorPanel from "./components/editorPanel";
-import ContentEditable from "./components/contentEditable";
-
-import HTMLeditable from "./components/htmlEditable";
-import TabContainer from "./components/tabContainer";
-import TabSwitches from "./components/tabSwitches";
+import EditorPanel from "./components/EditorPanel";
+import ContentEditable from "./components/ContentEditable";
+import HTMLeditable from "./components/HTMLeditable";
+import TabContainer from "./components/TabContainer";
+import TabSwitches from "./components/TabSwitches";
+import Settings from "./components/Settings";
 
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
-
-
-import Box from '@material-ui/core/Box';
 
 import MyTheme from './MyTheme';
 
 import { getSelection } from './functions/getSelection';
 import { setAttributeForSelectedText } from './functions/setAttributeForSelectedText';
 
-
+import sanitizeHtml from "sanitize-html";
 import pretty from 'pretty';
+
 
 // Стили
 import "./App.css";
@@ -136,6 +134,8 @@ export default class App extends React.Component {
             dialogLink={this.switchDialogLink}
           />
 
+          
+
           <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
             <Grid item xs={12} md={10} lg={8}>
 
@@ -175,6 +175,8 @@ export default class App extends React.Component {
             </Grid>
           </Grid>
         </Box>
+        <Settings param={this.state} />
+
       </MuiThemeProvider>
     );
   }
