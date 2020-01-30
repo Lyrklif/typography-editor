@@ -1,8 +1,6 @@
 import React from "react";
 
 import IconButton from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
 

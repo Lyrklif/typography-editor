@@ -406,6 +406,8 @@ export const startingValue = {
     text: 'text',
     html: 'html',
     css: 'css',
+    close: 'Закрыть',
+    send: 'Отправить',
   },
 
   // текст полей ввода

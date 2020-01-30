@@ -1,5 +1,3 @@
-// dialogLink
-
 import React from "react";
 
 import Button from "@material-ui/core/Button";
@@ -14,8 +12,6 @@ import TextField from '@material-ui/core/TextField';
 export default class DialogLink extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = props.isOpen;
 
     this.switchDialogLink = props.switchDialogLink;
     this.addLinkUrl = props.addLinkUrl;
@@ -45,10 +41,10 @@ export default class DialogLink extends React.Component {
         </DialogContent>
         <DialogActions>
           <Button onClick={this.switchDialogLink} color="primary">
-            Закрыть
+            {this.props.param.buttons.close}
           </Button>
           <Button onClick={() => this.addLinkUrl(this.href.current.lastChild.lastChild.value)} color="primary">
-            Отправить
+            {this.props.param.buttons.send}
           </Button>
         </DialogActions>
       </Dialog>
