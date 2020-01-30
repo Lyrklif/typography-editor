@@ -6,16 +6,17 @@ import * as IconsLib from "@material-ui/icons";
 import Divider from '@material-ui/core/Divider';
 
 import { getSelectionRange } from '../functions/getSelectionRange';
+import { getSelection } from '../functions/getSelection';
 
 
 import Tabs from '@material-ui/core/Tabs';
-
 
 import {
   formatCommand_clear,
   formatCommand_bgcolor,
   formatCommand_color,
-  formatCommand_link
+  formatCommand_link,
+  formatCommand_uppercase,
 } from "../vars";
 
 
@@ -38,59 +39,43 @@ export default class TagsPanel extends React.Component {
     // ничего не делать, если это не первая вкладка
     if (!this.props.editAllowed) return false;
 
-    let commands = this.props.param.tagParameters[group][tag].command; // команды, прописанные для этого тега
+    let command = this.props.param.tagParameters[group][tag].command; // команды, прописанные для этого тега
 
     // если команды для этого тега существуют
-    if (commands) {
-      // применить все заданные команды из массива
-      for (let i = 0; i < commands.length; i++) {
-        // *** document.execCommand('Название команды', false, значение (если требуется));
+    if (command) {
+      // *** document.execCommand('Название команды', false, значение (если требуется));
+      document.execCommand(command[0], command[1], command[2].toUpperCase());
+    }
 
-        // если нужно вводить адрес ссылки
-        if (tag === formatCommand_link) {
-          let selectionRange = getSelectionRange(); // записать выделенный текст
+    // если команды для этого тега НЕ существуют
+    else {
+      // цвет фона
+      if (tag === formatCommand_bgcolor) {
+        document.execCommand('hiliteColor', false, this.props.param.styles.bgcolor);
 
-          // если есть выделенный текст
-          if (selectionRange.toString().length > 0) {
-            this.showDialogLink(selectionRange); // вызвать модальное окно ввода url
-          }
-
-          // если нужно выбрать цвет фона
-        } else if (tag === formatCommand_bgcolor) {
-          document.execCommand(
-            commands[i][0],
-            commands[i][1],
-            this.props.param.styles.bgcolor
-          );
-
-          // если нужно выбрать цвет текста
-        } else if (i === 1 && tag === formatCommand_color) {
-          document.execCommand(
-            commands[i][0],
-            commands[i][1],
-            this.props.param.styles.color
-          );
-
-          // [default] просто стилизовать текст
-        } else {
-          document.execCommand(
-            commands[i][0],
-            commands[i][1],
-            commands[i][2].toUpperCase()
-          );
-        }
+        // цвет текста
+      } else if (tag === formatCommand_color) {
+        document.execCommand('styleWithCSS', false, 'true');
+        document.execCommand('foreColor', false, this.props.param.styles.color);
+        document.execCommand('styleWithCSS', false, 'false');
       }
 
-      // если нужно очистить формат
-      if (tag === formatCommand_clear) {
+      // ссылка
+      else if (tag === formatCommand_link) {
+        let selectionRange = getSelectionRange(); // записать выделенный текст
+
+        // если есть выделенный текст
+        if (selectionRange.toString().length > 0) this.showDialogLink(selectionRange); // вызвать модальное окно ввода url
+
+      }
+
+      // очистка формата
+      else if (tag === formatCommand_clear) {
+        document.execCommand('removeFormat', false, '');
+        document.execCommand('unlink', false, '');
+
         this.clearFormat();
       }
-
-      // если команды для этого тега НЕ существуют
-    } else {
-      console.log(
-        "Правила форматирования для этого тега не прописаны.\nСделайте это в файле startingValue.js"
-      );
     }
   }
 
@@ -149,7 +134,6 @@ export default class TagsPanel extends React.Component {
                 title={cuttentTag.materialize.title}
                 name={tag}
                 onClick={() => this.setTag(group, tag)}
-
               >
                 <Icon />
               </IconButton>

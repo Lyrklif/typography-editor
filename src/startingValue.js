@@ -3,6 +3,7 @@ import {
   formatCommand_bgcolor,
   formatCommand_color,
   formatCommand_link,
+  formatCommand_uppercase,
   default_bgcolor,
   default_color,
 } from './vars';
@@ -117,19 +118,13 @@ export const startingValue = {
     // ******************************
     outside: {
       [formatCommand_clear]: {
-        command: [
-          ['removeFormat', false, ''],
-          ['unlink', false, ''],
-        ],
         materialize: {
           title: 'Очистить формат',
           iconName: 'FormatClear'
         }
       },
       p: {
-        command: [
-          ['formatBlock', false, 'p'],
-        ],
+        command: ['formatBlock', false, 'p'],
         materialize: {
           title: 'Параграф',
           iconName: 'TextFormat'
@@ -142,54 +137,42 @@ export const startingValue = {
     // ******************************
     titles: {
       h1: {
-        command: [
-          ['formatBlock', false, 'h1'],
-        ],
+        command: ['formatBlock', false, 'h1'],
         materialize: {
           title: 'Заголовок 1',
           iconName: 'Filter1'
         }
       },
       h2: {
-        command: [
-          ['formatBlock', false, 'h2'],
-        ],
+        command: ['formatBlock', false, 'h2'],
         materialize: {
           title: 'Заголовок 2',
           iconName: 'Filter2'
         }
       },
       h3: {
-        command: [
-          ['formatBlock', false, 'h3'],
-        ],
+        command: ['formatBlock', false, 'h3'],
         materialize: {
           title: 'Заголовок 3',
           iconName: 'Filter3'
         }
       },
       h4: {
-        command: [
-          ['formatBlock', false, 'h4'],
-        ],
+        command: ['formatBlock', false, 'h4'],
         materialize: {
           title: 'Заголовок 4',
           iconName: 'Filter4'
         }
       },
       h5: {
-        command: [
-          ['formatBlock', false, 'h5'],
-        ],
+        command: ['formatBlock', false, 'h5'],
         materialize: {
           title: 'Заголовок 5',
           iconName: 'Filter5'
         }
       },
       h6: {
-        command: [
-          ['formatBlock', false, 'h6'],
-        ],
+        command: ['formatBlock', false, 'h6'],
         materialize: {
           title: 'Заголовок 6',
           iconName: 'Filter6'
@@ -203,56 +186,40 @@ export const startingValue = {
     // ******************************
     textStyle: {
       b: {
-        command: [
-          ['bold', false, ''],
-        ],
+        command: ['bold', false, ''],
         materialize: {
           title: 'Полужирный',
           iconName: 'FormatBold'
         }
       },
       i: {
-        command: [
-          ['italic', false, ''],
-        ],
+        command: ['italic', false, ''],
         materialize: {
           title: 'Курсив',
           iconName: 'FormatItalic'
         }
       },
       underline: {
-        command: [
-          ['underline', false, ''],
-        ],
+        command: ['underline', false, ''],
         materialize: {
           title: 'Подчёркнутый текст',
           iconName: 'FormatUnderlined'
         }
       },
       strike: {
-        command: [
-          ['strikeThrough', false, ''],
-        ],
+        command: ['strikeThrough', false, ''],
         materialize: {
           title: 'Зачёркнутый текст',
           iconName: 'StrikethroughS'
         }
       },
       [formatCommand_bgcolor]: {
-        command: [
-          ['hiliteColor', false, default_bgcolor],
-        ],
         materialize: {
           title: 'Цвет фона',
           iconName: 'FormatColorFill'
         }
       },
       [formatCommand_color]: {
-        command: [
-          ['styleWithCSS', false, 'true'], // использовать стили, а не html
-          ['foreColor', false, '#ff0000'],
-          ['styleWithCSS', false, 'false'], // использовать html, а не стили
-        ],
         materialize: {
           title: 'Цвет текста',
           iconName: 'FormatColorText'
@@ -263,36 +230,28 @@ export const startingValue = {
     // ******************************
     textPositioning: {
       left: {
-        command: [
-          ['justifyLeft', false, ''],
-        ],
+        command: ['justifyLeft', false, ''],
         materialize: {
           title: 'По левому краю',
           iconName: 'FormatAlignLeft'
         }
       },
       center: {
-        command: [
-          ['justifyCenter', false, ''],
-        ],
+        command: ['justifyCenter', false, ''],
         materialize: {
           title: 'По центру',
           iconName: 'FormatAlignCenter'
         }
       },
       right: {
-        command: [
-          ['justifyRight', false, ''],
-        ],
+        command: ['justifyRight', false, ''],
         materialize: {
           title: 'По правому краю',
           iconName: 'FormatAlignRight'
         }
       },
       full: {
-        command: [
-          ['justifyFull', false, ''],
-        ],
+        command: ['justifyFull', false, ''],
         materialize: {
           title: 'По ширине',
           iconName: 'FormatAlignJustify'
@@ -303,45 +262,35 @@ export const startingValue = {
     // ******************************
     textIndents: {
       ul: {
-        command: [
-          ['insertUnorderedList', false, ''],
-        ],
+        command: ['insertUnorderedList', false, ''],
         materialize: {
           title: 'Маркированный список',
-          iconName: 'FormatListNumbered'
-        }
-      },
-      ol: {
-        command: [
-          ['insertOrderedList', false, ''],
-        ],
-        materialize: {
-          title: 'Нумерованный список',
           iconName: 'FormatListBulleted'
         }
       },
+      ol: {
+        command: ['insertOrderedList', false, ''],
+        materialize: {
+          title: 'Нумерованный список',
+          iconName: 'FormatListNumbered'
+        }
+      },
       indent: {
-        command: [
-          ['indent', false, ''],
-        ],
+        command: ['indent', false, ''],
         materialize: {
           title: 'Добавить отступ',
           iconName: 'FormatIndentIncrease'
         }
       },
       outdent: {
-        command: [
-          ['outdent', false, ''],
-        ],
+        command: ['outdent', false, ''],
         materialize: {
           title: 'Убрать отступ',
           iconName: 'FormatIndentDecrease'
         }
       },
       blockquote: {
-        command: [
-          ['formatBlock', false, 'blockquote'],
-        ],
+        command: ['formatBlock', false, 'blockquote'],
         materialize: {
           title: 'Цитата',
           iconName: 'FormatQuote'
@@ -352,18 +301,13 @@ export const startingValue = {
     // ******************************
     adding: {
       hr: {
-        command: [
-          ['insertHorizontalRule', false, ''],
-        ],
+        command: ['insertHorizontalRule', false, ''],
         materialize: {
           title: 'Горизонтальная черта',
           iconName: 'Remove'
         }
       },
       [formatCommand_link]: {
-        command: [
-          ['createLink', false, '#'], // нельзя менять и добавлять новые команды
-        ],
         materialize: {
           title: 'Ссылка',
           iconName: 'Link'
@@ -374,23 +318,25 @@ export const startingValue = {
     // ******************************
     register: {
       sup: {
-        command: [
-          ['superscript', false, ''],
-        ],
+        command: ['superscript', false, ''],
         materialize: {
           title: 'Верхний регистр',
           iconName: 'VerticalAlignTop'
         }
       },
       sub: {
-        command: [
-          ['subscript', false, ''],
-        ],
+        command: ['subscript', false, ''],
         materialize: {
           title: 'Нижний регистр',
           iconName: 'VerticalAlignBottom'
         }
       },
+      // [formatCommand_uppercase]: {
+      //   materialize: {
+      //     title: 'Uppercase',
+      //     iconName: 'TextRotateUp'
+      //   }
+      // },
     },
   },
 
