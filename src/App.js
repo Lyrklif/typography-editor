@@ -19,6 +19,10 @@ import Box from '@material-ui/core/Box';
 
 import MyTheme from './MyTheme';
 
+
+
+import pretty from 'pretty';
+
 // Стили
 import "./App.css";
 
@@ -34,7 +38,7 @@ export default class App extends React.Component {
     this.state = props.data;
 
     console.log("*** Начальные данные ***\n", this.state);
-    console.log("*** Пользовательская тема ***", MyTheme);
+    console.log("*** Пользовательская тема ***\n", MyTheme);
 
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
@@ -69,21 +73,31 @@ export default class App extends React.Component {
     }
   }
 
+
+  setNewText = (newValue) => {
+    // если в качестве параметра передан новый текст
+    if (newValue && newValue !== this.state.html) {
+      // записать новую версию текста
+      this.setState({
+        html: newValue
+      });
+    }
+  }
+
   // записать новый текст, удалив неразрешённые теги
   sanitize() {
-    let editableBlock = document.querySelectorAll(".content"); // блок, текст в котором можно редактировать
+    let editableBlock = document.querySelector(".content"); // блок, текст в котором можно редактировать
+    let text = editableBlock.innerHTML; // текст вместе с тегами
 
-    editableBlock.forEach(elem => {
-      let text = elem.tagName !== "CODE" ? elem.innerHTML : elem.innerText; // текст внутри блока
+    // если текст изменился
+    if (text !== this.state.html) {
+      let prettyText = pretty(text); // beautifying HTML
 
-      // если текст изменился
-      if (text !== this.state.html) {
-        // записать новую версию текста, применив настройки (удалить пустые теги, заменить символы и пр.)
-        this.setState({
-          html: sanitizeHtml(text, this.state.sanitizeParam)
-        });
-      }
-    });
+      // записать новую версию текста, применив настройки (удалить пустые теги, заменить символы и пр.)
+      this.setState({
+        html: sanitizeHtml(prettyText, this.state.sanitizeParam)
+      });
+    }
   }
 
   // переключить активный таб
@@ -133,7 +147,10 @@ export default class App extends React.Component {
                 value={this.state.states.tabActive}
                 index={1}
                 h2={"Редактируемый html"}>
-                <HTMLeditable param={this.state} />
+                <HTMLeditable
+                  param={this.state}
+                  onChange={this.setNewText}
+                />
               </TabContainer>
 
               {/* Вкладка №3 */}
