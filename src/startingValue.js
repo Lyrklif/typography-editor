@@ -31,6 +31,7 @@ export const startingValue = {
     tabActive: 0
   },
 
+  // размеры, которые можно задавать в select
   sizes: {
     fontSize: {
       values: [
