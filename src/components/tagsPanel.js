@@ -17,6 +17,7 @@ import {
   formatCommand_color,
   formatCommand_link,
   formatCommand_uppercase,
+  formatCommand_lowercase,
 } from "../vars";
 
 
@@ -66,7 +67,6 @@ export default class TagsPanel extends React.Component {
 
         // если есть выделенный текст
         if (selectionRange.toString().length > 0) this.showDialogLink(selectionRange); // вызвать модальное окно ввода url
-
       }
 
       // очистка формата
@@ -76,6 +76,19 @@ export default class TagsPanel extends React.Component {
 
         this.clearFormat();
       }
+
+      // uppercase
+      else if (tag === formatCommand_uppercase) {
+        let textUpperCase = getSelection().toString().toUpperCase();
+        document.execCommand('insertText', false, textUpperCase);
+      }
+
+      // lowercase
+      else if (tag === formatCommand_lowercase) {
+        let textLowerCase = getSelection().toString().toLowerCase();
+        document.execCommand('insertText', false, textLowerCase);
+      }
+
     }
   }
 

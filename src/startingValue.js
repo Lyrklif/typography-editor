@@ -4,6 +4,7 @@ import {
   formatCommand_color,
   formatCommand_link,
   formatCommand_uppercase,
+  formatCommand_lowercase,
   default_bgcolor,
   default_color,
 } from './vars';
@@ -82,7 +83,7 @@ export const startingValue = {
     allowedTags: [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
       'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'sub', 'sup', 'span',
-      's', 'div'
+      's', 'div', 'font'
     ],
     // разрешённые атрибуты
     allowedAttributes: {
@@ -331,12 +332,18 @@ export const startingValue = {
           iconName: 'VerticalAlignBottom'
         }
       },
-      // [formatCommand_uppercase]: {
-      //   materialize: {
-      //     title: 'Uppercase',
-      //     iconName: 'TextRotateUp'
-      //   }
-      // },
+      [formatCommand_uppercase]: {
+        materialize: {
+          title: 'Uppercase',
+          iconName: 'TextRotateUp'
+        }
+      },
+      [formatCommand_lowercase]: {
+        materialize: {
+          title: 'Uowercase',
+          iconName: 'TextRotateVertical'
+        }
+      },
     },
   },
 
