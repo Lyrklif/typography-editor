@@ -1,7 +1,7 @@
-// replaceFontElements
+// setAttributeForSelectedText
 
-
-export const replaceFontElements = (number, styleName, styleValue) => {
+// setAttributeForSelectedText
+export const setAttributeForSelectedText = (number, styleName, styleValue) => {
   document.execCommand("fontSize", false, `${number}`);
 
   let editableBlock = document.querySelector(".content"); // блок, текст в котором можно редактировать

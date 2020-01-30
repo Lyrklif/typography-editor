@@ -20,7 +20,7 @@ import Box from '@material-ui/core/Box';
 import MyTheme from './MyTheme';
 
 import { getSelection } from './functions/getSelection';
-import { replaceFontElements } from './functions/replaceFontElements';
+import { setAttributeForSelectedText } from './functions/setAttributeForSelectedText';
 
 
 import pretty from 'pretty';
@@ -53,11 +53,11 @@ export default class App extends React.Component {
 
     let isSelected = getSelection().toString();
 
-    // если есть выделенный текст
+    // если есть выделенный текст и изменяется fontSize
     if (isSelected && inputName === 'fontSize') {
-      replaceFontElements(7, 'font-size', `${value}px`);
+      setAttributeForSelectedText(7, 'font-size', `${value}px`); // установить размер выделенного текста
 
-      // если текст не выделен
+      // если текст не выделен изменить глобальные параметры
     } else {
       this.setState(state => ({
         styles: {

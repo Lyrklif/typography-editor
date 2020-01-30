@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 
 import { getSelectionRange } from '../functions/getSelectionRange';
 import { getSelection } from '../functions/getSelection';
-import { replaceFontElements } from '../functions/replaceFontElements';
+import { setAttributeForSelectedText } from '../functions/setAttributeForSelectedText';
 
 
 import Tabs from '@material-ui/core/Tabs';
@@ -80,12 +80,12 @@ export default class TagsPanel extends React.Component {
 
       // uppercase
       else if (tag === formatCommand_uppercase) {
-        replaceFontElements(6, 'text-transform', 'uppercase');
+        setAttributeForSelectedText(6, 'text-transform', 'uppercase');
       }
 
       // lowercase
       else if (tag === formatCommand_lowercase) {
-        replaceFontElements(6, 'text-transform', 'lowercase');
+        setAttributeForSelectedText(6, 'text-transform', 'lowercase');
       }
     }
   }

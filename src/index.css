@@ -38,6 +38,15 @@ blockquote {
   padding: .5em 0.5em 0.5em 1em;
 }
 
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
 .content.edit {
   /* background-color: rgba(65, 219, 173, 0.05); */
 }
