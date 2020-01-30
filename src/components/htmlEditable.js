@@ -1,31 +1,41 @@
 import React from 'react';
 
+import AceEditor from "react-ace";
+import "ace-builds/src-min-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/mode-html";
+import "ace-builds/src-noconflict/snippets/html";
+import "ace-builds/src-noconflict/theme-xcode";
+
 
 // Текст, который можно редактировать
 export default class HTMLeditable extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.param;
-
-    this.onBlur = this.props.onBlur;
     this.onChange = this.props.onChange;
   }
 
   render() {
     return (
-      <pre>
-        <code
-          tabIndex="0"
-          contentEditable={this.props.param.states.editText ? 'true' : 'false'}
-          suppressContentEditableWarning={true} // чтобы убрать в консоли предупреждение о contentEditable
-          className={this.props.param.states.editText ? 'content edit' : 'content'}
-          onChange={this.onChange} // 
-          onBlur={this.onBlur} // событие при потере фокуса 
-        >
-          {this.props.param.html}
-        </code>
-      </pre>
+      <AceEditor
+        placeholder="Html"
+        mode="html"
+        theme="xcode"
+        name="blah2"
+        onChange={this.onChange}
+        fontSize={14}
+        showPrintMargin={true}
+        showGutter={true}
+        highlightActiveLine={true}
+        value={this.props.param.html}
+
+        setOptions={{
+          enableBasicAutocompletion: false,
+          enableLiveAutocompletion: false,
+          enableSnippets: true,
+          showLineNumbers: true,
+          tabSize: 2,
+        }} />
     );
   }
 };

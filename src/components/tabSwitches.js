@@ -17,7 +17,7 @@ export default class TabSwitches extends React.Component {
 
   render() {
     return (
-      <Paper component={"nav"}>
+      <Paper component={"nav"} className={"tabs-nav"}>
         <Tabs
           className={"clear-list"}
           value={this.props.value}
