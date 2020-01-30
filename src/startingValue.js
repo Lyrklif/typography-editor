@@ -99,6 +99,7 @@ export const startingValue = {
       'strong': 'b',
       'em': 'i',
       'strike': 's',
+      'font': 'span',
     },
     // удалить пусте теги
     exclusiveFilter: function (frame) {

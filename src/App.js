@@ -20,6 +20,7 @@ import Box from '@material-ui/core/Box';
 import MyTheme from './MyTheme';
 
 import { getSelection } from './functions/getSelection';
+import { replaceFontElements } from './functions/replaceFontElements';
 
 
 import pretty from 'pretty';
@@ -54,17 +55,7 @@ export default class App extends React.Component {
 
     // если есть выделенный текст
     if (isSelected && inputName === 'fontSize') {
-      document.execCommand("fontSize", false, "7");
-
-      let editableBlock = document.querySelector(".content"); // блок, текст в котором можно редактировать
-      let fontElements = editableBlock.getElementsByTagName("font"); // все элементы, у которых изменился размер шрифта
-
-      for (var i = 0, len = fontElements.length; i < len; ++i) {
-        if (fontElements[i].size === "7") {
-          fontElements[i].removeAttribute("size"); // удалить установленное значение
-          fontElements[i].style.fontSize = value + "px"; // установить новый размер шрифта
-        }
-      }
+      replaceFontElements(7, 'font-size', `${value}px`);
 
       // если текст не выделен
     } else {
