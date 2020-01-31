@@ -68,22 +68,41 @@ export default class SettingsTagsPanel extends React.Component {
     this.state = props.param;
   }
 
-  handleClose = () => {
+  saveNewSettings = () => {
+    this.switchOpenSettingsTagPanel(); // закрыть панель
+  }
+
+  switchOpenSettingsTagPanel = () => {
     this.setState(state => ({
       states: {
         ...state.states,
         openSettingsTagsPanel: !this.state.states.openSettingsTagsPanel
       }
     }));
+
+    console.log(this.state);
   }
 
-  handleChange = () => {
+  handleChange = (group, tag) => {
+    console.log(this.state.tagParameters[group][tag].selected);
 
+    this.setState(state => ({
+      tagParameters: {
+        ...state.tagParameters,
+        [group]: {
+          ...state.tagParameters[group],
+          [tag]: {
+            ...state.tagParameters[group][tag],
+            selected: !this.state.tagParameters[group][tag].selected,
+          },
+        },
+      }
+    }));
   }
 
   render() {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map
-    let tagParameters = this.props.param.tagParameters;
+    let tagParameters = this.state.tagParameters;
     let groupsTagArray = Object.keys(tagParameters);
 
     let groupsTagList = groupsTagArray.map((group, groupIndex) => {
@@ -106,7 +125,7 @@ export default class SettingsTagsPanel extends React.Component {
                   <Checkbox
                     color="primary"
                     checked={cuttentTag.selected}
-                    onChange={this.handleChange(tag)}
+                    onChange={() => this.handleChange(group, tag)}
                     value={tag} />
                 }
                 label={
@@ -157,10 +176,10 @@ export default class SettingsTagsPanel extends React.Component {
     return (
       <Dialog
         open={this.state.states.openSettingsTagsPanel}
-        onClose={this.handleClose}
-        aria-labelledby="form-dialog-link-url"
+        onClose={this.switchOpenSettingsTagPanel}
+        aria-labelledby="form-dialog-settings-icons"
       >
-        <DialogTitle id="form-dialog-link-url">{this.props.param.text.settingsTagsPanelTitle}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{this.props.param.text.settingsTagsPanelTitle}</DialogTitle>
         <Divider />
 
         <DialogContent >
@@ -174,10 +193,10 @@ export default class SettingsTagsPanel extends React.Component {
 
         <Divider />
         <DialogActions>
-          <Button onClick={this.handleClose} >
+          <Button onClick={this.switchOpenSettingsTagPanel} >
             {this.props.param.buttons.cancel}
           </Button>
-          <Button onClick={this.handleClose} color="secondary">
+          <Button onClick={this.saveNewSettings} color="secondary">
             {this.props.param.buttons.save}
           </Button>
         </DialogActions>
