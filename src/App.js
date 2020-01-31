@@ -9,6 +9,7 @@ import TabContainer from "./components/TabContainer";
 import TabSwitches from "./components/TabSwitches";
 import Settings from "./components/Settings";
 import SettingsTagsPanel from "./components/SettingsTagsPanel";
+import SettingsPanel from "./components/SettingsPanel";
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -28,15 +29,40 @@ import pretty from 'pretty';
 import "./App.css";
 
 
-
-
-
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.data;
+    let localData = localStorage.getItem('param');
+    let localText = localStorage.getItem('text');
+    let localDataParam = JSON.parse(localData);
+    let localTextParam = JSON.parse(localText);
+
+    // если сохранены и настройки, и текст
+    if (localData && localText) {
+      this.state = {
+        ...localDataParam,
+        html: localTextParam
+      };
+    }
+
+    // если сохранены только настройки
+    else if (localData) {
+      this.state = localDataParam;
+    }
+
+    // если сохранен только текст
+    else if (localText) {
+      this.state = {
+        ...props.data,
+        html: localTextParam
+      };
+    }
+
+    // если нет сохранения
+    else {
+      this.state = props.data;
+    }
 
     console.log("*** Начальные данные ***\n", this.state);
     console.log("*** Пользовательская тема ***\n", MyTheme);
@@ -46,26 +72,59 @@ export default class App extends React.Component {
     this.sanitize = this.sanitize.bind(this);
   }
 
-  // обновить this.state.states
+  // обновить значения в localStorage
+  updLocalStorage = () => {
+    this.sanitize(); // записать новый текст, удалив неразрешённые теги
+
+    this.setState(state => ({
+      ...state,
+    }),
+      this.setNewValueLocalStorage // записать в localStorage после обновления
+    );
+  }
+
+  // перезаписать localStorage
+  setNewValueLocalStorage = () => {
+    localStorage.setItem('param', JSON.stringify(this.state));
+    localStorage.setItem('text', JSON.stringify(this.state.html));
+  }
+
+  // вернуть стандартные настройки
+  returnDefaultSettings = () => {
+    this.clearLocalStorage();
+
+    this.setState(state => ({
+      ...this.props.data,
+      html: this.state.html
+    }));
+  }
+
+  // очистить localStorage
+  clearLocalStorage = () => {
+    localStorage.removeItem('param');
+  }
+
+  // обновить this.state
   // если newValue не передан, то значение изменится на противоположное
+  // [group] - название группы параметров
   // [stateName] - название параметра
   // [newValue]  - новое значение параметра
-  updStates = (stateName, newValue) => {
+  updMainStates = (group, stateName, newValue) => {
     // если параметр передан
     if (newValue != undefined) {
       this.setState(state => ({
-        states: {
-          ...state.states,
+        [group]: {
+          ...state[group],
           // заменить значение на противоположное
           [stateName]: newValue
         }
       }));
     } else {
       this.setState(state => ({
-        states: {
-          ...state.states,
+        [group]: {
+          ...state[group],
           // заменить значение на противоположное
-          [stateName]: !this.state.states[stateName]
+          [stateName]: !this.state[group][stateName]
         }
       }));
     }
@@ -83,25 +142,18 @@ export default class App extends React.Component {
 
       // если текст не выделен изменить глобальные параметры
     } else {
-      this.setState(state => ({
-        styles: {
-          ...state.styles,
-          [inputName]: [value]
-        }
-      }));
+      this.updMainStates('styles', inputName, value);
     }
   }
 
   // изменить отображаемые теги
   changeDisplayedTags = (newTagsParam) => {
-    this.setState(state => ({
-      tagParameters: newTagsParam
-    }));
+    this.setState({ tagParameters: newTagsParam });
   }
 
   // вкл/откл возможность редактировать текст
   switchEditText() {
-    this.updStates('editText');
+    this.updMainStates('states', 'editText');
 
     // если режим редактирования выключен
     if (this.state.states.editText) {
@@ -114,9 +166,7 @@ export default class App extends React.Component {
     // если в качестве параметра передан новый текст
     if (newValue && newValue !== this.state.html) {
       // записать новую версию текста
-      this.setState({
-        html: newValue
-      });
+      this.setState({ html: newValue });
     }
   }
 
@@ -139,7 +189,7 @@ export default class App extends React.Component {
   // переключить активный таб
   tabSwitch = (e, newValue) => {
     this.sanitize(); // записать новый текст, удалив неразрешённые теги
-    this.updStates('tabActive', newValue);
+    this.updMainStates('states', 'tabActive', newValue);
   };
 
   render() {
@@ -153,6 +203,7 @@ export default class App extends React.Component {
             switchEditText={this.switchEditText}
             tabSwitch={this.tabSwitch}
             dialogLink={this.switchDialogLink}
+            setNewColor={this.updMainStates}
           />
 
 
@@ -199,13 +250,21 @@ export default class App extends React.Component {
 
         <Settings
           param={this.state}
-          updStates={this.updStates}
+          updStates={this.updMainStates}
+          save={this.updLocalStorage}
         />
-        
+
         <SettingsTagsPanel
           param={this.state}
           saveChange={this.changeDisplayedTags}
-          updStates={this.updStates}
+          updStates={this.updMainStates}
+        />
+
+        <SettingsPanel
+          param={this.state}
+          saveChange={this.changeDisplayedTags}
+          updStates={this.updMainStates}
+          reset={this.returnDefaultSettings}
         />
 
       </MuiThemeProvider>

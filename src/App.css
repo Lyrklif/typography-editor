@@ -18,6 +18,16 @@
   padding-top: 0.5rem;
 }
 
+.label-icon-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  user-select: none;
+}
+
+.label-icon-text svg {
+  margin-right: 0.5rem;
+}
 
 .color-picker-wp {
   display: flex;

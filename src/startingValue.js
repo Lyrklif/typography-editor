@@ -33,7 +33,8 @@ export const startingValue = {
 
     switchOpenSettings: false, // показывать скрытые иконки SpeedDial
 
-    openSettingsTagsPanel: false, // показывать скрытые иконки SpeedDial
+    openSettingsTagsPanel: false, // показывать панель настроект тегов
+    openSettingsPanel: false, // показывать панель с основными настройками
   },
 
   // размеры, которые можно задавать в select
@@ -105,11 +106,11 @@ export const startingValue = {
       'font': 'span',
     },
     // удалить пусте теги
-    exclusiveFilter: function (frame) {
-      return (
-        !frame.text.trim()
-      );
-    },
+    // exclusiveFilter: function (frame) {
+    //   return (
+    //     !frame.text.trim()
+    //   );
+    // },
   },
 
   /*
@@ -398,6 +399,9 @@ export const startingValue = {
   // просто текст
   text: {
     settingsTagsPanelTitle: 'Отображаемые на панели иконки',
+    settingsPanelTitle: 'Настройки',
+    saveSuccess: 'Изменения сохранены',
+    saveError: 'Произошла ошибка! Изменения не сохранены. Попробуйте ещё раз',
   },
 
 
@@ -416,6 +420,7 @@ export const startingValue = {
     send: 'Отправить',
     cancel: 'Отменить',
     save: 'Сохранить',
+    apply: 'Применить',
   },
 
   // текст полей ввода

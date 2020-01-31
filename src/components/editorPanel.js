@@ -12,13 +12,15 @@ import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
 
-import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
 
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+
+import Dialog from '@material-ui/core/Dialog';
+
 
 import { restoreSelection } from '../functions/restoreSelection';
 
@@ -53,6 +55,7 @@ export default class EditorPanel extends React.Component {
     this.switchEditText = props.switchEditText;
     this.tabSwitch = props.tabSwitch;
     this.dialogLink = props.dialogLink;
+    this.setNewColor = props.setNewColor;
 
     this.handleChange = this.handleChange.bind(this);
     this.switchShowColorPiper = this.switchShowColorPiper.bind(this);
@@ -60,7 +63,7 @@ export default class EditorPanel extends React.Component {
     this.switchDialogLink = this.switchDialogLink.bind(this);
   }
 
-  // при изменении выбранного цвета в палитре
+  // при изменении цвета в палитре
   handleChange(color) {
     this.setState(state => ({
       styles: {
@@ -68,6 +71,9 @@ export default class EditorPanel extends React.Component {
         [state.states.paletteEdit]: color.hex // изменить цвет для палитры
       }
     }));
+
+    // записать изменения в главный this.state
+    this.setNewColor('styles', this.state.states.paletteEdit, color.hex);
   }
 
   // смена статуса панели выбора цвета [показать/скрыть]
@@ -187,7 +193,6 @@ export default class EditorPanel extends React.Component {
                   </span>
                 </Button>
               </Box>
-
             </Tabs>
 
 
@@ -205,33 +210,21 @@ export default class EditorPanel extends React.Component {
 
 
             {/* Панель выбора цвета */}
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
+            <Dialog
               open={this.state.states.colorPicker}
               onClose={this.switchShowColorPiper}
+              aria-labelledby="form-dialog-color"
             >
+              <Button onClick={this.switchShowColorPiper} color="primary">
+                {this.props.param.buttons.close}
+              </Button>
 
-              <div className={"color-picker-wp"}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  label="Закрыть"
-                  aria-label="close"
-                  onClick={this.switchShowColorPiper}
-                  size="medium"
-                  className={"color-picker-wp__close"}
-                  endIcon={<IconsLib.HighlightOff />}
-                >
-                  {this.props.param.buttons.close}
-                </Button>
+              <SwatchesPicker
+                onChange={this.handleChange}
+                color={this.state.styles.bgcolor}
+              />
+            </Dialog>
 
-                <SwatchesPicker
-                  onChange={this.handleChange}
-                  color={this.state.styles.bgcolor}
-                />
-              </div>
-            </Modal>
 
             <DialogLink
               param={this.state}
