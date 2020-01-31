@@ -53,12 +53,6 @@ export default class Settings extends React.Component {
   }
 
   render() {
-    const actions = [
-      { icon: <IconsLib.Save />, name: 'Сохранить', onClick: this.switchOpenSettings },
-      { icon: <IconsLib.Print />, name: 'Печать', onClick: this.switchOpenSettings },
-      { icon: <IconsLib.GetApp />, name: 'Скачать', onClick: this.switchOpenSettings },
-    ];
-
     return (
       <Box
         className={'settings-btn'}
@@ -73,17 +67,8 @@ export default class Settings extends React.Component {
           open={this.state.states.switchOpenSettings}
           direction={'up'}
         >
-          {/* {actions.map(action => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={action.onClick}
-            />
-          ))} */}
-
           <SpeedDialAction
-            icon={<IconsLib.Save />}
+            icon={<IconsLib.Save color="secondary" />}
             tooltipTitle={'Сохранить'}
             onClick={this.save}
           />

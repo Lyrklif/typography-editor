@@ -34,10 +34,15 @@ export default class App extends React.Component {
     super(props);
 
     let localData = localStorage.getItem('param');
+    let localText = localStorage.getItem('text');
     let localDataParam = JSON.parse(localData);
 
     if (localData) {
-      this.state = localDataParam;
+      // this.state = localDataParam;
+      this.state = {
+        ...localDataParam,
+        html: localText
+      };
     } else {
       this.state = props.data;
     }
@@ -67,6 +72,7 @@ export default class App extends React.Component {
   // перезаписать localStorage
   setNewValueLocalStorage = () => {
     localStorage.setItem('param', JSON.stringify(this.state));
+    localStorage.setItem('text', JSON.stringify(this.state.html));
   }
 
   // вернуть стандартные настройки
@@ -75,6 +81,7 @@ export default class App extends React.Component {
 
     this.setState(state => ({
       ...this.props.data,
+      html: this.state.html
     }));
   }
 
