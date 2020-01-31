@@ -36,14 +36,30 @@ export default class App extends React.Component {
     let localData = localStorage.getItem('param');
     let localText = localStorage.getItem('text');
     let localDataParam = JSON.parse(localData);
+    let localTextParam = JSON.parse(localText);
 
-    if (localData) {
-      // this.state = localDataParam;
+    // если сохранены и настройки, и текст
+    if (localData && localText) {
       this.state = {
         ...localDataParam,
-        html: localText
+        html: localTextParam
       };
-    } else {
+
+      // если сохранены только настройки
+    } else if (localData) {
+      this.state = localDataParam;
+    }
+
+    // если сохранен только текст
+    else if (localText) {
+      this.state = {
+        ...props.data,
+        html: localTextParam
+      };
+    }
+
+    // если нет сохранения
+    else {
       this.state = props.data;
     }
 
