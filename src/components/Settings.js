@@ -35,6 +35,7 @@ export default class Settings extends React.Component {
     super(props);
 
     this.state = props.param;
+    this.updStates = props.updStates;
   }
 
   switchOpenSettings = () => {
@@ -48,9 +49,9 @@ export default class Settings extends React.Component {
 
   render() {
     const actions = [
-      { icon: <SaveIcon />, name: 'Сохранить' },
-      { icon: <PrintIcon />, name: 'Печать' },
-      { icon: <IconsLib.Settings />, name: 'Настройки' },
+      { icon: <IconsLib.Save />, name: 'Сохранить', onClick: this.switchOpenSettings },
+      { icon: <IconsLib.Print />, name: 'Печать', onClick: this.switchOpenSettings },
+      { icon: <IconsLib.GetApp />, name: 'Скачать', onClick: this.switchOpenSettings },
     ];
 
     return (
@@ -61,20 +62,27 @@ export default class Settings extends React.Component {
         <SpeedDial
           ariaLabel="SpeedDial example"
           hidden={false}
-          icon={<IconsLib.MoreVert />}
+          icon={<IconsLib.TuneRounded />}
           onClose={this.switchOpenSettings}
           onOpen={this.switchOpenSettings}
           open={this.state.states.switchOpenSettings}
           direction={'up'}
         >
-          {actions.map(action => (
+          {/* {actions.map(action => (
             <SpeedDialAction
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
-              onClick={this.switchOpenSettings}
+              onClick={action.onClick}
             />
-          ))}
+          ))} */}
+
+          <SpeedDialAction
+            key={'apps'}
+            icon={<IconsLib.Apps />}
+            tooltipTitle={'Отображаемые иконки'}
+            onClick={() => this.updStates('openSettingsTagsPanel')}
+          />
         </SpeedDial>
       </Box>
     )

@@ -33,7 +33,7 @@ export const startingValue = {
 
     switchOpenSettings: false, // показывать скрытые иконки SpeedDial
 
-    openSettingsTagsPanel: true, // показывать скрытые иконки SpeedDial
+    openSettingsTagsPanel: false, // показывать скрытые иконки SpeedDial
   },
 
   // размеры, которые можно задавать в select

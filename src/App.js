@@ -197,8 +197,16 @@ export default class App extends React.Component {
           </Grid>
         </Box>
 
-        <Settings param={this.state} />
-        <SettingsTagsPanel param={this.state} saveChange={this.changeDisplayedTags} />
+        <Settings
+          param={this.state}
+          updStates={this.updStates}
+        />
+        
+        <SettingsTagsPanel
+          param={this.state}
+          saveChange={this.changeDisplayedTags}
+          updStates={this.updStates}
+        />
 
       </MuiThemeProvider>
     );

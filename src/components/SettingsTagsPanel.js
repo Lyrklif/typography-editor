@@ -67,20 +67,12 @@ export default class SettingsTagsPanel extends React.Component {
 
     this.state = props.param;
     this.saveChange = props.saveChange;
+    this.updStates = props.updStates;
   }
 
   saveNewSettings = () => {
-    this.switchOpenSettingsTagPanel(); // закрыть панель
+    this.updStates('openSettingsTagsPanel') // закрыть панель
     this.saveChange(this.state.tagParameters);
-  }
-
-  switchOpenSettingsTagPanel = () => {
-    this.setState(state => ({
-      states: {
-        ...state.states,
-        openSettingsTagsPanel: !this.state.states.openSettingsTagsPanel
-      }
-    }));
   }
 
   handleChange = (group, tag) => {
@@ -173,8 +165,8 @@ export default class SettingsTagsPanel extends React.Component {
 
     return (
       <Dialog
-        open={this.state.states.openSettingsTagsPanel}
-        onClose={this.switchOpenSettingsTagPanel}
+        open={this.props.param.states.openSettingsTagsPanel}
+        onClose={() => this.updStates('openSettingsTagsPanel')}
         aria-labelledby="form-dialog-settings-icons"
       >
         <DialogTitle id="form-dialog-title">{this.props.param.text.settingsTagsPanelTitle}</DialogTitle>
@@ -191,7 +183,7 @@ export default class SettingsTagsPanel extends React.Component {
 
         <Divider />
         <DialogActions>
-          <Button onClick={this.switchOpenSettingsTagPanel} >
+          <Button onClick={() => this.updStates('openSettingsTagsPanel')} >
             {this.props.param.buttons.cancel}
           </Button>
           <Button onClick={this.saveNewSettings} color="secondary">
