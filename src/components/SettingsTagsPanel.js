@@ -66,10 +66,12 @@ export default class SettingsTagsPanel extends React.Component {
     super(props);
 
     this.state = props.param;
+    this.saveChange = props.saveChange;
   }
 
   saveNewSettings = () => {
     this.switchOpenSettingsTagPanel(); // закрыть панель
+    this.saveChange(this.state.tagParameters);
   }
 
   switchOpenSettingsTagPanel = () => {
@@ -79,13 +81,9 @@ export default class SettingsTagsPanel extends React.Component {
         openSettingsTagsPanel: !this.state.states.openSettingsTagsPanel
       }
     }));
-
-    console.log(this.state);
   }
 
   handleChange = (group, tag) => {
-    console.log(this.state.tagParameters[group][tag].selected);
-
     this.setState(state => ({
       tagParameters: {
         ...state.tagParameters,

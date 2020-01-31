@@ -53,12 +53,12 @@ export default class TagsPanel extends React.Component {
     else {
       // цвет фона
       if (tag === formatCommand_bgcolor) {
-        document.execCommand('hiliteColor', false, this.props.param.styles.bgcolor);
+        document.execCommand('hiliteColor', false, this.props.values.bgcolor);
 
         // цвет текста
       } else if (tag === formatCommand_color) {
         document.execCommand('styleWithCSS', false, 'true');
-        document.execCommand('foreColor', false, this.props.param.styles.color);
+        document.execCommand('foreColor', false, this.props.values.color);
         document.execCommand('styleWithCSS', false, 'false');
       }
 
@@ -136,20 +136,22 @@ export default class TagsPanel extends React.Component {
           let iconName = cuttentTag.materialize.iconName;
           let Icon = IconsLib[iconName];
 
-          return (
-            <li key={index}>
-              <IconButton
-                color="primary"
-                size="small"
-                aria-label={cuttentTag.materialize.title}
-                title={cuttentTag.materialize.title}
-                name={tag}
-                onClick={() => this.setTag(group, tag)}
-              >
-                <Icon />
-              </IconButton>
-            </li>
-          );
+          if (cuttentTag.selected) {
+            return (
+              <li key={index}>
+                <IconButton
+                  color="primary"
+                  size="small"
+                  aria-label={cuttentTag.materialize.title}
+                  title={cuttentTag.materialize.title}
+                  name={tag}
+                  onClick={() => this.setTag(group, tag)}
+                >
+                  <Icon />
+                </IconButton>
+              </li>
+            );
+          }
         };
       });
 

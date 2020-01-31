@@ -193,7 +193,8 @@ export default class EditorPanel extends React.Component {
 
             <Divider />
             <TagsPanel
-              param={this.state}
+              param={this.props.param}
+              values={this.state.styles}
               tags={"tagParameters_outside"}
               editAllowed={
                 this.props.param.states.tabActive == "0" ? true : false
@@ -201,7 +202,6 @@ export default class EditorPanel extends React.Component {
               switchShowColorPiper={this.switchShowColorPiper}
               showDialogLink={this.switchDialogLink}
             />
-
 
 
             {/* Панель выбора цвета */}

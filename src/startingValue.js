@@ -129,6 +129,22 @@ export const startingValue = {
         },
         selected: true,
       },
+      undo: {
+        command: ['undo', false, ''],
+        materialize: {
+          title: 'Отменить',
+          iconName: 'Undo'
+        },
+        selected: false,
+      },
+      redo: {
+        command: ['redo', false, ''],
+        materialize: {
+          title: 'Повторить',
+          iconName: 'Redo'
+        },
+        selected: false,
+      },
       p: {
         command: ['formatBlock', false, 'p'],
         materialize: {
@@ -137,7 +153,6 @@ export const startingValue = {
         },
         selected: true,
       },
-
     },
 
 
@@ -350,7 +365,7 @@ export const startingValue = {
       sup: {
         command: ['superscript', false, ''],
         materialize: {
-          title: 'Верхний регистр',
+          title: 'Надстрочный',
           iconName: 'VerticalAlignTop'
         },
         selected: true,
@@ -358,21 +373,21 @@ export const startingValue = {
       sub: {
         command: ['subscript', false, ''],
         materialize: {
-          title: 'Нижний регистр',
+          title: 'Подстрочный',
           iconName: 'VerticalAlignBottom'
         },
         selected: true,
       },
       [formatCommand_uppercase]: {
         materialize: {
-          title: 'Uppercase',
+          title: 'ВЕРХНИЙ РЕГИСТР',
           iconName: 'TextRotateUp'
         },
         selected: true,
       },
       [formatCommand_lowercase]: {
         materialize: {
-          title: 'Lowercase',
+          title: 'нижний регистр',
           iconName: 'TextRotateVertical'
         },
         selected: true,

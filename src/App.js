@@ -46,6 +46,31 @@ export default class App extends React.Component {
     this.sanitize = this.sanitize.bind(this);
   }
 
+  // обновить this.state.states
+  // если newValue не передан, то значение изменится на противоположное
+  // [stateName] - название параметра
+  // [newValue]  - новое значение параметра
+  updStates = (stateName, newValue) => {
+    // если параметр передан
+    if (newValue != undefined) {
+      this.setState(state => ({
+        states: {
+          ...state.states,
+          // заменить значение на противоположное
+          [stateName]: newValue
+        }
+      }));
+    } else {
+      this.setState(state => ({
+        states: {
+          ...state.states,
+          // заменить значение на противоположное
+          [stateName]: !this.state.states[stateName]
+        }
+      }));
+    }
+  }
+
   // установить глобальные настройки
   setGlobalParam(inputName, e) {
     let value = e.target.value;
@@ -67,15 +92,16 @@ export default class App extends React.Component {
     }
   }
 
+  // изменить отображаемые теги
+  changeDisplayedTags = (newTagsParam) => {
+    this.setState(state => ({
+      tagParameters: newTagsParam
+    }));
+  }
+
   // вкл/откл возможность редактировать текст
   switchEditText() {
-    this.setState(state => ({
-      states: {
-        ...state.states,
-        // заменить значение на противоположное
-        editText: !this.state.states.editText
-      }
-    }));
+    this.updStates('editText');
 
     // если режим редактирования выключен
     if (this.state.states.editText) {
@@ -83,7 +109,7 @@ export default class App extends React.Component {
     }
   }
 
-
+  // записать новый текст
   setNewText = (newValue) => {
     // если в качестве параметра передан новый текст
     if (newValue && newValue !== this.state.html) {
@@ -113,13 +139,7 @@ export default class App extends React.Component {
   // переключить активный таб
   tabSwitch = (e, newValue) => {
     this.sanitize(); // записать новый текст, удалив неразрешённые теги
-
-    this.setState(state => ({
-      states: {
-        ...state.states,
-        tabActive: newValue
-      }
-    }));
+    this.updStates('tabActive', newValue);
   };
 
   render() {
@@ -176,8 +196,9 @@ export default class App extends React.Component {
             </Grid>
           </Grid>
         </Box>
+
         <Settings param={this.state} />
-        <SettingsTagsPanel param={this.state} />
+        <SettingsTagsPanel param={this.state} saveChange={this.changeDisplayedTags} />
 
       </MuiThemeProvider>
     );
