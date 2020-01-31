@@ -129,6 +129,8 @@ export default class TagsPanel extends React.Component {
       let groupTags = tagParameters[group];
       let groupTagKeys = Object.keys(groupTags);
 
+      let countItems = 0; // к-во элементов в списке
+
       let tagList = groupTagKeys.map((tag, index) => {
         let cuttentTag = tagParameters[group][tag];
 
@@ -137,6 +139,8 @@ export default class TagsPanel extends React.Component {
           let Icon = IconsLib[iconName];
 
           if (cuttentTag.selected) {
+            countItems++;
+
             return (
               <li key={index}>
                 <IconButton
@@ -155,24 +159,29 @@ export default class TagsPanel extends React.Component {
         };
       });
 
-      return (
-        <Box
-          key={groupIndex}
-          aria-label="li item scrollable horizontal tabs"
-          className={"clear-list tag-list"}
-        >
+      // если в списке есть элементы
+      if (countItems) {
+        return (
           <Box
-            component="ul"
-            aria-label="ul items"
-            className={"tag-list clear-list"}>
-            {tagList}
+            key={groupIndex}
+            aria-label="li item scrollable horizontal tabs"
+            className={"clear-list tag-list"}
+          >
+            <Box
+              component="ul"
+              aria-label="ul items"
+              className={"tag-list clear-list"}>
+              {tagList}
+            </Box>
+            {/* После последнего элемента не добавлять черту */}
+            {(groupsTagArray.length - 1 !== groupIndex) &&
+              <Divider orientation="vertical" />
+            }
           </Box>
-          {/* После последнего элемента не добавлять черту */}
-          {(groupsTagArray.length - 1 !== groupIndex) &&
-            <Divider orientation="vertical" />
-          }
-        </Box>
-      );
+        );
+      }
+
+      countItems = 0; // обнулить счётчик элементов списка
     });
 
 
