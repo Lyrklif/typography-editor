@@ -76,13 +76,13 @@ export default class Settings extends React.Component {
           <SpeedDialAction
             icon={<IconsLib.Apps />}
             tooltipTitle={'Отображаемые иконки'}
-            onClick={() => this.updStates('openSettingsTagsPanel')}
+            onClick={() => this.updStates('states', 'openSettingsTagsPanel')}
           />
 
           <SpeedDialAction
             icon={<IconsLib.Settings />}
             tooltipTitle={'Настройки'}
-            onClick={() => this.updStates('openSettingsPanel')}
+            onClick={() => this.updStates('states', 'openSettingsPanel')}
           />
 
 

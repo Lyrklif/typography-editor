@@ -72,7 +72,7 @@ export default class SettingsPanel extends React.Component {
   }
 
   saveNewSettings = () => {
-    this.updStates('openSettingsPanel') // закрыть панель
+    this.updStates('states', 'openSettingsPanel') // закрыть панель
     this.saveChange();
   }
 
@@ -81,7 +81,7 @@ export default class SettingsPanel extends React.Component {
     return (
       <Dialog
         open={this.props.param.states.openSettingsPanel}
-        onClose={() => this.updStates('openSettingsPanel')}
+        onClose={() => this.updStates('states', 'openSettingsPanel')}
         aria-labelledby="form-dialog-settings-icons"
       >
         <DialogTitle id="form-dialog-title">{this.props.param.text.settingsPanelTitle}</DialogTitle>
@@ -101,7 +101,7 @@ export default class SettingsPanel extends React.Component {
 
         <Divider />
         <DialogActions>
-          <Button onClick={() => this.updStates('openSettingsPanel')} >
+          <Button onClick={() => this.updStates('states', 'openSettingsPanel')} >
             {this.props.param.buttons.cancel}
           </Button>
           <Button onClick={this.saveNewSettings} color="secondary">

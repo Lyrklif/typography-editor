@@ -104,26 +104,27 @@ export default class App extends React.Component {
     localStorage.removeItem('param');
   }
 
-  // обновить this.state.states
+  // обновить this.state
   // если newValue не передан, то значение изменится на противоположное
+  // [group] - название группы параметров
   // [stateName] - название параметра
   // [newValue]  - новое значение параметра
-  updStates = (stateName, newValue) => {
+  updMainStates = (group, stateName, newValue) => {
     // если параметр передан
     if (newValue != undefined) {
       this.setState(state => ({
-        states: {
-          ...state.states,
+        [group]: {
+          ...state[group],
           // заменить значение на противоположное
           [stateName]: newValue
         }
       }));
     } else {
       this.setState(state => ({
-        states: {
-          ...state.states,
+        [group]: {
+          ...state[group],
           // заменить значение на противоположное
-          [stateName]: !this.state.states[stateName]
+          [stateName]: !this.state[group][stateName]
         }
       }));
     }
@@ -159,7 +160,7 @@ export default class App extends React.Component {
 
   // вкл/откл возможность редактировать текст
   switchEditText() {
-    this.updStates('editText');
+    this.updMainStates('states', 'editText');
 
     // если режим редактирования выключен
     if (this.state.states.editText) {
@@ -197,7 +198,7 @@ export default class App extends React.Component {
   // переключить активный таб
   tabSwitch = (e, newValue) => {
     this.sanitize(); // записать новый текст, удалив неразрешённые теги
-    this.updStates('tabActive', newValue);
+    this.updMainStates('states', 'tabActive', newValue);
   };
 
   render() {
@@ -211,6 +212,7 @@ export default class App extends React.Component {
             switchEditText={this.switchEditText}
             tabSwitch={this.tabSwitch}
             dialogLink={this.switchDialogLink}
+            setNewColor={this.updMainStates}
           />
 
 
@@ -257,20 +259,20 @@ export default class App extends React.Component {
 
         <Settings
           param={this.state}
-          updStates={this.updStates}
+          updStates={this.updMainStates}
           save={this.updLocalStorage}
         />
 
         <SettingsTagsPanel
           param={this.state}
           saveChange={this.changeDisplayedTags}
-          updStates={this.updStates}
+          updStates={this.updMainStates}
         />
 
         <SettingsPanel
           param={this.state}
           saveChange={this.changeDisplayedTags}
-          updStates={this.updStates}
+          updStates={this.updMainStates}
           reset={this.returnDefaultSettings}
         />
 
