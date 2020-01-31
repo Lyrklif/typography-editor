@@ -36,6 +36,7 @@ export default class Settings extends React.Component {
 
     this.state = props.param;
     this.updStates = props.updStates;
+    this.save = props.save;
   }
 
   switchOpenSettings = () => {
@@ -46,6 +47,10 @@ export default class Settings extends React.Component {
       }
     }));
   };
+
+  settings = () => {
+
+  }
 
   render() {
     const actions = [
@@ -78,11 +83,24 @@ export default class Settings extends React.Component {
           ))} */}
 
           <SpeedDialAction
-            key={'apps'}
+            icon={<IconsLib.Save />}
+            tooltipTitle={'Сохранить'}
+            onClick={this.save}
+          />
+
+          <SpeedDialAction
             icon={<IconsLib.Apps />}
             tooltipTitle={'Отображаемые иконки'}
             onClick={() => this.updStates('openSettingsTagsPanel')}
           />
+
+          <SpeedDialAction
+            icon={<IconsLib.Settings />}
+            tooltipTitle={'Настройки'}
+            onClick={() => this.updStates('openSettingsPanel')}
+          />
+
+
         </SpeedDial>
       </Box>
     )

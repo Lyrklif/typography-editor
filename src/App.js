@@ -9,6 +9,7 @@ import TabContainer from "./components/TabContainer";
 import TabSwitches from "./components/TabSwitches";
 import Settings from "./components/Settings";
 import SettingsTagsPanel from "./components/SettingsTagsPanel";
+import SettingsPanel from "./components/SettingsPanel";
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -28,15 +29,21 @@ import pretty from 'pretty';
 import "./App.css";
 
 
-
-
-
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.data;
+    let localData = localStorage.getItem('param');
+    let localDataParam = JSON.parse(localData);
+
+    if (localData) {
+      this.state = localDataParam;
+    } else {
+      this.state = props.data;
+    }
+
+    // this.state = props.data;
+
 
     console.log("*** Начальные данные ***\n", this.state);
     console.log("*** Пользовательская тема ***\n", MyTheme);
@@ -44,6 +51,36 @@ export default class App extends React.Component {
     this.setGlobalParam = this.setGlobalParam.bind(this);
     this.switchEditText = this.switchEditText.bind(this);
     this.sanitize = this.sanitize.bind(this);
+  }
+
+  // обновить значения в localStorage
+  updLocalStorage = () => {
+    this.sanitize(); // записать новый текст, удалив неразрешённые теги
+
+    this.setState(state => ({
+      ...state,
+    }),
+      this.setNewValueLocalStorage // записать в localStorage после обновления
+    );
+  }
+
+  // перезаписать localStorage
+  setNewValueLocalStorage = () => {
+    localStorage.setItem('param', JSON.stringify(this.state));
+  }
+
+  // вернуть стандартные настройки
+  returnDefaultSettings = () => {
+    this.clearLocalStorage();
+
+    this.setState(state => ({
+      ...this.props.data,
+    }));
+  }
+
+  // очистить localStorage
+  clearLocalStorage = () => {
+    localStorage.removeItem('param');
   }
 
   // обновить this.state.states
@@ -200,12 +237,20 @@ export default class App extends React.Component {
         <Settings
           param={this.state}
           updStates={this.updStates}
+          save={this.updLocalStorage}
         />
-        
+
         <SettingsTagsPanel
           param={this.state}
           saveChange={this.changeDisplayedTags}
           updStates={this.updStates}
+        />
+
+        <SettingsPanel
+          param={this.state}
+          saveChange={this.changeDisplayedTags}
+          updStates={this.updStates}
+          reset={this.returnDefaultSettings}
         />
 
       </MuiThemeProvider>

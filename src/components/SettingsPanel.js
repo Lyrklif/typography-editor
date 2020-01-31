@@ -61,121 +61,47 @@ import {
 
 
 // настройка тегов
-export default class SettingsTagsPanel extends React.Component {
+export default class SettingsPanel extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = props.param;
     this.saveChange = props.saveChange;
+    this.reset = props.reset;
     this.updStates = props.updStates;
   }
 
   saveNewSettings = () => {
-    this.updStates('openSettingsTagsPanel') // закрыть панель
-    this.saveChange(this.state.tagParameters);
+    this.updStates('openSettingsPanel') // закрыть панель
+    this.saveChange();
   }
 
-  handleChange = (group, tag) => {
-    this.setState(state => ({
-      tagParameters: {
-        ...state.tagParameters,
-        [group]: {
-          ...state.tagParameters[group],
-          [tag]: {
-            ...state.tagParameters[group][tag],
-            selected: !this.state.tagParameters[group][tag].selected,
-          },
-        },
-      }
-    }));
-  }
 
   render() {
-    // преобразовать объект в массив ключей, чтобы можно было использовать .map
-    let tagParameters = this.state.tagParameters;
-    let groupsTagArray = Object.keys(tagParameters);
-
-    let groupsTagList = groupsTagArray.map((group, groupIndex) => {
-
-      let groupTags = tagParameters[group];
-      let groupTagKeys = Object.keys(groupTags);
-
-      let tagList = groupTagKeys.map((tag, index) => {
-        let cuttentTag = tagParameters[group][tag];
-
-        if (cuttentTag.materialize) {
-          let iconName = cuttentTag.materialize.iconName;
-          let Icon = IconsLib[iconName];
-
-          return (
-            <Box component="li">
-              <FormControlLabel
-                key={index}
-                control={
-                  <Checkbox
-                    color="primary"
-                    checked={cuttentTag.selected}
-                    onChange={() => this.handleChange(group, tag)}
-                    value={tag} />
-                }
-                label={
-                  <Box component="span" className="label-icon-text">
-                    <Icon />
-                    {cuttentTag.materialize.title}
-                  </Box>
-                }
-              />
-            </Box>
-          );
-        };
-      });
-
-      return (
-        <Box
-          component="li"
-          key={groupIndex}
-          aria-label="li item"
-          className={"clear-list"}
-        >
-          <Box
-            component="ul"
-            className={"clear-list"}
-            aria-label="ul items"
-          >
-            {tagList}
-          </Box>
-          {/* После последнего элемента не добавлять черту */}
-          {(groupsTagArray.length - 1 !== groupIndex) &&
-            <Divider />
-          }
-        </Box>
-      );
-    });
-
-
-
-
     return (
       <Dialog
-        open={this.props.param.states.openSettingsTagsPanel}
-        onClose={() => this.updStates('openSettingsTagsPanel')}
+        open={this.props.param.states.openSettingsPanel}
+        onClose={() => this.updStates('openSettingsPanel')}
         aria-labelledby="form-dialog-settings-icons"
       >
-        <DialogTitle id="form-dialog-title">{this.props.param.text.settingsTagsPanelTitle}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{this.props.param.text.settingsPanelTitle}</DialogTitle>
         <Divider />
 
         <DialogContent >
-          <Box
-            component="ul"
-            className={"clear-list"}
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.reset}
+            startIcon={<IconsLib.RotateLeft />}
           >
-            {groupsTagList}
-          </Box>
+            {this.props.param.buttons.reset}
+          </Button>
+
         </DialogContent>
 
         <Divider />
         <DialogActions>
-          <Button onClick={() => this.updStates('openSettingsTagsPanel')} >
+          <Button onClick={() => this.updStates('openSettingsPanel')} >
             {this.props.param.buttons.cancel}
           </Button>
           <Button onClick={this.saveNewSettings} color="secondary">
