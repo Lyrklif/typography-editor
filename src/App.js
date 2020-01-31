@@ -1,27 +1,28 @@
 // React
 import React from "react";
-import sanitizeHtml from "sanitize-html";
 
 // Мои компоненты
-import EditorPanel from "./components/editorPanel";
-import ContentEditable from "./components/contentEditable";
-
-import HTMLeditable from "./components/htmlEditable";
-import TabContainer from "./components/tabContainer";
-import TabSwitches from "./components/tabSwitches";
+import EditorPanel from "./components/EditorPanel";
+import ContentEditable from "./components/ContentEditable";
+import HTMLeditable from "./components/HTMLeditable";
+import TabContainer from "./components/TabContainer";
+import TabSwitches from "./components/TabSwitches";
+import Settings from "./components/Settings";
+import SettingsTagsPanel from "./components/SettingsTagsPanel";
 
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
-
-import Box from '@material-ui/core/Box';
-
 import MyTheme from './MyTheme';
 
+import { getSelection } from './functions/getSelection';
+import { setAttributeForSelectedText } from './functions/setAttributeForSelectedText';
 
-
+import sanitizeHtml from "sanitize-html";
 import pretty from 'pretty';
+
 
 // Стили
 import "./App.css";
@@ -45,27 +46,62 @@ export default class App extends React.Component {
     this.sanitize = this.sanitize.bind(this);
   }
 
+  // обновить this.state.states
+  // если newValue не передан, то значение изменится на противоположное
+  // [stateName] - название параметра
+  // [newValue]  - новое значение параметра
+  updStates = (stateName, newValue) => {
+    // если параметр передан
+    if (newValue != undefined) {
+      this.setState(state => ({
+        states: {
+          ...state.states,
+          // заменить значение на противоположное
+          [stateName]: newValue
+        }
+      }));
+    } else {
+      this.setState(state => ({
+        states: {
+          ...state.states,
+          // заменить значение на противоположное
+          [stateName]: !this.state.states[stateName]
+        }
+      }));
+    }
+  }
+
   // установить глобальные настройки
   setGlobalParam(inputName, e) {
     let value = e.target.value;
 
+    let isSelected = getSelection().toString();
+
+    // если есть выделенный текст и изменяется fontSize
+    if (isSelected && inputName === 'fontSize') {
+      setAttributeForSelectedText(7, 'font-size', `${value}px`); // установить размер выделенного текста
+
+      // если текст не выделен изменить глобальные параметры
+    } else {
+      this.setState(state => ({
+        styles: {
+          ...state.styles,
+          [inputName]: [value]
+        }
+      }));
+    }
+  }
+
+  // изменить отображаемые теги
+  changeDisplayedTags = (newTagsParam) => {
     this.setState(state => ({
-      styles: {
-        ...state.styles,
-        [inputName]: [value]
-      }
+      tagParameters: newTagsParam
     }));
   }
 
   // вкл/откл возможность редактировать текст
   switchEditText() {
-    this.setState(state => ({
-      states: {
-        ...state.states,
-        // заменить значение на противоположное
-        editText: !this.state.states.editText
-      }
-    }));
+    this.updStates('editText');
 
     // если режим редактирования выключен
     if (this.state.states.editText) {
@@ -73,7 +109,7 @@ export default class App extends React.Component {
     }
   }
 
-
+  // записать новый текст
   setNewText = (newValue) => {
     // если в качестве параметра передан новый текст
     if (newValue && newValue !== this.state.html) {
@@ -103,13 +139,7 @@ export default class App extends React.Component {
   // переключить активный таб
   tabSwitch = (e, newValue) => {
     this.sanitize(); // записать новый текст, удалив неразрешённые теги
-
-    this.setState(state => ({
-      states: {
-        ...state.states,
-        tabActive: newValue
-      }
-    }));
+    this.updStates('tabActive', newValue);
   };
 
   render() {
@@ -124,6 +154,8 @@ export default class App extends React.Component {
             tabSwitch={this.tabSwitch}
             dialogLink={this.switchDialogLink}
           />
+
+
 
           <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
             <Grid item xs={12} md={10} lg={8}>
@@ -164,6 +196,18 @@ export default class App extends React.Component {
             </Grid>
           </Grid>
         </Box>
+
+        <Settings
+          param={this.state}
+          updStates={this.updStates}
+        />
+        
+        <SettingsTagsPanel
+          param={this.state}
+          saveChange={this.changeDisplayedTags}
+          updStates={this.updStates}
+        />
+
       </MuiThemeProvider>
     );
   }

@@ -3,6 +3,8 @@ import {
   formatCommand_bgcolor,
   formatCommand_color,
   formatCommand_link,
+  formatCommand_uppercase,
+  formatCommand_lowercase,
   default_bgcolor,
   default_color,
 } from './vars';
@@ -27,8 +29,11 @@ export const startingValue = {
     // какой параметр по-умолчанию изменяет панель выбора цвета
     paletteEdit: formatCommand_bgcolor,
 
-    // какой таб будет активным изначально
-    tabActive: 0
+    tabActive: 0,// какой таб будет активным изначально
+
+    switchOpenSettings: false, // показывать скрытые иконки SpeedDial
+
+    openSettingsTagsPanel: false, // показывать скрытые иконки SpeedDial
   },
 
   // размеры, которые можно задавать в select
@@ -81,7 +86,7 @@ export const startingValue = {
     allowedTags: [
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
       'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'sub', 'sup', 'span',
-      's', 'div'
+      's', 'div', 'font'
     ],
     // разрешённые атрибуты
     allowedAttributes: {
@@ -97,6 +102,7 @@ export const startingValue = {
       'strong': 'b',
       'em': 'i',
       'strike': 's',
+      'font': 'span',
     },
     // удалить пусте теги
     exclusiveFilter: function (frame) {
@@ -117,83 +123,88 @@ export const startingValue = {
     // ******************************
     outside: {
       [formatCommand_clear]: {
-        command: [
-          ['removeFormat', false, ''],
-          ['unlink', false, ''],
-        ],
         materialize: {
           title: 'Очистить формат',
           iconName: 'FormatClear'
-        }
+        },
+        selected: true,
+      },
+      undo: {
+        command: ['undo', false, ''],
+        materialize: {
+          title: 'Отменить',
+          iconName: 'Undo'
+        },
+        selected: false,
+      },
+      redo: {
+        command: ['redo', false, ''],
+        materialize: {
+          title: 'Повторить',
+          iconName: 'Redo'
+        },
+        selected: false,
       },
       p: {
-        command: [
-          ['formatBlock', false, 'p'],
-        ],
+        command: ['formatBlock', false, 'p'],
         materialize: {
           title: 'Параграф',
           iconName: 'TextFormat'
-        }
+        },
+        selected: true,
       },
-
     },
 
 
     // ******************************
     titles: {
       h1: {
-        command: [
-          ['formatBlock', false, 'h1'],
-        ],
+        command: ['formatBlock', false, 'h1'],
         materialize: {
           title: 'Заголовок 1',
           iconName: 'Filter1'
-        }
+        },
+        selected: true,
       },
       h2: {
-        command: [
-          ['formatBlock', false, 'h2'],
-        ],
+        command: ['formatBlock', false, 'h2'],
         materialize: {
           title: 'Заголовок 2',
           iconName: 'Filter2'
-        }
+        },
+        selected: true,
       },
       h3: {
-        command: [
-          ['formatBlock', false, 'h3'],
-        ],
+        command: ['formatBlock', false, 'h3'],
         materialize: {
           title: 'Заголовок 3',
           iconName: 'Filter3'
-        }
+        },
+        selected: true,
       },
       h4: {
-        command: [
-          ['formatBlock', false, 'h4'],
-        ],
+        command: ['formatBlock', false, 'h4'],
         materialize: {
           title: 'Заголовок 4',
           iconName: 'Filter4'
-        }
+        },
+        selected: true,
       },
       h5: {
-        command: [
-          ['formatBlock', false, 'h5'],
-        ],
+        command: ['formatBlock', false, 'h5'],
         materialize: {
           title: 'Заголовок 5',
           iconName: 'Filter5'
-        }
+        },
+        selected: true,
       },
       h6: {
-        command: [
-          ['formatBlock', false, 'h6'],
-        ],
+        command: ['formatBlock', false, 'h6'],
         materialize: {
           title: 'Заголовок 6',
           iconName: 'Filter6'
-        }
+        },
+        selected: true,
       },
     },
 
@@ -203,195 +214,190 @@ export const startingValue = {
     // ******************************
     textStyle: {
       b: {
-        command: [
-          ['bold', false, ''],
-        ],
+        command: ['bold', false, ''],
         materialize: {
           title: 'Полужирный',
           iconName: 'FormatBold'
-        }
+        },
+        selected: true,
       },
       i: {
-        command: [
-          ['italic', false, ''],
-        ],
+        command: ['italic', false, ''],
         materialize: {
           title: 'Курсив',
           iconName: 'FormatItalic'
-        }
+        },
+        selected: true,
       },
       underline: {
-        command: [
-          ['underline', false, ''],
-        ],
+        command: ['underline', false, ''],
         materialize: {
           title: 'Подчёркнутый текст',
           iconName: 'FormatUnderlined'
-        }
+        },
+        selected: true,
       },
       strike: {
-        command: [
-          ['strikeThrough', false, ''],
-        ],
+        command: ['strikeThrough', false, ''],
         materialize: {
           title: 'Зачёркнутый текст',
           iconName: 'StrikethroughS'
-        }
+        },
+        selected: true,
       },
       [formatCommand_bgcolor]: {
-        command: [
-          ['hiliteColor', false, default_bgcolor],
-        ],
         materialize: {
           title: 'Цвет фона',
           iconName: 'FormatColorFill'
-        }
+        },
+        selected: true,
       },
       [formatCommand_color]: {
-        command: [
-          ['styleWithCSS', false, 'true'], // использовать стили, а не html
-          ['foreColor', false, '#ff0000'],
-          ['styleWithCSS', false, 'false'], // использовать html, а не стили
-        ],
         materialize: {
           title: 'Цвет текста',
           iconName: 'FormatColorText'
-        }
+        },
+        selected: true,
       },
     },
 
     // ******************************
     textPositioning: {
       left: {
-        command: [
-          ['justifyLeft', false, ''],
-        ],
+        command: ['justifyLeft', false, ''],
         materialize: {
           title: 'По левому краю',
           iconName: 'FormatAlignLeft'
-        }
+        },
+        selected: true,
       },
       center: {
-        command: [
-          ['justifyCenter', false, ''],
-        ],
+        command: ['justifyCenter', false, ''],
         materialize: {
           title: 'По центру',
           iconName: 'FormatAlignCenter'
-        }
+        },
+        selected: true,
       },
       right: {
-        command: [
-          ['justifyRight', false, ''],
-        ],
+        command: ['justifyRight', false, ''],
         materialize: {
           title: 'По правому краю',
           iconName: 'FormatAlignRight'
-        }
+        },
+        selected: true,
       },
       full: {
-        command: [
-          ['justifyFull', false, ''],
-        ],
+        command: ['justifyFull', false, ''],
         materialize: {
           title: 'По ширине',
           iconName: 'FormatAlignJustify'
-        }
+        },
+        selected: true,
       },
     },
 
     // ******************************
     textIndents: {
       ul: {
-        command: [
-          ['insertUnorderedList', false, ''],
-        ],
+        command: ['insertUnorderedList', false, ''],
         materialize: {
           title: 'Маркированный список',
-          iconName: 'FormatListNumbered'
-        }
+          iconName: 'FormatListBulleted'
+        },
+        selected: true,
       },
       ol: {
-        command: [
-          ['insertOrderedList', false, ''],
-        ],
+        command: ['insertOrderedList', false, ''],
         materialize: {
           title: 'Нумерованный список',
-          iconName: 'FormatListBulleted'
-        }
+          iconName: 'FormatListNumbered'
+        },
+        selected: true,
       },
       indent: {
-        command: [
-          ['indent', false, ''],
-        ],
+        command: ['indent', false, ''],
         materialize: {
           title: 'Добавить отступ',
           iconName: 'FormatIndentIncrease'
-        }
+        },
+        selected: true,
       },
       outdent: {
-        command: [
-          ['outdent', false, ''],
-        ],
+        command: ['outdent', false, ''],
         materialize: {
           title: 'Убрать отступ',
           iconName: 'FormatIndentDecrease'
-        }
+        },
+        selected: true,
       },
       blockquote: {
-        command: [
-          ['formatBlock', false, 'blockquote'],
-        ],
+        command: ['formatBlock', false, 'blockquote'],
         materialize: {
           title: 'Цитата',
           iconName: 'FormatQuote'
-        }
+        },
+        selected: true,
       },
     },
 
     // ******************************
     adding: {
       hr: {
-        command: [
-          ['insertHorizontalRule', false, ''],
-        ],
+        command: ['insertHorizontalRule', false, ''],
         materialize: {
           title: 'Горизонтальная черта',
           iconName: 'Remove'
-        }
+        },
+        selected: true,
       },
       [formatCommand_link]: {
-        command: [
-          ['createLink', false, '#'], // нельзя менять и добавлять новые команды
-        ],
         materialize: {
           title: 'Ссылка',
           iconName: 'Link'
-        }
+        },
+        selected: true,
       },
     },
 
     // ******************************
     register: {
       sup: {
-        command: [
-          ['superscript', false, ''],
-        ],
+        command: ['superscript', false, ''],
         materialize: {
-          title: 'Верхний регистр',
+          title: 'Надстрочный',
           iconName: 'VerticalAlignTop'
-        }
+        },
+        selected: true,
       },
       sub: {
-        command: [
-          ['subscript', false, ''],
-        ],
+        command: ['subscript', false, ''],
         materialize: {
-          title: 'Нижний регистр',
+          title: 'Подстрочный',
           iconName: 'VerticalAlignBottom'
-        }
+        },
+        selected: true,
+      },
+      [formatCommand_uppercase]: {
+        materialize: {
+          title: 'ВЕРХНИЙ РЕГИСТР',
+          iconName: 'TextRotateUp'
+        },
+        selected: true,
+      },
+      [formatCommand_lowercase]: {
+        materialize: {
+          title: 'нижний регистр',
+          iconName: 'TextRotateVertical'
+        },
+        selected: true,
       },
     },
+  },
+
+  // просто текст
+  text: {
+    settingsTagsPanelTitle: 'Отображаемые на панели иконки',
   },
 
 
@@ -406,6 +412,10 @@ export const startingValue = {
     text: 'text',
     html: 'html',
     css: 'css',
+    close: 'Закрыть',
+    send: 'Отправить',
+    cancel: 'Отменить',
+    save: 'Сохранить',
   },
 
   // текст полей ввода

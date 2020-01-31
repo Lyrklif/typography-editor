@@ -9,4 +9,16 @@ export default createMuiTheme({
     secondary: blue,
     warning: deepPurple,
   },
+
+  typography: {
+    fontSize: 14,
+  },
+
+  overrides: {
+    MuiButton: {
+      root: {
+        minWidth: '40px'
+      }
+    }
+  }
 });

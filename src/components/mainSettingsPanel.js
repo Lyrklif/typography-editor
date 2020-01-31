@@ -2,51 +2,11 @@ import React from "react";
 
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-
-import Input from "@material-ui/core/Input";
-import TextField from "@material-ui/core/TextField";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Popper from "@material-ui/core/Popper";
-import Paper from "@material-ui/core/Paper";
-import Grow from "@material-ui/core/Grow";
-import Divider from "@material-ui/core/Divider";
 
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-import InputLabel from '@material-ui/core/InputLabel';
-
-
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
-import MenuList from '@material-ui/core/MenuList';
-
-
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
-import IconButton from "@material-ui/core/Button";
-import * as IconsLib from "@material-ui/icons";
-
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
-import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-import MyTheme from '../MyTheme';
-
-
-
-
-
-
 
 
 
@@ -99,6 +59,7 @@ export default class MainSettingsPanel extends React.Component {
             size="small"
             onChange={value => this.eventHandler("fontSize", value)}
             value={this.props.param.styles.fontSize}
+            title={this.props.param.inputs.fontSize}
           >
             {fontSizeList}
           </Select>
@@ -112,6 +73,7 @@ export default class MainSettingsPanel extends React.Component {
             size="small"
             onChange={value => this.eventHandler("lineHeight", value)}
             value={this.props.param.styles.lineHeight}
+            title={this.props.param.inputs.lineHeight}
           >
             {lineHeightList}
           </Select>

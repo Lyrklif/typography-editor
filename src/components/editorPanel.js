@@ -3,10 +3,10 @@ import React from "react";
 import { SwatchesPicker } from "react-color";
 
 
-import TagsPanel from "./tagsPanel";
-import ButtonsPanel from "./buttonsPanel";
-import MainSettingsPanel from "./mainSettingsPanel";
-import DialogLink from "./dialogLink";
+import TagsPanel from "./TagsPanel";
+import ButtonsPanel from "./ButtonsPanel";
+import MainSettingsPanel from "./MainSettingsPanel";
+import DialogLink from "./DialogLink";
 
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
@@ -15,11 +15,7 @@ import * as IconsLib from "@material-ui/icons";
 import Modal from '@material-ui/core/Modal';
 import Box from '@material-ui/core/Box';
 import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -27,12 +23,8 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import { restoreSelection } from '../functions/restoreSelection';
 
 import {
-  // formatCommand_clear,
   formatCommand_bgcolor,
   formatCommand_color,
-  formatCommand_link,
-  // default_bgcolor,
-  // default_color,
 } from "../vars";
 
 
@@ -201,7 +193,8 @@ export default class EditorPanel extends React.Component {
 
             <Divider />
             <TagsPanel
-              param={this.state}
+              param={this.props.param}
+              values={this.state.styles}
               tags={"tagParameters_outside"}
               editAllowed={
                 this.props.param.states.tabActive == "0" ? true : false
@@ -209,7 +202,6 @@ export default class EditorPanel extends React.Component {
               switchShowColorPiper={this.switchShowColorPiper}
               showDialogLink={this.switchDialogLink}
             />
-
 
 
             {/* Панель выбора цвета */}
@@ -231,7 +223,7 @@ export default class EditorPanel extends React.Component {
                   className={"color-picker-wp__close"}
                   endIcon={<IconsLib.HighlightOff />}
                 >
-                  Закрыть
+                  {this.props.param.buttons.close}
                 </Button>
 
                 <SwatchesPicker
@@ -242,6 +234,7 @@ export default class EditorPanel extends React.Component {
             </Modal>
 
             <DialogLink
+              param={this.state}
               isOpen={this.state.states.dialogLink}
               switchDialogLink={this.switchDialogLink}
               addLinkUrl={this.addLinkUrl}

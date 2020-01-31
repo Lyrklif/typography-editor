@@ -5,7 +5,7 @@
 }
 
 .editor-panel__inner {
-  padding: 1rem 1.5rem 0 1.5rem;
+  padding: 0 1.5rem;
 }
 
 .editor-panel__top {
@@ -43,9 +43,8 @@
   width: 90px !important;
 }
 
-
 .tabs-wrap {
-  margin-top: 160px;
+  margin-top: 150px;
 }
 
 
@@ -82,7 +81,11 @@
 
 
 
-
+.settings-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
 
 
 

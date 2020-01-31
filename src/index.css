@@ -16,6 +16,11 @@ button * {
 }
 
 
+ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .content {
   padding: 1em 1.5em;
 }
@@ -36,6 +41,15 @@ blockquote {
 
   margin-left: 0;
   padding: .5em 0.5em 0.5em 1em;
+}
+
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
 
 .content.edit {
