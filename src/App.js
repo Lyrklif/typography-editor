@@ -44,9 +44,10 @@ export default class App extends React.Component {
         ...localDataParam,
         html: localTextParam
       };
+    }
 
-      // если сохранены только настройки
-    } else if (localData) {
+    // если сохранены только настройки
+    else if (localData) {
       this.state = localDataParam;
     }
 
@@ -62,9 +63,6 @@ export default class App extends React.Component {
     else {
       this.state = props.data;
     }
-
-    // this.state = props.data;
-
 
     console.log("*** Начальные данные ***\n", this.state);
     console.log("*** Пользовательская тема ***\n", MyTheme);
