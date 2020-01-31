@@ -400,6 +400,8 @@ export const startingValue = {
   text: {
     settingsTagsPanelTitle: 'Отображаемые на панели иконки',
     settingsPanelTitle: 'Настройки',
+    saveSuccess: 'Изменения сохранены',
+    saveError: 'Произошла ошибка! Изменения не сохранены. Попробуйте ещё раз',
   },
 
 

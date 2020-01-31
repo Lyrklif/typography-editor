@@ -142,20 +142,13 @@ export default class App extends React.Component {
 
       // если текст не выделен изменить глобальные параметры
     } else {
-      this.setState(state => ({
-        styles: {
-          ...state.styles,
-          [inputName]: [value]
-        }
-      }));
+      this.updMainStates('styles', inputName, value);
     }
   }
 
   // изменить отображаемые теги
   changeDisplayedTags = (newTagsParam) => {
-    this.setState(state => ({
-      tagParameters: newTagsParam
-    }));
+    this.setState({ tagParameters: newTagsParam });
   }
 
   // вкл/откл возможность редактировать текст
@@ -173,9 +166,7 @@ export default class App extends React.Component {
     // если в качестве параметра передан новый текст
     if (newValue && newValue !== this.state.html) {
       // записать новую версию текста
-      this.setState({
-        html: newValue
-      });
+      this.setState({ html: newValue });
     }
   }
 
