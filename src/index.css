@@ -16,6 +16,11 @@ button * {
 }
 
 
+ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .content {
   padding: 1em 1.5em;
 }

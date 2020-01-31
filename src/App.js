@@ -8,6 +8,7 @@ import HTMLeditable from "./components/HTMLeditable";
 import TabContainer from "./components/TabContainer";
 import TabSwitches from "./components/TabSwitches";
 import Settings from "./components/Settings";
+import SettingsTagsPanel from "./components/SettingsTagsPanel";
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -134,7 +135,7 @@ export default class App extends React.Component {
             dialogLink={this.switchDialogLink}
           />
 
-          
+
 
           <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
             <Grid item xs={12} md={10} lg={8}>
@@ -176,6 +177,7 @@ export default class App extends React.Component {
           </Grid>
         </Box>
         <Settings param={this.state} />
+        <SettingsTagsPanel param={this.state} />
 
       </MuiThemeProvider>
     );

@@ -150,10 +150,9 @@ export default class TagsPanel extends React.Component {
               </IconButton>
             </li>
           );
-
         };
-
       });
+
       return (
         <Box
           key={groupIndex}

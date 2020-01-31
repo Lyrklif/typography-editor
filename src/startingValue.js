@@ -29,9 +29,11 @@ export const startingValue = {
     // какой параметр по-умолчанию изменяет панель выбора цвета
     paletteEdit: formatCommand_bgcolor,
 
-    // какой таб будет активным изначально
-    tabActive: 0,
-    switchOpenSettings: false,
+    tabActive: 0,// какой таб будет активным изначально
+
+    switchOpenSettings: false, // показывать скрытые иконки SpeedDial
+
+    openSettingsTagsPanel: true, // показывать скрытые иконки SpeedDial
   },
 
   // размеры, которые можно задавать в select
@@ -124,14 +126,16 @@ export const startingValue = {
         materialize: {
           title: 'Очистить формат',
           iconName: 'FormatClear'
-        }
+        },
+        selected: true,
       },
       p: {
         command: ['formatBlock', false, 'p'],
         materialize: {
           title: 'Параграф',
           iconName: 'TextFormat'
-        }
+        },
+        selected: true,
       },
 
     },
@@ -144,42 +148,48 @@ export const startingValue = {
         materialize: {
           title: 'Заголовок 1',
           iconName: 'Filter1'
-        }
+        },
+        selected: true,
       },
       h2: {
         command: ['formatBlock', false, 'h2'],
         materialize: {
           title: 'Заголовок 2',
           iconName: 'Filter2'
-        }
+        },
+        selected: true,
       },
       h3: {
         command: ['formatBlock', false, 'h3'],
         materialize: {
           title: 'Заголовок 3',
           iconName: 'Filter3'
-        }
+        },
+        selected: true,
       },
       h4: {
         command: ['formatBlock', false, 'h4'],
         materialize: {
           title: 'Заголовок 4',
           iconName: 'Filter4'
-        }
+        },
+        selected: true,
       },
       h5: {
         command: ['formatBlock', false, 'h5'],
         materialize: {
           title: 'Заголовок 5',
           iconName: 'Filter5'
-        }
+        },
+        selected: true,
       },
       h6: {
         command: ['formatBlock', false, 'h6'],
         materialize: {
           title: 'Заголовок 6',
           iconName: 'Filter6'
-        }
+        },
+        selected: true,
       },
     },
 
@@ -193,40 +203,46 @@ export const startingValue = {
         materialize: {
           title: 'Полужирный',
           iconName: 'FormatBold'
-        }
+        },
+        selected: true,
       },
       i: {
         command: ['italic', false, ''],
         materialize: {
           title: 'Курсив',
           iconName: 'FormatItalic'
-        }
+        },
+        selected: true,
       },
       underline: {
         command: ['underline', false, ''],
         materialize: {
           title: 'Подчёркнутый текст',
           iconName: 'FormatUnderlined'
-        }
+        },
+        selected: true,
       },
       strike: {
         command: ['strikeThrough', false, ''],
         materialize: {
           title: 'Зачёркнутый текст',
           iconName: 'StrikethroughS'
-        }
+        },
+        selected: true,
       },
       [formatCommand_bgcolor]: {
         materialize: {
           title: 'Цвет фона',
           iconName: 'FormatColorFill'
-        }
+        },
+        selected: true,
       },
       [formatCommand_color]: {
         materialize: {
           title: 'Цвет текста',
           iconName: 'FormatColorText'
-        }
+        },
+        selected: true,
       },
     },
 
@@ -237,28 +253,32 @@ export const startingValue = {
         materialize: {
           title: 'По левому краю',
           iconName: 'FormatAlignLeft'
-        }
+        },
+        selected: true,
       },
       center: {
         command: ['justifyCenter', false, ''],
         materialize: {
           title: 'По центру',
           iconName: 'FormatAlignCenter'
-        }
+        },
+        selected: true,
       },
       right: {
         command: ['justifyRight', false, ''],
         materialize: {
           title: 'По правому краю',
           iconName: 'FormatAlignRight'
-        }
+        },
+        selected: true,
       },
       full: {
         command: ['justifyFull', false, ''],
         materialize: {
           title: 'По ширине',
           iconName: 'FormatAlignJustify'
-        }
+        },
+        selected: true,
       },
     },
 
@@ -269,35 +289,40 @@ export const startingValue = {
         materialize: {
           title: 'Маркированный список',
           iconName: 'FormatListBulleted'
-        }
+        },
+        selected: true,
       },
       ol: {
         command: ['insertOrderedList', false, ''],
         materialize: {
           title: 'Нумерованный список',
           iconName: 'FormatListNumbered'
-        }
+        },
+        selected: true,
       },
       indent: {
         command: ['indent', false, ''],
         materialize: {
           title: 'Добавить отступ',
           iconName: 'FormatIndentIncrease'
-        }
+        },
+        selected: true,
       },
       outdent: {
         command: ['outdent', false, ''],
         materialize: {
           title: 'Убрать отступ',
           iconName: 'FormatIndentDecrease'
-        }
+        },
+        selected: true,
       },
       blockquote: {
         command: ['formatBlock', false, 'blockquote'],
         materialize: {
           title: 'Цитата',
           iconName: 'FormatQuote'
-        }
+        },
+        selected: true,
       },
     },
 
@@ -308,13 +333,15 @@ export const startingValue = {
         materialize: {
           title: 'Горизонтальная черта',
           iconName: 'Remove'
-        }
+        },
+        selected: true,
       },
       [formatCommand_link]: {
         materialize: {
           title: 'Ссылка',
           iconName: 'Link'
-        }
+        },
+        selected: true,
       },
     },
 
@@ -325,28 +352,37 @@ export const startingValue = {
         materialize: {
           title: 'Верхний регистр',
           iconName: 'VerticalAlignTop'
-        }
+        },
+        selected: true,
       },
       sub: {
         command: ['subscript', false, ''],
         materialize: {
           title: 'Нижний регистр',
           iconName: 'VerticalAlignBottom'
-        }
+        },
+        selected: true,
       },
       [formatCommand_uppercase]: {
         materialize: {
           title: 'Uppercase',
           iconName: 'TextRotateUp'
-        }
+        },
+        selected: true,
       },
       [formatCommand_lowercase]: {
         materialize: {
-          title: 'Uowercase',
+          title: 'Lowercase',
           iconName: 'TextRotateVertical'
-        }
+        },
+        selected: true,
       },
     },
+  },
+
+  // просто текст
+  text: {
+    settingsTagsPanelTitle: 'Отображаемые на панели иконки',
   },
 
 
@@ -363,6 +399,8 @@ export const startingValue = {
     css: 'css',
     close: 'Закрыть',
     send: 'Отправить',
+    cancel: 'Отменить',
+    save: 'Сохранить',
   },
 
   // текст полей ввода
