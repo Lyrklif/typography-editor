@@ -6,17 +6,23 @@ import { startingValue } from '../startingValue';
 
 import {
   UPD_MAIN_STORE,
-  STATES
+  UPD_TEXT,
 } from '../actions/actionTypes';
 
 export default (state = startingValue, action) => {
   switch (action.type) {
+    // изменить какой-то из параметров
     case UPD_MAIN_STORE:
       return Object.assign({}, state, {
         [action.value.group]: {
           ...state[action.value.group],
           [action.value.name]: action.value.value ? action.value.value : !state.states[action.value.name]
         }
+      })
+    // изменить текст
+    case UPD_TEXT:
+      return Object.assign({}, state, {
+        'html': action.value
       })
     default:
       return state

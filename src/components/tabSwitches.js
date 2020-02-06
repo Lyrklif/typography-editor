@@ -6,27 +6,28 @@ import Tab from "@material-ui/core/Tab";
 import * as IconsLib from "@material-ui/icons";
 import Paper from "@material-ui/core/Paper";
 
+import sanitize from '../functions/sanitize';
 import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { updStore, updStates, updSizes, updStyles, updText } from '../actions/actionCreators';
+import { connect } from 'react-redux'
+
+
+const mapStateToProps = (state) => {
+  return {
+    tabActive: state.states.tabActive
+  }
+}
 
 
 // настройка тегов
-export default class TabSwitches extends React.Component {
+class TabSwitches extends React.Component {
   constructor(props) {
     super(props);
+  }
 
-    this.onChange = this.props.onChange;
-
-    // console.log(mainStore.getState());
-
-    // mainStore.dispatch(updStore({
-    //   group: 'states',
-    //   name: 'editText',
-    // }));
-
-    mainStore.dispatch(updStates({
-      name: 'editText',
-    }));
+  onChange = (e, newValue) => {
+    sanitize(); // записать новый текст, удалив неразрешённые теги
+    updStates('tabActive', newValue);
   }
 
 
@@ -35,7 +36,8 @@ export default class TabSwitches extends React.Component {
       <Paper component={"nav"} className={"tabs-nav"}>
         <Tabs
           className={"clear-list"}
-          value={this.props.value}
+          // value={this.props.value}
+          value={this.props.tabActive}
           onChange={this.onChange}
           aria-label="simple tabs example"
           indicatorColor="primary"
@@ -53,15 +55,17 @@ export default class TabSwitches extends React.Component {
             icon={<IconsLib.SettingsEthernet />}
             aria-label="Режим просмотра HTML"
             title="Режим просмотра HTML" />
-          <Tab
+          {/* <Tab
             // label="CSS"
             icon={<IconsLib.Texture />}
             aria-label="Режим просмотра CSS"
             title="Режим просмотра CSS"
             disabled
-          />
+          /> */}
         </Tabs>
       </Paper>
     )
   }
 }
+
+export default connect(mapStateToProps)(TabSwitches);

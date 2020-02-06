@@ -27,6 +27,8 @@ import sanitizeHtml from "sanitize-html";
 import pretty from 'pretty';
 
 
+import sanitize from './functions/sanitize';
+
 import mainStore from './store/mainStore';
 import reducer from './reducers/reducer';
 import { createStore } from "redux";
@@ -198,11 +200,10 @@ export default class App extends React.Component {
   };
 
   render() {
-    const store = createStore(reducer, mainStore.getState());
+    // const store = createStore(reducer, mainStore.getState());
 
     return (
       <MuiThemeProvider theme={MyTheme}>
-        <Provider store={store}>
           <Box component="main" className="App" >
             {/* панель редактирования */}
             <EditorPanel
@@ -221,13 +222,13 @@ export default class App extends React.Component {
 
                 {/* Переключатель вкладок */}
                 <TabSwitches
-                  value={this.state.states.tabActive}
-                  onChange={this.tabSwitch}
+                  // value={mainStore.getState().states.tabActive}
+                  // onChange={this.tabSwitch}
                 />
 
                 {/* Вкладка №1 */}
                 <TabContainer
-                  value={this.state.states.tabActive}
+                  value={mainStore.getState().states.tabActive}
                   index={0}
                   h2={"Редактируемый текст"}>
                   <ContentEditable param={this.state} />
@@ -235,7 +236,7 @@ export default class App extends React.Component {
 
                 {/* Вкладка №2 */}
                 <TabContainer
-                  value={this.state.states.tabActive}
+                  value={mainStore.getState().states.tabActive}
                   index={1}
                   h2={"Редактируемый html"}>
                   <HTMLeditable
@@ -245,12 +246,12 @@ export default class App extends React.Component {
                 </TabContainer>
 
                 {/* Вкладка №3 */}
-                <TabContainer
+                {/* <TabContainer
                   value={this.state.states.tabActive}
                   index={2}
                   h2={"Редактируемые стили"}>
                   <p>Тут будет отображаться css</p>
-                </TabContainer>
+                </TabContainer> */}
 
               </Grid>
             </Grid>
@@ -274,8 +275,6 @@ export default class App extends React.Component {
             updStates={this.updMainStates}
             reset={this.returnDefaultSettings}
           />
-
-        </Provider>
       </MuiThemeProvider>
     );
   }
