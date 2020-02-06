@@ -4,6 +4,10 @@ import IconButton from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
 
+
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
 // настройка тегов
 export default class ButtonsPanel extends React.Component {
   constructor(props) {

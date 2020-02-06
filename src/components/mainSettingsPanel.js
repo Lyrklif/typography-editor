@@ -10,6 +10,10 @@ import Select from '@material-ui/core/Select';
 
 
 
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
+
 // настройка тегов
 export default class MainSettingsPanel extends React.Component {
   constructor(props) {

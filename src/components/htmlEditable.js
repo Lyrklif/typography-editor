@@ -6,6 +6,8 @@ import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/snippets/html";
 import "ace-builds/src-noconflict/theme-xcode";
 
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
 
 // Текст, который можно редактировать
 export default class HTMLeditable extends React.Component {

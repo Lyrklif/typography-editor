@@ -6,12 +6,27 @@ import Tab from "@material-ui/core/Tab";
 import * as IconsLib from "@material-ui/icons";
 import Paper from "@material-ui/core/Paper";
 
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
+
 // настройка тегов
 export default class TabSwitches extends React.Component {
   constructor(props) {
     super(props);
 
     this.onChange = this.props.onChange;
+
+    // console.log(mainStore.getState());
+
+    // mainStore.dispatch(updStore({
+    //   group: 'states',
+    //   name: 'editText',
+    // }));
+
+    mainStore.dispatch(updStates({
+      name: 'editText',
+    }));
   }
 
 

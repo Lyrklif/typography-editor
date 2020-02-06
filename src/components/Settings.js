@@ -13,6 +13,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
 
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
+
 import {
   formatCommand_clear,
   formatCommand_bgcolor,

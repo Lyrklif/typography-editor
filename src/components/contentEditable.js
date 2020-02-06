@@ -1,5 +1,7 @@
 import React from 'react';
 
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
 
 // Текст, который можно редактировать
 export default class ContentEditable extends React.Component {

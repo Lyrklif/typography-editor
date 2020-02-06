@@ -8,6 +8,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import TextField from '@material-ui/core/TextField';
 
+
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
 // панель редактирования
 export default class DialogLink extends React.Component {
   constructor(props) {

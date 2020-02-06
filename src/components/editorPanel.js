@@ -21,8 +21,10 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 import Dialog from '@material-ui/core/Dialog';
 
-
 import { restoreSelection } from '../functions/restoreSelection';
+
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
 
 import {
   formatCommand_bgcolor,
@@ -143,7 +145,6 @@ export default class EditorPanel extends React.Component {
               variant="scrollable"
               value={0}
             >
-
               {/* основные настройки */}
               <MainSettingsPanel
                 param={this.props.param}

@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
 // Текст, который можно редактировать
 export default class TabContainer extends React.Component {
   constructor(props) {

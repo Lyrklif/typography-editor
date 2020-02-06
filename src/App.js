@@ -11,6 +11,8 @@ import Settings from "./components/Settings";
 import SettingsTagsPanel from "./components/SettingsTagsPanel";
 import SettingsPanel from "./components/SettingsPanel";
 
+
+
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
@@ -24,6 +26,11 @@ import { setAttributeForSelectedText } from './functions/setAttributeForSelected
 import sanitizeHtml from "sanitize-html";
 import pretty from 'pretty';
 
+
+import mainStore from './store/mainStore';
+import reducer from './reducers/reducer';
+import { createStore } from "redux";
+import { connect, Provider } from "react-redux";
 
 // Стили
 import "./App.css";
@@ -41,10 +48,12 @@ export default class App extends React.Component {
     // если сохранены и настройки, и текст
     if (localData && localText) {
       this.state = {
+
         ...localDataParam,
         html: localTextParam
       };
     }
+    
 
     // если сохранены только настройки
     else if (localData) {
@@ -66,10 +75,6 @@ export default class App extends React.Component {
 
     console.log("*** Начальные данные ***\n", this.state);
     console.log("*** Пользовательская тема ***\n", MyTheme);
-
-    this.setGlobalParam = this.setGlobalParam.bind(this);
-    this.switchEditText = this.switchEditText.bind(this);
-    this.sanitize = this.sanitize.bind(this);
   }
 
   // обновить значения в localStorage
@@ -131,7 +136,7 @@ export default class App extends React.Component {
   }
 
   // установить глобальные настройки
-  setGlobalParam(inputName, e) {
+  setGlobalParam = (inputName, e) => {
     let value = e.target.value;
 
     let isSelected = getSelection().toString();
@@ -152,7 +157,7 @@ export default class App extends React.Component {
   }
 
   // вкл/откл возможность редактировать текст
-  switchEditText() {
+  switchEditText = () => {
     this.updMainStates('states', 'editText');
 
     // если режим редактирования выключен
@@ -171,7 +176,7 @@ export default class App extends React.Component {
   }
 
   // записать новый текст, удалив неразрешённые теги
-  sanitize() {
+  sanitize = () => {
     let editableBlock = document.querySelector(".content"); // блок, текст в котором можно редактировать
     let text = editableBlock.innerHTML; // текст вместе с тегами
 
@@ -193,80 +198,84 @@ export default class App extends React.Component {
   };
 
   render() {
+    const store = createStore(reducer, mainStore.getState());
+
     return (
       <MuiThemeProvider theme={MyTheme}>
-        <Box component="main" className="App" >
-          {/* панель редактирования */}
-          <EditorPanel
+        <Provider store={store}>
+          <Box component="main" className="App" >
+            {/* панель редактирования */}
+            <EditorPanel
+              param={this.state}
+              setGlobalParam={this.setGlobalParam}
+              switchEditText={this.switchEditText}
+              tabSwitch={this.tabSwitch}
+              dialogLink={this.switchDialogLink}
+              setNewColor={this.updMainStates}
+            />
+
+
+
+            <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
+              <Grid item xs={12} md={10} lg={8}>
+
+                {/* Переключатель вкладок */}
+                <TabSwitches
+                  value={this.state.states.tabActive}
+                  onChange={this.tabSwitch}
+                />
+
+                {/* Вкладка №1 */}
+                <TabContainer
+                  value={this.state.states.tabActive}
+                  index={0}
+                  h2={"Редактируемый текст"}>
+                  <ContentEditable param={this.state} />
+                </TabContainer>
+
+                {/* Вкладка №2 */}
+                <TabContainer
+                  value={this.state.states.tabActive}
+                  index={1}
+                  h2={"Редактируемый html"}>
+                  <HTMLeditable
+                    param={this.state}
+                    onChange={this.setNewText}
+                  />
+                </TabContainer>
+
+                {/* Вкладка №3 */}
+                <TabContainer
+                  value={this.state.states.tabActive}
+                  index={2}
+                  h2={"Редактируемые стили"}>
+                  <p>Тут будет отображаться css</p>
+                </TabContainer>
+
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Settings
             param={this.state}
-            setGlobalParam={this.setGlobalParam}
-            switchEditText={this.switchEditText}
-            tabSwitch={this.tabSwitch}
-            dialogLink={this.switchDialogLink}
-            setNewColor={this.updMainStates}
+            updStates={this.updMainStates}
+            save={this.updLocalStorage}
           />
 
+          <SettingsTagsPanel
+            param={this.state}
+            saveChange={this.changeDisplayedTags}
+            updStates={this.updMainStates}
+          />
 
+          <SettingsPanel
+            param={this.state}
+            saveChange={this.changeDisplayedTags}
+            updStates={this.updMainStates}
+            reset={this.returnDefaultSettings}
+          />
 
-          <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
-            <Grid item xs={12} md={10} lg={8}>
-
-              {/* Переключатель вкладок */}
-              <TabSwitches
-                value={this.state.states.tabActive}
-                onChange={this.tabSwitch}
-              />
-
-              {/* Вкладка №1 */}
-              <TabContainer
-                value={this.state.states.tabActive}
-                index={0}
-                h2={"Редактируемый текст"}>
-                <ContentEditable param={this.state} />
-              </TabContainer>
-
-              {/* Вкладка №2 */}
-              <TabContainer
-                value={this.state.states.tabActive}
-                index={1}
-                h2={"Редактируемый html"}>
-                <HTMLeditable
-                  param={this.state}
-                  onChange={this.setNewText}
-                />
-              </TabContainer>
-
-              {/* Вкладка №3 */}
-              <TabContainer
-                value={this.state.states.tabActive}
-                index={2}
-                h2={"Редактируемые стили"}>
-                <p>Тут будет отображаться css</p>
-              </TabContainer>
-
-            </Grid>
-          </Grid>
-        </Box>
-
-        <Settings
-          param={this.state}
-          updStates={this.updMainStates}
-          save={this.updLocalStorage}
-        />
-
-        <SettingsTagsPanel
-          param={this.state}
-          saveChange={this.changeDisplayedTags}
-          updStates={this.updMainStates}
-        />
-
-        <SettingsPanel
-          param={this.state}
-          saveChange={this.changeDisplayedTags}
-          updStates={this.updMainStates}
-          reset={this.returnDefaultSettings}
-        />
-
+        </Provider>
       </MuiThemeProvider>
     );
   }

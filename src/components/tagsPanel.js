@@ -12,6 +12,10 @@ import { setAttributeForSelectedText } from '../functions/setAttributeForSelecte
 
 import Tabs from '@material-ui/core/Tabs';
 
+
+import mainStore from '../store/mainStore';
+import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+
 import {
   formatCommand_clear,
   formatCommand_bgcolor,
