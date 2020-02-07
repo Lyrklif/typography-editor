@@ -30,6 +30,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
+    tabActive: +state.states.tabActive,
     tagParameters: state.tagParameters,
     bgcolor: state.styles.bgcolor,
     color: state.styles.color,
@@ -53,7 +54,7 @@ class TagsPanel extends React.Component {
   setTag = (group, tag) => {
 
     // ничего не делать, если это не первая вкладка
-    if (!this.props.editAllowed) return false;
+    if (this.props.tabActive !== 0) return false;
 
     let command = this.props.tagParameters[group][tag].command; // команды, прописанные для этого тега
 
