@@ -6,6 +6,8 @@ import TagsPanel from "./TagsPanel";
 import ButtonsPanel from "./ButtonsPanel";
 import MainSettingsPanel from "./MainSettingsPanel";
 import DialogLink from "./DialogLink";
+import ColorPanel from "./ColorPanel";
+import ColorPickerModal from "./ColorPickerModal";
 
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
@@ -161,35 +163,7 @@ class EditorPanel extends React.Component {
               <ButtonsPanel /> {/* панель с кнопками */}
               <Box><Divider orientation="vertical" /></Box>
 
-              <Box className="box-margin">
-                {/* Выбор цвета фона */}
-                <Button
-                  size="large"
-                  color="primary"
-                  title="Установить цвет фона"
-                  onClick={() => this.changeColor(formatCommand_bgcolor)}
-                  startIcon={<IconsLib.FormatColorFill color="inherit" />}
-                >
-                  <span
-                    className={"button-pallet__color"}
-                    style={{ backgroundColor: this.state.styles.bgcolor }}>
-                  </span>
-                </Button>
-
-                {/* Выбор цвета текста */}
-                <Button
-                  size="large"
-                  color="primary"
-                  title="Установить цвет текста"
-                  onClick={() => this.changeColor(formatCommand_color)}
-                  startIcon={<IconsLib.FormatColorText />}
-                >
-                  <span
-                    className={"button-pallet__color"}
-                    style={{ backgroundColor: this.state.styles.color }}>
-                  </span>
-                </Button>
-              </Box>
+              <ColorPanel className="box-margin" />
             </Tabs>
 
 
@@ -206,21 +180,7 @@ class EditorPanel extends React.Component {
             />
 
 
-            {/* Панель выбора цвета */}
-            <Dialog
-              open={this.state.states.colorPicker}
-              onClose={this.switchShowColorPiper}
-              aria-labelledby="form-dialog-color"
-            >
-              <Button onClick={this.switchShowColorPiper} color="primary">
-                {this.props.param.buttons.close}
-              </Button>
-
-              <SwatchesPicker
-                onChange={this.handleChange}
-                color={this.state.styles.bgcolor}
-              />
-            </Dialog>
+            <ColorPickerModal /> {/* modal выбора цвета */}
 
 
             <DialogLink

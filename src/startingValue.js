@@ -423,6 +423,8 @@ export const startingValue = {
     cancel: 'Отменить',
     save: 'Сохранить',
     apply: 'Применить',
+    bgColor: 'Цвет фона',
+    textColor: 'Цвет текста',
   },
 
   // текст полей ввода
