@@ -51,8 +51,7 @@ class EditorPanel extends React.Component {
               className={"scrollbar--center"}
               orientation="horizontal"
               variant="scrollable"
-              value={0}
-            >
+              value={0} >
 
               <MainSettingsPanel /> {/* основные настройки */}
               <Box><Divider orientation="vertical" /></Box>
@@ -66,8 +65,7 @@ class EditorPanel extends React.Component {
             <Divider />
             <TagsPanel />  {/* панель тегов */}
 
-            <ColorPickerModal /> {/* modal выбора цвета */}
-            <DialogLink /> {/* modal ввода href для ссылки */}
+
 
           </Paper>
         </AppBar>

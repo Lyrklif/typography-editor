@@ -14,6 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { connect } from 'react-redux';
 
 
 import {
@@ -27,14 +28,25 @@ import {
 
 
 
+const mapStateToProps = (state) => {
+  return {
+    openSettingsTagsPanel: !!+state.states.openSettingsTagsPanel,
+    apply: state.buttons.apply,
+    cancel: state.buttons.cancel,
+    tagParameters: state.tagParameters,
+    settingsTagsPanelTitle: state.text.settingsTagsPanelTitle,
+  }
+}
+
+
 // настройка тегов
-export default class SettingsTagsPanel extends React.Component {
+class SettingsTagsPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = props.param;
-    this.saveChange = props.saveChange;
-    // this.updStates = props.updStates;
+    this.state = {
+      tagParameters: this.props.tagParameters
+    }
   }
 
   switchShowPanel = () => {
@@ -44,6 +56,18 @@ export default class SettingsTagsPanel extends React.Component {
   saveNewSettings = () => {
     this.switchShowPanel(); // закрыть панель
     // this.saveChange(this.state.tagParameters);
+  }
+
+  saveChange = () => {
+    // this.save(); // сохранить
+
+    // setTimeout(() => {
+    //   if (localStorage.getItem("param") !== null) {
+    //     this.showAlert('success', this.state.text.saveSuccess);
+    //   } else {
+    //     this.showAlert('error', this.state.text.saveError);
+    //   }
+    // }, 0);
   }
 
   handleChange = (group, tag) => {
@@ -128,11 +152,11 @@ export default class SettingsTagsPanel extends React.Component {
 
     return (
       <Dialog
-        open={this.props.param.states.openSettingsTagsPanel}
+        open={this.props.openSettingsTagsPanel}
         onClose={this.switchShowPanel}
         aria-labelledby="form-dialog-settings-icons"
       >
-        <DialogTitle id="form-dialog-title">{this.props.param.text.settingsTagsPanelTitle}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{this.props.settingsTagsPanelTitle}</DialogTitle>
         <Divider />
 
         <DialogContent >
@@ -147,10 +171,10 @@ export default class SettingsTagsPanel extends React.Component {
         <Divider />
         <DialogActions>
           <Button onClick={this.switchShowPanel} >
-            {this.props.param.buttons.cancel}
+            {this.props.cancel}
           </Button>
           <Button onClick={this.saveNewSettings} color="secondary">
-            {this.props.param.buttons.apply}
+            {this.props.apply}
           </Button>
         </DialogActions>
 
@@ -158,3 +182,6 @@ export default class SettingsTagsPanel extends React.Component {
     )
   }
 }
+
+
+export default connect(mapStateToProps)(SettingsTagsPanel);

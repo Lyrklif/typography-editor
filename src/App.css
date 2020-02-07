@@ -53,10 +53,34 @@
   width: 90px !important;
 }
 
-.tabs-wrap {
+.tabs-nav {
   margin-top: 150px;
+  margin-bottom: 40px;
 }
 
+.tabs-wrap {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .tabs-wrap {
+    max-width: 630px;
+  }
+}
+
+@media (min-width: 992px) {
+  .tabs-wrap {
+    max-width: 840px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tabs-wrap {
+    max-width: 1050px;
+  }
+}
 
 .tab {
   display: none;
@@ -146,9 +170,4 @@
 .ace_editor {
   width: 100% !important;
   height: 600px !important;
-}
-
-
-.tabs-nav {
-  margin-bottom: 40px;
 }

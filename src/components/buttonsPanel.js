@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
 
 import { updLocalStorage } from '../functions/localStorage';
+import { updStates } from '../actions/actionCreators';
 
 import { connect } from 'react-redux';
 
@@ -84,14 +85,24 @@ class ButtonsPanel extends React.Component {
     }));
   }
 
+  editParam = () => {
+    updStates('openSettingsTagsPanel');
+  }
+
 
   // напечатать текст/код
   print = () => {
     window.print();
   }
 
+  settings = () => {
+    updStates('openSettingsPanel');
+  }
+
   render() {
     const buttonsData = [
+      ['settings', 'Settings'],
+      ['editParam', 'Apps'],
       ['save', 'Save'],
       ['download', 'GetApp'],
       ['print', 'Print'],

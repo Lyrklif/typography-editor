@@ -33,7 +33,7 @@ class TabSwitches extends React.Component {
 
   render() {
     return (
-      <Paper component={"nav"} className={"tabs-nav"}>
+      <Paper component={"nav"} className={"tabs-nav tabs-wrap"}>
         <Tabs
           className={"clear-list"}
           value={this.props.tabActive}

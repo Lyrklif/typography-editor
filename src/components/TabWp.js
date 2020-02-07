@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 }
 
 // Текст, который можно редактировать
-class TabContainer extends React.Component {
+class TabWp extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -29,7 +29,7 @@ class TabContainer extends React.Component {
 
     return (
       <Paper
-        component="section">
+        component="section" className="tabs-wrap">
         <header className="meta-title">
           <h2>{this.props.h2}</h2>
         </header>
@@ -50,4 +50,4 @@ class TabContainer extends React.Component {
 }
 
 
-export default connect(mapStateToProps)(TabContainer);
+export default connect(mapStateToProps)(TabWp);

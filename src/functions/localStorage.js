@@ -18,3 +18,9 @@ export const updLocalStorage = () => {
   //   this.setNewValueLocalStorage // записать в localStorage после обновления
   // );
 }
+
+// перезаписать localStorage
+export const setNewValueLocalStorage = () => {
+  localStorage.setItem('param', JSON.stringify(this.state));
+  localStorage.setItem('text', JSON.stringify(this.state.html));
+}
