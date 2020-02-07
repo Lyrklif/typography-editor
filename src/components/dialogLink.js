@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import { restoreSelection } from '../functions/restoreSelection';
 
 import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { updStore, updStates, updSizes, updStyles, updSelectedText } from '../actions/actionCreators';
 import { connect } from 'react-redux';
 
 
@@ -20,6 +20,7 @@ const mapStateToProps = (state) => {
     dialogLink: !!+state.states.dialogLink,
     close: state.buttons.close,
     send: state.buttons.send,
+    selectedText: state.selectedText,
   }
 }
 
@@ -28,21 +29,13 @@ const mapStateToProps = (state) => {
 class DialogLink extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      selectedText: '',
-    }
-
     this.href = React.createRef();
   }
 
   // показать/скрыть диалог ввода ссылки
   switchDialogLink = (selectedText) => {
     updStates('dialogLink');
-
-    this.setState({
-      selectedText: selectedText
-    });
+    updSelectedText(selectedText);
   }
 
   // добавить ссылку
@@ -50,14 +43,11 @@ class DialogLink extends React.Component {
     this.switchDialogLink(); // закрыть модальное окно
 
     // если выделенный ранее текст записан
-    if (this.state.selectedText) {
-      restoreSelection(this.state.selectedText); // восстановить выделение
+    if (this.props.selectedText) {
+      restoreSelection(this.props.selectedText); // восстановить выделение
 
       document.execCommand('createLink', false, href); // добавить ссылку
-
-      this.setState(state => ({
-        selectedText: ''
-      }));
+      updSelectedText('');
     }
   }
 

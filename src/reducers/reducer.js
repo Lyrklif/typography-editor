@@ -7,6 +7,7 @@
 import {
   UPD_MAIN_STORE,
   UPD_TEXT,
+  UPD_SELECTED_TEXT,
 } from '../actions/actionTypes';
 
 export default (state, action) => {
@@ -24,6 +25,11 @@ export default (state, action) => {
     case UPD_TEXT:
       return Object.assign({}, state, {
         'html': action.value
+      })
+    // изменить выделенный текст
+    case UPD_SELECTED_TEXT:
+      return Object.assign({}, state, {
+        'selectedText': action.value
       })
     default:
       return state

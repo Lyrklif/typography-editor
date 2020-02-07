@@ -433,6 +433,8 @@ export const startingValue = {
     lineHeight: 'Межстрочный интервал',
   },
 
+  selectedText: '',
+
   // текст в редактируемом блоке
   html: `
   <p>v3</p>

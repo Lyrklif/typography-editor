@@ -14,7 +14,9 @@ import Tabs from '@material-ui/core/Tabs';
 
 
 import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { updStore, updStates, updSizes, updStyles, updSelectedText } from '../actions/actionCreators';
+import { connect } from 'react-redux';
+
 
 import {
   formatCommand_clear,
@@ -26,26 +28,34 @@ import {
 } from "../vars";
 
 
+const mapStateToProps = (state) => {
+  return {
+    tagParameters: state.tagParameters,
+    bgcolor: state.styles.bgcolor,
+    color: state.styles.color,
+    selectedText: state.selectedText,
+
+  }
+}
 
 // настройка тегов
-export default class TagsPanel extends React.Component {
+class TagsPanel extends React.Component {
   constructor(props) {
     super(props);
+  }
 
-    // this.state = props.param;
-
-    this.showDialogLink = this.props.showDialogLink;
-    this.setTag = this.setTag.bind(this);
-    this.clearFormat = this.clearFormat.bind(this);
+  showDialogLink = (selectedText) => {
+    updStates('dialogLink');
+    updSelectedText(selectedText);
   }
 
   // установить тег (форматирование текста)
-  setTag(group, tag) {
+  setTag = (group, tag) => {
 
     // ничего не делать, если это не первая вкладка
     if (!this.props.editAllowed) return false;
 
-    let command = this.props.param.tagParameters[group][tag].command; // команды, прописанные для этого тега
+    let command = this.props.tagParameters[group][tag].command; // команды, прописанные для этого тега
 
     // если команды для этого тега существуют
     if (command) {
@@ -57,12 +67,12 @@ export default class TagsPanel extends React.Component {
     else {
       // цвет фона
       if (tag === formatCommand_bgcolor) {
-        document.execCommand('hiliteColor', false, this.props.values.bgcolor);
+        document.execCommand('hiliteColor', false, this.props.bgcolor);
 
         // цвет текста
       } else if (tag === formatCommand_color) {
         document.execCommand('styleWithCSS', false, 'true');
-        document.execCommand('foreColor', false, this.props.values.color);
+        document.execCommand('foreColor', false, this.props.color);
         document.execCommand('styleWithCSS', false, 'false');
       }
 
@@ -95,7 +105,7 @@ export default class TagsPanel extends React.Component {
   }
 
   //  очистить формат, удалив родительский тег
-  clearFormat() {
+  clearFormat = () => {
     let container = null; // блок, с которым работаем
     // если выделен (для IE)
     if (document.selection) {
@@ -125,7 +135,7 @@ export default class TagsPanel extends React.Component {
 
   render() {
     // преобразовать объект в массив ключей, чтобы можно было использовать .map
-    let tagParameters = this.props.param.tagParameters;
+    let tagParameters = this.props.tagParameters;
     let groupsTagArray = Object.keys(tagParameters);
 
     let groupsTagList = groupsTagArray.map((group, groupIndex) => {
@@ -166,22 +176,18 @@ export default class TagsPanel extends React.Component {
       // если в списке есть элементы
       if (countItems) {
         return (
-          <Box
-            key={groupIndex}
-            aria-label="li item scrollable horizontal tabs"
-            className={"clear-list tag-list"}
-          >
+          <React.Fragment key={groupIndex}>
             <Box
               component="ul"
               aria-label="ul items"
-              className={"tag-list clear-list"}>
+              className={"tag-list clear-list tag-list"}>
               {tagList}
             </Box>
             {/* После последнего элемента не добавлять черту */}
             {(groupsTagArray.length - 1 !== groupIndex) &&
-              <Divider orientation="vertical" />
+              <Box><Divider orientation="vertical" /></Box>
             }
-          </Box>
+          </React.Fragment >
         );
       }
 
@@ -203,3 +209,7 @@ export default class TagsPanel extends React.Component {
     )
   }
 }
+
+
+
+export default connect(mapStateToProps)(TagsPanel);

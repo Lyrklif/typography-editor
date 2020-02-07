@@ -3,7 +3,8 @@ import mainStore from '../store/mainStore';
 
 import {
   UPD_MAIN_STORE,
-  UPD_TEXT
+  UPD_TEXT,
+  UPD_SELECTED_TEXT
 } from './actionTypes';
 
 /*
@@ -46,4 +47,9 @@ export function updStore(value) {
 // обновить данные
 export function updText(value) {
   mainStore.dispatch({ type: UPD_TEXT, value });
+}
+
+// обновить выделенный текст
+export function updSelectedText(value) {
+  mainStore.dispatch({ type: UPD_SELECTED_TEXT, value });
 }
