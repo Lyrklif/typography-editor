@@ -136,7 +136,7 @@ export const startingValue = {
           title: 'Отменить',
           iconName: 'Undo'
         },
-        selected: false,
+        selected: true,
       },
       redo: {
         command: ['redo', false, ''],
@@ -144,7 +144,7 @@ export const startingValue = {
           title: 'Повторить',
           iconName: 'Redo'
         },
-        selected: false,
+        selected: true,
       },
       p: {
         command: ['formatBlock', false, 'p'],
@@ -403,7 +403,7 @@ export const startingValue = {
     saveSuccess: 'Изменения сохранены',
     saveError: 'Произошла ошибка! Изменения не сохранены. Попробуйте ещё раз',
     tabText_Title: 'Редактируемый текст',
-    tabHTML_Title: 'Редактируемый html',
+    tabHTML_Title: 'Редактируемый html',    
   },
 
 
@@ -425,6 +425,7 @@ export const startingValue = {
     apply: 'Применить',
     bgColor: 'Цвет фона',
     textColor: 'Цвет текста',
+    editParam: 'Параметры редактирования',
   },
 
   // текст полей ввода

@@ -4,16 +4,21 @@ import IconButton from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
 
+import { updLocalStorage } from '../functions/localStorage';
+
 import { connect } from 'react-redux';
 
 
 const mapStateToProps = (state) => {
   return {
     editText: !!+state.states.editText,
-    undo: state.buttons.undo,
-    redo: state.buttons.redo,
     download: state.buttons.download,
     print: state.buttons.print,
+    save: state.buttons.save,
+    editParam: state.buttons.editParam,
+
+    saveSuccess: state.text.saveSuccess,
+    saveError: state.text.saveError,
   }
 }
 
@@ -22,6 +27,12 @@ const mapStateToProps = (state) => {
 class ButtonsPanel extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isOpenAlert: false,
+      typeAlert: 'info',
+      textAlert: 'Сообщение',
+    };
   }
 
   // скачать отредактированный текст
@@ -45,15 +56,34 @@ class ButtonsPanel extends React.Component {
     }
   }
 
-  // сбросить изменения  параметров
-  undo = () => {
-    document.execCommand("undo"); // Отмена последнего действия
+
+  save = () => {
+    updLocalStorage();
+
+    setTimeout(() => {
+      if (localStorage.getItem("param") !== null) {
+        this.showAlert('success', this.props.saveSuccess);
+      } else {
+        this.showAlert('error', this.props.saveError);
+      }
+    }, 0);
   }
 
-  // сбросить изменения  параметров
-  redo = () => {
-    document.execCommand("redo"); // Повтор последнего действия
+  showAlert = (type, text) => {
+    this.setState(state => ({
+      typeAlert: type,
+      textAlert: text,
+    }));
+
+    this.switchShowAlert();
   }
+
+  switchShowAlert = () => {
+    this.setState(state => ({
+      isOpenAlert: !this.state.isOpenAlert
+    }));
+  }
+
 
   // напечатать текст/код
   print = () => {
@@ -62,8 +92,7 @@ class ButtonsPanel extends React.Component {
 
   render() {
     const buttonsData = [
-      ['undo', 'Undo'],
-      ['redo', 'Redo'],
+      ['save', 'Save'],
       ['download', 'GetApp'],
       ['print', 'Print'],
     ];
