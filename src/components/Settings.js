@@ -17,17 +17,6 @@ import mainStore from '../store/mainStore';
 import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
 
 
-import {
-  formatCommand_clear,
-  formatCommand_bgcolor,
-  formatCommand_color,
-  formatCommand_link,
-  formatCommand_uppercase,
-  formatCommand_lowercase,
-} from "../vars";
-
-
-
 // настройка тегов
 export default class Settings extends React.Component {
   constructor(props) {

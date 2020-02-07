@@ -1,25 +1,14 @@
 // colorPickerModal
 
 import React from "react";
-import Box from "@material-ui/core/Box";
 import Dialog from '@material-ui/core/Dialog';
 import Button from "@material-ui/core/Button";
-import * as IconsLib from "@material-ui/icons";
 import { SwatchesPicker } from "react-color";
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
-import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { updStates, updStyles } from '../actions/actionCreators';
 import { connect } from 'react-redux';
 
 
-
-import {
-  formatCommand_bgcolor,
-  formatCommand_color,
-} from "../vars";
 
 
 

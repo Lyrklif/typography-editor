@@ -3,19 +3,17 @@ import React from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Box from "@material-ui/core/Box";
-
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
-import { connect } from 'react-redux';
-
 import sanitize from '../functions/sanitize';
-
 import { getSelection } from '../functions/getSelection';
 import { setAttributeForSelectedText } from '../functions/setAttributeForSelectedText';
+
+import { updStates, updStyles } from '../actions/actionCreators';
+import { connect } from 'react-redux';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -32,8 +30,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-
-// настройка тегов
 class MainSettingsPanel extends React.Component {
   constructor(props) {
     super(props);

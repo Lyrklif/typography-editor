@@ -8,6 +8,7 @@ import {
   UPD_MAIN_STORE,
   UPD_TEXT,
   UPD_SELECTED_TEXT,
+  UPD_TAG_PARAMETERS,
 } from '../actions/actionTypes';
 
 export default (state, action) => {
@@ -30,6 +31,11 @@ export default (state, action) => {
     case UPD_SELECTED_TEXT:
       return Object.assign({}, state, {
         'selectedText': action.value
+      })
+    // изменить выделенный текст
+    case UPD_TAG_PARAMETERS:
+      return Object.assign({}, state, {
+        'tagParameters': action.value
       })
     default:
       return state

@@ -1,12 +1,10 @@
 import React from 'react';
 
-import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    editText: state.states.editText,
+    editText: !!+state.states.editText,
     fontSize: state.styles.fontSize,
     lineHeight: state.styles.lineHeight,
     html: state.html,
@@ -26,7 +24,7 @@ class ContentEditable extends React.Component {
     return (
       <div
         tabIndex={this.props.editText ? '0' : null}
-        contentEditable={this.props.editText ? 'true' : 'false'}
+        contentEditable={this.props.editText}
         suppressContentEditableWarning={true} // чтобы убрать в консоли предупреждение о contentEditable
         className={this.props.editText ? 'content print edit' : 'print content'}
         dangerouslySetInnerHTML={createContent()} // вставить переданный текст

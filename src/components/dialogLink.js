@@ -10,8 +10,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { restoreSelection } from '../functions/restoreSelection';
 
-import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles, updSelectedText } from '../actions/actionCreators';
+import { updStates, updSelectedText } from '../actions/actionCreators';
 import { connect } from 'react-redux';
 
 
