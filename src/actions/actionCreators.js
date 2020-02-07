@@ -46,9 +46,5 @@ export function updStore(value) {
 
 // обновить данные
 export function updText(value) {
-  const unsubscribe = mainStore.subscribe(() => console.log(mainStore.getState()));
-  
   mainStore.dispatch({ type: UPD_TEXT, value });
-
-  unsubscribe();
 }

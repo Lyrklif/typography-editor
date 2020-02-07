@@ -2,17 +2,18 @@
 // Редюсер (reducer) — это чистая функция, которая принимает предыдущее 
 // состояние и экшен (state и action) и возвращает следующее состояние (новую версию предыдущего).
 
-import { startingValue } from '../startingValue';
+// import { startingValue } from '../startingValue';
 
 import {
   UPD_MAIN_STORE,
   UPD_TEXT,
 } from '../actions/actionTypes';
 
-export default (state = startingValue, action) => {
+export default (state, action) => {
   switch (action.type) {
     // изменить какой-то из параметров
     case UPD_MAIN_STORE:
+      // console.log('UPD_MAIN_STORE', action.value.value);
       return Object.assign({}, state, {
         [action.value.group]: {
           ...state[action.value.group],

@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    tabActive: state.states.tabActive
+    tabActive: +state.states.tabActive
   }
 }
 
@@ -30,13 +30,11 @@ class TabSwitches extends React.Component {
     updStates('tabActive', newValue);
   }
 
-
   render() {
     return (
       <Paper component={"nav"} className={"tabs-nav"}>
         <Tabs
           className={"clear-list"}
-          // value={this.props.value}
           value={this.props.tabActive}
           onChange={this.onChange}
           aria-label="simple tabs example"
@@ -55,13 +53,6 @@ class TabSwitches extends React.Component {
             icon={<IconsLib.SettingsEthernet />}
             aria-label="Режим просмотра HTML"
             title="Режим просмотра HTML" />
-          {/* <Tab
-            // label="CSS"
-            icon={<IconsLib.Texture />}
-            aria-label="Режим просмотра CSS"
-            title="Режим просмотра CSS"
-            disabled
-          /> */}
         </Tabs>
       </Paper>
     )

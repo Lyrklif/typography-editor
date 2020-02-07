@@ -55,7 +55,7 @@ export default class App extends React.Component {
         html: localTextParam
       };
     }
-    
+
 
     // если сохранены только настройки
     else if (localData) {
@@ -204,77 +204,64 @@ export default class App extends React.Component {
 
     return (
       <MuiThemeProvider theme={MyTheme}>
-          <Box component="main" className="App" >
-            {/* панель редактирования */}
-            <EditorPanel
-              param={this.state}
-              setGlobalParam={this.setGlobalParam}
-              switchEditText={this.switchEditText}
-              tabSwitch={this.tabSwitch}
-              dialogLink={this.switchDialogLink}
-              setNewColor={this.updMainStates}
-            />
+        <Box component="main" className="App" >
+          {/* панель редактирования */}
+          <EditorPanel
+            param={this.state}
+            setGlobalParam={this.setGlobalParam}
+            switchEditText={this.switchEditText}
+            tabSwitch={this.tabSwitch}
+            dialogLink={this.switchDialogLink}
+            setNewColor={this.updMainStates}
+          />
 
 
 
-            <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
-              <Grid item xs={12} md={10} lg={8}>
+          <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
+            <Grid item xs={12} md={10} lg={8}>
 
-                {/* Переключатель вкладок */}
-                <TabSwitches
-                  // value={mainStore.getState().states.tabActive}
-                  // onChange={this.tabSwitch}
+              {/* Переключатель вкладок */}
+              <TabSwitches />
+
+              {/* Вкладка №1 */}
+              <TabContainer
+                index={0}
+                h2={"Редактируемый текст"}>
+                <ContentEditable param={this.state} />
+              </TabContainer>
+
+              {/* Вкладка №2 */}
+              <TabContainer
+                index={1}
+                h2={"Редактируемый html"}>
+                <HTMLeditable
+                  param={this.state}
+                  onChange={this.setNewText}
                 />
+              </TabContainer>
 
-                {/* Вкладка №1 */}
-                <TabContainer
-                  value={mainStore.getState().states.tabActive}
-                  index={0}
-                  h2={"Редактируемый текст"}>
-                  <ContentEditable param={this.state} />
-                </TabContainer>
-
-                {/* Вкладка №2 */}
-                <TabContainer
-                  value={mainStore.getState().states.tabActive}
-                  index={1}
-                  h2={"Редактируемый html"}>
-                  <HTMLeditable
-                    param={this.state}
-                    onChange={this.setNewText}
-                  />
-                </TabContainer>
-
-                {/* Вкладка №3 */}
-                {/* <TabContainer
-                  value={this.state.states.tabActive}
-                  index={2}
-                  h2={"Редактируемые стили"}>
-                  <p>Тут будет отображаться css</p>
-                </TabContainer> */}
-
-              </Grid>
             </Grid>
-          </Box>
+          </Grid>
+        </Box>
 
-          <Settings
-            param={this.state}
-            updStates={this.updMainStates}
-            save={this.updLocalStorage}
-          />
+        <Settings
+          param={this.state}
+          updStates={this.updMainStates}
+          save={this.updLocalStorage}
+        />
 
-          <SettingsTagsPanel
-            param={this.state}
-            saveChange={this.changeDisplayedTags}
-            updStates={this.updMainStates}
-          />
+        <SettingsTagsPanel
+          param={this.state}
+          saveChange={this.changeDisplayedTags}
+          updStates={this.updMainStates}
+        />
 
-          <SettingsPanel
-            param={this.state}
-            saveChange={this.changeDisplayedTags}
-            updStates={this.updMainStates}
-            reset={this.returnDefaultSettings}
-          />
+        <SettingsPanel
+          param={this.state}
+          saveChange={this.changeDisplayedTags}
+          updStates={this.updMainStates}
+          reset={this.returnDefaultSettings}
+        />
       </MuiThemeProvider>
     );
   }

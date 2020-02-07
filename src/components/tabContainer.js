@@ -7,16 +7,25 @@ import Paper from '@material-ui/core/Paper';
 
 
 import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { updStore, updStates, updSizes, updStyles, updText } from '../actions/actionCreators';
+import { connect } from 'react-redux'
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    tabActive: +state.states.tabActive // + конвертирует boolean в int
+  }
+}
 
 // Текст, который можно редактировать
-export default class TabContainer extends React.Component {
+class TabContainer extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { children, value, index, ...other } = this.props;
+    const { children, index, ...other } = this.props;
 
     return (
       <Paper
@@ -28,7 +37,7 @@ export default class TabContainer extends React.Component {
         <Typography
           component="div"
           role="tabpanel"
-          hidden={value !== index}
+          hidden={this.props.tabActive !== index}
           id={`simple-tabpanel-${index}`}
           aria-labelledby={`simple-tab-${index}`}
           {...other}
@@ -39,3 +48,6 @@ export default class TabContainer extends React.Component {
     );
   }
 }
+
+
+export default connect(mapStateToProps)(TabContainer);
