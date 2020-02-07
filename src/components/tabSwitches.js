@@ -7,8 +7,7 @@ import * as IconsLib from "@material-ui/icons";
 import Paper from "@material-ui/core/Paper";
 
 import sanitize from '../functions/sanitize';
-import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles, updText } from '../actions/actionCreators';
+import { updStates } from '../actions/actionCreators';
 import { connect } from 'react-redux';
 
 
@@ -46,12 +45,10 @@ class TabSwitches extends React.Component {
           centered
         >
           <Tab
-            // label="Текст"
             icon={<IconsLib.Subject />}
             aria-label={this.props.tabText_Title}
             title={this.props.tabText_Title} />
           <Tab
-            // label="HTML"
             icon={<IconsLib.SettingsEthernet />}
             aria-label={this.props.tabHTML_Title}
             title={this.props.tabHTML_Title} />

@@ -2,54 +2,17 @@
 
 import React from "react";
 
-import IconButton from "@material-ui/core/Button";
 import * as IconsLib from "@material-ui/icons";
-
 import Box from "@material-ui/core/Box";
-import Fab from '@material-ui/core/Fab';
-
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-
-
-import { withStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-
-
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Checkbox from '@material-ui/core/Checkbox';
-
-
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-import TextField from '@material-ui/core/TextField';
-
-
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-import mainStore from '../store/mainStore';
 import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
 
 
@@ -71,16 +34,16 @@ export default class SettingsTagsPanel extends React.Component {
 
     this.state = props.param;
     this.saveChange = props.saveChange;
-    this.updStates = props.updStates;
+    // this.updStates = props.updStates;
   }
 
   switchShowPanel = () => {
-    this.updStates('states', 'openSettingsTagsPanel');
+    updStates('openSettingsTagsPanel');
   }
 
   saveNewSettings = () => {
     this.switchShowPanel(); // закрыть панель
-    this.saveChange(this.state.tagParameters);
+    // this.saveChange(this.state.tagParameters);
   }
 
   handleChange = (group, tag) => {

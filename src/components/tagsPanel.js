@@ -4,17 +4,12 @@ import IconButton from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import * as IconsLib from "@material-ui/icons";
 import Divider from '@material-ui/core/Divider';
-
-import { getSelectionRange } from '../functions/getSelectionRange';
-import { getSelection } from '../functions/getSelection';
-import { setAttributeForSelectedText } from '../functions/setAttributeForSelectedText';
-
-
 import Tabs from '@material-ui/core/Tabs';
 
+import { getSelectionRange } from '../functions/getSelectionRange';
+import { setAttributeForSelectedText } from '../functions/setAttributeForSelectedText';
 
-import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles, updSelectedText } from '../actions/actionCreators';
+import { updStates, updSelectedText } from '../actions/actionCreators';
 import { connect } from 'react-redux';
 
 

@@ -17,8 +17,11 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    openSettingsPanel: state.states.openSettingsPanel,
+    openSettingsPanel: !!+state.states.openSettingsPanel,
     settingsPanelTitle: state.text.settingsPanelTitle,
+    cancel: state.buttons.cancel,
+    apply: state.buttons.apply,
+    reset: state.buttons.reset,
   }
 }
 
@@ -26,19 +29,17 @@ const mapStateToProps = (state) => {
 class SettingsPanel extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = props.param;
-    // this.reset = props.reset;
-    // this.updStates = props.updStates;
   }
 
-  saveNewSettings = () => {
-    updStates('openSettingsPanel'); // закрыть панель
-    this.saveChange();
+  // показать/скрыть панель
+  switchShowModal = () => {
+    updStates('openSettingsPanel');
   }
 
   saveChange = (newTagsParam) => {
-    updTagParameters(newTagsParam);
+    this.switchShowModal(); // закрыть панель
+    // updTagParameters(newTagsParam);
   }
 
   // вернуть стандартные настройки
@@ -56,7 +57,7 @@ class SettingsPanel extends React.Component {
     return (
       <Dialog
         open={this.props.openSettingsPanel}
-        onClose={() => updStates('openSettingsPanel')}
+        // onClose={this.saveChange}
         aria-labelledby="form-dialog-settings-icons"
       >
         <DialogTitle id="form-dialog-title">{this.props.settingsPanelTitle}</DialogTitle>
@@ -76,11 +77,11 @@ class SettingsPanel extends React.Component {
 
         <Divider />
         <DialogActions>
-          <Button onClick={() => this.updStates('states', 'openSettingsPanel')} >
-            {this.props.param.buttons.cancel}
+          <Button onClick={this.switchShowModal} >
+            {this.props.cancel}
           </Button>
-          <Button onClick={this.saveNewSettings} color="secondary">
-            {this.props.param.buttons.apply}
+          <Button onClick={this.saveChange} color="secondary">
+            {this.props.apply}
           </Button>
         </DialogActions>
 
