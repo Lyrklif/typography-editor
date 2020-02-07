@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    tabActive: +state.states.tabActive // + конвертирует boolean в int
+    tabActive: +state.states.tabActive, // + конвертирует boolean в int
   }
 }
 

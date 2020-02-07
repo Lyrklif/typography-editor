@@ -7,14 +7,29 @@ import "ace-builds/src-noconflict/snippets/html";
 import "ace-builds/src-noconflict/theme-xcode";
 
 import mainStore from '../store/mainStore';
-import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { updStore, updStates, updSizes, updStyles, updText } from '../actions/actionCreators';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => {
+  return {
+    html: state.html,
+  }
+}
+
 
 // Текст, который можно редактировать
-export default class HTMLeditable extends React.Component {
+class HTMLeditable extends React.Component {
   constructor(props) {
     super(props);
+  }
 
-    this.onChange = this.props.onChange;
+  // записать новый текст
+  setNewText = (newValue) => {
+    // если в качестве параметра передан новый текст
+    if (newValue && newValue !== this.props.html) {
+      // записать новую версию текста
+      updText(newValue);
+    }
   }
 
   render() {
@@ -24,12 +39,12 @@ export default class HTMLeditable extends React.Component {
         mode="html"
         theme="xcode"
         name="blah2"
-        onChange={this.onChange}
+        onChange={this.setNewText}
         fontSize={14}
         showPrintMargin={true}
         showGutter={true}
         highlightActiveLine={true}
-        value={this.props.param.html}
+        value={this.props.html}
 
         setOptions={{
           enableBasicAutocompletion: false,
@@ -41,3 +56,5 @@ export default class HTMLeditable extends React.Component {
     );
   }
 };
+
+export default connect(mapStateToProps)(HTMLeditable);

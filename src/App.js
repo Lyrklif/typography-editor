@@ -224,20 +224,13 @@ export default class App extends React.Component {
               <TabSwitches />
 
               {/* Вкладка №1 */}
-              <TabContainer
-                index={0}
-                h2={"Редактируемый текст"}>
-                <ContentEditable param={this.state} />
+              <TabContainer index={0} h2={mainStore.getState().text.tabText_Title}>
+                <ContentEditable />
               </TabContainer>
 
               {/* Вкладка №2 */}
-              <TabContainer
-                index={1}
-                h2={"Редактируемый html"}>
-                <HTMLeditable
-                  param={this.state}
-                  onChange={this.setNewText}
-                />
+              <TabContainer index={1} h2={mainStore.getState().text.tabHTML_Title}>
+                <HTMLeditable />
               </TabContainer>
 
             </Grid>

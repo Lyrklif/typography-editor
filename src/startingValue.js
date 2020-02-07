@@ -402,6 +402,8 @@ export const startingValue = {
     settingsPanelTitle: 'Настройки',
     saveSuccess: 'Изменения сохранены',
     saveError: 'Произошла ошибка! Изменения не сохранены. Попробуйте ещё раз',
+    tabText_Title: 'Редактируемый текст',
+    tabHTML_Title: 'Редактируемый html',
   },
 
 

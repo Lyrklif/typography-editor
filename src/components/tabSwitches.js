@@ -9,25 +9,27 @@ import Paper from "@material-ui/core/Paper";
 import sanitize from '../functions/sanitize';
 import mainStore from '../store/mainStore';
 import { updStore, updStates, updSizes, updStyles, updText } from '../actions/actionCreators';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 
 const mapStateToProps = (state) => {
   return {
-    tabActive: +state.states.tabActive
+    tabActive: +state.states.tabActive,
+    tabText_Title: state.text.tabText_Title,
+    tabHTML_Title: state.text.tabHTML_Title,
   }
 }
 
 
-// настройка тегов
 class TabSwitches extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  // при переключении таба
   onChange = (e, newValue) => {
     sanitize(); // записать новый текст, удалив неразрешённые теги
-    updStates('tabActive', newValue);
+    updStates('tabActive', newValue); // записать номер нового активного таба
   }
 
   render() {
@@ -46,13 +48,13 @@ class TabSwitches extends React.Component {
           <Tab
             // label="Текст"
             icon={<IconsLib.Subject />}
-            aria-label="Режим просмотра текста"
-            title="Режим просмотра текста" />
+            aria-label={this.props.tabText_Title}
+            title={this.props.tabText_Title} />
           <Tab
             // label="HTML"
             icon={<IconsLib.SettingsEthernet />}
-            aria-label="Режим просмотра HTML"
-            title="Режим просмотра HTML" />
+            aria-label={this.props.tabHTML_Title}
+            title={this.props.tabHTML_Title} />
         </Tabs>
       </Paper>
     )
