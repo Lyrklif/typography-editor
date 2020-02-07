@@ -154,23 +154,12 @@ class EditorPanel extends React.Component {
               variant="scrollable"
               value={0}
             >
-              {/* основные настройки */}
-              <MainSettingsPanel
-                param={this.props.param}
-                eventHandler={this.setGlobalParam}
-                reset={this.reset}
-                switchEditText={this.switchEditText}
-              />
-              <Box>
-                <Divider orientation="vertical" />
-              </Box>
 
-              {/* панель с кнопками */}
-              <ButtonsPanel />
+              <MainSettingsPanel /> {/* основные настройки */}
+              <Box><Divider orientation="vertical" /></Box>
 
-              <Box>
-                <Divider orientation="vertical" />
-              </Box>
+              <ButtonsPanel /> {/* панель с кнопками */}
+              <Box><Divider orientation="vertical" /></Box>
 
               <Box className="box-margin">
                 {/* Выбор цвета фона */}
