@@ -166,7 +166,6 @@ class EditorPanel extends React.Component {
               <ColorPanel className="box-margin" />
             </Tabs>
 
-
             <Divider />
             <TagsPanel
               param={this.props.param}
@@ -181,14 +180,8 @@ class EditorPanel extends React.Component {
 
 
             <ColorPickerModal /> {/* modal выбора цвета */}
+            <DialogLink /> {/* modal ввода href для ссылки */}
 
-
-            <DialogLink
-              param={this.state}
-              isOpen={this.state.states.dialogLink}
-              switchDialogLink={this.switchDialogLink}
-              addLinkUrl={this.addLinkUrl}
-            />
           </Paper>
         </AppBar>
       </ElevationScroll>
