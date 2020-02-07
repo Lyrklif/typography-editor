@@ -40,7 +40,6 @@ export function updSizes(name, value) {
 
 // обновить данные
 export function updStore(value) {
-  // return { type: UPD_MAIN_STORE, value }
   mainStore.dispatch({ type: UPD_MAIN_STORE, value });
 }
 

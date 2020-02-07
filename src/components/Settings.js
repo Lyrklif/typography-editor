@@ -86,7 +86,7 @@ export default class Settings extends React.Component {
   render() {
     return (
       <Box
-        className={'settings-btn'}
+        className={'settings-btn no-print'}
       >
 
         <SpeedDial

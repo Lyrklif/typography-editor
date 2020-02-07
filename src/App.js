@@ -200,7 +200,6 @@ export default class App extends React.Component {
   };
 
   render() {
-    // const store = createStore(reducer, mainStore.getState());
 
     return (
       <MuiThemeProvider theme={MyTheme}>
@@ -214,8 +213,6 @@ export default class App extends React.Component {
             dialogLink={this.switchDialogLink}
             setNewColor={this.updMainStates}
           />
-
-
 
           <Grid container spacing={0} alignItems="center" justify="center" className="tabs-wrap">
             <Grid item xs={12} md={10} lg={8}>

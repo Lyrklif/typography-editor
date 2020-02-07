@@ -7,28 +7,30 @@ import * as IconsLib from "@material-ui/icons";
 
 import mainStore from '../store/mainStore';
 import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { connect } from 'react-redux';
+
+
+const mapStateToProps = (state) => {
+  return {
+    editText: !!+state.states.editText,
+    undo: state.buttons.undo,
+    redo: state.buttons.redo,
+    download: state.buttons.download,
+    print: state.buttons.print,
+  }
+}
+
 
 // настройка тегов
-export default class ButtonsPanel extends React.Component {
+class ButtonsPanel extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = props.param;
-
-    this.setGlobalParam = props.setGlobalParam;
-    this.reset = props.reset;
-    // this.switchEditText = props.switchEditText;
-
-    this.download = this.download.bind(this);
-    this.undo = this.undo.bind(this);
-    this.redo = this.redo.bind(this);
-    this.print = this.print.bind(this);
   }
 
   // скачать отредактированный текст
-  download() {
+  download = () => {
     // если режим редактирования выключен
-    if (!this.props.param.states.editText) {
+    if (!this.props.editText) {
       let editableBlock = document.querySelector(".content"); // блок, текст в котором можно редактировать
       let block = editableBlock.outerHTML; // текст внутри блока
 
@@ -47,67 +49,52 @@ export default class ButtonsPanel extends React.Component {
   }
 
   // сбросить изменения  параметров
-  undo() {
+  undo = () => {
     document.execCommand("undo"); // Отмена последнего действия
   }
 
   // сбросить изменения  параметров
-  redo() {
+  redo = () => {
     document.execCommand("redo"); // Повтор последнего действия
   }
 
   // напечатать текст/код
-  print() {
+  print = () => {
     window.print();
   }
 
   render() {
+    const buttonsData = [
+      ['undo', 'Undo'],
+      ['redo', 'Redo'],
+      ['download', 'GetApp'],
+      ['print', 'Print'],
+    ];
+
+    const buttons = buttonsData.map((elem, index) => {
+      let Icon = IconsLib[elem[1]];
+
+      return (
+        <IconButton
+          key={index}
+          color="primary"
+          aria-label={this.props[elem[0]]}
+          title={this.props[elem[0]]}
+          onClick={this[elem[0]]}
+        >
+          <Icon />
+        </IconButton>
+      );
+    });
+
+
     return (
       <Box className="box-margin">
-        {/* КНОПКА Отменить */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.undo}
-          title={this.props.param.buttons.undo}
-          onClick={this.undo}
-        >
-          <IconsLib.Undo />
-        </IconButton>
-
-
-        {/* КНОПКА Повторить */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.redo}
-          title={this.props.param.buttons.redo}
-          onClick={this.redo}
-        >
-          <IconsLib.Redo />
-        </IconButton>
-
-
-        {/* КНОПКА скачать */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.download}
-          title={this.props.param.buttons.download}
-          onClick={this.download}
-        >
-          <IconsLib.GetApp />
-        </IconButton>
-
-
-
-        {/* КНОПКА печать */}
-        <IconButton
-          color="primary"
-          aria-label={this.props.param.buttons.print}
-          title={this.props.param.buttons.print}
-          onClick={this.print}
-        >
-          <IconsLib.Print />
-        </IconButton>
+        {buttons}
       </Box>
     );
   }
 }
+
+
+export default connect(mapStateToProps)(ButtonsPanel);

@@ -2,7 +2,6 @@ import React from "react";
 
 import { SwatchesPicker } from "react-color";
 
-
 import TagsPanel from "./TagsPanel";
 import ButtonsPanel from "./ButtonsPanel";
 import MainSettingsPanel from "./MainSettingsPanel";
@@ -25,11 +24,21 @@ import { restoreSelection } from '../functions/restoreSelection';
 
 import mainStore from '../store/mainStore';
 import { updStore, updStates, updSizes, updStyles } from '../actions/actionCreators';
+import { connect } from 'react-redux';
 
 import {
   formatCommand_bgcolor,
   formatCommand_color,
 } from "../vars";
+
+
+const mapStateToProps = (state) => {
+  return {
+    colorPicker: !!+state.states.colorPicker,
+    paletteEdit: !!+state.states.paletteEdit,
+    dialogLink: !!+state.states.dialogLink,
+  }
+}
 
 
 function ElevationScroll(props) {
@@ -47,7 +56,7 @@ function ElevationScroll(props) {
 
 
 // панель редактирования
-export default class EditorPanel extends React.Component {
+class EditorPanel extends React.Component {
   constructor(props) {
     super(props);
 
@@ -157,9 +166,7 @@ export default class EditorPanel extends React.Component {
               </Box>
 
               {/* панель с кнопками */}
-              <ButtonsPanel
-                param={this.props.param}
-              />
+              <ButtonsPanel />
 
               <Box>
                 <Divider orientation="vertical" />
@@ -239,3 +246,6 @@ export default class EditorPanel extends React.Component {
     );
   }
 }
+
+
+export default connect(mapStateToProps)(EditorPanel);
